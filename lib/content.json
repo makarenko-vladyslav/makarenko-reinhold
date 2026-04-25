@@ -1,0 +1,441 @@
+{
+  "defaultLocale": "no",
+  "locales": {
+    "no": {
+      "meta": {
+        "title": "Makarenko Reinhold | Premium Renhold i Notodden",
+        "description": "Profesjonell, forsikret og personlig renholdstjeneste for private hjem i Notodden. Få et skinnende rent hjem i dag.",
+        "lang": "no"
+      },
+      "nav": {
+        "services": "Tjenester",
+        "pricing": "Priser",
+        "about": "Om Oss",
+        "faq": "FAQ",
+        "contact": "Kontakt",
+        "book": "Få Tilbud"
+      },
+      "hero": {
+        "badge": "Lokalt i Notodden",
+        "title": "Presisjon i Hver Detalj. <br/><span class='text-gradient'>Skinnende Rent Hjem.</span>",
+        "subtitle": "Vi leverer profesjonelt renhold for private hjem i Notodden. Med HMS-kort, ansvarsforsikring og en 24-timers fornøydgaranti.",
+        "ctaPrimary": "Be om Pris på WhatsApp",
+        "ctaSecondary": "Se Våre Tjenester",
+        "trust1": "100% Forsikret",
+        "trust2": "HMS-Godkjent",
+        "imageUrl": "https://picsum.photos/seed/cleaning-hero-no/1200/800"
+      },
+      "socialProof": {
+        "stats": [
+          { "value": "100+", "label": "Fornøyde Kunder" },
+          { "value": "24t", "label": "Fornøydgaranti" },
+          { "value": "100%", "label": "Forsikret" },
+          { "value": "5.0", "label": "Kundeanmeldelser" }
+        ]
+      },
+      "services": {
+        "badge": "Vår Ekspertise",
+        "title": "Tjenester Skreddersydd for Ditt Hjem",
+        "subtitle": "Fra daglig vedlikehold til dyp rengjøring. Vi bruker kun profesjonelt utstyr og miljøvennlige produkter.",
+        "items": [
+          {
+            "id": "regular",
+            "title": "Fast Vaskehjelp",
+            "description": "Regelmessig renhold (ukentlig/hver 14. dag) tilpasset dine behov. Støvtørking, støvsuging, og vask av overflater.",
+            "icon": "home"
+          },
+          {
+            "id": "deep",
+            "title": "Hovedrengjøring",
+            "description": "Grundig nedvask av hele boligen. Inkluderer lister, dører, skap innvendig og grundig bad/kjøkken vask.",
+            "icon": "sparkles"
+          },
+          {
+            "id": "moving",
+            "title": "Flyttevask",
+            "description": "Komplett nedvask med garanti. Vi sørger for at boligen er strøken for nye eiere eller ved utflytting.",
+            "icon": "box"
+          },
+          {
+            "id": "windows",
+            "title": "Vindusvask",
+            "description": "Krystallklare vinduer innvendig og utvendig. Fjerner smuss, striper og forurensning effektivt.",
+            "icon": "window"
+          }
+        ],
+        "mainImage": "https://picsum.photos/seed/cleaning-service-main/800/1000"
+      },
+      "calculator": {
+        "badge": "Gjennomsiktige Priser",
+        "title": "Beregn Pris for Ditt Hjem",
+        "subtitle": "Bruk kalkulatoren under for et estimat. Endelig pris avtales etter en uforpliktende befaring.",
+        "sizeLabel": "Størrelse på bolig (m²)",
+        "frequencyLabel": "Hvor ofte?",
+        "freqOptions": {
+          "once": "Engangsvask",
+          "weekly": "Hver uke (-15%)",
+          "biweekly": "Hver 14. dag (-10%)"
+        },
+        "extrasLabel": "Tilleggstjenester",
+        "extras": {
+          "windows": "Vindusvask",
+          "oven": "Innvendig stekeovn",
+          "fridge": "Innvendig kjøleskap"
+        },
+        "totalLabel": "Estimat per vask",
+        "cta": "Bestill Befaring"
+      },
+      "whyUs": {
+        "badge": "Hvorfor Velge Oss",
+        "title": "Trygghet og Kvalitet i Fokus",
+        "items": [
+          {
+            "title": "Personlig Service",
+            "description": "Du forholder deg til samme person hver gang. Ingen store upersonlige byråer.",
+            "icon": "user"
+          },
+          {
+            "title": "Fullt Forsikret",
+            "description": "Vi har ansvarsforsikring som dekker eventuelle uhell opptil 10 millioner NOK.",
+            "icon": "shield"
+          },
+          {
+            "title": "Lovlig og Trygt",
+            "description": "Registrert bedrift med gyldig HMS-kort for renholdsbransjen.",
+            "icon": "check"
+          },
+          {
+            "title": "24t Garanti",
+            "description": "Er du ikke fornøyd? Vi kommer tilbake innen 24 timer og retter opp kostnadsfritt.",
+            "icon": "clock"
+          }
+        ]
+      },
+      "beforeAfter": {
+        "badge": "Resultater",
+        "title": "Forskjellen er Tydelig",
+        "subtitle": "Se eksempler på vårt arbeid. Dra i slideren for å se før og etter.",
+        "beforeImage": "https://picsum.photos/seed/dirty-kitchen/800/600",
+        "afterImage": "https://picsum.photos/seed/clean-kitchen/800/600",
+        "beforeLabel": "Før",
+        "afterLabel": "Etter"
+      },
+      "process": {
+        "badge": "Slik Fungerer Det",
+        "title": "Enkel og Effektiv Prosess",
+        "steps": [
+          { "title": "Ta Kontakt", "description": "Send oss en melding via WhatsApp eller skjema for et uforpliktende tilbud." },
+          { "title": "Gratis Befaring", "description": "Vi tar en rask befaring (fysisk eller via video) for å gi nøyaktig pris." },
+          { "title": "Vi Vasker", "description": "Vi utfører renholdet til avtalt tid med profesjonelt utstyr." },
+          { "title": "Du Nyter", "description": "Kom hjem til en skinnende ren og velduftende bolig." }
+        ]
+      },
+      "testimonials": {
+        "badge": "Kundeomtaler",
+        "title": "Hva Våre Kunder Sier",
+        "items": [
+          { "name": "Kari N.", "role": "Huseier, Notodden", "text": "Fantastisk service! Anna er utrolig nøye og effektiv. Det er en drøm å komme hjem etter at hun har vært her.", "rating": 5 },
+          { "name": "Ole P.", "role": "Familiefar", "text": "Vi brukte Makarenko Reinhold til flyttevask. Kjøper var strålende fornøyd, og vi fikk tilbake depositumet uten spørsmål.", "rating": 5 },
+          { "name": "Ingrid S.", "role": "Fast kunde", "text": "Veldig betryggende å vite at de har alt på stell med forsikring og HMS-kort. Anbefales på det varmeste.", "rating": 5 }
+        ]
+      },
+      "gallery": {
+        "badge": "Vårt Arbeid",
+        "title": "Glimt fra Hverdagen",
+        "items": [
+          { "url": "https://picsum.photos/seed/clean1/600/600", "alt": "Rent kjøkken" },
+          { "url": "https://picsum.photos/seed/clean2/600/600", "alt": "Skinnende bad" },
+          { "url": "https://picsum.photos/seed/clean3/600/600", "alt": "Støvfri stue" },
+          { "url": "https://picsum.photos/seed/clean4/600/600", "alt": "Vindusvask" },
+          { "url": "https://picsum.photos/seed/clean5/600/600", "alt": "Detaljrenhold" },
+          { "url": "https://picsum.photos/seed/clean6/600/600", "alt": "Flyttevask resultat" }
+        ]
+      },
+      "video": {
+        "title": "Møt Din Renholder",
+        "description": "Se hvordan vi jobber og hva som gjør vår tjeneste unik i Notodden.",
+        "posterUrl": "https://picsum.photos/seed/cleaning-video-poster/1200/600"
+      },
+      "team": {
+        "badge": "Personlig Service",
+        "title": "Hvem Er Vi?",
+        "items": [
+          {
+            "name": "Anna Dizhenko",
+            "role": "Eier & Daglig Leder",
+            "bio": "Med lang erfaring fra renholdsbransjen startet jeg Makarenko Reinhold for å tilby Notodden en mer personlig og pålitelig tjeneste. Mitt mål er at du skal føle deg 100% trygg når du overlater hjemmet ditt til meg.",
+            "imageUrl": "https://picsum.photos/seed/anna-portrait/400/500"
+          }
+        ]
+      },
+      "coverage": {
+        "badge": "Tjenesteområde",
+        "title": "Vi Dekker Notodden og Omegn",
+        "description": "Vår base er i Notodden, og vi betjener kunder i hele kommunen. For oppdrag utenfor sentrumskjernen kan det tilkomme et lite kjøretillegg.",
+        "mapQuery": "Notodden, Norway"
+      },
+      "ctaBanner": {
+        "title": "Klar for et renere hjem?",
+        "subtitle": "Send oss en melding i dag for et uforpliktende pristilbud. Vi svarer vanligvis innen 1 time.",
+        "buttonText": "Kontakt via WhatsApp"
+      },
+      "faq": {
+        "badge": "Spørsmål og Svar",
+        "title": "Ofte Stilte Spørsmål",
+        "items": [
+          { "question": "Har dere med eget utstyr?", "answer": "Ja, vi stiller med alt av profesjonelt utstyr og miljøvennlige rengjøringsmidler. Du trenger ikke å tenke på noe." },
+          { "question": "Er dere forsikret?", "answer": "Absolutt. Vi har full ansvarsforsikring som dekker eventuelle skader som måtte oppstå under arbeidet." },
+          { "question": "Hva er inkludert i en standard vask?", "answer": "Standard vask inkluderer støvtørking av alle tilgjengelige overflater, støvsuging og vask av gulv, grundig vask av bad og kjøkken (utvendig skap/benker)." },
+          { "question": "Må jeg være hjemme mens dere vasker?", "answer": "Nei, det er helt opp til deg. Mange av våre faste kunder gir oss en nøkkel eller kode til dørlås, slik at de kan komme hjem til rent hus etter jobb." },
+          { "question": "Hva skjer hvis jeg ikke er fornøyd?", "answer": "Vi har en 24-timers fornøydgaranti. Hvis det er noe du ikke er tilfreds med, kontakt oss innen 24 timer, så kommer vi tilbake og retter det opp kostnadsfritt." },
+          { "question": "Hvordan fungerer betalingen?", "answer": "Vi sender faktura (Vipps eller bankoverføring) etter at oppdraget er utført. For faste avtaler fakturerer vi månedlig." },
+          { "question": "Har dere HMS-kort?", "answer": "Ja, vi er en lovlig registrert bedrift og alle som utfører arbeid har gyldig HMS-kort for renholdsbransjen utstedt av Arbeidstilsynet." },
+          { "question": "Hvor lang tid tar en utvask/flyttevask?", "answer": "Dette avhenger av boligens størrelse og tilstand. En typisk bolig på 100 kvm tar vanligvis 6-8 timer for en person. Vi gir et tidsestimat ved befaring." },
+          { "question": "Vasker dere vinduer?", "answer": "Ja, vindusvask kan bestilles som en separat tjeneste eller som et tillegg til vanlig vask/flyttevask." },
+          { "question": "Hvor lang bindingstid er det på fast vask?", "answer": "Vi har ingen bindingstid. Du kan når som helst pause eller si opp avtalen med 14 dagers varsel." }
+        ]
+      },
+      "contact": {
+        "badge": "Ta Kontakt",
+        "title": "La Oss Ta Praten",
+        "subtitle": "Fyll ut skjemaet under, så tar vi kontakt med deg så snart som mulig.",
+        "form": {
+          "name": "Ditt Navn",
+          "email": "E-postadresse",
+          "phone": "Telefonnummer",
+          "service": "Ønsket Tjeneste",
+          "message": "Melding / Beskrivelse av bolig",
+          "submit": "Send Forespørsel"
+        },
+        "info": {
+          "phone": "+47 966 84 393",
+          "email": "annadizhenko@gmail.com",
+          "address": "Notodden, Norge",
+          "hours": "Man-Fre: 08:00 - 16:00"
+        }
+      },
+      "footer": {
+        "description": "Premium renholdstjenester i Notodden. Vi leverer kvalitet, trygghet og skinnende rene resultater.",
+        "rights": "Alle rettigheter reservert."
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "Makarenko Reinhold | Premium Cleaning in Notodden",
+        "description": "Professional, insured, and personalized cleaning services for private households in Notodden.",
+        "lang": "en"
+      },
+      "nav": {
+        "services": "Services",
+        "pricing": "Pricing",
+        "about": "About",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "book": "Get Quote"
+      },
+      "hero": {
+        "badge": "Local in Notodden",
+        "title": "Precision in Every Detail. <br/><span class='text-gradient'>Sparkling Clean Home.</span>",
+        "subtitle": "Professional cleaning for private homes in Notodden. Fully insured, certified, with a 24-hour satisfaction guarantee.",
+        "ctaPrimary": "Get Price on WhatsApp",
+        "ctaSecondary": "View Services",
+        "trust1": "100% Insured",
+        "trust2": "Certified",
+        "imageUrl": "https://picsum.photos/seed/cleaning-hero-en/1200/800"
+      },
+      "socialProof": {
+        "stats": [
+          { "value": "100+", "label": "Happy Clients" },
+          { "value": "24h", "label": "Guarantee" },
+          { "value": "100%", "label": "Insured" },
+          { "value": "5.0", "label": "Rating" }
+        ]
+      },
+      "services": {
+        "badge": "Our Expertise",
+        "title": "Services Tailored for Your Home",
+        "subtitle": "From regular maintenance to deep cleaning. We use professional equipment and eco-friendly products.",
+        "items": [
+          {
+            "id": "regular",
+            "title": "Regular Cleaning",
+            "description": "Weekly or bi-weekly cleaning tailored to your needs. Dusting, vacuuming, and surface wiping.",
+            "icon": "home"
+          },
+          {
+            "id": "deep",
+            "title": "Deep Cleaning",
+            "description": "Thorough top-to-bottom cleaning. Includes baseboards, doors, inside cabinets, and intense bathroom/kitchen scrubbing.",
+            "icon": "sparkles"
+          },
+          {
+            "id": "moving",
+            "title": "Move In/Out Cleaning",
+            "description": "Complete cleaning with guarantee. We ensure the property is spotless for new owners or inspections.",
+            "icon": "box"
+          },
+          {
+            "id": "windows",
+            "title": "Window Cleaning",
+            "description": "Crystal clear windows inside and out. Effectively removing dirt, streaks, and pollution.",
+            "icon": "window"
+          }
+        ],
+        "mainImage": "https://picsum.photos/seed/cleaning-service-main-en/800/1000"
+      },
+      "calculator": {
+        "badge": "Transparent Pricing",
+        "title": "Calculate Your Estimate",
+        "subtitle": "Use the calculator below for a rough estimate. Final price agreed upon after a free inspection.",
+        "sizeLabel": "Home Size (m²)",
+        "frequencyLabel": "Frequency?",
+        "freqOptions": {
+          "once": "One-time",
+          "weekly": "Weekly (-15%)",
+          "biweekly": "Bi-weekly (-10%)"
+        },
+        "extrasLabel": "Extras",
+        "extras": {
+          "windows": "Windows",
+          "oven": "Inside Oven",
+          "fridge": "Inside Fridge"
+        },
+        "totalLabel": "Estimated per clean",
+        "cta": "Book Inspection"
+      },
+      "whyUs": {
+        "badge": "Why Choose Us",
+        "title": "Safety and Quality First",
+        "items": [
+          {
+            "title": "Personal Service",
+            "description": "You deal with the same person every time. No large impersonal agencies.",
+            "icon": "user"
+          },
+          {
+            "title": "Fully Insured",
+            "description": "We carry liability insurance covering up to 10 million NOK.",
+            "icon": "shield"
+          },
+          {
+            "title": "Legal & Safe",
+            "description": "Registered company with valid HSE cards for the cleaning industry.",
+            "icon": "check"
+          },
+          {
+            "title": "24h Guarantee",
+            "description": "Not satisfied? We return within 24 hours to fix it for free.",
+            "icon": "clock"
+          }
+        ]
+      },
+      "beforeAfter": {
+        "badge": "Results",
+        "title": "The Difference is Clear",
+        "subtitle": "See examples of our work. Drag the slider to compare.",
+        "beforeImage": "https://picsum.photos/seed/dirty-kitchen-en/800/600",
+        "afterImage": "https://picsum.photos/seed/clean-kitchen-en/800/600",
+        "beforeLabel": "Before",
+        "afterLabel": "After"
+      },
+      "process": {
+        "badge": "How It Works",
+        "title": "Simple and Efficient Process",
+        "steps": [
+          { "title": "Contact Us", "description": "Send a message via WhatsApp or form for a free quote." },
+          { "title": "Free Inspection", "description": "We do a quick inspection (physical or video) for an accurate price." },
+          { "title": "We Clean", "description": "We perform the cleaning at the agreed time with professional gear." },
+          { "title": "You Enjoy", "description": "Come home to a sparkling clean and fresh-smelling house." }
+        ]
+      },
+      "testimonials": {
+        "badge": "Reviews",
+        "title": "What Clients Say",
+        "items": [
+          { "name": "Kari N.", "role": "Homeowner", "text": "Fantastic service! Anna is incredibly thorough. It's a dream coming home after she's been here.", "rating": 5 },
+          { "name": "Ole P.", "role": "Father", "text": "Used them for move-out cleaning. The buyer was thrilled, got deposit back instantly.", "rating": 5 },
+          { "name": "Ingrid S.", "role": "Regular Client", "text": "Very reassuring to know they are fully insured and certified. Highly recommended.", "rating": 5 }
+        ]
+      },
+      "gallery": {
+        "badge": "Our Work",
+        "title": "Glimpses of Cleanliness",
+        "items": [
+          { "url": "https://picsum.photos/seed/clean1-en/600/600", "alt": "Clean kitchen" },
+          { "url": "https://picsum.photos/seed/clean2-en/600/600", "alt": "Shiny bathroom" },
+          { "url": "https://picsum.photos/seed/clean3-en/600/600", "alt": "Dust-free living room" },
+          { "url": "https://picsum.photos/seed/clean4-en/600/600", "alt": "Window cleaning" },
+          { "url": "https://picsum.photos/seed/clean5-en/600/600", "alt": "Detailing" },
+          { "url": "https://picsum.photos/seed/clean6-en/600/600", "alt": "Move out clean" }
+        ]
+      },
+      "video": {
+        "title": "Meet Your Cleaner",
+        "description": "See how we work and what makes our service unique.",
+        "posterUrl": "https://picsum.photos/seed/cleaning-video-poster-en/1200/600"
+      },
+      "team": {
+        "badge": "Personal Touch",
+        "title": "Who Are We?",
+        "items": [
+          {
+            "name": "Anna Dizhenko",
+            "role": "Owner & Manager",
+            "bio": "With years of experience, I started this company to offer Notodden a more personal and reliable service. My goal is for you to feel 100% safe leaving your home in my hands.",
+            "imageUrl": "https://picsum.photos/seed/anna-portrait-en/400/500"
+          }
+        ]
+      },
+      "coverage": {
+        "badge": "Service Area",
+        "title": "Covering Notodden & Surroundings",
+        "description": "Based in Notodden, we serve the entire municipality. Small travel fees may apply outside the center.",
+        "mapQuery": "Notodden, Norway"
+      },
+      "ctaBanner": {
+        "title": "Ready for a cleaner home?",
+        "subtitle": "Message us today for a free quote. We usually reply within 1 hour.",
+        "buttonText": "Contact on WhatsApp"
+      },
+      "faq": {
+        "badge": "FAQ",
+        "title": "Frequently Asked Questions",
+        "items": [
+          { "question": "Do you bring your own equipment?", "answer": "Yes, we bring all professional equipment and eco-friendly supplies." },
+          { "question": "Are you insured?", "answer": "Absolutely. We have full liability insurance covering any damages." },
+          { "question": "What's included in a standard clean?", "answer": "Dusting all surfaces, vacuuming/mopping floors, thorough bathroom and kitchen cleaning (exterior)." },
+          { "question": "Do I need to be home?", "answer": "No, many clients provide a key or door code so they can return to a clean home after work." },
+          { "question": "What if I'm not satisfied?", "answer": "We offer a 24h guarantee. Contact us within 24 hours and we'll fix it for free." },
+          { "question": "How does payment work?", "answer": "We invoice (Vipps or bank transfer) after the job. Regulars are billed monthly." },
+          { "question": "Are you certified?", "answer": "Yes, we are a legal business and all workers hold valid HSE cards for cleaning." },
+          { "question": "How long does a move-out clean take?", "answer": "Depends on size/condition. A 100sqm home usually takes 6-8 hours for one person." },
+          { "question": "Do you clean windows?", "answer": "Yes, it can be booked separately or as an add-on." },
+          { "question": "Is there a contract for regular cleaning?", "answer": "No binding contracts. You can pause or cancel anytime with 14 days notice." }
+        ]
+      },
+      "contact": {
+        "badge": "Get in Touch",
+        "title": "Let's Talk",
+        "subtitle": "Fill out the form below and we'll get back to you shortly.",
+        "form": {
+          "name": "Your Name",
+          "email": "Email Address",
+          "phone": "Phone Number",
+          "service": "Desired Service",
+          "message": "Message / Property Details",
+          "submit": "Send Request"
+        },
+        "info": {
+          "phone": "+47 966 84 393",
+          "email": "annadizhenko@gmail.com",
+          "address": "Notodden, Norway",
+          "hours": "Mon-Fri: 08:00 - 16:00"
+        }
+      },
+      "footer": {
+        "description": "Premium cleaning services in Notodden. Delivering quality, safety, and sparkling results.",
+        "rights": "All rights reserved."
+      }
+    }
+  }
+}

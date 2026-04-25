@@ -1,0 +1,15 @@
+{
+  "currency": "NOK",
+  "basePrice": 500,
+  "perSqm": 15,
+  "multipliers": {
+    "once": 1.0,
+    "weekly": 0.85,
+    "biweekly": 0.90
+  },
+  "extras": {
+    "windows": 400,
+    "oven": 350,
+    "fridge": 250
+  }
+}
