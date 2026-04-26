@@ -43,7 +43,6 @@ export default function Calculator() {
           badge={t("calculator.badge")}
           title={t("calculator.title")}
           subtitle={t("calculator.subtitle")}
-          centered
           light
         />
 

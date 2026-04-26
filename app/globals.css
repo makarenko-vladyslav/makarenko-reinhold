@@ -45,7 +45,7 @@
     @apply w-16 h-1 bg-accent rounded-full mb-6;
   }
   .section-padding {
-    @apply py-20 md:py-28;
+    @apply py-24 md:py-32;
   }
 }
 

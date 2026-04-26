@@ -6,13 +6,12 @@ interface SectionHeadingProps {
   badge: string;
   title: string;
   subtitle?: string;
-  centered?: boolean;
   light?: boolean;
 }
 
-export default function SectionHeading({ badge, title, subtitle, centered = false, light = false }: SectionHeadingProps) {
+export default function SectionHeading({ badge, title, subtitle, light = false }: SectionHeadingProps) {
   return (
-    <div className={cn("mb-16", centered && "text-center")}>
+    <div className="mb-16">
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +39,7 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
         whileInView={{ width: 64 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={cn("heading-accent-line", centered && "mx-auto")}
+        className="heading-accent-line"
       />
       
       {subtitle && (
@@ -51,7 +50,6 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
           transition={{ delay: 0.3 }}
           className={cn(
             "text-lg max-w-2xl text-balance",
-            centered && "mx-auto",
             light ? "text-white/80" : "text-text-muted"
           )}
         >

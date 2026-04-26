@@ -9,13 +9,14 @@ export default function WhyUs() {
   const items: any[] = t("whyUs.items");
 
   return (
-    <section id="about" className="section-padding bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" className="section-padding bg-white relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-bg-light rounded-l-[100px] opacity-50 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading 
           badge={t("whyUs.badge")}
           title={t("whyUs.title")}
           subtitle={t("whyUs.subtitle")}
-          centered
         />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
