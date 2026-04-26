@@ -1,3 +1,4 @@
+
 "use client";
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import content from '@/lib/content.json';
@@ -13,11 +14,11 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const saved = localStorage.getItem('locale');
-    if (saved && content.locales[saved as keyof typeof content.locales]) {
+    if (saved && Object.keys(content.locales).includes(saved)) {
       setLocaleState(saved);
     }
-    setMounted(true);
   }, []);
 
   const setLocale = useCallback((l: string) => {
@@ -28,11 +29,15 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const t = useCallback((path: string): any => {
     const keys = path.split('.');
     const locales = content.locales as Record<string, any>;
-    
     let val: any = locales[locale];
+    
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in val) val = val[k];
-      else { val = undefined; break; }
+      if (val && typeof val === 'object' && k in val) {
+        val = val[k];
+      } else {
+        val = undefined;
+        break;
+      }
     }
     
     if (val !== undefined) return val;
@@ -40,16 +45,19 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     // Fallback
     val = locales[content.defaultLocale];
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in val) val = val[k];
-      else { val = undefined; break; }
+      if (val && typeof val === 'object' && k in val) {
+        val = val[k];
+      } else {
+        val = undefined;
+        break;
+      }
     }
     return val ?? path;
   }, [locale]);
 
-  // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) return null;
 
-  return <LocaleContext.Provider value={{ locale, setLocale, t }}>{children}</LocaleContext.Provider>;
+  return <LocaleContext value={{ locale, setLocale, t }}>{children}</LocaleContext>;
 }
 
 export function useLocale() { return useContext(LocaleContext); }
