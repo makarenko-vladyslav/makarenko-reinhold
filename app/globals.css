@@ -1,21 +1,31 @@
 @import "tailwindcss";
 
-
 @theme {
-  --color-primary: hsl(215 40% 15%);
-  --color-primary-light: hsl(215 30% 25%);
-  --color-accent: hsl(185 75% 40%);
-  --color-accent-hover: hsl(185 80% 35%);
-  --color-accent-light: hsl(185 70% 92%);
-  --color-surface: hsl(0 0% 100%);
-  --color-surface-alt: hsl(210 20% 98%);
-  --color-surface-dark: hsl(215 35% 10%);
-  --color-text-main: hsl(215 30% 15%);
-  --color-text-muted: hsl(215 15% 45%);
-  --color-border: hsl(215 20% 90%);
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
 
-  --font-display: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Color Palette: Authoritative, Clean, Trustworthy */
+  --color-primary: hsl(220 40% 15%); /* Deep Slate Blue */
+  --color-primary-light: hsl(220 30% 25%);
+  --color-accent: hsl(185 80% 40%); /* Fresh Teal */
+  --color-accent-hover: hsl(185 85% 35%);
+  --color-bg-light: hsl(210 20% 98%); /* Ice White */
+  --color-bg-dark: hsl(220 30% 10%); /* Very Dark Slate */
+  --color-text-main: hsl(220 20% 20%);
+  --color-text-muted: hsl(220 15% 45%);
+  --color-border: hsl(220 20% 90%);
+  --color-border-dark: hsl(220 20% 25%);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-draw: draw 1.5s ease-out forwards;
+}
+
+@layer base {
+  :root {
+    --header-height: 5rem;
+  }
 }
 
 @layer utilities {
@@ -23,25 +33,39 @@
     text-wrap: balance;
   }
   .glass-panel {
-    background: hsl(0 0% 100% / 0.8);
-    backdrop-filter: blur(12px);
-    border: 1px solid hsl(0 0% 100% / 0.5);
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)];
   }
   .glass-panel-dark {
-    background: hsl(215 40% 15% / 0.7);
-    backdrop-filter: blur(16px);
-    border: 1px solid hsl(0 0% 100% / 0.1);
+    @apply bg-primary/80 backdrop-blur-md border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)];
+  }
+  .heading-badge {
+    @apply text-accent font-bold tracking-wider uppercase text-sm mb-4 block;
+  }
+  .heading-accent-line {
+    @apply w-16 h-1 bg-accent rounded-full mb-6;
+  }
+  .section-padding {
+    @apply py-20 md:py-28;
   }
 }
 
-body {
-  font-family: var(--font-body);
-  color: var(--color-text-main);
-  background-color: var(--color-surface);
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(185 80% 40% / 0.4); }
+  50% { box-shadow: 0 0 20px 10px hsl(185 80% 40% / 0); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
 }
 
 /* Custom Scrollbar */
@@ -49,59 +73,33 @@ h1, h2, h3, h4, h5, h6 {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-surface-alt);
+  background: var(--color-bg-light);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(215 20% 70%);
+  background: var(--color-primary-light);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: var(--color-primary);
 }
 
-/* Animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+/* Image Fallback */
+.img-fallback {
+  background: linear-gradient(135deg, hsl(210 20% 95%) 0%, hsl(220 20% 90%) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
 }
-
-@keyframes slow-zoom {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.1); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-slow-zoom {
-  animation: slow-zoom 20s linear infinite alternate;
-}
-
-/* Range Slider Styling */
-input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  background: transparent;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 24px;
-  width: 24px;
+.img-fallback::after {
+  content: '';
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--color-accent);
-  cursor: pointer;
-  margin-top: -10px;
-  box-shadow: 0 0 15px hsl(185 75% 40% / 0.4);
-  transition: transform 0.2s;
+  border: 3px solid hsl(220 15% 45% / 0.2);
+  border-top-color: hsl(220 15% 45%);
+  animation: spin 1s linear infinite;
 }
-input[type=range]::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 6px;
-  cursor: pointer;
-  background: var(--color-border);
-  border-radius: 3px;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

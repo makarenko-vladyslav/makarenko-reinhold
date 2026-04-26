@@ -1,12 +1,20 @@
-
 import type { Metadata } from "next";
 import { LocaleProvider } from "@/lib/i18n";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Makarenko Reinhold | Premium Renhold i Notodden",
-  description: "Profesjonell rengjøring av hjem og kontor i Notodden. Personlig service, pålitelighet og skinnende rene resultater. Få et gratis tilbud i dag.",
-  keywords: ["renhold Notodden", "vaskehjelp", "flyttevask Notodden", "kontorvask", "Makarenko Reinhold"],
+  title: "Makarenko Reinhold | Profesjonelt Renhold i Notodden",
+  description: "Pålitelig og grundig renholdstjeneste i Notodden. Vi tilbyr standard vask, flyttevask og vindusvask med 100% fornøydhetsgaranti.",
+  keywords: ["renhold Notodden", "vaskehjelp", "flyttevask", "vindusvask", "rengjøringsbyrå", "Makarenko Reinhold"],
+  icons: {
+    icon: "/icon.svg",
+  },
+  openGraph: {
+    title: "Makarenko Reinhold | Profesjonelt Renhold",
+    description: "Din lokale partner for et skinnende rent hjem i Notodden.",
+    type: "website",
+    locale: "no_NO",
+  },
 };
 
 export default function RootLayout({
@@ -21,7 +29,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body text-text-main bg-surface antialiased selection:bg-accent selection:text-white">
+      <body className="font-body text-text-main bg-bg-light antialiased selection:bg-accent/30 selection:text-primary">
         <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>

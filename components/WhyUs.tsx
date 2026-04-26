@@ -1,40 +1,42 @@
-
 "use client";
-import { motion } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
+import { CheckIcon } from "./Icons";
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const items = t('whyUs.items') as any[];
+  const items: any[] = t("whyUs.items");
 
   return (
-    <section className="py-24 bg-primary relative overflow-hidden">
-      {/* Abstract Background Pattern */}
-      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(var(--color-surface) 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-accent font-bold tracking-wider uppercase text-sm mb-4 block">{t('whyUs.badge')}</span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-            {t('whyUs.title')}
-          </h2>
-        </div>
+    <section id="about" className="section-padding bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <SectionHeading 
+          badge={t("whyUs.badge")}
+          title={t("whyUs.title")}
+          subtitle={t("whyUs.subtitle")}
+          centered
+        />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((item, i) => (
-            <motion.div 
-              key={i}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+          {items.map((item, index) => (
+            <motion.div
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="glass-panel-dark p-8 rounded-3xl hover:bg-white/5 transition-colors group"
+              transition={{ delay: index * 0.1 }}
+              className="relative p-6 rounded-2xl bg-bg-light border border-gray-100 group hover:bg-primary hover:border-primary transition-colors duration-300"
             >
-              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
-                <span className="font-display font-bold text-xl">{i + 1}</span>
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-accent mb-6 shadow-sm group-hover:bg-white/10 group-hover:text-white transition-colors">
+                <CheckIcon className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-display font-bold text-white mb-3">{item.title}</h3>
-              <p className="text-white/70 leading-relaxed text-sm">{item.description}</p>
+              <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-white transition-colors">
+                {item.title}
+              </h3>
+              <p className="text-text-muted group-hover:text-white/80 transition-colors leading-relaxed">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </div>
