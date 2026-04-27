@@ -1,7 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
+import SectionHeading from '@/components/SectionHeading';
 
 export default function Process() {
   const { t } = useLocale();

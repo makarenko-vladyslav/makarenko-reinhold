@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocale } from '@/lib/i18n';
 import pricing from '@/lib/pricing.json';
-import SectionHeading from './SectionHeading';
+import SectionHeading from '@/components/SectionHeading';
 
 export default function Calculator() {
   const { t } = useLocale();

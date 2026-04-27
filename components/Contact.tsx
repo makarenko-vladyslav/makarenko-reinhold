@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
+import SectionHeading from '@/components/SectionHeading';
 
 export default function Contact() {
   const { t } = useLocale();
