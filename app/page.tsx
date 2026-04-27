@@ -1,3 +1,4 @@
+
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
@@ -7,11 +8,11 @@ import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import BeforeAfter from "@/components/BeforeAfter";
 import Testimonials from "@/components/Testimonials";
-import Gallery from "@/components/Gallery";
 import VideoSection from "@/components/VideoSection";
 import Team from "@/components/Team";
-import Coverage from "@/components/Coverage";
+import Gallery from "@/components/Gallery";
 import FAQ from "@/components/FAQ";
+import CoverageArea from "@/components/CoverageArea";
 import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -20,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main className="overflow-hidden">
         <Hero />
         <SocialProof />
         <Services />
@@ -29,11 +30,11 @@ export default function Home() {
         <Process />
         <BeforeAfter />
         <Testimonials />
-        <Gallery />
         <VideoSection />
         <Team />
-        <Coverage />
+        <Gallery />
         <FAQ />
+        <CoverageArea />
         <CTABanner />
         <Contact />
       </main>

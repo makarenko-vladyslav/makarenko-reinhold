@@ -1,33 +1,36 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import { CheckIcon } from "./Icons";
+import { MapPinIcon } from "./Icons";
 
 export default function SocialProof() {
   const { t } = useLocale();
-  const items: string[] = t("socialProof.items");
+  const items = t('socialProof.items') as string[];
 
   return (
-    <div className="bg-bg-dark py-8 border-y border-white/10 relative z-20">
-      <div className="flex overflow-hidden relative">
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-bg-dark to-transparent z-10" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-bg-dark to-transparent z-10" />
+    <section className="py-8 bg-bg-light border-b border-gray-200 relative z-30 -mt-4 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+      <div className="max-w-7xl mx-auto px-6">
+        <p className="text-center text-sm font-bold text-text-muted uppercase tracking-wider mb-6">
+          {t('socialProof.text') as string}
+        </p>
         
-        <motion.div 
-          className="flex whitespace-nowrap gap-16 px-8"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-        >
-          {[...items, ...items, ...items].map((item, index) => (
-            <div key={index} className="flex items-center gap-4 text-white/90">
-              <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center text-accent">
-                <CheckIcon className="w-4 h-4" />
-              </div>
-              <span className="font-display font-bold text-lg tracking-wide">{item}</span>
-            </div>
+        <div className="flex flex-wrap justify-center gap-x-12 gap-y-4">
+          {items.map((item, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex items-center gap-2 text-text-main font-medium opacity-60 hover:opacity-100 transition-opacity"
+            >
+              <MapPinIcon className="w-4 h-4 text-accent" />
+              {item}
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

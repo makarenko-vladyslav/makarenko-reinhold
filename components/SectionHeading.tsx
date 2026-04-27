@@ -1,57 +1,52 @@
+
 "use client";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
   badge: string;
   title: string;
   subtitle?: string;
+  centered?: boolean;
   light?: boolean;
 }
 
-export default function SectionHeading({ badge, title, subtitle, light = false }: SectionHeadingProps) {
+export default function SectionHeading({ badge, title, subtitle, centered = true, light = false }: SectionHeadingProps) {
   return (
-    <div className="mb-16">
+    <div className={`flex flex-col ${centered ? 'items-center text-center' : 'items-start text-left'} mb-16`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="heading-badge"
+        className={`font-bold tracking-[0.2em] uppercase text-xs mb-4 block px-3 py-1 rounded-full ${light ? 'bg-white/10 text-accent-light' : 'bg-accent/10 text-accent-dark'}`}
       >
         {badge}
       </motion.span>
       
       <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={cn(
-          "text-4xl md:text-5xl font-display font-bold mb-6 text-balance",
-          light ? "text-white" : "text-primary"
-        )}
+        className={`text-4xl md:text-5xl font-display font-bold mb-6 ${light ? 'text-white' : 'text-primary'}`}
       >
         {title}
       </motion.h2>
       
       <motion.div 
-        initial={{ width: 0 }}
-        whileInView={{ width: 64 }}
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="heading-accent-line"
+        className={`w-20 h-1 bg-gradient-to-r from-accent to-transparent rounded-full mb-6 origin-left ${centered ? 'mx-auto' : ''}`}
       />
       
       {subtitle && (
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className={cn(
-            "text-lg max-w-2xl text-balance",
-            light ? "text-white/80" : "text-text-muted"
-          )}
+          className={`text-lg max-w-2xl ${light ? 'text-white/70' : 'text-text-muted'}`}
         >
           {subtitle}
         </motion.p>

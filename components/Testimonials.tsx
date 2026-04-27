@@ -1,3 +1,4 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
@@ -6,49 +7,45 @@ import { StarIcon } from "./Icons";
 
 export default function Testimonials() {
   const { t } = useLocale();
-  const items: any[] = t("testimonials.items");
+  const items = t('testimonials.items') as Array<{name: string, role: string, text: string, rating: number}>;
 
   return (
-    <section id="reviews" className="section-padding bg-bg-light">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 bg-white relative">
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading 
-          badge={t("testimonials.badge")}
-          title={t("testimonials.title")}
-          centered
+          badge={t('testimonials.badge') as string}
+          title={t('testimonials.title') as string}
         />
 
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {items.map((item, index) => (
+        <div className="grid md:grid-cols-3 gap-8">
+          {items.map((item, i) => (
             <motion.div
-              key={index}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 relative"
+              transition={{ delay: i * 0.1 }}
+              className="bg-bg-light p-8 rounded-3xl border border-gray-100"
             >
-              {/* Quote mark decoration */}
-              <div className="absolute top-6 right-8 text-8xl font-display text-gray-100 leading-none pointer-events-none">
-                "
+              <div className="flex gap-1 mb-6 text-accent">
+                {[...Array(5)].map((_, j) => (
+                  <StarIcon key={j} className="w-5 h-5" filled={j < item.rating} />
+                ))}
               </div>
               
-              <div className="flex items-center gap-1 text-accent mb-6">
-                {[...Array(item.rating)].map((_, i) => <StarIcon key={i} filled />)}
-              </div>
-              
-              <p className="text-text-main leading-relaxed mb-8 relative z-10">
-                "{item.text}"
-              </p>
+              <p className="text-text-main text-lg italic mb-8 leading-relaxed">"{item.text}"</p>
               
               <div className="flex items-center gap-4">
                 <img 
-                  src={`https://api.dicebear.com/7.x/initials/svg?seed=${item.name}&backgroundColor=008080`} 
+                  src={`https://picsum.photos/seed/${item.name}/100/100`} 
                   alt={item.name} 
-                  className="w-12 h-12 rounded-full bg-gray-100"
+                  className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>
-                  <h4 className="font-bold text-primary">{item.name}</h4>
-                  <p className="text-sm text-text-muted">{item.role}</p>
+                  <div className="font-bold text-primary">{item.name}</div>
+                  <div className="text-sm text-text-muted">{item.role}</div>
                 </div>
               </div>
             </motion.div>

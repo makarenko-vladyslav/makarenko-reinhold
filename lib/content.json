@@ -1,194 +1,203 @@
+
 {
   "defaultLocale": "no",
   "locales": {
     "no": {
       "meta": {
-        "title": "Makarenko Reinhold | Profesjonelt Renhold i Notodden",
-        "description": "Pålitelig og grundig renholdstjeneste i Notodden. Vi tilbyr standard vask, flyttevask og vindusvask med 100% fornøydhetsgaranti."
+        "title": "Makarenko Reinhold | Premium Renhold i Notodden",
+        "description": "Profesjonell, miljøvennlig vaskehjelp i Notodden. Personlig ansvar, detaljerte sjekklister og 24-timers fornøydgaranti.",
+        "keywords": "vaskehjelp Notodden, renhold Notodden, eco cleaning, Makarenko Reinhold"
       },
       "nav": {
         "services": "Tjenester",
-        "about": "Om Oss",
         "pricing": "Priser",
-        "reviews": "Anmeldelser",
+        "process": "Prosess",
+        "about": "Om Oss",
+        "faq": "FAQ",
         "contact": "Kontakt",
-        "cta": "Få Tilbud"
+        "book": "Bestill Nå"
       },
       "hero": {
-        "badge": "Din Lokale Renholdspartner",
-        "title": "Plettfrie Hjem,\nUten Stress.",
-        "subtitle": "Profesjonelt renhold i Notodden for travle familier og profesjonelle. Vi garanterer et skinnende rent resultat hver gang, med personlig oppfølging fra eier.",
-        "ctaPrimary": "Beregn Pris Nå",
-        "ctaSecondary": "Se Våre Tjenester",
-        "trustCard": {
-          "title": "100% Fornøydhetsgaranti",
-          "text": "Er du ikke fornøyd? Vi kommer tilbake og vasker på nytt, helt gratis."
-        }
+        "badge": "Notoddens Premium Renhold",
+        "title": "Presisjon i Hver Detalj. Renhet Du Kan Stole På.",
+        "subtitle": "Lokal vaskehjelp i Notodden basert på personlig ansvar. Vi bruker økologiske midler, følger strenge sjekklister og garanterer resultatet innen 24 timer.",
+        "ctaPrimary": "Få Prisoverslag",
+        "ctaSecondary": "Våre Tjenester",
+        "stats": {
+          "label1": "Fornøyde Kunder",
+          "value1": "150+",
+          "label2": "Kvalitetsgaranti",
+          "value2": "24t"
+        },
+        "imageUrl": "https://picsum.photos/seed/cleaning-hero-premium/1920/1080"
       },
       "socialProof": {
-        "items": [
-          "100+ Fornøyde Kunder",
-          "Fullt Forsikret",
-          "Miljøvennlige Produkter",
-          "Lokal Bedrift i Notodden",
-          "Kvalitetsgaranti",
-          "Fleksible Tider"
-        ]
+        "text": "Stolt leverandør av renhet til hjem og bedrifter i Notodden regionen",
+        "items": ["Notodden Sentrum", "Heddal", "Gransherad", "Lisleherad", "Hjuksebø"]
       },
       "services": {
         "badge": "Våre Tjenester",
-        "title": "Komplett Renhold for Ditt Hjem",
-        "subtitle": "Vi bruker detaljerte sjekklister for hver tjeneste for å sikre at ingenting blir oversett.",
+        "title": "Skreddersydd Renhold for Dine Behov",
+        "subtitle": "Fra daglig vedlikehold til grundig nedvask. Vi tilbyr fleksible løsninger som store bedrifter ikke kan matche.",
+        "imageUrl": "https://picsum.photos/seed/cleaning-service-action/800/1200",
         "items": [
           {
-            "id": "standard",
-            "title": "Standard Vask",
-            "description": "Regelmessig renhold som holder hjemmet ditt friskt og innbydende. Støvtørking, støvsuging og gulvvask.",
+            "id": "regular",
+            "title": "Fast Vask (Abonnement)",
+            "description": "Regelmessig renhold som holder hjemmet ditt strøkent uke etter uke. Frigjør tid til det som betyr noe.",
             "icon": "spray"
           },
           {
             "id": "deep",
             "title": "Hovedrengjøring",
-            "description": "Grundig nedvask av alle overflater, inkludert vanskelige områder, lister og bak hvitevarer.",
+            "description": "En dyptgående rens av hele boligen. Perfekt for vårrengjøring eller før spesielle anledninger.",
             "icon": "sparkle"
           },
           {
-            "id": "moveout",
-            "title": "Flyttevask",
-            "description": "Komplett rengjøring ved utflytting med garanti, slik at du kan overlevere boligen med god samvittighet.",
-            "icon": "box"
+            "id": "office",
+            "title": "Kontor & Butikk",
+            "description": "Profesjonelt renhold for næringslivet. Et rent miljø øker produktiviteten og gir et godt inntrykk.",
+            "icon": "building"
           },
           {
-            "id": "windows",
-            "title": "Vindusvask",
-            "description": "Krystallklare vinduer innvendig og utvendig, uten skjolder eller striper.",
-            "icon": "window"
+            "id": "eco",
+            "title": "Økologisk Renhold",
+            "description": "Vi bruker kun sertifiserte, miljøvennlige produkter som er trygge for barn, kjæledyr og naturen.",
+            "icon": "leaf"
           }
         ]
       },
       "calculator": {
         "badge": "Priskalkulator",
-        "title": "Få et Prisoverslag",
-        "subtitle": "Bruk vår kalkulator for å få et estimat på hva renholdet vil koste. Endelig pris avtales etter befaring.",
-        "sizeLabel": "Størrelse på bolig (m²)",
-        "serviceLabel": "Velg Tjeneste",
-        "frequencyLabel": "Hvor ofte?",
-        "frequencies": {
-          "once": "Engangsvask",
-          "weekly": "Hver uke",
-          "biweekly": "Hver 2. uke",
-          "monthly": "Hver 4. uke"
+        "title": "Transparent Prising. Ingen Skjulte Kostnader.",
+        "subtitle": "Bruk vår kalkulator for å få et umiddelbart estimat basert på størrelsen på din bolig.",
+        "sqmLabel": "Størrelse på bolig (m²)",
+        "typeLabel": "Type renhold",
+        "types": {
+          "regular": "Fast Vask",
+          "deep": "Hovedrengjøring",
+          "office": "Kontorvask"
         },
+        "ecoLabel": "Bruk kun økologiske midler (+10%)",
         "estimatedPrice": "Estimert Pris",
-        "disclaimer": "*Dette er et estimat. Prisen kan variere basert på boligens tilstand.",
+        "disclaimer": "*Dette er et estimat. Endelig pris avtales etter gratis befaring.",
         "cta": "Bestill Befaring"
       },
       "whyUs": {
         "badge": "Hvorfor Velge Oss",
-        "title": "Kvalitet Du Kan Stole På",
-        "subtitle": "Vi forstår at det krever tillit å slippe noen inn i hjemmet ditt. Derfor bygger vi vår virksomhet på åpenhet og kvalitet.",
+        "title": "Forskjellen Ligger i Detaljene",
+        "subtitle": "Vi er ikke et ansiktsløst byrå. Vi er din lokale partner for et renere liv.",
         "items": [
           {
-            "title": "Personlig Oppfølging",
-            "description": "Som en lokal bedrift drevet av eieren, får du alltid direkte kontakt og personlig service."
+            "title": "Personlig Ansvar",
+            "description": "Du forholder deg til samme person hver gang. Vi bygger tillit gjennom konsistens og eierskap til resultatet.",
+            "icon": "shield"
           },
           {
-            "title": "Ingen Skjulte Kostnader",
-            "description": "Våre priser er transparente. Du vet nøyaktig hva du betaler for før vi starter."
+            "title": "Strenge Sjekklister",
+            "description": "Ingenting overlates til tilfeldighetene. Våre detaljerte sjekklister sikrer at hver krik og krok blir rengjort.",
+            "icon": "clipboard"
           },
           {
-            "title": "Detaljerte Sjekklister",
-            "description": "Vi jobber systematisk etter strenge sjekklister for å sikre at kvaliteten alltid er på topp."
+            "title": "24-timers Garanti",
+            "description": "Er du ikke 100% fornøyd? Gi oss beskjed innen 24 timer, og vi retter opp feilen kostnadsfritt.",
+            "icon": "clock"
           },
           {
-            "title": "Fullt Forsikret",
-            "description": "Ditt hjem er trygt hos oss. Vi har ansvarsforsikring som dekker eventuelle uhell."
+            "title": "Trygge Midler",
+            "description": "Vi beskytter ditt hjem og helse ved å bruke profesjonelle, skånsomme og miljøvennlige rengjøringsmidler.",
+            "icon": "leaf"
           }
         ]
       },
       "process": {
         "badge": "Slik Fungerer Det",
         "title": "Enkel Vei til et Rent Hjem",
-        "subtitle": "Vår prosess er designet for å være så smidig og stressfri som mulig for deg.",
         "steps": [
           {
-            "title": "Ta Kontakt",
-            "description": "Fyll ut skjemaet eller ring oss for en uforpliktende prat om dine behov."
+            "num": "01",
+            "title": "Kontakt & Befaring",
+            "description": "Vi tar en kort prat og avtaler en gratis befaring for å forstå dine nøyaktige behov."
           },
           {
-            "title": "Gratis Befaring",
-            "description": "Vi kommer på en kort befaring for å gi deg en nøyaktig og rettferdig pris."
+            "num": "02",
+            "title": "Skreddersydd Plan",
+            "description": "Du mottar et uforpliktende tilbud og en renholdsplan tilpasset ditt hjem og din timeplan."
           },
           {
-            "title": "Vi Vasker",
-            "description": "Vårt team utfører renholdet effektivt og grundig etter avtalt sjekkliste."
+            "num": "03",
+            "title": "Første Rengjøring",
+            "description": "Vi utfører en grundig første vask for å etablere vår høye standard i ditt hjem."
           },
           {
-            "title": "Nyt Resultatet",
-            "description": "Kom hjem til en ren og velduftende bolig, med vår 100% fornøydhetsgaranti."
+            "num": "04",
+            "title": "Løpende Vedlikehold",
+            "description": "Nyt et alltid rent hjem med vår faste avtale og 24-timers kvalitetsgaranti."
           }
         ]
+      },
+      "beforeAfter": {
+        "badge": "Resultater",
+        "title": "Se Forskjellen",
+        "subtitle": "Dra i slideren for å se effekten av vår grundige rengjøring.",
+        "beforeLabel": "Før",
+        "afterLabel": "Etter",
+        "beforeImage": "https://picsum.photos/seed/dirty-room-before/1000/600",
+        "afterImage": "https://picsum.photos/seed/clean-room-after/1000/600"
       },
       "testimonials": {
         "badge": "Kundeomtaler",
         "title": "Hva Våre Kunder Sier",
         "items": [
           {
-            "name": "Kari Nordmann",
+            "name": "Kari N.",
             "role": "Huseier, Notodden",
-            "text": "Fantastisk service! Makarenko Reinhold tok flyttevasken vår, og resultatet var upåklagelig. Huseier godkjente uten et eneste spørsmål.",
+            "text": "Etter å ha prøvd flere store byråer, er det en lettelse å bruke Makarenko Reinhold. Kvaliteten er konsekvent høy, og de møter alltid opp til avtalt tid.",
             "rating": 5
           },
           {
-            "name": "Ola Hansen",
-            "role": "Fast Kunde",
-            "text": "Vi har brukt dem til ukentlig vask i et halvt år nå. Alltid presise, veldig grundige, og det er en fryd å komme hjem fra jobb på vaskedager.",
+            "name": "Ole M.",
+            "role": "Småbarnsfar",
+            "text": "Med tre barn i huset er det fantastisk å komme hjem til et skinnende rent hus hver fredag. At de bruker økologiske midler er et stort pluss for oss.",
             "rating": 5
           },
           {
-            "name": "Ingrid Berg",
-            "role": "Pensjonist",
-            "text": "Veldig hyggelige og pålitelige. Det betyr mye for meg å ha noen jeg stoler på til å hjelpe med det tyngste renholdet.",
+            "name": "Ingrid S.",
+            "role": "Daglig Leder",
+            "text": "De vasker kontorene våre to ganger i uken. Veldig profesjonelle, usynlige i arbeidstiden, og resultatet er alltid upåklagelig.",
             "rating": 5
+          }
+        ]
+      },
+      "video": {
+        "badge": "Vår Standard",
+        "title": "Se Hvordan Vi Jobber",
+        "description": "En kort introduksjon til våre metoder, utstyr og dedikasjon til kvalitet.",
+        "posterUrl": "https://picsum.photos/seed/cleaning-video-poster/1200/600"
+      },
+      "team": {
+        "badge": "Møt Oss",
+        "title": "Personene Bak Renheten",
+        "subtitle": "Vi tror på personlig ansvar. Når du vet hvem som vasker, vet du at jobben blir gjort ordentlig.",
+        "items": [
+          {
+            "name": "Anna Dizhenko",
+            "role": "Eier & Renholdsekspert",
+            "bio": "Med lang erfaring i bransjen startet Anna Makarenko Reinhold for å tilby den kvaliteten og påliteligheten store byråer ofte mangler.",
+            "imageUrl": "https://picsum.photos/seed/anna-portrait/400/500"
           }
         ]
       },
       "gallery": {
         "badge": "Vårt Arbeid",
-        "title": "Se Forskjellen",
-        "subtitle": "Et utvalg av våre nylige prosjekter i Notodden og omegn.",
+        "title": "Glimt av Renhet",
         "items": [
-          { "url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=800", "alt": "Rent kjøkken" },
-          { "url": "https://images.unsplash.com/photo-1527515637-ed2e60d70318?auto=format&fit=crop&q=80&w=800", "alt": "Skinnende stue" },
-          { "url": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800", "alt": "Rent bad" },
-          { "url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800", "alt": "Ryddig soverom" },
-          { "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", "alt": "Vindusvask" },
-          { "url": "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=800", "alt": "Detaljert renhold" }
-        ]
-      },
-      "team": {
-        "badge": "Møt Oss",
-        "title": "Personene Bak Renholdet",
-        "subtitle": "Vi er et dedikert team som brenner for å levere kvalitet i hvert eneste oppdrag.",
-        "items": [
-          {
-            "name": "Anna Dizhenko",
-            "role": "Daglig Leder & Eier",
-            "bio": "Med mange års erfaring i bransjen, startet Anna bedriften for å tilby en mer personlig og pålitelig renholdstjeneste i Notodden.",
-            "imageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
-          },
-          {
-            "name": "Elena M.",
-            "role": "Renholdsspesialist",
-            "bio": "Ekspert på flyttevask og dyprens. Elena sørger alltid for at selv de vanskeligste flekkene forsvinner.",
-            "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400"
-          },
-          {
-            "name": "Maria K.",
-            "role": "Kvalitetskontrollør",
-            "bio": "Maria har et øye for detaljer som få andre. Hun sikrer at våre strenge sjekklister alltid følges.",
-            "imageUrl": "https://images.unsplash.com/photo-1598550874175-4d0ef43ee90d?auto=format&fit=crop&q=80&w=400"
-          }
+          { "url": "https://picsum.photos/seed/clean-kitchen-1/800/800", "alt": "Rent kjøkken" },
+          { "url": "https://picsum.photos/seed/clean-bathroom-1/800/600", "alt": "Skinnende bad" },
+          { "url": "https://picsum.photos/seed/clean-office-1/600/800", "alt": "Ryddig kontor" },
+          { "url": "https://picsum.photos/seed/clean-living-1/800/600", "alt": "Stue etter vask" },
+          { "url": "https://picsum.photos/seed/clean-windows-1/600/600", "alt": "Vindusvask" },
+          { "url": "https://picsum.photos/seed/eco-products-1/800/800", "alt": "Økologiske produkter" }
         ]
       },
       "faq": {
@@ -196,59 +205,71 @@
         "title": "Ofte Stilte Spørsmål",
         "items": [
           {
-            "question": "Hva er inkludert i en standard vask?",
-            "answer": "En standard vask inkluderer støvtørking av alle tilgjengelige overflater, støvsuging av tepper og gulv, gulvvask, rengjøring av bad (toalett, vask, dusj/badekar) og kjøkken (benkeplater, vask, utvendig skap)."
+            "question": "Hva er inkludert i en fast vask?",
+            "answer": "Fast vask inkluderer støvtørking av alle tilgjengelige flater, støvsuging og vask av gulv, grundig rengjøring av bad og kjøkken (inkludert utvendig skap), samt tømming av søppel. Vi tilpasser sjekklisten etter dine behov."
           },
           {
             "question": "Må jeg være hjemme når dere vasker?",
-            "answer": "Nei, det er helt opp til deg. Mange av våre faste kunder gir oss en nøkkel eller kode til dørlåsen, slik at vi kan vaske mens de er på jobb."
+            "answer": "Nei, de fleste av våre faste kunder gir oss en nøkkel eller kode. Vi har strenge rutiner for nøkkelhåndtering og taushetsplikt for din trygghet."
           },
           {
-            "question": "Tar dere med eget rengjøringsutstyr?",
-            "answer": "Ja, vi stiller med alt av profesjonelt utstyr og miljøvennlige rengjøringsmidler. Du trenger ikke å kjøpe inn noe."
+            "question": "Tar dere med eget utstyr og midler?",
+            "answer": "Ja, vi har med alt av profesjonelt utstyr og økologiske rengjøringsmidler. Du trenger ikke å tenke på noen ting."
           },
           {
             "question": "Hva skjer hvis jeg ikke er fornøyd?",
-            "answer": "Vi har en 100% fornøydhetsgaranti. Hvis det er noe du ikke er tilfreds med, kontakt oss innen 24 timer, så kommer vi tilbake og retter opp feilen kostnadsfritt."
-          },
-          {
-            "question": "Tilbyr dere tjenester utenfor Notodden?",
-            "answer": "Vårt hovedområde er Notodden, men vi tar også oppdrag i nærliggende områder etter avtale. Ta kontakt for å høre om vi kan komme til deg."
-          },
-          {
-            "question": "Hvordan fungerer betalingen?",
-            "answer": "Vi sender faktura etter at oppdraget er utført og godkjent. For faste avtaler fakturerer vi vanligvis månedlig."
+            "answer": "Vi har en 24-timers kvalitetsgaranti. Hvis noe ikke er i henhold til avtalen, kontakter du oss innen 24 timer, og vi kommer tilbake og retter det opp kostnadsfritt."
           },
           {
             "question": "Er dere forsikret?",
-            "answer": "Ja, vi er fullt forsikret. Skulle et uhell skje under rengjøringen, dekker vår ansvarsforsikring eventuelle skader."
+            "answer": "Ja, vi har full ansvarsforsikring. Skulle uhellet være ute og noe blir skadet under rengjøringen, er det dekket."
           },
           {
-            "question": "Hvor lang tid tar en flyttevask?",
-            "answer": "Tiden avhenger av boligens størrelse og tilstand. Et estimat er 1 time per 10-15 kvadratmeter, men vi gir deg en fastpris på forhånd."
+            "question": "Hvor lang bindingstid er det på fast vask?",
+            "answer": "Vi har ingen bindingstid. Vi ønsker at du skal bruke oss fordi du er fornøyd, ikke fordi du er bundet av en kontrakt. Oppsigelsestiden er kun 14 dager."
           },
           {
-            "question": "Kan jeg endre eller avbestille en avtale?",
-            "answer": "Ja, du kan endre eller avbestille inntil 48 timer før avtalt tid uten kostnad."
+            "question": "Vasker dere vinduer?",
+            "answer": "Ja, innvendig vindusvask kan inkluderes i fast avtale eller bestilles som en tilleggstjeneste. Utvendig vindusvask tilbyr vi i sommerhalvåret."
           },
           {
-            "question": "Hva betyr 'personlig oppfølging fra eier'?",
-            "answer": "Det betyr at Anna, eieren av bedriften, er direkte involvert i driften, ofte deltar på befaringer, og er din direkte kontaktperson for spørsmål eller tilbakemeldinger."
+            "question": "Hvilke områder dekker dere?",
+            "answer": "Vi dekker Notodden sentrum og omliggende områder som Heddal, Gransherad, Lisleherad og Hjuksebø."
+          },
+          {
+            "question": "Hvordan fungerer betalingen?",
+            "answer": "For faste oppdrag sender vi en samlefaktura i slutten av måneden. For enkeltoppdrag faktureres det etter utført arbeid. Vi tilbyr e-faktura og Vipps."
+          },
+          {
+            "question": "Kan jeg endre eller avbestille en vask?",
+            "answer": "Ja, endringer eller avbestillinger må gjøres senest 48 timer før avtalt tid for å unngå gebyr."
           }
         ]
       },
+      "coverage": {
+        "badge": "Vårt Område",
+        "title": "Lokale i Notodden",
+        "subtitle": "Vi er et lokalt firma som kjenner området. Vi garanterer punktlighet og kort responstid i hele vår region.",
+        "mapUrl": "https://www.google.com/maps?q=Notodden,Norway&output=embed"
+      },
+      "ctaBanner": {
+        "title": "Klar for et renere og enklere liv?",
+        "subtitle": "Ta kontakt i dag for en uforpliktende prat og gratis befaring av din bolig eller bedrift.",
+        "button": "Bestill Gratis Befaring",
+        "guarantee": "Inkluderer vår 24-timers kvalitetsgaranti"
+      },
       "contact": {
         "badge": "Kontakt Oss",
-        "title": "Klar for et Rent Hjem?",
-        "subtitle": "Fyll ut skjemaet nedenfor, så tar vi kontakt med deg innen kort tid for et uforpliktende tilbud.",
+        "title": "La Oss Ta Praten",
+        "subtitle": "Fyll ut skjemaet, så kontakter vi deg innen kort tid for å avtale en befaring.",
         "form": {
           "name": "Ditt Navn",
           "email": "E-postadresse",
           "phone": "Telefonnummer",
           "service": "Ønsket Tjeneste",
-          "message": "Melding eller spesielle behov",
+          "message": "Melding (Valgfritt)",
           "submit": "Send Forespørsel",
-          "success": "Takk for din henvendelse! Vi kontakter deg snart."
+          "success": "Takk! Vi har mottatt din henvendelse og tar kontakt snart."
         },
         "info": {
           "phone": "+47 966 84 393",
@@ -258,198 +279,206 @@
         }
       },
       "footer": {
-        "description": "Profesjonelt og pålitelig renhold i Notodden. Vi skaper rene og sunne hjem med fokus på kvalitet og kundetilfredshet.",
+        "description": "Premium renholdstjenester i Notodden basert på personlig ansvar, kvalitet og økologiske prinsipper.",
         "rights": "Alle rettigheter reservert."
       }
     },
     "en": {
       "meta": {
-        "title": "Makarenko Reinhold | Professional Cleaning in Notodden",
-        "description": "Reliable and thorough cleaning service in Notodden. We offer standard cleaning, move-out cleaning, and window washing with a 100% satisfaction guarantee."
+        "title": "Makarenko Reinhold | Premium Cleaning in Notodden",
+        "description": "Professional, eco-friendly cleaning services in Notodden. Personal responsibility, detailed checklists, and a 24-hour satisfaction guarantee.",
+        "keywords": "cleaning Notodden, vaskehjelp Notodden, renhold Notodden, eco cleaning, Makarenko Reinhold"
       },
       "nav": {
         "services": "Services",
-        "about": "About",
         "pricing": "Pricing",
-        "reviews": "Reviews",
+        "process": "Process",
+        "about": "About Us",
+        "faq": "FAQ",
         "contact": "Contact",
-        "cta": "Get Quote"
+        "book": "Book Now"
       },
       "hero": {
-        "badge": "Your Local Cleaning Partner",
-        "title": "Spotless Homes,\nZero Stress.",
-        "subtitle": "Professional cleaning in Notodden for busy families and professionals. We guarantee a sparkling clean result every time, with personal oversight from the owner.",
-        "ctaPrimary": "Calculate Price",
-        "ctaSecondary": "View Services",
-        "trustCard": {
-          "title": "100% Satisfaction Guarantee",
-          "text": "Not happy? We'll come back and re-clean for free."
-        }
+        "badge": "Notodden's Premium Cleaning",
+        "title": "Precision in Every Detail. Cleanliness You Can Trust.",
+        "subtitle": "Local cleaning service in Notodden based on personal responsibility. We use eco-friendly products, follow strict checklists, and guarantee results within 24 hours.",
+        "ctaPrimary": "Get an Estimate",
+        "ctaSecondary": "Our Services",
+        "stats": {
+          "label1": "Happy Clients",
+          "value1": "150+",
+          "label2": "Quality Guarantee",
+          "value2": "24h"
+        },
+        "imageUrl": "https://picsum.photos/seed/cleaning-hero-premium/1920/1080"
       },
       "socialProof": {
-        "items": [
-          "100+ Happy Clients",
-          "Fully Insured",
-          "Eco-friendly Products",
-          "Local Notodden Business",
-          "Quality Guarantee",
-          "Flexible Scheduling"
-        ]
+        "text": "Proudly delivering cleanliness to homes and businesses in the Notodden region",
+        "items": ["Notodden Center", "Heddal", "Gransherad", "Lisleherad", "Hjuksebø"]
       },
       "services": {
         "badge": "Our Services",
-        "title": "Complete Cleaning for Your Home",
-        "subtitle": "We use detailed checklists for every service to ensure nothing is overlooked.",
+        "title": "Tailored Cleaning for Your Needs",
+        "subtitle": "From daily maintenance to deep cleaning. We offer flexible solutions that large corporations cannot match.",
+        "imageUrl": "https://picsum.photos/seed/cleaning-service-action/800/1200",
         "items": [
           {
-            "id": "standard",
-            "title": "Standard Cleaning",
-            "description": "Regular cleaning to keep your home fresh. Dusting, vacuuming, and mopping.",
+            "id": "regular",
+            "title": "Regular Cleaning (Sub)",
+            "description": "Regular cleaning that keeps your home pristine week after week. Free up time for what matters.",
             "icon": "spray"
           },
           {
             "id": "deep",
             "title": "Deep Cleaning",
-            "description": "Thorough cleaning of all surfaces, including hard-to-reach areas, baseboards, and behind appliances.",
+            "description": "A thorough clean of the entire home. Perfect for spring cleaning or before special occasions.",
             "icon": "sparkle"
           },
           {
-            "id": "moveout",
-            "title": "Move-out Cleaning",
-            "description": "Complete cleaning when moving out with a guarantee, so you can hand over the property with peace of mind.",
-            "icon": "box"
+            "id": "office",
+            "title": "Office & Shop",
+            "description": "Professional cleaning for businesses. A clean environment increases productivity and gives a good impression.",
+            "icon": "building"
           },
           {
-            "id": "windows",
-            "title": "Window Washing",
-            "description": "Crystal clear windows inside and out, without streaks.",
-            "icon": "window"
+            "id": "eco",
+            "title": "Eco Cleaning",
+            "description": "We only use certified, eco-friendly products that are safe for children, pets, and nature.",
+            "icon": "leaf"
           }
         ]
       },
       "calculator": {
         "badge": "Price Calculator",
-        "title": "Get an Estimate",
-        "subtitle": "Use our calculator to get an estimate of the cleaning cost. Final price agreed upon after inspection.",
-        "sizeLabel": "Home Size (m²)",
-        "serviceLabel": "Select Service",
-        "frequencyLabel": "How often?",
-        "frequencies": {
-          "once": "One-time",
-          "weekly": "Weekly",
-          "biweekly": "Bi-weekly",
-          "monthly": "Monthly"
+        "title": "Transparent Pricing. No Hidden Fees.",
+        "subtitle": "Use our calculator to get an instant estimate based on the size of your home.",
+        "sqmLabel": "Home Size (m²)",
+        "typeLabel": "Cleaning Type",
+        "types": {
+          "regular": "Regular Cleaning",
+          "deep": "Deep Cleaning",
+          "office": "Office Cleaning"
         },
+        "ecoLabel": "Use only eco-friendly products (+10%)",
         "estimatedPrice": "Estimated Price",
-        "disclaimer": "*This is an estimate. Price may vary based on the condition of the home.",
+        "disclaimer": "*This is an estimate. Final price is agreed upon after a free inspection.",
         "cta": "Book Inspection"
       },
       "whyUs": {
         "badge": "Why Choose Us",
-        "title": "Quality You Can Trust",
-        "subtitle": "We understand it takes trust to let someone into your home. That's why we build our business on transparency and quality.",
+        "title": "The Difference is in the Details",
+        "subtitle": "We are not a faceless agency. We are your local partner for a cleaner life.",
         "items": [
           {
-            "title": "Personal Attention",
-            "description": "As a local owner-operated business, you always get direct contact and personal service."
+            "title": "Personal Responsibility",
+            "description": "You deal with the same person every time. We build trust through consistency and ownership of the result.",
+            "icon": "shield"
           },
           {
-            "title": "No Hidden Costs",
-            "description": "Our prices are transparent. You know exactly what you pay for before we start."
+            "title": "Strict Checklists",
+            "description": "Nothing is left to chance. Our detailed checklists ensure every nook and cranny is cleaned.",
+            "icon": "clipboard"
           },
           {
-            "title": "Detailed Checklists",
-            "description": "We work systematically according to strict checklists to ensure top quality every time."
+            "title": "24-hour Guarantee",
+            "description": "Not 100% satisfied? Let us know within 24 hours, and we will fix it free of charge.",
+            "icon": "clock"
           },
           {
-            "title": "Fully Insured",
-            "description": "Your home is safe with us. We have liability insurance covering any accidents."
+            "title": "Safe Products",
+            "description": "We protect your home and health by using professional, gentle, and eco-friendly cleaning products.",
+            "icon": "leaf"
           }
         ]
       },
       "process": {
         "badge": "How It Works",
         "title": "Simple Path to a Clean Home",
-        "subtitle": "Our process is designed to be as smooth and stress-free as possible for you.",
         "steps": [
           {
-            "title": "Contact Us",
-            "description": "Fill out the form or call us for a no-obligation chat about your needs."
+            "num": "01",
+            "title": "Contact & Inspection",
+            "description": "We have a short chat and arrange a free inspection to understand your exact needs."
           },
           {
-            "title": "Free Inspection",
-            "description": "We do a short inspection to give you an accurate and fair price."
+            "num": "02",
+            "title": "Tailored Plan",
+            "description": "You receive a non-binding offer and a cleaning plan tailored to your home and schedule."
           },
           {
-            "title": "We Clean",
-            "description": "Our team performs the cleaning efficiently and thoroughly according to the agreed checklist."
+            "num": "03",
+            "title": "First Cleaning",
+            "description": "We perform a thorough first clean to establish our high standard in your home."
           },
           {
-            "title": "Enjoy the Result",
-            "description": "Come home to a clean and fresh-smelling home, with our 100% satisfaction guarantee."
+            "num": "04",
+            "title": "Ongoing Maintenance",
+            "description": "Enjoy an always clean home with our regular agreement and 24-hour quality guarantee."
           }
         ]
+      },
+      "beforeAfter": {
+        "badge": "Results",
+        "title": "See the Difference",
+        "subtitle": "Drag the slider to see the effect of our thorough cleaning.",
+        "beforeLabel": "Before",
+        "afterLabel": "After",
+        "beforeImage": "https://picsum.photos/seed/dirty-room-before/1000/600",
+        "afterImage": "https://picsum.photos/seed/clean-room-after/1000/600"
       },
       "testimonials": {
         "badge": "Testimonials",
         "title": "What Our Clients Say",
         "items": [
           {
-            "name": "Kari Nordmann",
+            "name": "Kari N.",
             "role": "Homeowner, Notodden",
-            "text": "Fantastic service! Makarenko Reinhold handled our move-out cleaning, and the result was impeccable. The landlord approved without a single question.",
+            "text": "After trying several large agencies, it's a relief to use Makarenko Reinhold. The quality is consistently high, and they always show up on time.",
             "rating": 5
           },
           {
-            "name": "Ola Hansen",
-            "role": "Regular Client",
-            "text": "We've used them for weekly cleaning for half a year now. Always punctual, very thorough, and it's a joy to come home from work on cleaning days.",
+            "name": "Ole M.",
+            "role": "Father of three",
+            "text": "With three kids in the house, it's fantastic to come home to a sparkling clean house every Friday. That they use eco-friendly products is a big plus for us.",
             "rating": 5
           },
           {
-            "name": "Ingrid Berg",
-            "role": "Pensioner",
-            "text": "Very friendly and reliable. It means a lot to me to have someone I trust to help with the heavy cleaning.",
+            "name": "Ingrid S.",
+            "role": "General Manager",
+            "text": "They clean our offices twice a week. Very professional, invisible during working hours, and the result is always impeccable.",
             "rating": 5
+          }
+        ]
+      },
+      "video": {
+        "badge": "Our Standard",
+        "title": "See How We Work",
+        "description": "A short introduction to our methods, equipment, and dedication to quality.",
+        "posterUrl": "https://picsum.photos/seed/cleaning-video-poster/1200/600"
+      },
+      "team": {
+        "badge": "Meet Us",
+        "title": "The People Behind the Cleanliness",
+        "subtitle": "We believe in personal responsibility. When you know who is cleaning, you know the job is done right.",
+        "items": [
+          {
+            "name": "Anna Dizhenko",
+            "role": "Owner & Cleaning Expert",
+            "bio": "With extensive experience in the industry, Anna started Makarenko Reinhold to offer the quality and reliability large agencies often lack.",
+            "imageUrl": "https://picsum.photos/seed/anna-portrait/400/500"
           }
         ]
       },
       "gallery": {
         "badge": "Our Work",
-        "title": "See the Difference",
-        "subtitle": "A selection of our recent projects in Notodden and surrounding areas.",
+        "title": "Glimpses of Cleanliness",
         "items": [
-          { "url": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=800", "alt": "Clean kitchen" },
-          { "url": "https://images.unsplash.com/photo-1527515637-ed2e60d70318?auto=format&fit=crop&q=80&w=800", "alt": "Sparkling living room" },
-          { "url": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800", "alt": "Clean bathroom" },
-          { "url": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800", "alt": "Tidy bedroom" },
-          { "url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800", "alt": "Window washing" },
-          { "url": "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&q=80&w=800", "alt": "Detailed cleaning" }
-        ]
-      },
-      "team": {
-        "badge": "Meet Us",
-        "title": "The People Behind the Clean",
-        "subtitle": "We are a dedicated team passionate about delivering quality in every job.",
-        "items": [
-          {
-            "name": "Anna Dizhenko",
-            "role": "General Manager & Owner",
-            "bio": "With years of industry experience, Anna started the business to offer a more personal and reliable cleaning service in Notodden.",
-            "imageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
-          },
-          {
-            "name": "Elena M.",
-            "role": "Cleaning Specialist",
-            "bio": "Expert in move-out and deep cleaning. Elena always ensures even the toughest stains disappear.",
-            "imageUrl": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400"
-          },
-          {
-            "name": "Maria K.",
-            "role": "Quality Controller",
-            "bio": "Maria has an eye for detail like few others. She ensures our strict checklists are always followed.",
-            "imageUrl": "https://images.unsplash.com/photo-1598550874175-4d0ef43ee90d?auto=format&fit=crop&q=80&w=400"
-          }
+          { "url": "https://picsum.photos/seed/clean-kitchen-1/800/800", "alt": "Clean kitchen" },
+          { "url": "https://picsum.photos/seed/clean-bathroom-1/800/600", "alt": "Sparkling bathroom" },
+          { "url": "https://picsum.photos/seed/clean-office-1/600/800", "alt": "Tidy office" },
+          { "url": "https://picsum.photos/seed/clean-living-1/800/600", "alt": "Living room after cleaning" },
+          { "url": "https://picsum.photos/seed/clean-windows-1/600/600", "alt": "Window cleaning" },
+          { "url": "https://picsum.photos/seed/eco-products-1/800/800", "alt": "Eco products" }
         ]
       },
       "faq": {
@@ -457,59 +486,71 @@
         "title": "Frequently Asked Questions",
         "items": [
           {
-            "question": "What is included in a standard cleaning?",
-            "answer": "A standard cleaning includes dusting all accessible surfaces, vacuuming carpets and floors, mopping, cleaning bathrooms (toilet, sink, shower/tub), and kitchens (countertops, sink, exterior cabinets)."
+            "question": "What is included in a regular cleaning?",
+            "answer": "Regular cleaning includes dusting all accessible surfaces, vacuuming and mopping floors, thorough cleaning of bathrooms and kitchens (including cabinet exteriors), and emptying trash. We customize the checklist to your needs."
           },
           {
             "question": "Do I need to be home when you clean?",
-            "answer": "No, it's entirely up to you. Many of our regular clients provide a key or door code so we can clean while they are at work."
+            "answer": "No, most of our regular clients provide us with a key or code. We have strict routines for key handling and confidentiality for your safety."
           },
           {
-            "question": "Do you bring your own cleaning supplies?",
-            "answer": "Yes, we provide all professional equipment and eco-friendly cleaning products. You don't need to buy anything."
+            "question": "Do you bring your own equipment and supplies?",
+            "answer": "Yes, we bring all professional equipment and eco-friendly cleaning supplies. You don't need to worry about anything."
           },
           {
             "question": "What happens if I'm not satisfied?",
-            "answer": "We have a 100% satisfaction guarantee. If you are not happy with something, contact us within 24 hours, and we will return to fix it free of charge."
-          },
-          {
-            "question": "Do you offer services outside Notodden?",
-            "answer": "Our main area is Notodden, but we also take jobs in nearby areas by agreement. Contact us to see if we can come to you."
-          },
-          {
-            "question": "How does payment work?",
-            "answer": "We send an invoice after the job is completed and approved. For regular agreements, we usually invoice monthly."
+            "answer": "We have a 24-hour quality guarantee. If something is not according to the agreement, contact us within 24 hours, and we will return to fix it free of charge."
           },
           {
             "question": "Are you insured?",
-            "answer": "Yes, we are fully insured. Should an accident happen during cleaning, our liability insurance covers any damages."
+            "answer": "Yes, we have full liability insurance. Should an accident happen and something gets damaged during cleaning, it is covered."
           },
           {
-            "question": "How long does a move-out cleaning take?",
-            "answer": "Time depends on the size and condition of the home. An estimate is 1 hour per 10-15 square meters, but we give you a fixed price upfront."
+            "question": "How long is the binding period for regular cleaning?",
+            "answer": "We have no binding period. We want you to use us because you are satisfied, not because you are bound by a contract. The notice period is only 14 days."
           },
           {
-            "question": "Can I change or cancel an appointment?",
-            "answer": "Yes, you can change or cancel up to 48 hours before the scheduled time at no cost."
+            "question": "Do you clean windows?",
+            "answer": "Yes, interior window cleaning can be included in a regular agreement or ordered as an additional service. We offer exterior window cleaning during the summer months."
           },
           {
-            "question": "What does 'personal oversight from owner' mean?",
-            "answer": "It means Anna, the business owner, is directly involved in operations, often attends inspections, and is your direct contact for questions or feedback."
+            "question": "Which areas do you cover?",
+            "answer": "We cover Notodden center and surrounding areas like Heddal, Gransherad, Lisleherad, and Hjuksebø."
+          },
+          {
+            "question": "How does payment work?",
+            "answer": "For regular assignments, we send a consolidated invoice at the end of the month. For single assignments, it is invoiced after the work is done. We offer e-invoice and Vipps."
+          },
+          {
+            "question": "Can I change or cancel a cleaning?",
+            "answer": "Yes, changes or cancellations must be made at least 48 hours before the agreed time to avoid a fee."
           }
         ]
       },
+      "coverage": {
+        "badge": "Our Area",
+        "title": "Local in Notodden",
+        "subtitle": "We are a local company that knows the area. We guarantee punctuality and short response times throughout our region.",
+        "mapUrl": "https://www.google.com/maps?q=Notodden,Norway&output=embed"
+      },
+      "ctaBanner": {
+        "title": "Ready for a cleaner and easier life?",
+        "subtitle": "Contact us today for a non-binding chat and a free inspection of your home or business.",
+        "button": "Book Free Inspection",
+        "guarantee": "Includes our 24-hour quality guarantee"
+      },
       "contact": {
         "badge": "Contact Us",
-        "title": "Ready for a Clean Home?",
-        "subtitle": "Fill out the form below, and we will contact you shortly for a free quote.",
+        "title": "Let's Talk",
+        "subtitle": "Fill out the form, and we will contact you shortly to arrange an inspection.",
         "form": {
           "name": "Your Name",
           "email": "Email Address",
           "phone": "Phone Number",
           "service": "Desired Service",
-          "message": "Message or special requirements",
+          "message": "Message (Optional)",
           "submit": "Send Request",
-          "success": "Thank you for your inquiry! We will contact you soon."
+          "success": "Thank you! We have received your request and will contact you soon."
         },
         "info": {
           "phone": "+47 966 84 393",
@@ -519,7 +560,7 @@
         }
       },
       "footer": {
-        "description": "Professional and reliable cleaning in Notodden. We create clean and healthy homes focusing on quality and customer satisfaction.",
+        "description": "Premium cleaning services in Notodden based on personal responsibility, quality, and ecological principles.",
         "rights": "All rights reserved."
       }
     }

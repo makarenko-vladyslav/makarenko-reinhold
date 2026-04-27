@@ -1,43 +1,50 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
 import SectionHeading from "./SectionHeading";
-import { CheckIcon } from "./Icons";
+import { ShieldIcon, ClipboardIcon, ClockIcon, LeafIcon } from "./Icons";
+
+const iconMap: Record<string, React.ReactNode> = {
+  shield: <ShieldIcon />,
+  clipboard: <ClipboardIcon />,
+  clock: <ClockIcon />,
+  leaf: <LeafIcon />
+};
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const items: any[] = t("whyUs.items");
+  const items = t('whyUs.items') as Array<{title: string, description: string, icon: string}>;
 
   return (
-    <section id="about" className="section-padding bg-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-bg-light rounded-l-[100px] opacity-50 pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section className="py-24 bg-bg-light relative">
+      <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t("whyUs.badge")}
-          title={t("whyUs.title")}
-          subtitle={t("whyUs.subtitle")}
+          badge={t('whyUs.badge') as string}
+          title={t('whyUs.title') as string}
+          subtitle={t('whyUs.subtitle') as string}
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-          {items.map((item, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {items.map((item, i) => (
             <motion.div
-              key={index}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="relative p-6 rounded-2xl bg-bg-light border border-gray-100 group hover:bg-primary hover:border-primary transition-colors duration-300"
+              transition={{ delay: i * 0.1 }}
+              className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow relative overflow-hidden group"
             >
-              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-accent mb-6 shadow-sm group-hover:bg-white/10 group-hover:text-white transition-colors">
-                <CheckIcon className="w-6 h-6" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110" />
+              
+              <div className="w-12 h-12 rounded-xl bg-primary/5 text-primary flex items-center justify-center mb-6 relative z-10">
+                <div className="w-6 h-6">
+                  {iconMap[item.icon]}
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-white transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-text-muted group-hover:text-white/80 transition-colors leading-relaxed">
-                {item.description}
-              </p>
+              
+              <h3 className="text-xl font-bold text-primary mb-3 relative z-10">{item.title}</h3>
+              <p className="text-text-muted text-sm leading-relaxed relative z-10">{item.description}</p>
             </motion.div>
           ))}
         </div>

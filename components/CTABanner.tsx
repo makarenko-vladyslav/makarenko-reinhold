@@ -1,37 +1,47 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
+import { ArrowRightIcon, ShieldIcon } from "./Icons";
 
 export default function CTABanner() {
   const { t } = useLocale();
 
   return (
-    <section className="py-12 bg-bg-light px-6">
-      <motion.div 
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="max-w-5xl mx-auto bg-primary rounded-[40px] p-10 md:p-16 text-center relative overflow-hidden shadow-2xl"
-      >
-        {/* Background decorative elements */}
-        <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-[80px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-[80px] pointer-events-none" />
-        
-        <div className="relative z-10">
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 text-balance">
-            Klar for å komme hjem til rent hus?
-          </h2>
-          <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
-            La oss ta oss av renholdet, slik at du kan bruke tiden din på det som virkelig betyr noe.
-          </p>
-          <a 
-            href="#contact"
-            className="inline-block bg-accent hover:bg-accent-hover text-white px-10 py-5 rounded-full font-bold text-lg transition-all hover:shadow-[0_0_30px_hsl(185_80%_40%/0.4)] hover:-translate-y-1"
-          >
-            Få Gratis Prisoverslag
-          </a>
-        </div>
-      </motion.div>
+    <section className="py-12 bg-bg-light">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-primary rounded-3xl p-10 md:p-16 text-center relative overflow-hidden shadow-2xl"
+        >
+          <div className="absolute inset-0 bg-grid-pattern-dark opacity-10" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-[80px]" />
+          
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
+              {t('ctaBanner.title') as string}
+            </h2>
+            <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+              {t('ctaBanner.subtitle') as string}
+            </p>
+            
+            <a 
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-accent text-white font-bold text-lg transition-all hover:bg-accent-light hover:scale-105 shadow-[0_0_20px_hsl(175_80%_35%/0.3)] mb-6"
+            >
+              {t('ctaBanner.button') as string}
+              <ArrowRightIcon className="w-5 h-5" />
+            </a>
+            
+            <div className="flex items-center justify-center gap-2 text-white/60 text-sm font-medium">
+              <ShieldIcon className="w-4 h-4 text-accent" />
+              {t('ctaBanner.guarantee') as string}
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

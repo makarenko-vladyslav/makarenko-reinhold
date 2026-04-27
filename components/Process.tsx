@@ -1,3 +1,4 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
@@ -5,51 +6,38 @@ import SectionHeading from "./SectionHeading";
 
 export default function Process() {
   const { t } = useLocale();
-  const steps: any[] = t("process.steps");
+  const steps = t('process.steps') as Array<{num: string, title: string, description: string}>;
 
   return (
-    <section className="section-padding bg-bg-light relative overflow-hidden">
+    <section id="process" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t("process.badge")}
-          title={t("process.title")}
-          subtitle={t("process.subtitle")}
-          centered
+          badge={t('process.badge') as string}
+          title={t('process.title') as string}
         />
 
-        <div className="relative mt-20">
-          {/* Horizontal Line for Desktop */}
-          <div className="hidden md:block absolute top-8 left-0 w-full h-px bg-gray-200">
-            <motion.div 
-              initial={{ width: 0 }}
-              whileInView={{ width: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="h-full bg-accent"
-            />
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-12 md:gap-6 relative z-10">
-            {steps.map((step, index) => (
+        <div className="relative mt-16">
+          {/* Connecting Line */}
+          <div className="absolute top-8 left-0 right-0 h-[1px] bg-gray-200 hidden lg:block" />
+          
+          <div className="grid lg:grid-cols-4 gap-12 lg:gap-8">
+            {steps.map((step, i) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="relative flex flex-col md:items-center text-left md:text-center"
+                transition={{ delay: i * 0.1 }}
+                className="relative"
               >
-                {/* Number Circle */}
-                <div className="w-16 h-16 rounded-full bg-white border-4 border-bg-light shadow-xl flex items-center justify-center text-2xl font-display font-bold text-primary mb-6 relative z-10">
-                  {index + 1}
-                  {/* Pulse effect on active */}
-                  <div className="absolute inset-0 rounded-full border border-accent animate-[pulse-glow_3s_ease-in-out_infinite]" />
+                {/* Number Node */}
+                <div className="w-16 h-16 rounded-full bg-white border-4 border-bg-light shadow-lg flex items-center justify-center text-xl font-display font-bold text-accent mb-6 relative z-10 mx-auto lg:mx-0">
+                  {step.num}
                 </div>
                 
-                {/* Content Card */}
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full">
-                  <h3 className="text-lg font-bold text-primary mb-2">{step.title}</h3>
-                  <p className="text-sm text-text-muted leading-relaxed">{step.description}</p>
+                <div className="text-center lg:text-left">
+                  <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
+                  <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>
                 </div>
               </motion.div>
             ))}

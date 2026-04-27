@@ -1,18 +1,18 @@
+
 {
   "currency": "NOK",
   "basePrices": {
-    "standard": 50,
-    "deep": 80,
-    "moveout": 100,
-    "windows": 30
+    "regular": 1000,
+    "deep": 2500,
+    "office": 1500
   },
   "multipliers": {
-    "once": 1.0,
-    "monthly": 0.9,
-    "biweekly": 0.85,
-    "weekly": 0.8
+    "perSqm": 15,
+    "ecoChemicals": 1.1,
+    "weekend": 1.25
   },
-  "minSize": 30,
-  "maxSize": 300,
-  "defaultSize": 80
+  "estimationLogic": "range",
+  "minSqm": 30,
+  "maxSqm": 300,
+  "defaultSqm": 80
 }

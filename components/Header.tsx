@@ -1,14 +1,14 @@
+
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import { LogoMark } from "./Icons";
-import { cn } from "@/lib/utils";
+import { LogoMark, PhoneIcon } from "./Icons";
 
 export default function Header() {
-  const { t, locale, setLocale } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, locale, setLocale } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -17,35 +17,26 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: "#services", label: t("nav.services") },
-    { href: "#pricing", label: t("nav.pricing") },
-    { href: "#reviews", label: t("nav.reviews") },
-    { href: "#about", label: t("nav.about") },
+    { key: "services", href: "#services" },
+    { key: "pricing", href: "#calculator" },
+    { key: "process", href: "#process" },
+    { key: "faq", href: "#faq" },
   ];
 
   return (
     <header 
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
-        scrolled 
-          ? "bg-white/95 backdrop-blur-md border-gray-200 shadow-sm py-4" 
-          : "bg-transparent border-transparent py-6"
-      )}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className={cn(
-            "p-2 rounded-xl transition-colors",
-            scrolled ? "bg-primary text-white" : "bg-white/10 text-white backdrop-blur-sm"
-          )}>
+        <a href="#" className="flex items-center gap-2 group">
+          <div className={`p-1.5 rounded-lg transition-colors ${scrolled ? 'bg-primary text-white' : 'bg-white text-primary'}`}>
             <LogoMark className="w-6 h-6" />
           </div>
-          <span className={cn(
-            "font-display font-bold text-xl tracking-tight transition-colors",
-            scrolled ? "text-primary" : "text-white"
-          )}>
-            Makarenko<span className="text-accent">.</span>
+          <span className={`font-display font-bold text-xl tracking-tight transition-colors ${scrolled ? 'text-primary' : 'text-white'}`}>
+            Makarenko<span className="font-light">Reinhold</span>
           </span>
         </a>
 
@@ -53,44 +44,60 @@ export default function Header() {
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a 
-              key={link.href} 
+              key={link.key} 
               href={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-accent",
-                scrolled ? "text-text-main" : "text-white/90"
-              )}
+              className={`text-sm font-medium transition-colors hover:text-accent ${
+                scrolled ? 'text-text-main' : 'text-white/90'
+              }`}
             >
-              {link.label}
+              {t(`nav.${link.key}`) as string}
             </a>
           ))}
         </nav>
 
         {/* Actions */}
         <div className="hidden md:flex items-center gap-6">
-          <button 
-            onClick={() => setLocale(locale === 'no' ? 'en' : 'no')}
-            className={cn(
-              "text-xs font-bold uppercase tracking-widest transition-colors hover:text-accent",
-              scrolled ? "text-text-muted" : "text-white/70"
-            )}
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={() => setLocale('no')} 
+              className={`text-xs font-bold ${locale === 'no' ? 'text-accent' : scrolled ? 'text-text-muted' : 'text-white/60'}`}
+            >
+              NO
+            </button>
+            <span className={scrolled ? 'text-gray-300' : 'text-white/30'}>|</span>
+            <button 
+              onClick={() => setLocale('en')} 
+              className={`text-xs font-bold ${locale === 'en' ? 'text-accent' : scrolled ? 'text-text-muted' : 'text-white/60'}`}
+            >
+              EN
+            </button>
+          </div>
+          
+          <a 
+            href="tel:+4796684393" 
+            className={`flex items-center gap-2 text-sm font-bold transition-colors hover:text-accent ${scrolled ? 'text-primary' : 'text-white'}`}
           >
-            {locale === 'no' ? 'EN' : 'NO'}
-          </button>
+            <PhoneIcon className="w-4 h-4" />
+            +47 966 84 393
+          </a>
+
           <a 
             href="#contact"
-            className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 rounded-full font-medium transition-all hover:shadow-[0_0_20px_hsl(185_80%_40%/0.4)] hover:-translate-y-0.5"
+            className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 ${
+              scrolled ? 'bg-primary text-white hover:bg-primary-light shadow-lg' : 'bg-white text-primary hover:bg-gray-100'
+            }`}
           >
-            {t("nav.cta")}
+            {t('nav.book') as string}
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden p-2"
+          className={`md:hidden p-2 ${scrolled ? 'text-primary' : 'text-white'}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke={scrolled ? "currentColor" : "white"} strokeWidth="2" className="w-6 h-6">
-            <path d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
+            <path d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
       </div>
@@ -102,34 +109,22 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
+            className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
           >
-            <div className="px-6 py-8 flex flex-col gap-6">
+            <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a 
-                  key={link.href} 
+                  key={link.key} 
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-primary"
+                  className="text-lg font-medium text-text-main py-2 border-b border-gray-50"
                 >
-                  {link.label}
+                  {t(`nav.${link.key}`) as string}
                 </a>
               ))}
-              <div className="h-px bg-gray-100 my-2" />
-              <div className="flex items-center justify-between">
-                <button 
-                  onClick={() => setLocale(locale === 'no' ? 'en' : 'no')}
-                  className="text-sm font-bold uppercase text-text-muted"
-                >
-                  Switch to {locale === 'no' ? 'English' : 'Norsk'}
-                </button>
-                <a 
-                  href="#contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="bg-primary text-white px-6 py-2 rounded-full font-medium text-sm"
-                >
-                  {t("nav.cta")}
-                </a>
+              <div className="flex gap-4 pt-2">
+                <button onClick={() => setLocale('no')} className={`font-bold ${locale === 'no' ? 'text-accent' : 'text-text-muted'}`}>NO</button>
+                <button onClick={() => setLocale('en')} className={`font-bold ${locale === 'en' ? 'text-accent' : 'text-text-muted'}`}>EN</button>
               </div>
             </div>
           </motion.div>

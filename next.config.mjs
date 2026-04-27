@@ -10,7 +10,7 @@ const nextConfig = {
   // Next.js 16 uses Turbopack by default — empty config silences warnings
   // if AI-generated code accidentally adds a webpack config.
   turbopack: {},
-  allowedDevOrigins: ['rapier-preview.fly.dev'],
+  allowedDevOrigins: ['*'],
   ...(isStaticExport
     ? {
         output: 'export',
