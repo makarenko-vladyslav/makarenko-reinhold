@@ -1,4 +1,3 @@
-
 "use client";
 import { motion } from "framer-motion";
 
@@ -10,14 +9,14 @@ interface SectionHeadingProps {
   light?: boolean;
 }
 
-export default function SectionHeading({ badge, title, subtitle, centered = true, light = false }: SectionHeadingProps) {
+export default function SectionHeading({ badge, title, subtitle, centered = false, light = false }: SectionHeadingProps) {
   return (
-    <div className={`flex flex-col ${centered ? 'items-center text-center' : 'items-start text-left'} mb-16`}>
+    <div className={`mb-16 ${centered ? 'text-center' : ''}`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className={`font-bold tracking-[0.2em] uppercase text-xs mb-4 block px-3 py-1 rounded-full ${light ? 'bg-white/10 text-accent-light' : 'bg-accent/10 text-accent-dark'}`}
+        className="text-accent font-bold tracking-wider uppercase text-sm mb-4 block"
       >
         {badge}
       </motion.span>
@@ -33,11 +32,11 @@ export default function SectionHeading({ badge, title, subtitle, centered = true
       </motion.h2>
       
       <motion.div 
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
+        initial={{ width: 0 }}
+        whileInView={{ width: 64 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={`w-20 h-1 bg-gradient-to-r from-accent to-transparent rounded-full mb-6 origin-left ${centered ? 'mx-auto' : ''}`}
+        className={`h-1.5 bg-accent rounded-full mb-6 ${centered ? 'mx-auto' : ''}`} 
       />
       
       {subtitle && (
@@ -46,7 +45,7 @@ export default function SectionHeading({ badge, title, subtitle, centered = true
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className={`text-lg max-w-2xl ${light ? 'text-white/70' : 'text-text-muted'}`}
+          className={`text-lg max-w-2xl ${centered ? 'mx-auto' : ''} ${light ? 'text-gray-300' : 'text-text-muted'}`}
         >
           {subtitle}
         </motion.p>
