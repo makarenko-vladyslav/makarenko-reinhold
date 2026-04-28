@@ -1,3 +1,4 @@
+
 "use client";
 import { useState, useEffect } from "react";
 import { useLocale } from "@/lib/i18n";
@@ -11,21 +12,16 @@ export default function CalculatorSection() {
   const [sqm, setSqm] = useState(70);
   const [windows, setWindows] = useState(false);
   const [heavy, setHeavy] = useState(false);
-  
-  const calculatePrice = (s: number, w: boolean, h: boolean) => {
-    let price = pricing.flyttevask.basePrice;
-    if (s > pricing.flyttevask.minSqm) {
-      price += (s - pricing.flyttevask.minSqm) * pricing.flyttevask.sqmRate;
-    }
-    if (w) price *= pricing.multipliers.windowsIncluded;
-    if (h) price *= pricing.multipliers.heavyDuty;
-    return Math.round(price);
-  };
-
-  const [total, setTotal] = useState(() => calculatePrice(70, false, false));
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    setTotal(calculatePrice(sqm, windows, heavy));
+    let price = pricing.flyttevask.basePrice;
+    if (sqm > pricing.flyttevask.minSqm) {
+      price += (sqm - pricing.flyttevask.minSqm) * pricing.flyttevask.sqmRate;
+    }
+    if (windows) price *= pricing.multipliers.windowsIncluded;
+    if (heavy) price *= pricing.multipliers.heavyDuty;
+    setTotal(Math.round(price));
   }, [sqm, windows, heavy]);
 
   return (
