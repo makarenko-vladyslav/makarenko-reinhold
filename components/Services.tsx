@@ -1,105 +1,81 @@
-"use client";
-import { motion } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from '@/components/SectionHeading';
 
-const getServiceIcon = (id: string) => {
-  switch (id) {
-    case 'flyttevask':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="12" cy="12" r="2" fill="currentColor" className="text-accent" />
-        </svg>
-      );
-    case 'daglig':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9 22V12h6v10M12 8v.01" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M16 4l2-2M20 8l2-2" className="text-accent" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      );
-    case 'kontor':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10">
-          <rect x="4" y="2" width="16" height="20" rx="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9 22v-4h6v4M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      );
-    case 'bygg':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="12" cy="12" r="1.5" fill="currentColor" className="text-accent" />
-        </svg>
-      );
-    case 'vindu':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-10 h-10">
-          <rect x="3" y="3" width="18" height="18" rx="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M3 9h18M9 21V9" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M15 15l3-3" className="text-accent" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      );
-    default:
-      return null;
-  }
+"use client";
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
+import { IconHouseSparkle, IconCalendarCheck, IconOffice, IconBed } from "./Icons";
+
+const iconMap: Record<string, React.FC<{className?: string}>> = {
+  "house-sparkle": IconHouseSparkle,
+  "calendar-check": IconCalendarCheck,
+  "office-building": IconOffice,
+  "bed-clean": IconBed
 };
 
 export default function Services() {
   const { t } = useLocale();
-  const items = t('services.items') as any[];
+  const services = t("services.items");
 
   return (
-    <section id="services" className="py-24 bg-white relative">
-      <div className="section-pattern opacity-50" />
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section id="services" className="py-24 bg-bg-light relative overflow-hidden">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t('services.badge')}
-          title={t('services.title')}
-          subtitle={t('services.subtitle')}
+          badge={t("services.badge")}
+          title={t("services.title")}
+          subtitle={t("services.subtitle")}
           centered
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          {items.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group bg-bg-light rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 card-hover-effect"
-            >
-              <div className="w-16 h-16 rounded-xl bg-white shadow-sm flex items-center justify-center text-primary mb-6 group-hover:text-accent group-hover:scale-110 transition-all">
-                {getServiceIcon(item.id)}
+        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+          {/* Left: Tall Image */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:col-span-5 relative rounded-3xl overflow-hidden shadow-2xl min-h-[400px] lg:min-h-full group"
+          >
+            <img 
+              src={t("services.imageUrl")} 
+              alt="Cleaning Professional" 
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8">
+              <div className="glass-panel p-6 rounded-2xl">
+                <p className="font-bold text-primary text-xl mb-2">Svanemerket Kvalitet</p>
+                <p className="text-text-muted text-sm">Vi bruker kun sertifiserte, miljøvennlige produkter for din trygghet.</p>
               </div>
-              
-              <h3 className="text-2xl font-display font-bold text-primary mb-4 group-hover:text-accent transition-colors">
-                {item.title}
-              </h3>
-              
-              <p className="text-text-muted mb-6 leading-relaxed">
-                {item.description}
-              </p>
-              
-              <ul className="space-y-3 mb-8">
-                {item.features.map((feature: string, i: number) => (
-                  <li key={i} className="flex items-start gap-3 text-sm font-medium text-primary">
-                    <svg className="w-5 h-5 text-accent shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              
-              <a href="#calculator" className="inline-flex items-center gap-2 text-accent font-bold hover:text-primary transition-colors">
-                {t('nav.cta')}
-                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              </a>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+
+          {/* Right: 2x2 Grid */}
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
+            {services.map((service: any, index: number) => {
+              const Icon = iconMap[service.icon] || IconHouseSparkle;
+              return (
+                <motion.div 
+                  key={service.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-accent/30 transition-all duration-300 group relative overflow-hidden"
+                >
+                  {/* Card Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-bg-light flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-300 text-primary">
+                    <Icon className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-2xl font-display font-bold text-primary mb-3">{service.title}</h3>
+                  <p className="text-text-muted leading-relaxed">{service.description}</p>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -1,17 +1,36 @@
+
 {
   "currency": "NOK",
   "estimationLogic": "range",
-  "basePrices": {
-    "regular": 45,
-    "moving": 85,
-    "office": 40
+  "services": {
+    "flyttevask": {
+      "name": "Flyttevask",
+      "basePrice": 1500,
+      "perSqm": 65,
+      "minSqm": 30,
+      "maxSqm": 300,
+      "step": 5
+    },
+    "fastvask": {
+      "name": "Fast Vask",
+      "basePrice": 800,
+      "perSqm": 35,
+      "minSqm": 30,
+      "maxSqm": 300,
+      "step": 5
+    },
+    "kontor": {
+      "name": "Kontorvask",
+      "basePrice": 1200,
+      "perSqm": 45,
+      "minSqm": 50,
+      "maxSqm": 500,
+      "step": 10
+    }
   },
-  "multipliers": {
-    "windows": 1.2,
-    "deepClean": 1.5,
-    "weekend": 1.25
-  },
-  "minArea": 30,
-  "maxArea": 300,
-  "defaultArea": 80
+  "extras": [
+    { "id": "vindu", "name": "Vindusvask utvendig", "price": 450 },
+    { "id": "ovn", "name": "Innvendig stekeovn", "price": 350 },
+    { "id": "kjoleskap", "name": "Innvendig kjøleskap", "price": 250 }
+  ]
 }
