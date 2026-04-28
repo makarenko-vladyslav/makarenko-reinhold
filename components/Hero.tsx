@@ -73,7 +73,12 @@ export default function Hero() {
             variants={itemVariants}
             className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-bg-white leading-[1.05] mb-6 tracking-tight"
           >
-            <span dangerouslySetInnerHTML={{ __html: t('hero.title').replace('<br/>', '<br/><span class="text-gradient">') + '</span>' }} />
+            {String(t('hero.title')).split('<br/>').map((part, i, arr) => (
+              <span key={i}>
+                {i === arr.length - 1 && arr.length > 1 ? <span className="text-gradient">{part}</span> : part}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </motion.h1>
           
           <motion.p 

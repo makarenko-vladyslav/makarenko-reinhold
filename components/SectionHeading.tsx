@@ -1,4 +1,3 @@
-
 "use client";
 import { motion } from "framer-motion";
 
@@ -28,8 +27,9 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
         className={`text-4xl md:text-5xl font-display font-bold mb-6 ${light ? "text-bg-white" : "text-primary"}`}
-        dangerouslySetInnerHTML={{ __html: title }}
-      />
+      >
+        {title}
+      </motion.h2>
       
       <motion.div 
         initial={{ width: 0 }}
