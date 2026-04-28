@@ -6,9 +6,6 @@ export const metadata: Metadata = {
   title: "Makarenko Reinhold | Offentlig Godkjent Renholdsbedrift i Notodden",
   description: "Profesjonell flyttevask med garanti, regelmessig renhold og spesialvask i Notodden og Telemark. 100% lovlig, HMS-kort, og Svanemerkede produkter.",
   keywords: ["flyttevask notodden", "renhold telemark", "vaskebyrå", "godkjent renholdsbedrift", "makarenko reinhold"],
-  icons: {
-    icon: "/icon.svg",
-  },
   openGraph: {
     title: "Makarenko Reinhold | Premium Renhold i Notodden",
     description: "Garantert godkjent flyttevask og profesjonelt renhold for private og bedrifter.",
