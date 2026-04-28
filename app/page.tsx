@@ -1,12 +1,12 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
+import WhyUs from "@/components/WhyUs";
 import Services from "@/components/Services";
 import Calculator from "@/components/Calculator";
-import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import BeforeAfter from "@/components/BeforeAfter";
+import Trust from "@/components/Trust";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
 import VideoSection from "@/components/VideoSection";
@@ -23,11 +23,12 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
+        <WhyUs />
         <Services />
         <Calculator />
-        <WhyUs />
         <Process />
         <BeforeAfter />
+        <Trust />
         <Testimonials />
         <Gallery />
         <VideoSection />

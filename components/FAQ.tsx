@@ -1,14 +1,12 @@
-
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
 import SectionHeading from "./SectionHeading";
-import { IconChevronDown } from "./Icons";
 
 export default function FAQ() {
   const { t } = useLocale();
-  const items = t("faq.items");
+  const items = t("faq.items") as Array<{q: string, a: string}>;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -20,36 +18,35 @@ export default function FAQ() {
           centered
         />
 
-        <div className="space-y-4">
-          {items.map((item: any, index: number) => (
+        <div className="space-y-4 mt-12">
+          {items.map((item, i) => (
             <motion.div 
-              key={index}
+              key={i}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
+              className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm"
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none"
+              <button 
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
               >
-                <span className="font-bold text-primary pr-8">{item.question}</span>
-                <IconChevronDown 
-                  className={`w-5 h-5 text-accent shrink-0 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`} 
-                />
+                <span className="font-bold text-primary pr-4">{item.q}</span>
+                <span className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? "bg-accent text-white" : "bg-bg-light text-primary"}`}>
+                  <svg className={`w-5 h-5 transform transition-transform ${openIndex === i ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
               </button>
               <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
+                {openIndex === i && (
+                  <motion.div 
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    className="px-6 pb-5 text-text-muted leading-relaxed"
                   >
-                    <div className="px-6 pb-5 text-text-muted leading-relaxed border-t border-gray-50 pt-4">
-                      {item.answer}
-                    </div>
+                    {item.a}
                   </motion.div>
                 )}
               </AnimatePresence>

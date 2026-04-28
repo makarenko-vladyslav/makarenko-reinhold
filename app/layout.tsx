@@ -1,17 +1,16 @@
-
 import type { Metadata } from "next";
 import { LocaleProvider } from "@/lib/i18n";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Makarenko Renhold | Profesjonell Vaskehjelp i Notodden",
-  description: "Pålitelig og grundig renholdstjeneste i Notodden. Vi tilbyr flyttevask, fast vask og kontorrenhold med 100% fornøydgaranti og miljøvennlige produkter.",
-  keywords: ["renhold Notodden", "flyttevask Notodden", "vaskehjelp", "Makarenko Renhold", "rengjøringsbyrå", "kontorvask Notodden"],
+  title: "Makarenko Reinhold | Godkjent Renholdsvirksomhet i Notodden",
+  description: "Profesjonell og lisensiert renholdstjeneste i Notodden og Telemark. Vi tilbyr fast vaskehjelp, flyttevask og hytte-klar med 100% fornøydgaranti og WhatsApp-rapporter.",
+  keywords: ["renhold Notodden", "vaskehjelp Telemark", "flyttevask Kongsberg", "hytte vask", "godkjent renholdsvirksomhet"],
+  icons: { icon: "/icon.svg" },
   openGraph: {
-    title: "Makarenko Renhold | Profesjonell Vaskehjelp i Notodden",
-    description: "Pålitelig og grundig renholdstjeneste i Notodden. Vi tilbyr flyttevask, fast vask og kontorrenhold med 100% fornøydgaranti.",
+    title: "Makarenko Reinhold | Profesjonell Renhold",
+    description: "Lisensiert renholdstjeneste i Notodden med 100% fornøydgaranti.",
     type: "website",
-    locale: "no_NO",
   },
 };
 

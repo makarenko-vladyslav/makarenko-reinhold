@@ -1,4 +1,3 @@
-
 "use client";
 import { motion } from "framer-motion";
 
@@ -12,25 +11,50 @@ interface SectionHeadingProps {
 
 export default function SectionHeading({ badge, title, subtitle, centered = false, light = false }: SectionHeadingProps) {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6 }}
-      className={`mb-16 relative z-10 ${centered ? 'text-center flex flex-col items-center' : 'text-left'}`}
-    >
-      <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">
+    <div className={`mb-16 ${centered ? "text-center" : "text-left"}`}>
+      <motion.span 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className={`inline-block font-bold tracking-wider uppercase text-sm mb-4 px-3 py-1 rounded-full ${
+          light ? "bg-accent/20 text-accent-light" : "bg-accent/10 text-accent"
+        }`}
+      >
         {badge}
-      </span>
-      <h2 className={`text-4xl md:text-5xl font-display font-bold mb-4 ${light ? 'text-text-inverse' : 'text-primary'}`}>
-        {title}
-      </h2>
-      <div className={`w-16 h-1 bg-accent rounded-full mb-6 ${centered ? 'mx-auto' : ''}`} />
+      </motion.span>
+      
+      <motion.h2 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.1 }}
+        className={`text-4xl md:text-5xl font-display font-bold mb-6 text-balance ${
+          light ? "text-white" : "text-primary"
+        }`}
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
+      
+      <motion.div 
+        initial={{ opacity: 0, scaleX: 0 }}
+        whileInView={{ opacity: 1, scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className={`h-1.5 w-20 bg-accent rounded-full mb-6 ${centered ? "mx-auto" : ""}`}
+      />
+      
       {subtitle && (
-        <p className={`text-lg max-w-2xl ${light ? 'text-gray-300' : 'text-text-muted'}`}>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className={`text-lg max-w-2xl ${centered ? "mx-auto" : ""} ${
+            light ? "text-text-inverse/80" : "text-text-muted"
+          }`}
+        >
           {subtitle}
-        </p>
+        </motion.p>
       )}
-    </motion.div>
+    </div>
   );
 }

@@ -1,4 +1,3 @@
-
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
@@ -8,162 +7,129 @@ import SectionHeading from "./SectionHeading";
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [service, setService] = useState<keyof typeof pricing.services>("flyttevask");
-  const [sqm, setSqm] = useState(80);
+  const [area, setArea] = useState(80);
+  const [serviceType, setServiceType] = useState<keyof typeof pricing.services>("regular");
   const [extras, setExtras] = useState<string[]>([]);
-  const [total, setTotal] = useState(0);
-
-  const sData = pricing.services[service];
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    let price = sData.basePrice;
-    if (sqm > sData.minSqm) {
-      price += (sqm - sData.minSqm) * sData.perSqm;
-    }
+    const service = pricing.services[serviceType];
+    const hours = area * service.timePerSqm;
+    let total = hours * pricing.baseHourlyRate * service.multiplier;
     
-    extras.forEach(extId => {
-      const ext = pricing.extras.find(e => e.id === extId);
-      if (ext) price += ext.price;
+    extras.forEach(extra => {
+      total += pricing.extras[extra as keyof typeof pricing.extras].price;
     });
-
-    setTotal(price);
-  }, [service, sqm, extras, sData]);
-
-  const toggleExtra = (id: string) => {
-    setExtras(prev => prev.includes(id) ? prev.filter(e => e !== id) : [...prev, id]);
-  };
+    
+    setPrice(Math.round(total));
+  }, [area, serviceType, extras]);
 
   return (
-    <section id="pricing" className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="calculator" className="py-24 bg-primary relative overflow-hidden">
+      {/* Decorative Aurora Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full opacity-30 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full mix-blend-screen filter blur-[100px] animate-pulse-glow" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-light rounded-full mix-blend-screen filter blur-[100px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading 
           badge={t("calculator.badge")}
           title={t("calculator.title")}
           subtitle={t("calculator.subtitle")}
+          light
           centered
         />
 
-        <div className="max-w-4xl mx-auto bg-bg-light rounded-3xl shadow-xl border border-gray-100 p-8 md:p-12">
-          <div className="grid md:grid-cols-2 gap-12">
-            
-            {/* Inputs */}
+        <div className="max-w-4xl mx-auto mt-12 bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-5">
+          {/* Controls */}
+          <div className="md:col-span-3 p-8 md:p-10 bg-white">
             <div className="space-y-8">
-              {/* Service Selection */}
+              {/* Area Slider */}
               <div>
-                <label className="block text-sm font-bold text-primary uppercase tracking-wider mb-4">
-                  {t("calculator.serviceLabel")}
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {(Object.keys(pricing.services) as Array<keyof typeof pricing.services>).map((key) => (
+                <div className="flex justify-between items-end mb-4">
+                  <label className="font-bold text-primary">{t("calculator.areaLabel")}</label>
+                  <span className="text-2xl font-display font-bold text-accent">{area} m²</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="20" 
+                  max="300" 
+                  step="5"
+                  value={area}
+                  onChange={(e) => setArea(Number(e.target.value))}
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent"
+                />
+                <div className="flex justify-between text-xs text-gray-400 mt-2">
+                  <span>20 m²</span>
+                  <span>300 m²</span>
+                </div>
+              </div>
+
+              {/* Service Type */}
+              <div>
+                <label className="font-bold text-primary block mb-4">{t("calculator.typeLabel")}</label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {Object.entries(pricing.services).map(([key, val]) => (
                     <button
                       key={key}
-                      onClick={() => setService(key)}
-                      className={`py-3 px-4 rounded-xl font-medium text-sm transition-all border ${
-                        service === key 
-                          ? "bg-primary text-white border-primary shadow-md" 
-                          : "bg-white text-text-muted border-gray-200 hover:border-accent"
+                      onClick={() => setServiceType(key as keyof typeof pricing.services)}
+                      className={`py-3 px-4 rounded-xl border text-sm font-medium transition-all ${
+                        serviceType === key 
+                          ? "border-accent bg-accent/10 text-accent" 
+                          : "border-gray-200 text-gray-600 hover:border-gray-300"
                       }`}
                     >
-                      {pricing.services[key].name}
+                      {val.name}
                     </button>
                   ))}
                 </div>
               </div>
 
-              {/* Slider */}
-              <div>
-                <div className="flex justify-between mb-4">
-                  <label className="text-sm font-bold text-primary uppercase tracking-wider">
-                    {t("calculator.sqmLabel")}
-                  </label>
-                  <span className="font-display font-bold text-accent text-xl">{sqm} m²</span>
-                </div>
-                <input 
-                  type="range" 
-                  min={sData.minSqm} 
-                  max={sData.maxSqm} 
-                  step={sData.step}
-                  value={sqm}
-                  onChange={(e) => setSqm(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent"
-                />
-                <div className="flex justify-between text-xs text-gray-400 mt-2">
-                  <span>{sData.minSqm} m²</span>
-                  <span>{sData.maxSqm} m²</span>
-                </div>
-              </div>
-
               {/* Extras */}
               <div>
-                <label className="block text-sm font-bold text-primary uppercase tracking-wider mb-4">
-                  {t("calculator.extrasLabel")}
-                </label>
-                <div className="space-y-3">
-                  {pricing.extras.map((ext) => (
-                    <label key={ext.id} className="flex items-center justify-between p-3 bg-white rounded-xl border border-gray-100 cursor-pointer hover:border-accent transition-colors">
-                      <div className="flex items-center gap-3">
-                        <input 
-                          type="checkbox" 
-                          checked={extras.includes(ext.id)}
-                          onChange={() => toggleExtra(ext.id)}
-                          className="w-5 h-5 rounded border-gray-300 text-accent focus:ring-accent"
-                        />
-                        <span className="text-primary font-medium">{ext.name}</span>
-                      </div>
-                      <span className="text-text-muted text-sm">+{ext.price} kr</span>
+                <label className="font-bold text-primary block mb-4">{t("calculator.extrasLabel")}</label>
+                <div className="grid grid-cols-2 gap-3">
+                  {Object.entries(pricing.extras).map(([key, val]) => (
+                    <label key={key} className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
+                      <input 
+                        type="checkbox"
+                        checked={extras.includes(key)}
+                        onChange={(e) => {
+                          if (e.target.checked) setExtras([...extras, key]);
+                          else setExtras(extras.filter(x => x !== key));
+                        }}
+                        className="w-5 h-5 text-accent rounded border-gray-300 focus:ring-accent"
+                      />
+                      <span className="text-sm font-medium text-gray-700">{val.name}</span>
                     </label>
                   ))}
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Result Panel */}
-            <div className="bg-primary rounded-3xl p-8 text-white flex flex-col justify-center relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-              
-              <div className="relative z-10">
-                <p className="text-accent font-bold tracking-wider uppercase text-sm mb-2">
-                  {t("calculator.totalLabel")}
-                </p>
-                <div className="flex items-baseline gap-2 mb-8">
-                  <motion.span 
-                    key={total}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-6xl font-display font-bold"
-                  >
-                    {total}
-                  </motion.span>
-                  <span className="text-xl text-gray-400">kr</span>
-                </div>
-
-                <ul className="space-y-3 mb-8 text-gray-300 text-sm">
-                  <li className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    Utstyr og midler inkludert
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    100% Fornøydgaranti
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                    Ingen skjulte gebyrer
-                  </li>
-                </ul>
-
-                <a 
-                  href="#contact" 
-                  className="block w-full bg-accent hover:bg-accent-hover text-white text-center py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-accent/50"
+          {/* Result Panel */}
+          <div className="md:col-span-2 bg-bg-light p-8 md:p-10 flex flex-col justify-center border-l border-gray-100">
+            <div className="text-center">
+              <p className="text-sm font-bold text-text-muted uppercase tracking-wider mb-2">{t("calculator.resultLabel")}</p>
+              <div className="text-5xl font-display font-bold text-primary mb-2 flex items-baseline justify-center gap-2">
+                <motion.span
+                  key={price}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-block"
                 >
-                  {t("calculator.cta")}
-                </a>
-                <p className="text-center text-xs text-gray-400 mt-4">
-                  {t("calculator.disclaimer")}
-                </p>
+                  {price.toLocaleString('no-NO')}
+                </motion.span>
+                <span className="text-xl text-text-muted font-medium">NOK</span>
               </div>
+              <p className="text-xs text-gray-500 mb-8">{t("calculator.disclaimer")}</p>
+              
+              <a href="#contact" className="block w-full py-4 bg-accent hover:bg-accent-hover text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                {t("calculator.cta")}
+              </a>
             </div>
-
           </div>
         </div>
       </div>

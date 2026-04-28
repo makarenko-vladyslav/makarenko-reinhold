@@ -1,36 +1,27 @@
-
 {
   "currency": "NOK",
-  "estimationLogic": "range",
+  "baseHourlyRate": 550,
+  "taxIncluded": true,
   "services": {
-    "flyttevask": {
+    "regular": {
+      "name": "Fast vaskehjelp",
+      "multiplier": 1.0,
+      "timePerSqm": 0.03
+    },
+    "deep": {
+      "name": "Hovedrengjøring",
+      "multiplier": 1.3,
+      "timePerSqm": 0.06
+    },
+    "move": {
       "name": "Flyttevask",
-      "basePrice": 1500,
-      "perSqm": 65,
-      "minSqm": 30,
-      "maxSqm": 300,
-      "step": 5
-    },
-    "fastvask": {
-      "name": "Fast Vask",
-      "basePrice": 800,
-      "perSqm": 35,
-      "minSqm": 30,
-      "maxSqm": 300,
-      "step": 5
-    },
-    "kontor": {
-      "name": "Kontorvask",
-      "basePrice": 1200,
-      "perSqm": 45,
-      "minSqm": 50,
-      "maxSqm": 500,
-      "step": 10
+      "multiplier": 1.5,
+      "timePerSqm": 0.08
     }
   },
-  "extras": [
-    { "id": "vindu", "name": "Vindusvask utvendig", "price": 450 },
-    { "id": "ovn", "name": "Innvendig stekeovn", "price": 350 },
-    { "id": "kjoleskap", "name": "Innvendig kjøleskap", "price": 250 }
-  ]
+  "extras": {
+    "windows": { "name": "Vindusvask", "price": 400 },
+    "oven": { "name": "Ovnrens", "price": 350 },
+    "fridge": { "name": "Kjøleskap", "price": 250 }
+  }
 }

@@ -1,4 +1,3 @@
-
 "use client";
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import content from '@/lib/content.json';
@@ -11,8 +10,10 @@ const LocaleContext = createContext<{ locale: string; setLocale: (l: string) => 
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState(content.defaultLocale);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const saved = localStorage.getItem('locale');
     if (saved && content.locales[saved as keyof typeof content.locales]) {
       setLocaleState(saved);
@@ -21,7 +22,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   const setLocale = useCallback((l: string) => {
     setLocaleState(l);
-    localStorage.setItem('locale', l);
+    if (typeof window !== 'undefined') localStorage.setItem('locale', l);
   }, []);
 
   const t = useCallback((path: string): any => {
@@ -44,6 +45,9 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     }
     return val ?? path;
   }, [locale]);
+
+  // Prevent hydration mismatch by not rendering until locale is determined from storage
+  if (!mounted) return <div className="min-h-screen bg-bg-light" />;
 
   return <LocaleContext.Provider value={{ locale, setLocale, t }}>{children}</LocaleContext.Provider>;
 }
