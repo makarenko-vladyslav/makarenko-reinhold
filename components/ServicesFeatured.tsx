@@ -1,4 +1,3 @@
-
 "use client";
 import { useLocale } from "@/lib/i18n";
 import { motion } from "framer-motion";
@@ -6,7 +5,8 @@ import SectionHeading from "./SectionHeading";
 
 export default function ServicesFeatured() {
   const { t } = useLocale();
-  const items = t('servicesFeatured.items') as any[];
+  const itemsRaw = t('servicesFeatured.items');
+  const items = Array.isArray(itemsRaw) ? itemsRaw : [];
 
   return (
     <section id="services" className="section-padding bg-bg-light relative rounded-t-[2.5rem] -mt-6 z-30 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
@@ -19,9 +19,9 @@ export default function ServicesFeatured() {
         />
 
         <div className="grid md:grid-cols-2 gap-6 mt-16">
-          {items.map((item, i) => (
+          {items.map((item: any, i: number) => (
             <motion.div 
-              key={item.id}
+              key={item.id || i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
