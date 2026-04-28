@@ -1,16 +1,17 @@
+
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
-import TrustEngineering from "@/components/TrustEngineering";
-import Services from "@/components/Services";
-import Calculator from "@/components/Calculator";
-import Process from "@/components/Process";
+import ServicesFeatured from "@/components/ServicesFeatured";
+import CalculatorSection from "@/components/CalculatorSection";
+import TrustSection from "@/components/TrustSection";
+import WhyUs from "@/components/WhyUs";
+import ServiceDirectory from "@/components/ServiceDirectory";
 import BeforeAfter from "@/components/BeforeAfter";
+import ProcessTimeline from "@/components/ProcessTimeline";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
-import VideoSection from "@/components/VideoSection";
 import Team from "@/components/Team";
-import CoverageArea from "@/components/CoverageArea";
 import FAQ from "@/components/FAQ";
 import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
@@ -23,16 +24,16 @@ export default function Home() {
       <main className="overflow-hidden">
         <Hero />
         <SocialProof />
-        <TrustEngineering />
-        <Services />
-        <Calculator />
-        <Process />
+        <ServicesFeatured />
+        <CalculatorSection />
+        <TrustSection />
+        <WhyUs />
+        <ServiceDirectory />
         <BeforeAfter />
+        <ProcessTimeline />
         <Testimonials />
         <Gallery />
-        <VideoSection />
         <Team />
-        <CoverageArea />
         <FAQ />
         <CTABanner />
         <Contact />
