@@ -1,8 +1,6 @@
-
 "use client";
-import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import SectionHeading from "./SectionHeading";
+import { useState, useRef } from "react";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function BeforeAfter() {
   const [sliderPos, setSliderPos] = useState(50);
@@ -11,7 +9,9 @@ export default function BeforeAfter() {
   const handleMove = (event: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = ('touches' in event) ? event.touches[0].clientX - rect.left : (event as React.MouseEvent).clientX - rect.left;
+    const x = 'touches' in event 
+      ? (event as React.TouchEvent).touches[0].clientX - rect.left 
+      : (event as React.MouseEvent).clientX - rect.left;
     const pos = Math.max(0, Math.min(100, (x / rect.width) * 100));
     setSliderPos(pos);
   };

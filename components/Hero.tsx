@@ -1,7 +1,7 @@
 "use client";
 import { useLocale } from "@/lib/i18n";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Button from "./Button";
+import Button from "@/components/Button";
 import { useRef } from "react";
 
 export default function Hero() {
@@ -73,7 +73,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-5xl sm:text-6xl md:text-7xl font-display font-bold text-bg-white leading-[1.05] mb-6 tracking-tight"
           >
-            <span dangerouslySetInnerHTML={{ __html: t('hero.title').replace('<br/>', '</span><br/><span class="text-gradient">') }} />
+            <span dangerouslySetInnerHTML={{ __html: t('hero.title').replace('<br/>', '<br/><span class="text-gradient">') + '</span>' }} />
           </motion.h1>
           
           <motion.p 
