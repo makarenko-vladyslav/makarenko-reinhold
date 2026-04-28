@@ -20,7 +20,7 @@ export default function Process() {
 
         <div className="relative mt-20">
           {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-gray-200 -translate-y-1/2 z-0">
+          <div className="hidden md:block absolute top-8 left-[12.5%] w-[75%] h-[2px] bg-gray-200 -translate-y-1/2 z-0">
             <motion.div 
               className="h-full bg-accent"
               initial={{ width: 0 }}
