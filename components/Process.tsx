@@ -1,14 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import SectionHeading from "./ui/SectionHeading";
 
 export default function Process() {
   const { t } = useLocale();
-  const steps = t("process.steps") as Array<{title: string, desc: string}>;
+  const steps = t("process.steps") as any[];
+
+  if (!steps || steps.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-bg-light relative">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
           badge={t("process.badge")}
@@ -16,10 +18,18 @@ export default function Process() {
           centered
         />
 
-        <div className="mt-16 relative">
-          {/* Connecting Line */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-100 -translate-y-1/2 z-0" />
-          
+        <div className="relative mt-20">
+          {/* Connecting Line (Desktop) */}
+          <div className="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-gray-200 -translate-y-1/2 z-0">
+            <motion.div 
+              className="h-full bg-accent"
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            />
+          </div>
+
           <div className="grid md:grid-cols-4 gap-8 relative z-10">
             {steps.map((step, i) => (
               <motion.div 
@@ -28,17 +38,17 @@ export default function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.2 }}
-                className="relative"
+                className="relative flex flex-col items-center text-center group"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 rounded-full bg-white border-4 border-bg-light shadow-lg flex items-center justify-center text-xl font-display font-bold text-accent mb-6 relative z-10">
-                    {i + 1}
-                    {/* Pulse effect on active/hover */}
-                    <div className="absolute inset-0 rounded-full border border-accent animate-ping opacity-20" />
-                  </div>
-                  <h3 className="text-lg font-bold text-primary mb-2">{step.title}</h3>
-                  <p className="text-sm text-text-muted leading-relaxed">{step.desc}</p>
+                {/* Number Circle */}
+                <div className="w-16 h-16 rounded-full bg-white border-4 border-bg-light shadow-lg flex items-center justify-center text-2xl font-display font-bold text-primary mb-6 relative group-hover:scale-110 group-hover:border-accent/20 transition-all duration-300">
+                  {i + 1}
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 rounded-full bg-accent/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
+                
+                <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
+                <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>

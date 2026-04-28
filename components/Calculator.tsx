@@ -3,135 +3,137 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
 import pricing from "@/lib/pricing.json";
-import SectionHeading from "./SectionHeading";
+import SectionHeading from "./ui/SectionHeading";
+import Button from "./ui/Button";
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [area, setArea] = useState(80);
-  const [serviceType, setServiceType] = useState<keyof typeof pricing.services>("regular");
-  const [extras, setExtras] = useState<string[]>([]);
-  const [price, setPrice] = useState(0);
+  const [sqm, setSqm] = useState(70);
+  const [extras, setExtras] = useState<Record<string, boolean>>({
+    windows_out: false,
+    balcony: false,
+    white_goods: false
+  });
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const service = pricing.services[serviceType];
-    const hours = area * service.timePerSqm;
-    let total = hours * pricing.baseHourlyRate * service.multiplier;
+    let price = pricing.flyttevask.basePrice;
+    if (sqm > pricing.flyttevask.minSqm) {
+      price += (sqm - pricing.flyttevask.minSqm) * pricing.flyttevask.perSqm;
+    }
     
-    extras.forEach(extra => {
-      total += pricing.extras[extra as keyof typeof pricing.extras].price;
+    pricing.flyttevask.extras.forEach(extra => {
+      if (extras[extra.id]) price += extra.price;
     });
     
-    setPrice(Math.round(total));
-  }, [area, serviceType, extras]);
+    setTotal(price);
+  }, [sqm, extras]);
+
+  const handleExtraToggle = (id: string) => {
+    setExtras(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   return (
     <section id="calculator" className="py-24 bg-primary relative overflow-hidden">
-      {/* Decorative Aurora Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-full opacity-30 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent rounded-full mix-blend-screen filter blur-[100px] animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-light rounded-full mix-blend-screen filter blur-[100px]" />
-      </div>
+      {/* Decorative lines */}
+      <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <SectionHeading 
-          badge={t("calculator.badge")}
-          title={t("calculator.title")}
-          subtitle={t("calculator.subtitle")}
-          light
-          centered
-        />
-
-        <div className="max-w-4xl mx-auto mt-12 bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-5">
-          {/* Controls */}
-          <div className="md:col-span-3 p-8 md:p-10 bg-white">
-            <div className="space-y-8">
-              {/* Area Slider */}
-              <div>
-                <div className="flex justify-between items-end mb-4">
-                  <label className="font-bold text-primary">{t("calculator.areaLabel")}</label>
-                  <span className="text-2xl font-display font-bold text-accent">{area} m²</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="20" 
-                  max="300" 
-                  step="5"
-                  value={area}
-                  onChange={(e) => setArea(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent"
-                />
-                <div className="flex justify-between text-xs text-gray-400 mt-2">
-                  <span>20 m²</span>
-                  <span>300 m²</span>
-                </div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+        
+        <div>
+          <SectionHeading 
+            badge={t("calculator.badge")}
+            title={t("calculator.title")}
+            subtitle={t("calculator.subtitle")}
+            light
+          />
+          
+          <div className="hidden lg:block mt-12 space-y-6">
+            <div className="flex items-center gap-4 text-white/80">
+              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
               </div>
-
-              {/* Service Type */}
-              <div>
-                <label className="font-bold text-primary block mb-4">{t("calculator.typeLabel")}</label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {Object.entries(pricing.services).map(([key, val]) => (
-                    <button
-                      key={key}
-                      onClick={() => setServiceType(key as keyof typeof pricing.services)}
-                      className={`py-3 px-4 rounded-xl border text-sm font-medium transition-all ${
-                        serviceType === key 
-                          ? "border-accent bg-accent/10 text-accent" 
-                          : "border-gray-200 text-gray-600 hover:border-gray-300"
-                      }`}
-                    >
-                      {val.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Extras */}
-              <div>
-                <label className="font-bold text-primary block mb-4">{t("calculator.extrasLabel")}</label>
-                <div className="grid grid-cols-2 gap-3">
-                  {Object.entries(pricing.extras).map(([key, val]) => (
-                    <label key={key} className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-colors">
-                      <input 
-                        type="checkbox"
-                        checked={extras.includes(key)}
-                        onChange={(e) => {
-                          if (e.target.checked) setExtras([...extras, key]);
-                          else setExtras(extras.filter(x => x !== key));
-                        }}
-                        className="w-5 h-5 text-accent rounded border-gray-300 focus:ring-accent"
-                      />
-                      <span className="text-sm font-medium text-gray-700">{val.name}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
+              <p>Overtakelsesgaranti inkludert</p>
             </div>
-          </div>
-
-          {/* Result Panel */}
-          <div className="md:col-span-2 bg-bg-light p-8 md:p-10 flex flex-col justify-center border-l border-gray-100">
-            <div className="text-center">
-              <p className="text-sm font-bold text-text-muted uppercase tracking-wider mb-2">{t("calculator.resultLabel")}</p>
-              <div className="text-5xl font-display font-bold text-primary mb-2 flex items-baseline justify-center gap-2">
-                <motion.span
-                  key={price}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="inline-block"
-                >
-                  {price.toLocaleString('no-NO')}
-                </motion.span>
-                <span className="text-xl text-text-muted font-medium">NOK</span>
+            <div className="flex items-center gap-4 text-white/80">
+              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-accent">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               </div>
-              <p className="text-xs text-gray-500 mb-8">{t("calculator.disclaimer")}</p>
-              
-              <a href="#contact" className="block w-full py-4 bg-accent hover:bg-accent-hover text-white rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                {t("calculator.cta")}
-              </a>
+              <p>Rask utrykning i Telemark</p>
             </div>
           </div>
         </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl relative"
+        >
+          {/* Slider */}
+          <div className="mb-10">
+            <div className="flex justify-between items-end mb-4">
+              <label className="font-bold text-primary">{t("calculator.sizeLabel")}</label>
+              <span className="text-3xl font-display font-bold text-accent">{sqm} m²</span>
+            </div>
+            <input 
+              type="range" 
+              min={pricing.flyttevask.minSqm} 
+              max={pricing.flyttevask.maxSqm} 
+              value={sqm}
+              onChange={(e) => setSqm(Number(e.target.value))}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent"
+            />
+            <div className="flex justify-between text-xs text-gray-400 mt-2">
+              <span>{pricing.flyttevask.minSqm} m²</span>
+              <span>{pricing.flyttevask.maxSqm} m²</span>
+            </div>
+          </div>
+
+          {/* Extras */}
+          <div className="mb-10">
+            <label className="font-bold text-primary block mb-4">{t("calculator.extrasLabel")}</label>
+            <div className="space-y-3">
+              {[
+                { id: "windows_out", label: t("calculator.extraWindows") },
+                { id: "balcony", label: t("calculator.extraBalcony") },
+                { id: "white_goods", label: t("calculator.extraWhiteGoods") }
+              ].map((extra) => (
+                <label key={extra.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-xl cursor-pointer hover:border-accent/50 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-6 h-6 rounded border flex items-center justify-center transition-colors ${extras[extra.id] ? 'bg-accent border-accent' : 'border-gray-300'}`}>
+                      {extras[extra.id] && <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>}
+                    </div>
+                    <span className="font-medium text-primary">{extra.label}</span>
+                  </div>
+                  <span className="text-sm text-gray-500">+{pricing.flyttevask.extras.find(e => e.id === extra.id)?.price} kr</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Total */}
+          <div className="bg-bg-light rounded-2xl p-6 mb-6 text-center border border-gray-100">
+            <p className="text-sm text-text-muted font-medium uppercase tracking-wider mb-2">{t("calculator.totalLabel")}</p>
+            <div className="text-5xl font-display font-bold text-primary">
+              {total.toLocaleString('no-NO')} <span className="text-2xl text-gray-400">kr</span>
+            </div>
+          </div>
+
+          <Button href="#contact" variant="primary" className="w-full">
+            {t("calculator.cta")}
+          </Button>
+          
+          <p className="text-center text-xs text-gray-400 mt-4">{t("calculator.disclaimer")}</p>
+        </motion.div>
+
       </div>
     </section>
   );

@@ -16,9 +16,7 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className={`inline-block font-bold tracking-wider uppercase text-sm mb-4 px-3 py-1 rounded-full ${
-          light ? "bg-accent/20 text-accent-light" : "bg-accent/10 text-accent"
-        }`}
+        className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block"
       >
         {badge}
       </motion.span>
@@ -28,18 +26,18 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-4xl md:text-5xl font-display font-bold mb-6 text-balance ${
-          light ? "text-white" : "text-primary"
-        }`}
-        dangerouslySetInnerHTML={{ __html: title }}
-      />
+        className={`text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight ${light ? "text-white" : "text-primary"}`}
+        style={{ whiteSpace: "pre-line" }}
+      >
+        {title}
+      </motion.h2>
       
       <motion.div 
-        initial={{ opacity: 0, scaleX: 0 }}
-        whileInView={{ opacity: 1, scaleX: 1 }}
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={`h-1.5 w-20 bg-accent rounded-full mb-6 ${centered ? "mx-auto" : ""}`}
+        className={`h-1 bg-accent rounded-full mb-6 ${centered ? "w-24 mx-auto" : "w-24 origin-left"}`}
       />
       
       {subtitle && (
@@ -48,9 +46,7 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className={`text-lg max-w-2xl ${centered ? "mx-auto" : ""} ${
-            light ? "text-text-inverse/80" : "text-text-muted"
-          }`}
+          className={`text-lg md:text-xl max-w-2xl ${centered ? "mx-auto" : ""} ${light ? "text-white/80" : "text-text-muted"}`}
         >
           {subtitle}
         </motion.p>

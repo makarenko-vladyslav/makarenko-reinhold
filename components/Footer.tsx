@@ -3,57 +3,63 @@ import { useLocale } from "@/lib/i18n";
 
 export default function Footer() {
   const { t } = useLocale();
+  const info = t("contact.info") as any;
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-primary text-white pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
-          <div className="md:col-span-2">
-            <a href="#" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-accent text-white flex items-center justify-center">
-                <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 6L6 14v10a2 2 0 002 2h16a2 2 0 002-2V14L16 6z" />
-                  <path d="M16 12l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1 2-4z" className="fill-white" stroke="none" />
-                </svg>
-              </div>
-              <span className="font-display font-bold text-xl text-white">Makarenko Reinhold</span>
-            </a>
-            <p className="text-white/60 max-w-sm leading-relaxed">
-              {t("footer.desc")}
+          
+          <div className="col-span-2 md:col-span-1">
+            <div className="flex items-center gap-3 mb-6">
+              <svg viewBox="0 0 32 32" className="w-8 h-8 text-accent">
+                <rect width="32" height="32" rx="8" fill="currentColor" />
+                <path d="M16 6 L21 14 L28 16 L21 18 L16 26 L11 18 L4 16 L11 14 Z" fill="white" />
+                <circle cx="22" cy="10" r="2.5" fill="hsl(215, 40%, 15%)" />
+              </svg>
+              <span className="font-display font-bold text-xl tracking-tight">Makarenko<br/><span className="text-sm text-accent leading-none block">Reinhold</span></span>
+            </div>
+            <p className="text-white/60 text-sm leading-relaxed">
+              {t("footer.description")}
             </p>
           </div>
 
           <div>
-            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">{t("footer.links")}</h4>
-            <ul className="space-y-4">
-              <li><a href="#services" className="text-white/60 hover:text-accent transition-colors">Tjenester</a></li>
-              <li><a href="#calculator" className="text-white/60 hover:text-accent transition-colors">Priskalkulator</a></li>
-              <li><a href="#about" className="text-white/60 hover:text-accent transition-colors">Om Oss</a></li>
-              <li><a href="#faq" className="text-white/60 hover:text-accent transition-colors">FAQ</a></li>
+            <h4 className="font-bold mb-6">Navigasjon</h4>
+            <ul className="space-y-3 text-sm text-white/60">
+              <li><a href="#services" className="hover:text-accent transition-colors">Tjenester</a></li>
+              <li><a href="#calculator" className="hover:text-accent transition-colors">Priskalkulator</a></li>
+              <li><a href="#faq" className="hover:text-accent transition-colors">FAQ</a></li>
+              <li><a href="#contact" className="hover:text-accent transition-colors">Kontakt</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">{t("footer.legal")}</h4>
-            <ul className="space-y-4">
-              <li className="text-white/60">Org.nr: 933 123 456</li>
-              <li className="text-white/60">Godkjent Renholdsvirksomhet</li>
-              <li><a href="#" className="text-white/60 hover:text-accent transition-colors">Personvernerklæring</a></li>
+            <h4 className="font-bold mb-6">Kontakt</h4>
+            <ul className="space-y-3 text-sm text-white/60">
+              <li>{info.phone}</li>
+              <li>{info.email}</li>
+              <li>{info.address}</li>
             </ul>
           </div>
+
+          <div>
+            <h4 className="font-bold mb-6">Sertifiseringer</h4>
+            <ul className="space-y-3 text-sm text-white/60">
+              <li>Offentlig Godkjent</li>
+              <li>Svanemerket Kjemi</li>
+              <li>HMS-Kort påkrevd</li>
+            </ul>
+          </div>
+
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} Makarenko Reinhold. {t("footer.rights")}
-          </p>
-          <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-accent hover:text-white transition-all">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-accent hover:text-white transition-all">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
+          <p>© {currentYear} Makarenko Reinhold. {t("footer.rights")}</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">Personvern</a>
+            <a href="#" className="hover:text-white transition-colors">Vilkår</a>
           </div>
         </div>
       </div>

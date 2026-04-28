@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 import content from '@/lib/content.json';
 
 const LocaleContext = createContext<{ locale: string; setLocale: (l: string) => void; t: (path: string) => any }>({
@@ -9,16 +9,10 @@ const LocaleContext = createContext<{ locale: string; setLocale: (l: string) => 
 });
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState(content.defaultLocale);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem('locale');
-    if (saved && content.locales[saved as keyof typeof content.locales]) {
-      setLocaleState(saved);
-    }
-  }, []);
+  const [locale, setLocaleState] = useState(() => {
+    if (typeof window !== 'undefined') return localStorage.getItem('locale') || content.defaultLocale;
+    return content.defaultLocale;
+  });
 
   const setLocale = useCallback((l: string) => {
     setLocaleState(l);
@@ -28,8 +22,8 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const t = useCallback((path: string): any => {
     const keys = path.split('.');
     const locales = content.locales as Record<string, any>;
-    
     let val: any = locales[locale];
+    
     for (const k of keys) {
       if (val && typeof val === 'object' && k in val) val = val[k];
       else { val = undefined; break; }
@@ -45,9 +39,6 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     }
     return val ?? path;
   }, [locale]);
-
-  // Prevent hydration mismatch by not rendering until locale is determined from storage
-  if (!mounted) return <div className="min-h-screen bg-bg-light" />;
 
   return <LocaleContext.Provider value={{ locale, setLocale, t }}>{children}</LocaleContext.Provider>;
 }

@@ -1,14 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import SectionHeading from "./ui/SectionHeading";
 
 export default function Team() {
   const { t } = useLocale();
-  const members = t("team.members") as Array<{name: string, role: string, bio: string, imgUrl: string}>;
+  const members = t("team.members") as any[];
+
+  if (!members || members.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-bg-light relative">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
           badge={t("team.badge")}
@@ -17,7 +19,7 @@ export default function Team() {
           centered
         />
 
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-3 gap-8 mt-16">
           {members.map((member, i) => (
             <motion.div 
               key={i}
@@ -25,20 +27,22 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group"
+              className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 group"
             >
-              <div className="relative overflow-hidden rounded-2xl aspect-[4/5] mb-6">
+              <div className="relative h-80 overflow-hidden">
                 <img 
-                  src={member.imgUrl} 
-                  alt={member.name}
-                  loading="lazy"
+                  src={member.imageUrl} 
+                  alt={member.name} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
-              <h3 className="text-xl font-display font-bold text-primary">{member.name}</h3>
-              <p className="text-accent font-medium text-sm mb-3">{member.role}</p>
-              <p className="text-text-muted text-sm leading-relaxed">{member.bio}</p>
+              <div className="p-8 text-center relative bg-white">
+                <h3 className="text-xl font-bold text-primary mb-1">{member.name}</h3>
+                <p className="text-accent font-medium text-sm mb-4">{member.role}</p>
+                <p className="text-text-muted text-sm">{member.bio}</p>
+              </div>
             </motion.div>
           ))}
         </div>

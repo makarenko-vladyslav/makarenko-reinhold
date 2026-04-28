@@ -1,27 +1,19 @@
 {
   "currency": "NOK",
   "baseHourlyRate": 550,
-  "taxIncluded": true,
-  "services": {
-    "regular": {
-      "name": "Fast vaskehjelp",
-      "multiplier": 1.0,
-      "timePerSqm": 0.03
-    },
-    "deep": {
-      "name": "Hovedrengjøring",
-      "multiplier": 1.3,
-      "timePerSqm": 0.06
-    },
-    "move": {
-      "name": "Flyttevask",
-      "multiplier": 1.5,
-      "timePerSqm": 0.08
-    }
+  "flyttevask": {
+    "basePrice": 2500,
+    "perSqm": 45,
+    "minSqm": 20,
+    "maxSqm": 300,
+    "extras": [
+      { "id": "windows_out", "price": 500 },
+      { "id": "balcony", "price": 400 },
+      { "id": "white_goods", "price": 800 }
+    ]
   },
-  "extras": {
-    "windows": { "name": "Vindusvask", "price": 400 },
-    "oven": { "name": "Ovnrens", "price": 350 },
-    "fridge": { "name": "Kjøleskap", "price": 250 }
+  "regularCleaning": {
+    "weeklyDiscount": 0.15,
+    "biweeklyDiscount": 0.10
   }
 }
