@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   title: "Makarenko Renhold | Profesjonell Vaskehjelp i Notodden",
   description: "Pålitelig og grundig renholdstjeneste i Notodden. Vi tilbyr flyttevask, fast vask og kontorrenhold med 100% fornøydgaranti og miljøvennlige produkter.",
   keywords: ["renhold Notodden", "flyttevask Notodden", "vaskehjelp", "Makarenko Renhold", "rengjøringsbyrå", "kontorvask Notodden"],
-  icons: { icon: '/icon.svg' },
   openGraph: {
     title: "Makarenko Renhold | Profesjonell Vaskehjelp i Notodden",
     description: "Pålitelig og grundig renholdstjeneste i Notodden. Vi tilbyr flyttevask, fast vask og kontorrenhold med 100% fornøydgaranti.",
