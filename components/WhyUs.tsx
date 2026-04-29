@@ -1,61 +1,47 @@
+
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./ui/SectionHeading";
-import { Icons } from "./ui/Icons";
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { motion } from 'framer-motion';
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const items = t("whyus.items") as { title: string; description: string; icon: keyof typeof Icons }[];
+  const items = t('whyUs.items') as Array<{title: string, description: string}>;
 
   return (
-    <section className="py-24 bg-bg-light">
+    <section className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-16 items-center">
           
-          <div className="sticky top-32">
+          <div className="lg:col-span-5">
             <SectionHeading 
-              badge={t("whyus.badge")}
-              title={t("whyus.title")}
-              theme="light"
+              badge={t('whyUs.badge')}
+              title={t('whyUs.title')}
             />
-            <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://picsum.photos/seed/cleaning-pro/800/800" 
-                alt="Professional cleaning" 
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <img src="https://picsum.photos/seed/cleaning-details-pro/800/1000" alt="Cleaning details" className="w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
-              <div className="absolute bottom-8 left-8 right-8 glass-panel rounded-2xl p-6">
-                <p className="text-primary font-bold text-lg mb-1">Offentlig Godkjent</p>
-                <p className="text-text-muted text-sm">Organisasjonsnummer registrert og validert.</p>
-              </div>
             </div>
           </div>
 
-          <div className="space-y-6">
-            {items.map((item, i) => {
-              const Icon = Icons[item.icon] || Icons.check;
-              return (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white p-8 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 flex gap-6"
-                >
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0">
-                    <div className="w-6 h-6"><Icon /></div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
-                    <p className="text-text-muted leading-relaxed">{item.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-8">
+            {items.map((item, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="relative pl-8"
+              >
+                {/* Custom list marker */}
+                <div className="absolute left-0 top-1.5 w-2 h-2 rounded-full bg-accent" />
+                <div className="absolute left-[3px] top-3 bottom-0 w-px bg-gray-100" />
+                
+                <h3 className="text-xl font-display font-bold text-primary mb-2">{item.title}</h3>
+                <p className="text-text-muted text-sm leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
           </div>
 
         </div>

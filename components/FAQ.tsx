@@ -1,64 +1,52 @@
+
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./ui/SectionHeading";
-import { Icons } from "./ui/Icons";
+import { useState } from 'react';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FAQ() {
   const { t } = useLocale();
-  const items = t("faq.items") as { question: string; answer: string }[];
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const items = t('faq.items') as Array<{question: string, answer: string}>;
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
     <section id="faq" className="py-24 bg-white">
       <div className="max-w-4xl mx-auto px-6">
         <SectionHeading 
-          badge={t("faq.badge")}
-          title={t("faq.title")}
-          theme="light"
-          align="center"
+          badge={t('faq.badge')}
+          title={t('faq.title')}
+          centered
         />
 
-        <div className="mt-16 space-y-4">
-          {items.map((item, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div 
-                key={i}
-                className={`border rounded-2xl transition-colors duration-300 overflow-hidden ${
-                  isOpen ? "border-accent bg-bg-light" : "border-gray-200 bg-white hover:border-gray-300"
-                }`}
+        <div className="mt-12 space-y-4">
+          {items.map((item, idx) => (
+            <div key={idx} className="border border-gray-200 rounded-2xl overflow-hidden bg-white">
+              <button
+                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
+                className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
               >
-                <button
-                  className="w-full px-6 py-5 flex items-center justify-between text-left"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                >
-                  <span className={`font-bold text-lg pr-8 ${isOpen ? "text-accent" : "text-primary"}`}>
-                    {item.question}
-                  </span>
-                  <div className={`w-6 h-6 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 text-accent" : "text-gray-400"}`}>
-                    <Icons.chevronDown />
-                  </div>
-                </button>
-                
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <div className="px-6 pb-6 text-text-muted leading-relaxed">
-                        {item.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+                <span className="font-bold text-primary pr-8">{item.question}</span>
+                <span className={`w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center shrink-0 transition-transform ${openIdx === idx ? 'rotate-180 bg-accent border-accent text-white' : 'text-gray-400'}`}>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/></svg>
+                </span>
+              </button>
+              <AnimatePresence>
+                {openIdx === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-6 pt-0 text-text-muted leading-relaxed border-t border-gray-100 mt-2">
+                      {item.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
       </div>
     </section>

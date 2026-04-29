@@ -1,88 +1,103 @@
 @import "tailwindcss";
 
+
 @theme {
-  --color-primary: hsl(220 40% 15%);
-  --color-primary-light: hsl(220 30% 25%);
-  --color-accent: hsl(185 80% 40%);
-  --color-accent-dark: hsl(185 90% 25%);
-  --color-bg-dark: hsl(220 30% 10%);
-  --color-bg-light: hsl(210 20% 98%);
+  --color-primary: hsl(222 47% 11%);
+  --color-primary-light: hsl(222 47% 18%);
+  --color-accent: hsl(183 74% 35%);
+  --color-accent-hover: hsl(183 74% 28%);
+  --color-accent-light: hsl(183 74% 90%);
+  --color-bg-light: hsl(210 24% 98%);
+  --color-bg-dark: hsl(222 47% 8%);
   --color-surface: hsl(0 0% 100%);
-  --color-text-main: hsl(220 20% 90%);
-  --color-text-muted: hsl(220 15% 40%);
-  
-  --font-display: 'Inter', sans-serif;
+  --color-text-main: hsl(222 30% 15%);
+  --color-text-muted: hsl(222 15% 45%);
+  --color-border: hsl(222 20% 90%);
+
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-draw: draw 1.5s ease-out forwards;
 }
 
-:root {
-  --grid-pattern: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-  --grid-pattern-dark: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23000000' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-}
-
-body {
-  font-family: var(--font-display);
-}
-
-@layer utilities {
-  .bg-grid-white {
-    background-image: var(--grid-pattern);
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  .bg-grid-dark {
-    background-image: var(--grid-pattern-dark);
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-light);
+    -webkit-font-smoothing: antialiased;
   }
-  .text-gradient {
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(to right, hsl(185 80% 40%), hsl(185 60% 60%));
-  }
-  .glass-panel {
-    background: hsl(0 0% 100% / 0.8);
-    backdrop-filter: blur(16px);
-    border: 1px solid hsl(220 20% 90% / 0.5);
-  }
-  .glass-panel-dark {
-    background: hsl(220 30% 15% / 0.6);
-    backdrop-filter: blur(16px);
-    border: 1px solid hsl(220 20% 90% / 0.1);
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 
-/* Smooth reveal animations */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
 }
-.animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
+
+/* Custom Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  margin-top: -10px;
+  box-shadow: 0 0 15px hsl(183 74% 35% / 0.4);
+  border: 3px solid var(--color-surface);
+  transition: transform 0.2s;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: var(--color-border);
+  border-radius: 4px;
+}
+input[type=range]:focus {
+  outline: none;
 }
 
 /* Image Fallback */
 .img-fallback {
-  background: linear-gradient(135deg, hsl(220 30% 20%) 0%, hsl(220 40% 10%) 100%);
+  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-border) 100%);
   min-height: 200px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.img-fallback::after {
-  content: '';
-  width: 40px;
-  height: 40px;
-  border: 2px solid hsl(185 80% 40% / 0.3);
-  border-top-color: hsl(185 80% 40%);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+
+/* Hide scrollbar for horizontal scroll areas */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
