@@ -1,14 +1,13 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import TrustStrip from "@/components/TrustStrip";
-import Calculator from "@/components/Calculator";
+import SocialProof from "@/components/SocialProof";
 import Services from "@/components/Services";
-import FlyttevaskSpotlight from "@/components/FlyttevaskSpotlight";
+import Calculator from "@/components/Calculator";
 import Advantages from "@/components/Advantages";
 import Process from "@/components/Process";
 import BeforeAfter from "@/components/BeforeAfter";
-import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
+import Gallery from "@/components/Gallery";
 import Team from "@/components/Team";
 import FAQ from "@/components/FAQ";
 import CTABanner from "@/components/CTABanner";
@@ -21,15 +20,14 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TrustStrip />
-        <Calculator />
+        <SocialProof />
         <Services />
-        <FlyttevaskSpotlight />
+        <Calculator />
         <Advantages />
         <Process />
         <BeforeAfter />
-        <Gallery />
         <Testimonials />
+        <Gallery />
         <Team />
         <FAQ />
         <CTABanner />
