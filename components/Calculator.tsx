@@ -1,129 +1,160 @@
-
 "use client";
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
-import pricing from '@/lib/pricing.json';
-import SectionHeading from './SectionHeading';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import pricingData from "@/lib/pricing.json";
+import { SectionHeading, Button } from "./Shared";
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [sqm, setSqm] = useState(80);
-  const [service, setService] = useState('flyttevask');
-  const [extras, setExtras] = useState<string[]>([]);
-  const [total, setTotal] = useState(0);
+  
+  const [serviceType, setServiceType] = useState<"flyttevask" | "regelmessig" | "visning">("flyttevask");
+  const [sqm, setSqm] = useState<number>(80);
+  const [frequency, setFrequency] = useState<"engangs" | "ukentlig" | "biukentlig">("engangs");
+  const [price, setPrice] = useState<number>(0);
+
+  const types = t("calculator.types") as Record<string, string>;
+  const frequencies = t("calculator.frequencies") as Record<string, string>;
 
   useEffect(() => {
-    const serviceData = pricing.services[service as keyof typeof pricing.services];
-    const estimatedHours = Math.max(serviceData.minHours, sqm / serviceData.sqmPerHour);
-    let price = estimatedHours * pricing.baseHourlyRate * serviceData.baseMultiplier;
+    const serviceConfig = pricingData.services[serviceType];
+    const base = serviceConfig.basePrice;
     
-    extras.forEach(extraId => {
-      const extraData = pricing.extras.find(e => e.id === extraId);
-      if (extraData) price += extraData.price;
-    });
+    // Calculate extra sqm above minimum
+    const extraSqm = Math.max(0, sqm - serviceConfig.minSqm);
+    const sqmPrice = extraSqm * serviceConfig.perSqm;
+    
+    let total = base + sqmPrice;
+    
+    // Apply frequency multiplier
+    if (serviceType === "regelmessig") {
+      total = total * pricingData.multipliers[frequency];
+    }
 
-    setTotal(Math.round(price));
-  }, [sqm, service, extras]);
-
-  const toggleExtra = (id: string) => {
-    setExtras(prev => prev.includes(id) ? prev.filter(e => e !== id) : [...prev, id]);
-  };
+    setPrice(Math.round(total));
+  }, [serviceType, sqm, frequency]);
 
   return (
-    <section id="calculator" className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="calculator" className="py-24 bg-bg-dark relative overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading 
-          badge={t('calculator.badge')}
-          title={t('calculator.title')}
-          subtitle={t('calculator.subtitle')}
-          centered
+          badge={t("calculator.badge")}
+          title={t("calculator.title")}
+          subtitle={t("calculator.subtitle")}
+          light={true}
         />
 
-        <div className="max-w-4xl mx-auto bg-bg-light rounded-[2.5rem] p-8 md:p-12 shadow-xl border border-gray-100 relative overflow-hidden">
-          {/* Decorative corner */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-bl-full pointer-events-none" />
-
-          <div className="grid md:grid-cols-2 gap-12 relative z-10">
-            {/* Inputs */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass-panel-dark rounded-3xl p-6 sm:p-10"
+        >
+          <div className="grid md:grid-cols-2 gap-12">
+            
+            {/* Controls */}
             <div className="space-y-8">
+              {/* Service Type */}
               <div>
-                <label className="block text-sm font-bold text-primary mb-4">{t('calculator.serviceLabel')}</label>
-                <div className="grid grid-cols-1 gap-3">
-                  {Object.entries(pricing.services).map(([key, data]) => (
+                <label className="block text-sm font-semibold text-white/80 mb-3 uppercase tracking-wider">
+                  {t("calculator.typeLabel")}
+                </label>
+                <div className="flex flex-col gap-2">
+                  {(Object.keys(types) as Array<keyof typeof types>).map((type) => (
                     <button
-                      key={key}
-                      onClick={() => setService(key)}
-                      className={`p-4 rounded-2xl border-2 text-left transition-all ${
-                        service === key 
-                          ? 'border-accent bg-accent/5 shadow-md' 
-                          : 'border-gray-200 bg-white hover:border-gray-300'
+                      key={type}
+                      onClick={() => {
+                        setServiceType(type as any);
+                        if (type !== "regelmessig") setFrequency("engangs");
+                      }}
+                      className={`px-4 py-3 rounded-xl text-left font-medium transition-all ${
+                        serviceType === type 
+                          ? "bg-accent text-white shadow-lg shadow-accent/20" 
+                          : "bg-white/5 text-white/70 hover:bg-white/10"
                       }`}
                     >
-                      <div className="font-bold text-primary">{data.name}</div>
+                      {types[type]}
                     </button>
                   ))}
                 </div>
               </div>
 
+              {/* Slider */}
               <div>
-                <div className="flex justify-between items-end mb-4">
-                  <label className="block text-sm font-bold text-primary">{t('calculator.sizeLabel')}</label>
-                  <span className="text-2xl font-display font-bold text-accent">{sqm} m²</span>
+                <div className="flex justify-between mb-3">
+                  <label className="text-sm font-semibold text-white/80 uppercase tracking-wider">
+                    {t("calculator.sizeLabel")}
+                  </label>
+                  <span className="text-accent font-bold">{sqm} m²</span>
                 </div>
                 <input 
                   type="range" 
-                  min="20" 
-                  max="300" 
-                  step="5" 
-                  value={sqm} 
+                  min={pricingData.services[serviceType].minSqm} 
+                  max={pricingData.services[serviceType].maxSqm} 
+                  step="5"
+                  value={sqm}
                   onChange={(e) => setSqm(Number(e.target.value))}
+                  className="w-full"
                 />
-                <div className="flex justify-between text-xs text-text-muted mt-2">
-                  <span>20 m²</span>
-                  <span>300 m²</span>
+                <div className="flex justify-between text-xs text-white/40 mt-2">
+                  <span>{pricingData.services[serviceType].minSqm} m²</span>
+                  <span>{pricingData.services[serviceType].maxSqm} m²</span>
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-bold text-primary mb-4">{t('calculator.extrasLabel')}</label>
-                <div className="flex flex-wrap gap-3">
-                  {pricing.extras.map(extra => (
-                    <button
-                      key={extra.id}
-                      onClick={() => toggleExtra(extra.id)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
-                        extras.includes(extra.id)
-                          ? 'bg-primary text-white border-primary'
-                          : 'bg-white text-text-muted border-gray-200 hover:border-gray-300'
-                      }`}
-                    >
-                      {extras.includes(extra.id) && '✓ '} {extra.name} (+{extra.price} kr)
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {/* Frequency (Only for regular) */}
+              {serviceType === "regelmessig" && (
+                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
+                  <label className="block text-sm font-semibold text-white/80 mb-3 uppercase tracking-wider">
+                    {t("calculator.frequencyLabel")}
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {(Object.keys(frequencies) as Array<keyof typeof frequencies>).map((freq) => (
+                      <button
+                        key={freq}
+                        onClick={() => setFrequency(freq as any)}
+                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                          frequency === freq 
+                            ? "bg-white/20 text-white border border-white/30" 
+                            : "bg-white/5 text-white/60 border border-transparent hover:bg-white/10"
+                        }`}
+                      >
+                        {frequencies[freq]}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
             </div>
 
             {/* Result */}
-            <div className="bg-primary rounded-3xl p-8 text-white flex flex-col justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsl(183_74%_35%/0.3),transparent_50%)] pointer-events-none" />
+            <div className="flex flex-col justify-center items-center p-8 bg-black/40 rounded-2xl border border-white/5 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-[50px]" />
               
-              <div className="relative z-10">
-                <div className="text-accent-light font-bold text-sm uppercase tracking-wider mb-2">{t('calculator.totalLabel')}</div>
-                <div className="text-6xl font-display font-bold mb-2 flex items-baseline gap-2">
-                  {total.toLocaleString('no-NO')} <span className="text-2xl text-white/60 font-normal">NOK</span>
-                </div>
-                <p className="text-white/50 text-xs mt-4 mb-8 leading-relaxed">
-                  {t('calculator.disclaimer')}
-                </p>
-                <a href="#contact" className="block w-full text-center py-4 bg-accent hover:bg-accent-hover text-white rounded-full font-bold text-lg transition-all shadow-[0_0_20px_hsl(183_74%_35%/0.3)]">
-                  {t('calculator.cta')}
-                </a>
+              <span className="text-white/60 font-medium mb-2">{t("calculator.totalLabel")}</span>
+              <div className="flex items-baseline gap-2 mb-8">
+                <span className="text-5xl sm:text-6xl font-display font-bold text-white tracking-tight">
+                  {price.toLocaleString('no-NO')}
+                </span>
+                <span className="text-xl text-accent font-semibold">{pricingData.currency}</span>
               </div>
+              
+              <p className="text-sm text-white/50 text-center mb-8 max-w-[250px]">
+                *Prisen er et estimat inkl. MVA. Eksakt pris bekreftes ved befaring.
+              </p>
+              
+              <a href={`#contact?service=${serviceType}&sqm=${sqm}`} className="w-full">
+                <Button variant="primary" className="w-full text-lg py-4">
+                  {t("calculator.cta")}
+                </Button>
+              </a>
             </div>
+
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

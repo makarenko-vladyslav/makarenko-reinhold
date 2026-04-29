@@ -1,81 +1,105 @@
-
 "use client";
-import { useState, useRef, useEffect } from 'react';
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import { SectionHeading } from "./Shared";
 
 export default function BeforeAfter() {
   const { t } = useLocale();
-  const [sliderPos, setSliderPos] = useState(50);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMove = (clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    setSliderPos((x / rect.width) * 100);
+    const percent = (x / rect.width) * 100;
+    setSliderPosition(percent);
   };
 
   useEffect(() => {
     const handleMouseUp = () => setIsDragging(false);
-    const handleMouseMove = (e: MouseEvent) => isDragging && handleMove(e.clientX);
-    const handleTouchMove = (e: TouchEvent) => isDragging && handleMove(e.touches[0].clientX);
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging) handleMove(e.clientX);
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDragging) handleMove(e.touches[0].clientX);
+    };
 
     if (isDragging) {
-      window.addEventListener('mouseup', handleMouseUp);
       window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('touchend', handleMouseUp);
+      window.addEventListener('mouseup', handleMouseUp);
       window.addEventListener('touchmove', handleTouchMove);
+      window.addEventListener('touchend', handleMouseUp);
     }
+
     return () => {
-      window.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchend', handleMouseUp);
+      window.removeEventListener('mouseup', handleMouseUp);
       window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleMouseUp);
     };
   }, [isDragging]);
 
   return (
-    <section className="py-24 bg-primary relative">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-24 bg-white">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading 
-          badge={t('beforeAfter.badge')}
-          title={t('beforeAfter.title')}
-          subtitle={t('beforeAfter.subtitle')}
-          centered
-          light
+          badge={t("beforeAfter.badge")}
+          title={t("beforeAfter.title")}
+          subtitle={t("beforeAfter.subtitle")}
         />
 
-        <div 
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative aspect-[4/3] md:aspect-[16/9] rounded-3xl overflow-hidden premium-shadow cursor-ew-resize select-none group"
           ref={containerRef}
-          className="relative w-full aspect-video rounded-3xl overflow-hidden cursor-ew-resize select-none shadow-2xl mt-12"
           onMouseDown={(e) => { setIsDragging(true); handleMove(e.clientX); }}
           onTouchStart={(e) => { setIsDragging(true); handleMove(e.touches[0].clientX); }}
         >
           {/* After Image (Base) */}
-          <img src={t('beforeAfter.afterImage')} alt="After" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />
-          <div className="absolute top-6 right-6 bg-accent text-white px-4 py-1 rounded-full text-sm font-bold shadow-md pointer-events-none">{t('beforeAfter.afterLabel')}</div>
+          <img 
+            src={t("beforeAfter.imgAfter")} 
+            alt="After cleaning" 
+            className="absolute inset-0 w-full h-full object-cover"
+            draggable={false}
+          />
+          <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">
+            {t("beforeAfter.after")}
+          </div>
 
           {/* Before Image (Clipped) */}
           <div 
-            className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
-            style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
+            className="absolute inset-0 w-full h-full overflow-hidden"
+            style={{ clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)` }}
           >
-            <img src={t('beforeAfter.beforeImage')} alt="Before" className="absolute inset-0 w-full h-full object-cover grayscale-[30%]" />
-            <div className="absolute top-6 left-6 bg-gray-800 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">{t('beforeAfter.beforeLabel')}</div>
-          </div>
-
-          {/* Slider Line & Handle */}
-          <div 
-            className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] pointer-events-none"
-            style={{ left: `${sliderPos}%`, transform: 'translateX(-50%)' }}
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center">
-              <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M8 9l-4 3 4 3m8-6l4 3-4 3"/></svg>
+            <img 
+              src={t("beforeAfter.imgBefore")} 
+              alt="Before cleaning" 
+              className="absolute inset-0 w-full h-full object-cover grayscale-[30%]"
+              draggable={false}
+            />
+            <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-bold">
+              {t("beforeAfter.before")}
             </div>
           </div>
-        </div>
+
+          {/* Slider Handle */}
+          <div 
+            className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize flex items-center justify-center shadow-[0_0_10px_rgba(0,0,0,0.5)]"
+            style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
+          >
+            <div className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+                <polyline points="9 18 15 12 9 6" className="rotate-180 origin-center" />
+              </svg>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

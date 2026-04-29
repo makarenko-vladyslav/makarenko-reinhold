@@ -1,40 +1,27 @@
 @import "tailwindcss";
 
-
 @theme {
-  --color-primary: hsl(222 47% 11%);
-  --color-primary-light: hsl(222 47% 18%);
-  --color-accent: hsl(183 74% 35%);
-  --color-accent-hover: hsl(183 74% 28%);
-  --color-accent-light: hsl(183 74% 90%);
-  --color-bg-light: hsl(210 24% 98%);
-  --color-bg-dark: hsl(222 47% 8%);
-  --color-surface: hsl(0 0% 100%);
-  --color-text-main: hsl(222 30% 15%);
-  --color-text-muted: hsl(222 15% 45%);
-  --color-border: hsl(222 20% 90%);
-
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-draw: draw 1.5s ease-out forwards;
-}
+  /* Color Palette: Authoritative Nordic Blue & Eco Emerald */
+  --color-primary: hsl(215 40% 15%);
+  --color-primary-light: hsl(215 30% 25%);
+  --color-accent: hsl(150 60% 40%);
+  --color-accent-hover: hsl(150 65% 35%);
+  --color-accent-light: hsl(150 60% 90%);
+  
+  --color-bg-light: hsl(210 20% 98%);
+  --color-bg-white: hsl(0 0% 100%);
+  --color-bg-dark: hsl(215 45% 8%);
+  
+  --color-text-main: hsl(215 30% 20%);
+  --color-text-muted: hsl(215 15% 45%);
+  --color-text-inverse: hsl(210 20% 98%);
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    font-family: var(--font-body);
-    color: var(--color-text-main);
-    background-color: var(--color-bg-light);
-    -webkit-font-smoothing: antialiased;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-  }
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-draw: draw 1.5s ease-out forwards;
 }
 
 @keyframes float {
@@ -43,12 +30,46 @@
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
 }
 
 @keyframes draw {
   to { stroke-dashoffset: 0; }
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Custom Utilities */
+.glass-panel {
+  background: hsl(0 0% 100% / 0.8);
+  backdrop-filter: blur(16px);
+  border: 1px solid hsl(215 40% 15% / 0.05);
+  box-shadow: 0 8px 32px hsl(215 40% 15% / 0.05);
+}
+
+.glass-panel-dark {
+  background: hsl(215 45% 8% / 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid hsl(0 0% 100% / 0.1);
+  box-shadow: 0 8px 32px hsl(0 0% 0% / 0.4);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent), hsl(180 60% 40%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.premium-shadow {
+  box-shadow: 0 20px 40px -10px hsl(215 40% 15% / 0.08), 0 1px 3px hsl(215 40% 15% / 0.05);
 }
 
 /* Custom Range Slider */
@@ -59,14 +80,14 @@ input[type=range] {
 }
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 28px;
-  width: 28px;
+  height: 24px;
+  width: 24px;
   border-radius: 50%;
   background: var(--color-accent);
   cursor: pointer;
   margin-top: -10px;
-  box-shadow: 0 0 15px hsl(183 74% 35% / 0.4);
-  border: 3px solid var(--color-surface);
+  box-shadow: 0 0 15px hsl(150 60% 40% / 0.4);
+  border: 2px solid white;
   transition: transform 0.2s;
 }
 input[type=range]::-webkit-slider-thumb:hover {
@@ -74,26 +95,13 @@ input[type=range]::-webkit-slider-thumb:hover {
 }
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  height: 8px;
+  height: 4px;
   cursor: pointer;
-  background: var(--color-border);
-  border-radius: 4px;
-}
-input[type=range]:focus {
-  outline: none;
+  background: hsl(215 20% 90%);
+  border-radius: 2px;
 }
 
-/* Image Fallback */
-.img-fallback {
-  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-border) 100%);
-  min-height: 200px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Hide scrollbar for horizontal scroll areas */
+/* Hide scrollbar for clean horizontal scrolls */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

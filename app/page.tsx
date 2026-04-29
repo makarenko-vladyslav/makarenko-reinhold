@@ -1,19 +1,15 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
-import Services from "@/components/Services";
+import FeaturedService from "@/components/FeaturedService";
 import Calculator from "@/components/Calculator";
+import Services from "@/components/Services";
 import Trust from "@/components/Trust";
-import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
-import Testimonials from "@/components/Testimonials";
 import BeforeAfter from "@/components/BeforeAfter";
-import Gallery from "@/components/Gallery";
-import VideoSection from "@/components/VideoSection";
+import Testimonials from "@/components/Testimonials";
 import Team from "@/components/Team";
 import FAQ from "@/components/FAQ";
-import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -24,18 +20,15 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
-        <Services />
+        <FeaturedService />
         <Calculator />
+        <Services />
         <Trust />
-        <WhyUs />
         <Process />
-        <Testimonials />
         <BeforeAfter />
-        <Gallery />
-        <VideoSection />
+        <Testimonials />
         <Team />
         <FAQ />
-        <CTABanner />
         <Contact />
       </main>
       <Footer />

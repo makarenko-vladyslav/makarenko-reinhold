@@ -1,31 +1,29 @@
-
 {
   "currency": "NOK",
   "baseHourlyRate": 550,
-  "estimationLogic": "range",
   "services": {
     "flyttevask": {
-      "name": "Flyttevask",
-      "baseMultiplier": 1.2,
-      "sqmPerHour": 12,
-      "minHours": 4
+      "basePrice": 2500,
+      "perSqm": 65,
+      "minSqm": 30,
+      "maxSqm": 300
     },
     "regelmessig": {
-      "name": "Regelmessig Vask",
-      "baseMultiplier": 1.0,
-      "sqmPerHour": 25,
-      "minHours": 2
+      "basePrice": 1100,
+      "perSqm": 15,
+      "minSqm": 50,
+      "maxSqm": 300
     },
     "visning": {
-      "name": "Visningsvask",
-      "baseMultiplier": 1.1,
-      "sqmPerHour": 15,
-      "minHours": 3
+      "basePrice": 2000,
+      "perSqm": 45,
+      "minSqm": 30,
+      "maxSqm": 300
     }
   },
-  "extras": [
-    { "id": "windows", "name": "Innvendig vindusvask", "price": 450 },
-    { "id": "balcony", "name": "Vask av balkong", "price": 350 },
-    { "id": "appliances", "name": "Hvitevarer innvendig", "price": 600 }
-  ]
+  "multipliers": {
+    "engangs": 1.0,
+    "ukentlig": 0.85,
+    "biukentlig": 0.90
+  }
 }
