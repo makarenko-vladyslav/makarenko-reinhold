@@ -1,46 +1,36 @@
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import { SectionHeading } from "./Shared";
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
 
 export default function Team() {
   const { t } = useLocale();
-  const members = t("team.members") as { name: string; role: string; bio: string; img: string }[];
+  const items = t('team.items') as {name: string, role: string, bio: string, imageUrl: string}[];
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-bg-light">
+      <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t("team.badge")}
-          title={t("team.title")}
-          subtitle={t("team.subtitle")}
+          badge={t('team.badge')}
+          title={t('team.title')}
+          subtitle={t('team.subtitle')}
+          centered
         />
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {members.map((member, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group"
-            >
-              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden mb-6 premium-shadow">
+        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          {items.map((member, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center group">
+              <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl relative">
                 <img 
-                  src={member.img} 
+                  src={member.imageUrl} 
                   alt={member.name} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
               </div>
-              <div className="text-center">
-                <h3 className="text-xl font-display font-bold text-primary mb-1">{member.name}</h3>
-                <p className="text-accent font-semibold text-sm mb-3 uppercase tracking-wider">{member.role}</p>
-                <p className="text-text-muted text-sm px-4">{member.bio}</p>
-              </div>
-            </motion.div>
+              <h3 className="text-2xl font-display font-bold text-primary mb-1">{member.name}</h3>
+              <div className="text-accent font-bold text-sm uppercase tracking-wider mb-4">{member.role}</div>
+              <p className="text-text-muted">{member.bio}</p>
+            </div>
           ))}
         </div>
       </div>

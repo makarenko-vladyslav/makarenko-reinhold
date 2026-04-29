@@ -26,14 +26,12 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Detect Pages base path
+      - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
-        with:
-          static_site_generator: next
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
 
       - name: Build static export
         env:

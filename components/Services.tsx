@@ -1,49 +1,46 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import { SectionHeading } from "./Shared";
-import { HomeIcon, BuildingIcon, WindowIcon, CabinIcon, ToolIcon, RugIcon, ArrowRightIcon } from "./Icons";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { getIconByName } from './Icons';
 
-const iconMap: Record<string, React.ElementType> = {
-  home: HomeIcon,
-  building: BuildingIcon,
-  window: WindowIcon,
-  cabin: CabinIcon,
-  tool: ToolIcon,
-  rug: RugIcon,
-};
+interface ServiceItem {
+  id: number;
+  category: string;
+  title: string;
+  desc: string;
+  icon: string;
+}
 
 export default function Services() {
   const { t } = useLocale();
-  const categories = t("services.categories") as string[];
-  const items = t("services.items") as { id: string; cat: string; title: string; desc: string; icon: string }[];
-  
-  const [activeCat, setActiveCat] = useState(categories[0]);
+  const categories = t('services.categories') as string[];
+  const items = t('services.items') as ServiceItem[];
+  const [activeTab, setActiveTab] = useState(categories[0]);
 
-  const filteredItems = activeCat === categories[0] 
-    ? items 
-    : items.filter(item => item.cat === activeCat);
+  const filteredItems = items.filter(item => item.category === activeTab);
 
   return (
-    <section id="services" className="py-24 bg-bg-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-24 bg-white relative">
+      <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t("services.badge")}
-          title={t("services.title")}
-          subtitle={t("services.subtitle")}
+          badge={t('services.badge')}
+          title={t('services.title')}
+          subtitle={t('services.subtitle')}
+          centered
         />
 
         {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((cat) => (
+          {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setActiveCat(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${
-                activeCat === cat 
-                  ? "bg-primary text-white shadow-md" 
-                  : "bg-white text-text-muted hover:bg-gray-50 border border-gray-200"
+              onClick={() => setActiveTab(cat)}
+              className={`px-6 py-3 rounded-full font-bold text-sm transition-all ${
+                activeTab === cat 
+                  ? 'bg-primary text-white shadow-md' 
+                  : 'bg-bg-light text-text-muted hover:bg-border-light hover:text-text-main'
               }`}
             >
               {cat}
@@ -54,33 +51,27 @@ export default function Services() {
         {/* Grid */}
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item) => {
-              const Icon = iconMap[item.icon] || HomeIcon;
-              return (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  key={item.id}
-                  className="bg-white rounded-2xl p-8 border border-gray-100 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-300 group"
-                >
-                  <div className="w-14 h-14 rounded-xl bg-bg-light flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors text-primary">
-                    <Icon className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-xl font-display font-bold text-primary mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-text-muted leading-relaxed mb-6">
-                    {item.desc}
-                  </p>
-                  <a href="#contact" className="inline-flex items-center text-sm font-bold text-accent group-hover:text-accent-hover">
-                    Bestill <ArrowRightIcon className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </motion.div>
-              );
-            })}
+            {filteredItems.map(item => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className="group p-8 rounded-3xl bg-bg-light border border-border-light hover:border-accent/30 hover:shadow-[0_20px_40px_hsl(215_45%_15%/0.05)] transition-all relative overflow-hidden"
+              >
+                {/* Decorative hover gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                
+                <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-primary mb-6 group-hover:scale-110 group-hover:text-accent transition-all relative z-10">
+                  {getIconByName(item.icon, "w-7 h-7")}
+                </div>
+                
+                <h3 className="text-xl font-bold text-primary mb-3 relative z-10">{item.title}</h3>
+                <p className="text-text-muted leading-relaxed relative z-10">{item.desc}</p>
+              </motion.div>
+            ))}
           </AnimatePresence>
         </motion.div>
       </div>

@@ -13,7 +13,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('locale');
-    if (saved && saved in content.locales) {
+    if (saved && Object.keys(content.locales).includes(saved)) {
       setLocaleState(saved);
     }
   }, []);
@@ -29,8 +29,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     
     let val: any = locales[locale];
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in val) val = val[k];
-      else { val = undefined; break; }
+      if (val && typeof val === 'object' && k in val) {
+        val = val[k];
+      } else {
+        val = undefined;
+        break;
+      }
     }
     
     if (val !== undefined) return val;
@@ -38,8 +42,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     // Fallback
     val = locales[content.defaultLocale];
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in val) val = val[k];
-      else { val = undefined; break; }
+      if (val && typeof val === 'object' && k in val) {
+        val = val[k];
+      } else {
+        val = undefined;
+        break;
+      }
     }
     return val ?? path;
   }, [locale]);

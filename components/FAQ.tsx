@@ -1,57 +1,39 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import { SectionHeading } from "./Shared";
-import { ChevronDownIcon } from "./Icons";
+import { useState } from 'react';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { IconChevronDown } from './Icons';
 
 export default function FAQ() {
   const { t } = useLocale();
-  const items = t("faq.items") as { q: string; a: string }[];
+  const items = t('faq.items') as {q: string, a: string}[];
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-bg-light">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-24 bg-white">
+      <div className="max-w-3xl mx-auto px-6">
         <SectionHeading 
-          badge={t("faq.badge")}
-          title={t("faq.title")}
+          badge={t('faq.badge')}
+          title={t('faq.title')}
+          centered
         />
 
         <div className="space-y-4">
           {items.map((item, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="bg-white rounded-2xl border border-gray-200 overflow-hidden"
-            >
-              <button
-                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
+            <div key={idx} className="border border-border-light rounded-2xl overflow-hidden bg-bg-light">
+              <button 
                 className="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none"
+                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
               >
-                <span className="font-bold text-primary pr-4">{item.q}</span>
-                <ChevronDownIcon 
-                  className={`w-5 h-5 text-accent shrink-0 transition-transform duration-300 ${openIdx === idx ? "rotate-180" : ""}`} 
-                />
+                <span className="font-bold text-primary pr-8">{item.q}</span>
+                <IconChevronDown className={`w-5 h-5 text-accent transition-transform duration-300 shrink-0 ${openIdx === idx ? 'rotate-180' : ''}`} />
               </button>
-              <AnimatePresence>
-                {openIdx === idx && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="px-6 pb-5 text-text-muted leading-relaxed">
-                      {item.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+              <div 
+                className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${openIdx === idx ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}
+              >
+                <p className="text-text-muted">{item.a}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>

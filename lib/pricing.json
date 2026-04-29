@@ -1,29 +1,20 @@
 {
   "currency": "NOK",
-  "baseHourlyRate": 550,
+  "estimationLogic": "range",
   "services": {
     "flyttevask": {
-      "basePrice": 2500,
-      "perSqm": 65,
+      "basePricePerSqm": 85,
+      "minPrice": 3500,
       "minSqm": 30,
       "maxSqm": 300
     },
-    "regelmessig": {
-      "basePrice": 1100,
-      "perSqm": 15,
-      "minSqm": 50,
-      "maxSqm": 300
-    },
-    "visning": {
-      "basePrice": 2000,
-      "perSqm": 45,
-      "minSqm": 30,
-      "maxSqm": 300
+    "regular": {
+      "hourlyRate": 550,
+      "minHours": 2
     }
   },
   "multipliers": {
-    "engangs": 1.0,
-    "ukentlig": 0.85,
-    "biukentlig": 0.90
+    "weekend": 1.25,
+    "heavyDuty": 1.5
   }
 }

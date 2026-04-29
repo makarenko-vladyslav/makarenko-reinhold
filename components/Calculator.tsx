@@ -1,160 +1,89 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import pricingData from "@/lib/pricing.json";
-import { SectionHeading, Button } from "./Shared";
+import { useState, useEffect } from 'react';
+import { useLocale } from '@/lib/i18n';
+import pricing from '@/lib/pricing.json';
+import SectionHeading from './SectionHeading';
+import { IconCheck } from './Icons';
 
 export default function Calculator() {
   const { t } = useLocale();
-  
-  const [serviceType, setServiceType] = useState<"flyttevask" | "regelmessig" | "visning">("flyttevask");
-  const [sqm, setSqm] = useState<number>(80);
-  const [frequency, setFrequency] = useState<"engangs" | "ukentlig" | "biukentlig">("engangs");
-  const [price, setPrice] = useState<number>(0);
+  const [sqm, setSqm] = useState(80);
+  const [price, setPrice] = useState(0);
 
-  const types = t("calculator.types") as Record<string, string>;
-  const frequencies = t("calculator.frequencies") as Record<string, string>;
+  const { basePricePerSqm, minPrice, minSqm, maxSqm } = pricing.services.flyttevask;
 
   useEffect(() => {
-    const serviceConfig = pricingData.services[serviceType];
-    const base = serviceConfig.basePrice;
-    
-    // Calculate extra sqm above minimum
-    const extraSqm = Math.max(0, sqm - serviceConfig.minSqm);
-    const sqmPrice = extraSqm * serviceConfig.perSqm;
-    
-    let total = base + sqmPrice;
-    
-    // Apply frequency multiplier
-    if (serviceType === "regelmessig") {
-      total = total * pricingData.multipliers[frequency];
-    }
-
-    setPrice(Math.round(total));
-  }, [serviceType, sqm, frequency]);
+    const calculated = Math.max(minPrice, sqm * basePricePerSqm);
+    setPrice(calculated);
+  }, [sqm]);
 
   return (
-    <section id="calculator" className="py-24 bg-bg-dark relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading 
-          badge={t("calculator.badge")}
-          title={t("calculator.title")}
-          subtitle={t("calculator.subtitle")}
-          light={true}
-        />
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-panel-dark rounded-3xl p-6 sm:p-10"
-        >
-          <div className="grid md:grid-cols-2 gap-12">
+    <section id="calculator" className="py-24 bg-bg-light relative">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-accent/5 to-transparent pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          <div>
+            <SectionHeading 
+              badge={t('calculator.badge')}
+              title={t('calculator.title')}
+              subtitle={t('calculator.subtitle')}
+            />
             
-            {/* Controls */}
-            <div className="space-y-8">
-              {/* Service Type */}
-              <div>
-                <label className="block text-sm font-semibold text-white/80 mb-3 uppercase tracking-wider">
-                  {t("calculator.typeLabel")}
-                </label>
-                <div className="flex flex-col gap-2">
-                  {(Object.keys(types) as Array<keyof typeof types>).map((type) => (
-                    <button
-                      key={type}
-                      onClick={() => {
-                        setServiceType(type as any);
-                        if (type !== "regelmessig") setFrequency("engangs");
-                      }}
-                      className={`px-4 py-3 rounded-xl text-left font-medium transition-all ${
-                        serviceType === type 
-                          ? "bg-accent text-white shadow-lg shadow-accent/20" 
-                          : "bg-white/5 text-white/70 hover:bg-white/10"
-                      }`}
-                    >
-                      {types[type]}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Slider */}
-              <div>
-                <div className="flex justify-between mb-3">
-                  <label className="text-sm font-semibold text-white/80 uppercase tracking-wider">
-                    {t("calculator.sizeLabel")}
-                  </label>
-                  <span className="text-accent font-bold">{sqm} m²</span>
-                </div>
-                <input 
-                  type="range" 
-                  min={pricingData.services[serviceType].minSqm} 
-                  max={pricingData.services[serviceType].maxSqm} 
-                  step="5"
-                  value={sqm}
-                  onChange={(e) => setSqm(Number(e.target.value))}
-                  className="w-full"
-                />
-                <div className="flex justify-between text-xs text-white/40 mt-2">
-                  <span>{pricingData.services[serviceType].minSqm} m²</span>
-                  <span>{pricingData.services[serviceType].maxSqm} m²</span>
-                </div>
-              </div>
-
-              {/* Frequency (Only for regular) */}
-              {serviceType === "regelmessig" && (
-                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }}>
-                  <label className="block text-sm font-semibold text-white/80 mb-3 uppercase tracking-wider">
-                    {t("calculator.frequencyLabel")}
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {(Object.keys(frequencies) as Array<keyof typeof frequencies>).map((freq) => (
-                      <button
-                        key={freq}
-                        onClick={() => setFrequency(freq as any)}
-                        className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
-                          frequency === freq 
-                            ? "bg-white/20 text-white border border-white/30" 
-                            : "bg-white/5 text-white/60 border border-transparent hover:bg-white/10"
-                        }`}
-                      >
-                        {frequencies[freq]}
-                      </button>
-                    ))}
+            <div className="space-y-4 mt-8">
+              {(t('calculator.includes') as string[]).map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                    <IconCheck className="w-4 h-4 text-accent" />
                   </div>
-                </motion.div>
-              )}
+                  <span className="text-text-main font-medium">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="glass-panel p-8 md:p-12 rounded-3xl relative">
+            {/* Glow effect behind card */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-accent/20 to-primary/20 rounded-3xl blur-xl opacity-50 -z-10" />
+            
+            <div className="mb-8">
+              <div className="flex justify-between items-end mb-4">
+                <label className="font-bold text-text-main">{t('calculator.sqmLabel')}</label>
+                <span className="text-3xl font-display font-bold text-primary">{sqm} m²</span>
+              </div>
+              <input 
+                type="range" 
+                min={minSqm} 
+                max={maxSqm} 
+                step="5"
+                value={sqm}
+                onChange={(e) => setSqm(Number(e.target.value))}
+              />
+              <div className="flex justify-between text-xs text-text-muted mt-2 font-medium">
+                <span>{minSqm} m²</span>
+                <span>{maxSqm} m²</span>
+              </div>
             </div>
 
-            {/* Result */}
-            <div className="flex flex-col justify-center items-center p-8 bg-black/40 rounded-2xl border border-white/5 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-[50px]" />
-              
-              <span className="text-white/60 font-medium mb-2">{t("calculator.totalLabel")}</span>
-              <div className="flex items-baseline gap-2 mb-8">
-                <span className="text-5xl sm:text-6xl font-display font-bold text-white tracking-tight">
+            <div className="p-6 bg-bg-light rounded-2xl border border-border-light mb-8">
+              <div className="text-sm text-text-muted font-medium mb-1">{t('calculator.priceLabel')}</div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-display font-bold text-primary transition-all duration-300">
                   {price.toLocaleString('no-NO')}
                 </span>
-                <span className="text-xl text-accent font-semibold">{pricingData.currency}</span>
+                <span className="text-xl font-bold text-text-muted">{pricing.currency}</span>
               </div>
-              
-              <p className="text-sm text-white/50 text-center mb-8 max-w-[250px]">
-                *Prisen er et estimat inkl. MVA. Eksakt pris bekreftes ved befaring.
-              </p>
-              
-              <a href={`#contact?service=${serviceType}&sqm=${sqm}`} className="w-full">
-                <Button variant="primary" className="w-full text-lg py-4">
-                  {t("calculator.cta")}
-                </Button>
-              </a>
+              <p className="text-xs text-text-muted mt-2">*Inkludert MVA og alt utstyr.</p>
             </div>
 
+            <a href="#contact" className="block w-full py-4 bg-primary hover:bg-primary-light text-white text-center rounded-xl font-bold transition-colors shadow-lg">
+              {t('calculator.cta')}
+            </a>
           </div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );
