@@ -1,14 +1,12 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import SocialProof from "@/components/SocialProof";
-import ServicesFeatured from "@/components/ServicesFeatured";
-import CalculatorSection from "@/components/CalculatorSection";
-import TrustSection from "@/components/TrustSection";
+import Logos from "@/components/Logos";
+import Services from "@/components/Services";
+import Calculator from "@/components/Calculator";
+import Trust from "@/components/Trust";
 import WhyUs from "@/components/WhyUs";
-import ServiceDirectory from "@/components/ServiceDirectory";
+import Process from "@/components/Process";
 import BeforeAfter from "@/components/BeforeAfter";
-import ProcessTimeline from "@/components/ProcessTimeline";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
 import Team from "@/components/Team";
@@ -21,16 +19,15 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="overflow-hidden">
+      <main>
         <Hero />
-        <SocialProof />
-        <ServicesFeatured />
-        <CalculatorSection />
-        <TrustSection />
+        <Logos />
+        <Services />
+        <Calculator />
+        <Trust />
         <WhyUs />
-        <ServiceDirectory />
+        <Process />
         <BeforeAfter />
-        <ProcessTimeline />
         <Testimonials />
         <Gallery />
         <Team />

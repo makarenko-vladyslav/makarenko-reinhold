@@ -1,17 +1,16 @@
-
 {
   "currency": "NOK",
-  "baseRatePerHour": 550,
+  "baseHourly": 550,
   "flyttevask": {
     "basePrice": 2500,
-    "sqmRate": 45,
+    "perSqmRate": 65,
     "minSqm": 20,
     "maxSqm": 300,
-    "estimatedHoursPer10Sqm": 0.8
+    "step": 5
   },
-  "multipliers": {
-    "weekend": 1.25,
-    "heavyDuty": 1.5,
-    "windowsIncluded": 1.15
+  "extras": {
+    "windows": 450,
+    "balcony": 300,
+    "whitegoods": 800
   }
 }
