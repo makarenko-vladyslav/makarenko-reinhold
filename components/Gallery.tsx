@@ -1,31 +1,42 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
 
 export default function Gallery() {
   const { t } = useLocale();
-  const items = t('gallery.items') as string[];
+  const items = t("gallery.items") as any[];
 
   return (
-    <section className="py-24 bg-bg-light">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t('gallery.badge')}
-          title={t('gallery.title')}
-          centered
+          badge={t("gallery.badge")}
+          title={t("gallery.title")}
         />
 
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {items.map((url, idx) => (
-            <div key={idx} className="break-inside-avoid relative group rounded-2xl overflow-hidden shadow-sm">
+          {items.map((item, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="break-inside-avoid rounded-2xl overflow-hidden relative group"
+            >
               <img 
-                src={url} 
-                alt={`Gallery ${idx}`} 
-                className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                src={item.url} 
+                alt={item.alt}
+                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300" />
-            </div>
+              <div className="absolute inset-0 bg-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-medium px-4 py-2 border border-white/30 rounded-full backdrop-blur-sm">
+                  {item.alt}
+                </span>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

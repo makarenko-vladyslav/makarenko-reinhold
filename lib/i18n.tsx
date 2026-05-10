@@ -13,7 +13,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem('locale');
-    if (saved && Object.keys(content.locales).includes(saved)) {
+    if (saved && content.locales[saved as keyof typeof content.locales]) {
       setLocaleState(saved);
     }
   }, []);
