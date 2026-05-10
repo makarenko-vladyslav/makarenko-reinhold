@@ -1,66 +1,29 @@
 "use client";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { IconSparkle } from "./Icons";
 
 interface SectionHeadingProps {
   badge: string;
-  title: string | React.ReactNode;
+  title: string;
   subtitle?: string;
   centered?: boolean;
   light?: boolean;
-  className?: string;
 }
 
-export default function SectionHeading({ badge, title, subtitle, centered = false, light = false, className }: SectionHeadingProps) {
+export default function SectionHeading({ badge, title, subtitle, centered = false, light = false }: SectionHeadingProps) {
   return (
-    <div className={cn("mb-16", centered ? "text-center mx-auto" : "", className)}>
-      <motion.span 
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        className={cn(
-          "inline-block font-bold tracking-wider uppercase text-sm mb-4 px-3 py-1 rounded-full",
-          light ? "bg-white/10 text-accent" : "bg-accent/10 text-accent"
-        )}
-      >
+    <div className={`flex flex-col mb-12 ${centered ? "items-center text-center" : "items-start"}`}>
+      <span className={`font-bold tracking-widest uppercase text-xs mb-4 flex items-center gap-2 ${light ? "text-accent-light" : "text-accent"}`}>
+        <IconSparkle className="w-4 h-4" />
         {badge}
-      </motion.span>
-      
-      <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ delay: 0.1 }}
-        className={cn(
-          "text-4xl md:text-5xl font-display font-bold mb-6 leading-tight",
-          light ? "text-white" : "text-primary"
-        )}
-      >
+      </span>
+      <h2 className={`text-4xl md:text-5xl font-display font-bold mb-6 ${light ? "text-text-inverse" : "text-primary"}`}>
         {title}
-      </motion.h2>
-      
-      <motion.div 
-        initial={{ width: 0 }}
-        whileInView={{ width: 64 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className={cn("h-1 bg-accent rounded-full mb-6", centered ? "mx-auto" : "")}
-      />
-      
+      </h2>
+      <div className={`w-20 h-1 rounded-full mb-6 ${light ? "bg-accent-light" : "bg-gradient-to-r from-accent to-accent-light"}`} />
       {subtitle && (
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ delay: 0.3 }}
-          className={cn(
-            "text-lg max-w-2xl",
-            light ? "text-white/80" : "text-text-muted",
-            centered ? "mx-auto" : ""
-          )}
-        >
+        <p className={`text-lg max-w-2xl ${light ? "text-text-inverse-muted" : "text-text-muted"}`}>
           {subtitle}
-        </motion.p>
+        </p>
       )}
     </div>
   );

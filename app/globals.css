@@ -1,83 +1,105 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: hsl(222 47% 11%);
-  --color-primary-light: hsl(222 47% 18%);
-  --color-accent: hsl(173 80% 40%);
-  --color-accent-hover: hsl(173 80% 35%);
-  --color-bg-light: hsl(210 20% 98%);
-  --color-bg-dark: hsl(222 47% 8%);
-  --color-surface: hsl(0 0% 100%);
-  --color-text-main: hsl(222 20% 20%);
-  --color-text-muted: hsl(222 15% 45%);
-  --color-text-inverse: hsl(0 0% 100%);
-  
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  --animate-marquee: marquee 40s linear infinite;
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@layer base {
-  body {
-    font-family: var(--font-body);
-    background-color: var(--color-bg-light);
-    color: var(--color-text-main);
-    -webkit-font-smoothing: antialiased;
-  }
+  /* Color Palette based on Trust, Cleanliness, and Authority */
+  --color-primary: hsl(215 45% 15%); /* Deep Nordic Blue */
+  --color-primary-light: hsl(215 40% 25%);
+  --color-accent: hsl(175 70% 35%); /* Deep Teal / Eco Svanemerket vibe */
+  --color-accent-light: hsl(175 70% 90%);
+  --color-accent-hover: hsl(175 75% 30%);
   
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-  }
+  --color-bg-light: hsl(210 20% 98%); /* Crisp off-white */
+  --color-bg-dark: hsl(215 45% 10%); /* Very dark blue for sections */
+  --color-surface: hsl(0 0% 100%);
+  --color-surface-dark: hsl(215 40% 18%);
+  
+  --color-text-main: hsl(215 30% 20%);
+  --color-text-muted: hsl(215 15% 45%);
+  --color-text-inverse: hsl(0 0% 100%);
+  --color-text-inverse-muted: hsl(215 20% 80%);
+
+  --color-border-light: hsl(215 20% 90%);
+  --color-border-dark: hsl(215 30% 25%);
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass-panel {
+    background: hsl(0 0% 100% / 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(215 20% 90% / 0.5);
+    box-shadow: 0 20px 40px hsl(215 45% 15% / 0.05);
+  }
+  .glass-panel-dark {
+    background: hsl(215 40% 18% / 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(0 0% 100% / 0.1);
+    box-shadow: 0 20px 40px hsl(0 0% 0% / 0.2);
+  }
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-accent), hsl(190 80% 45%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes pulse-slow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(175 70% 35% / 0.4); }
+  50% { box-shadow: 0 0 20px 10px hsl(175 70% 35% / 0); }
 }
 
-/* Custom utility for glassmorphism */
-.glass-panel {
-  background: hsl(0 0% 100% / 0.85);
-  backdrop-filter: blur(16px);
-  border: 1px solid hsl(0 0% 100% / 0.4);
-  box-shadow: 0 20px 40px hsl(222 47% 11% / 0.05);
+@keyframes draw-path {
+  to { stroke-dashoffset: 0; }
 }
 
-.glass-panel-dark {
-  background: hsl(222 47% 11% / 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid hsl(0 0% 100% / 0.1);
-  box-shadow: 0 20px 40px hsl(0 0% 0% / 0.2);
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Image fallback */
-.img-fallback {
-  background: linear-gradient(135deg, hsl(210 20% 95%), hsl(210 20% 90%));
-  min-height: 200px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
 }
 
-/* Hide scrollbar for clean horizontal scrolls */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+/* Base styles for range slider */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  margin-top: -10px;
+  box-shadow: 0 0 15px hsl(175 70% 35% / 0.4);
+  transition: transform 0.1s;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: var(--color-border-light);
+  border-radius: 2px;
+}
+.dark-range input[type=range]::-webkit-slider-runnable-track {
+  background: var(--color-border-dark);
 }

@@ -3,20 +3,19 @@ import { LocaleProvider } from "@/lib/i18n";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Makarenko Reinhold | Offentlig Godkjent Renholdsbedrift i Notodden",
-  description: "Profesjonell vaskehjelp, flyttevask med garanti, og kontorvask i Notodden og Telemark. 100% lovlig, Svanemerket og ansvarsforsikret opptil 10 mill NOK.",
-  keywords: ["flyttevask notodden", "vaskehjelp telemark", "renholdsfirma", "makarenko reinhold", "hms-kort renhold", "svanemerket vask"],
+  title: "Makarenko Reinhold | Premium Cleaning in Notodden",
+  description: "Offentlig godkjent renholdsbedrift i Notodden. Vi tilbyr profesjonell flyttevask med 100% fornøydgaranti, daglig renhold og bedriftsavtaler.",
+  keywords: ["flyttevask notodden", "renhold telemark", "vaskebyrå notodden", "makarenko reinhold", "hms kort renhold"],
   icons: {
     icon: "/icon.svg",
   },
-  openGraph: {
-    title: "Makarenko Reinhold | Profesjonelt Renhold i Notodden",
-    description: "Flyttevask med garanti, regelmessig vask og bedriftsrenhold. Trygt, lovlig og miljøvennlig.",
-    type: "website",
-  }
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="no" className="scroll-smooth">
       <head>
@@ -24,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body>
+      <body className="font-body text-text-main bg-bg-light antialiased selection:bg-accent/30 selection:text-primary">
         <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>

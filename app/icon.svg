@@ -1,7 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="hsl(173, 80%, 40%)" />
-  <!-- Sparkle / Clean Icon -->
-  <path d="M16 6 L18 13 L25 15 L18 17 L16 24 L14 17 L7 15 L14 13 Z" fill="white" />
-  <circle cx="23" cy="9" r="2" fill="white" />
-  <circle cx="9" cy="22" r="1.5" fill="white" />
+  <rect width="32" height="32" rx="8" fill="hsl(175, 70%, 35%)" />
+  <path d="M16 6C16 6 10 12 10 18C10 21.3137 12.6863 24 16 24C19.3137 24 22 21.3137 22 18C22 12 16 6 16 6Z" fill="none" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M16 12L14 16L12 17L14 18L16 22L18 18L20 17L18 16L16 12Z" fill="white" />
 </svg>

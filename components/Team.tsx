@@ -1,49 +1,36 @@
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
 
 export default function Team() {
   const { t } = useLocale();
-  const data = t('team') as any;
+  const items = t('team.items') as {name: string, role: string, bio: string, imageUrl: string}[];
 
   return (
-    <section className="py-24 bg-white relative">
+    <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={data.badge}
-          title={data.title}
-          subtitle={data.subtitle}
+          badge={t('team.badge')}
+          title={t('team.title')}
+          subtitle={t('team.subtitle')}
           centered
         />
 
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {data.members.map((member: any, idx: number) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group"
-            >
-              <div className="relative rounded-3xl overflow-hidden aspect-[4/5] mb-6">
+        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          {items.map((member, idx) => (
+            <div key={idx} className="flex flex-col items-center text-center group">
+              <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-white shadow-xl relative">
                 <img 
-                  src={member.image} 
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
+                  src={member.imageUrl} 
+                  alt={member.name} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-4 right-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-white text-xs font-bold flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-400" /> HMS-Kort
-                </div>
+                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
               </div>
-              
               <h3 className="text-2xl font-display font-bold text-primary mb-1">{member.name}</h3>
-              <p className="text-accent font-medium mb-4">{member.role}</p>
-              <p className="text-text-muted text-sm leading-relaxed">{member.bio}</p>
-            </motion.div>
+              <div className="text-accent font-bold text-sm uppercase tracking-wider mb-4">{member.role}</div>
+              <p className="text-text-muted">{member.bio}</p>
+            </div>
           ))}
         </div>
       </div>
