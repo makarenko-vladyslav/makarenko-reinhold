@@ -1,14 +1,17 @@
+
 {
   "currency": "NOK",
-  "baseHourlyRate": 550,
-  "services": {
-    "flyttevask": {
-      "ratePerSqm": 85,
-      "minPrice": 2500
-    },
-    "regular": {
-      "ratePerSqm": 45,
-      "minPrice": 1100
-    }
-  }
+  "baseHourly": 550,
+  "flyttevask": {
+    "basePrice": 2000,
+    "ratePerSqm": 65,
+    "minSqm": 20,
+    "maxSqm": 300,
+    "defaultSqm": 70
+  },
+  "extras": [
+    { "id": "windows", "price": 400 },
+    { "id": "balcony", "price": 350 },
+    { "id": "appliances", "price": 600 }
+  ]
 }

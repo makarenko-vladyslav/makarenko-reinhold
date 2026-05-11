@@ -1,53 +1,49 @@
+
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
 
 export default function Process() {
   const { t } = useLocale();
-  const steps = t('process.steps');
+  const steps = t("process.steps") as any[];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-bg-light relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t('process.badge')}
-          title={t('process.title')}
+          badge={t("process.badge")}
+          title={t("process.title")}
           centered
         />
 
-        <div className="relative mt-16">
-          {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-8 left-[10%] right-[10%] h-0.5 bg-gray-100">
-            <motion.div 
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-              className="h-full bg-accent origin-left"
-            />
-          </div>
+        <div className="relative max-w-4xl mx-auto mt-16">
+          {/* Vertical Line */}
+          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 md:-translate-x-1/2" />
 
-          <div className="grid md:grid-cols-4 gap-12 md:gap-6">
-            {steps.map((step: { title: string; description: string }, idx: number) => (
-              <motion.div
-                key={idx}
+          <div className="space-y-12">
+            {steps.map((step, i) => (
+              <motion.div 
+                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.2 }}
-                className="relative text-center"
+                viewport={{ once: true, margin: "-100px" }}
+                className={`relative flex flex-col md:flex-row gap-8 items-start md:items-center ${
+                  i % 2 === 0 ? "md:flex-row-reverse" : ""
+                }`}
               >
-                {/* Number Circle */}
-                <div className="w-16 h-16 mx-auto bg-white border-4 border-bg-light rounded-full flex items-center justify-center text-xl font-display font-bold text-primary mb-6 relative z-10 shadow-sm">
-                  {idx + 1}
-                  {/* Active dot */}
-                  <div className="absolute inset-0 rounded-full border-2 border-accent opacity-0 animate-pulse-slow" />
+                {/* Number Node */}
+                <div className="absolute left-0 md:left-1/2 w-14 h-14 bg-white border-4 border-bg-light rounded-full flex items-center justify-center font-display font-bold text-xl text-primary shadow-lg z-10 md:-translate-x-1/2">
+                  {i + 1}
                 </div>
-                
-                <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
-                <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>
+
+                {/* Content Card */}
+                <div className={`ml-20 md:ml-0 md:w-1/2 ${i % 2 === 0 ? "md:pl-16" : "md:pr-16 text-left md:text-right"}`}>
+                  <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
+                    <p className="text-text-muted text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>

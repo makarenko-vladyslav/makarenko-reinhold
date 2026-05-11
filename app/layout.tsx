@@ -1,16 +1,19 @@
+
 import type { Metadata } from "next";
 import { LocaleProvider } from "@/lib/i18n";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Makarenko Reinhold | Offentlig Godkjent Renholdsbedrift i Notodden",
-  description: "Profesjonell renholdstjeneste i Notodden og Telemark. Spesialister på flyttevask med garanti, regelmessig vask og kontorvask. 100% lovlig, Svanemerket og fullt forsikret.",
-  keywords: ["renhold Notodden", "flyttevask Telemark", "vaskehjelp", "kontorvask", "Makarenko Reinhold"],
-  icons: { icon: '/icon.svg' },
+  title: "Makarenko Reinhold | Offentlig godkjent renholdsbedrift i Notodden",
+  description: "Profesjonell flyttevask med garanti, regelmessig renhold og bedriftsvask i Notodden og Telemark. Fullt forsikret, HMS-kort og miljøvennlig.",
+  keywords: ["flyttevask Notodden", "renhold Telemark", "vaskehjelp", "kontorvask", "Makarenko Reinhold"],
   openGraph: {
     title: "Makarenko Reinhold | Premium Renhold i Notodden",
-    description: "Profesjonell renholdstjeneste med 100% fornøydgaranti. Vi bruker Svanemerkede produkter og har 10 mill. NOK i ansvarsforsikring.",
+    description: "Profesjonell flyttevask med garanti. Fullt forsikret og offentlig godkjent.",
     type: "website",
+  },
+  icons: {
+    icon: "/icon.svg",
   },
 };
 
