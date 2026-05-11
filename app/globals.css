@@ -1,25 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: hsl(215 40% 15%);
-  --color-primary-light: hsl(215 30% 25%);
-  --color-accent: hsl(175 75% 35%);
-  --color-accent-light: hsl(175 80% 45%);
-  --color-accent-dark: hsl(175 90% 20%);
+  --color-primary: hsl(215 60% 15%);
+  --color-primary-light: hsl(215 50% 25%);
+  --color-accent: hsl(185 80% 40%);
+  --color-accent-light: hsl(185 80% 50%);
   --color-bg-light: hsl(210 20% 98%);
-  --color-bg-dark: hsl(215 30% 8%);
-  --color-surface-white: hsl(0 0% 100%);
-  --color-surface-dark: hsl(215 30% 12%);
-  --color-text-main: hsl(215 20% 25%);
+  --color-bg-dark: hsl(215 50% 10%);
+  --color-text-main: hsl(215 30% 20%);
   --color-text-muted: hsl(215 15% 45%);
-  --color-text-inverse: hsl(210 20% 95%);
   
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-draw: draw 1.5s ease-out forwards;
+  --animate-draw: draw 2s ease-out forwards;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-[0_8px_30px_hsl(215_60%_15%/0.05)];
+  }
+  .glass-panel-dark {
+    @apply bg-primary/80 backdrop-blur-md border border-white/10 shadow-[0_8px_30px_hsl(0_0%_0%/0.2)];
+  }
+  .heading-badge {
+    @apply text-accent font-bold tracking-wider uppercase text-sm mb-3 block;
+  }
+  .heading-line {
+    @apply w-16 h-1 bg-accent rounded-full mb-6;
+  }
 }
 
 @keyframes float {
@@ -36,42 +50,17 @@
   to { stroke-dashoffset: 0; }
 }
 
-body {
-  font-family: var(--font-body);
-  color: var(--color-text-main);
-  background-color: var(--color-bg-light);
-  -webkit-font-smoothing: antialiased;
+/* Custom Range Slider */
+input[type=range] {
+  -webkit-appearance: none;
+  @apply w-full h-2 bg-gray-200 rounded-full outline-none;
 }
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply w-6 h-6 bg-accent rounded-full cursor-pointer shadow-md border-2 border-white transition-transform hover:scale-110;
 }
-
-/* Custom Utilities */
-.text-balance {
-  text-wrap: balance;
-}
-
-.glass-panel {
-  background: hsl(0 0% 100% / 0.8);
-  backdrop-filter: blur(16px);
-  border: 1px solid hsl(215 20% 90% / 0.5);
-  box-shadow: 0 8px 32px hsl(215 40% 15% / 0.05);
-}
-
-.glass-panel-dark {
-  background: hsl(215 30% 12% / 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid hsl(0 0% 100% / 0.1);
-  box-shadow: 0 8px 32px hsl(0 0% 0% / 0.2);
-}
-
-.clip-diagonal {
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-}
-
-.clip-diagonal-reverse {
-  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+input[type=range]::-moz-range-thumb {
+  @apply w-6 h-6 bg-accent rounded-full cursor-pointer shadow-md border-2 border-white transition-transform hover:scale-110;
 }
 
 /* Hide scrollbar for clean horizontal scrolls */

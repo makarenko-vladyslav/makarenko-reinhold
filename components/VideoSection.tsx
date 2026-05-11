@@ -1,38 +1,57 @@
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { PlayIcon } from './Icons';
 
 export default function VideoSection() {
   const { t } = useLocale();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
-    <section className="py-24 bg-bg-dark relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
-        <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">
-          {t("video.badge")}
-        </span>
-        <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-12">
-          {t("video.title")}
-        </h2>
+    <section className="py-24 bg-primary relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <SectionHeading 
+          badge={t('video.badge')}
+          title={t('video.title')}
+          centered
+          light
+        />
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer aspect-video"
-        >
-          <img 
-            src={t("video.posterUrl")} 
-            alt="Video Poster" 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-          
-          {/* Play Button */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-accent/90 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform shadow-[0_0_40px_hsl(175_75%_35%/0.5)]">
-            <svg className="w-10 h-10 text-white ml-2" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </motion.div>
+        <div className="max-w-5xl mx-auto mt-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden aspect-video shadow-2xl bg-black"
+          >
+            {!isPlaying ? (
+              <>
+                <img 
+                  src={t('video.posterUrl')} 
+                  alt="Video thumbnail" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-60"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button 
+                    onClick={() => setIsPlaying(true)}
+                    className="w-20 h-20 bg-accent hover:bg-accent-light text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 pl-1 shadow-[0_0_30px_hsl(185_80%_40%/0.5)]"
+                  >
+                    <PlayIcon className="w-8 h-8" />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <video 
+                className="w-full h-full object-cover"
+                controls 
+                autoPlay 
+                src="https://www.w3schools.com/html/mov_bbb.mp4" 
+              />
+            )}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

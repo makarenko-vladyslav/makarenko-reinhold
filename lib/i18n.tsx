@@ -26,8 +26,8 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const t = useCallback((path: string): any => {
     const keys = path.split('.');
     const locales = content.locales as Record<string, any>;
-    
     let val: any = locales[locale];
+    
     for (const k of keys) {
       if (val && typeof val === 'object' && k in val) {
         val = val[k];

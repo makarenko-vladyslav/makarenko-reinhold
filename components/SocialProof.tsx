@@ -1,26 +1,32 @@
 "use client";
-import { useLocale } from "@/lib/i18n";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
 
 export default function SocialProof() {
   const { t } = useLocale();
-  
-  const logos = [
-    "Arbeidstilsynet", "Svanemerket", "Gjensidige", "Renholdsregisteret", "HMS-Kort", "NHO Service"
-  ];
+  const items = t('socialProof.items');
 
   return (
-    <section className="bg-bg-light py-12 border-b border-gray-200 relative z-20 -mt-4 rounded-t-3xl">
+    <section className="py-12 bg-bg-light relative z-10 -mt-2">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="text-center text-text-muted font-medium mb-8">{t("socialProof.text")}</p>
-        
-        <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-          {logos.map((logo, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="font-display font-bold text-xl text-primary tracking-tight">{logo}</span>
-            </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-200">
+          {items.map((item: { value: string; label: string }, idx: number) => (
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className={`text-center ${idx === 0 ? '' : 'pl-8'}`}
+            >
+              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-1">
+                {item.value}
+              </div>
+              <div className="text-sm font-medium text-text-muted uppercase tracking-wide">
+                {item.label}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

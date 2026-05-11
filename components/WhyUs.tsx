@@ -1,65 +1,53 @@
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { ShieldIcon, LeafIcon, KeyIcon, SparkleIcon } from './Icons';
+
+const iconMap: Record<string, React.ReactNode> = {
+  shield: <ShieldIcon className="w-8 h-8" />,
+  leaf: <LeafIcon className="w-8 h-8" />,
+  key: <KeyIcon className="w-8 h-8" />,
+  sparkle: <SparkleIcon className="w-8 h-8" />
+};
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const items = t("whyUs.items") as any[];
+  const cards = t('whyUs.cards');
 
   return (
-    <section className="py-24 bg-bg-light clip-diagonal-reverse pb-32">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">
-              {t("whyUs.badge")}
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4 text-balance">
-              {t("whyUs.title")}
-            </h2>
-            <div className="w-16 h-1 bg-accent rounded-full mb-10" />
-            
-            <div className="space-y-8">
-              {items.map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex gap-4"
-                >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center text-accent mt-1">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
-                    <p className="text-text-muted leading-relaxed">{item.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+    <section id="about" className="py-24 bg-white relative">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-bg-light rounded-l-3xl opacity-50 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <SectionHeading 
+          badge={t('whyUs.badge')}
+          title={t('whyUs.title')}
+          subtitle={t('whyUs.subtitle')}
+        />
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl"
-          >
-            <img 
-              src="https://picsum.photos/seed/cleaning-equipment/800/1000" 
-              alt="Professional Equipment" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
-            <div className="absolute bottom-10 left-10 right-10">
-              <div className="glass-panel p-6 rounded-2xl">
-                <div className="text-primary font-bold text-lg mb-1">Svanemerket Kvalitet</div>
-                <div className="text-text-muted text-sm">Vi bruker kun godkjente midler som er trygge for barn og dyr.</div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {cards.map((card: { icon: string; title: string; description: string }, idx: number) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="group bg-white p-8 rounded-2xl shadow-[0_4px_20px_hsl(215_60%_15%/0.05)] border border-gray-100 hover:shadow-[0_8px_30px_hsl(215_60%_15%/0.1)] transition-all duration-300 relative overflow-hidden"
+            >
+              {/* Hover shine effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-[shine_1s_ease-in-out] pointer-events-none z-10" />
+              
+              <div className="w-14 h-14 bg-bg-light rounded-xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                {iconMap[card.icon]}
               </div>
-            </div>
-          </motion.div>
+              <h3 className="text-xl font-bold text-primary mb-3">{card.title}</h3>
+              <p className="text-text-muted leading-relaxed">{card.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

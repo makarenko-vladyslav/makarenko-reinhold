@@ -1,137 +1,124 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import Link from "next/link";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import { MenuIcon, CloseIcon, PhoneIcon, LogoMark } from './Icons';
 
 export default function Header() {
+  const { t, locale, setLocale } = useLocale();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const { locale, setLocale, t } = useLocale();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { href: "#services", label: t("nav.services") },
-    { href: "#calculator", label: t("nav.calculator") },
-    { href: "#about", label: t("nav.about") },
-    { href: "#reviews", label: t("nav.reviews") },
+    { name: t('nav.services'), href: '#services' },
+    { name: t('nav.pricing'), href: '#pricing' },
+    { name: t('nav.about'), href: '#about' },
+    { name: t('nav.faq'), href: '#faq' },
   ];
 
+  const toggleLocale = () => setLocale(locale === 'no' ? 'uk' : 'no');
+
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-surface-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
-      }`}
-    >
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white shadow-lg group-hover:scale-105 transition-transform">
-            <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M16 6L18.5 13.5L26 16L18.5 18.5L16 26L13.5 18.5L6 16L13.5 13.5L16 6Z" fill="currentColor" stroke="none" />
-              <path d="M24 8L25 11L28 12L25 13L24 16L23 13L20 12L23 11L24 8Z" fill="currentColor" stroke="none" opacity="0.8" />
-            </svg>
+        <a href="#" className={`flex items-center gap-2 group ${scrolled ? 'text-primary' : 'text-white'}`}>
+          <div className={`p-1.5 rounded-lg transition-colors ${scrolled ? 'bg-accent/10 text-accent' : 'bg-white/10 text-white group-hover:bg-white/20'}`}>
+            <LogoMark className="w-6 h-6" />
           </div>
-          <span className={`font-display font-bold text-xl tracking-tight ${scrolled ? "text-primary" : "text-white"}`}>
-            Makarenko
-          </span>
-        </Link>
+          <span className="font-display font-bold text-xl tracking-tight">Makarenko Reinhold</span>
+        </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link 
-              key={link.href} 
+            <a 
+              key={link.name} 
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
-                scrolled ? "text-text-main" : "text-white/90"
-              }`}
+              className={`text-sm font-medium transition-colors hover:text-accent ${scrolled ? 'text-text-main' : 'text-white/90'}`}
             >
-              {link.label}
-            </Link>
+              {link.name}
+            </a>
           ))}
         </nav>
 
         {/* Actions */}
-        <div className="hidden md:flex items-center gap-4">
-          <div className="flex bg-black/10 rounded-full p-1 backdrop-blur-sm">
-            {['no', 'en'].map((l) => (
-              <button
-                key={l}
-                onClick={() => setLocale(l)}
-                className={`px-3 py-1 text-xs font-bold uppercase rounded-full transition-colors ${
-                  locale === l 
-                    ? "bg-white text-primary shadow-sm" 
-                    : scrolled ? "text-text-main hover:text-primary" : "text-white/70 hover:text-white"
-                }`}
-              >
-                {l}
-              </button>
-            ))}
-          </div>
-          <Link 
-            href="#contact"
-            className="bg-accent hover:bg-accent-light text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all hover:shadow-[0_0_20px_hsl(175_75%_35%/0.4)]"
+        <div className="hidden lg:flex items-center gap-4">
+          <button 
+            onClick={toggleLocale}
+            className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded transition-colors ${scrolled ? 'text-text-muted hover:bg-gray-100' : 'text-white/80 hover:bg-white/10'}`}
           >
-            {t("nav.cta")}
-          </Link>
+            {locale === 'no' ? 'UK' : 'NO'}
+          </button>
+          <a 
+            href="tel:+4796684393" 
+            className={`flex items-center gap-2 text-sm font-medium transition-colors ${scrolled ? 'text-primary hover:text-accent' : 'text-white hover:text-white/80'}`}
+          >
+            <PhoneIcon className="w-4 h-4" />
+            +47 966 84 393
+          </a>
+          <a 
+            href="#pricing"
+            className="bg-accent hover:bg-accent-light text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-[0_4px_14px_0_hsl(185_80%_40%/0.39)] hover:shadow-[0_6px_20px_rgba(0,118,255,0.23)] hover:-translate-y-0.5"
+          >
+            {t('nav.cta')}
+          </a>
         </div>
 
         {/* Mobile Toggle */}
         <button 
-          className={`md:hidden p-2 ${scrolled ? "text-primary" : "text-white"}`}
-          onClick={() => setMobileMenu(!mobileMenu)}
+          className={`lg:hidden p-2 ${scrolled ? 'text-primary' : 'text-white'}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={mobileMenu ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-          </svg>
+          {mobileMenuOpen ? <CloseIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {mobileMenu && (
+        {mobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 w-full bg-surface-white shadow-xl border-t border-gray-100 p-6 flex flex-col gap-4 md:hidden"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
           >
-            {navLinks.map((link) => (
-              <Link 
-                key={link.href} 
-                href={link.href}
-                onClick={() => setMobileMenu(false)}
-                className="text-lg font-medium text-primary py-2 border-b border-gray-50"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="flex gap-2 mt-4">
-              {['no', 'en'].map((l) => (
-                <button
-                  key={l}
-                  onClick={() => { setLocale(l); setMobileMenu(false); }}
-                  className={`flex-1 py-2 text-sm font-bold uppercase rounded-lg border ${
-                    locale === l ? "bg-primary text-white border-primary" : "border-gray-200 text-text-main"
-                  }`}
+            <div className="px-6 py-8 flex flex-col gap-6">
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name} 
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-primary"
                 >
-                  {l}
-                </button>
+                  {link.name}
+                </a>
               ))}
+              <div className="h-px bg-gray-100 w-full" />
+              <div className="flex items-center justify-between">
+                <a href="tel:+4796684393" className="flex items-center gap-2 text-primary font-medium">
+                  <PhoneIcon className="w-5 h-5 text-accent" />
+                  +47 966 84 393
+                </a>
+                <button onClick={toggleLocale} className="text-sm font-bold bg-gray-100 px-3 py-1 rounded">
+                  {locale === 'no' ? 'UK' : 'NO'}
+                </button>
+              </div>
+              <a 
+                href="#pricing"
+                onClick={() => setMobileMenuOpen(false)}
+                className="bg-primary text-white text-center py-3 rounded-xl font-semibold"
+              >
+                {t('nav.cta')}
+              </a>
             </div>
-            <Link 
-              href="#contact"
-              onClick={() => setMobileMenu(false)}
-              className="w-full bg-accent text-white text-center py-3 rounded-xl font-semibold mt-2"
-            >
-              {t("nav.cta")}
-            </Link>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,5 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface SectionHeadingProps {
   badge: string;
@@ -16,17 +17,15 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className={`flex flex-col ${centered ? 'items-center text-center' : 'items-start'} mb-16`}
+      className={`mb-16 ${centered ? 'text-center' : 'text-left'}`}
     >
-      <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">
-        {badge}
-      </span>
-      <h2 className={`text-4xl md:text-5xl font-display font-bold mb-4 text-balance ${light ? 'text-surface-white' : 'text-primary'}`}>
+      <span className="heading-badge">{badge}</span>
+      <h2 className={`text-4xl md:text-5xl font-display font-bold mb-4 ${light ? 'text-white' : 'text-primary'}`}>
         {title}
       </h2>
-      <div className={`w-16 h-1 bg-accent rounded-full mb-6 ${centered ? 'mx-auto' : ''}`} />
+      <div className={`heading-line ${centered ? 'mx-auto' : ''}`} />
       {subtitle && (
-        <p className={`text-lg max-w-2xl ${light ? 'text-surface-white/80' : 'text-text-muted'}`}>
+        <p className={`text-lg max-w-2xl ${centered ? 'mx-auto' : ''} ${light ? 'text-white/80' : 'text-text-muted'}`}>
           {subtitle}
         </p>
       )}
