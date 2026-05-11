@@ -3,19 +3,23 @@ import { useLocale } from "@/lib/i18n";
 
 export default function SocialProof() {
   const { t } = useLocale();
-  const items = t('socialProof.items') as string[];
+  
+  const logos = [
+    "Arbeidstilsynet", "Svanemerket", "Gjensidige", "Renholdsregisteret", "HMS-Kort", "NHO Service"
+  ];
 
   return (
-    <section className="py-10 bg-white border-b border-gray-100 relative z-20 rounded-t-3xl -mt-6 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+    <section className="bg-bg-light py-12 border-b border-gray-200 relative z-20 -mt-4 rounded-t-3xl">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="text-center text-sm font-bold text-text-muted uppercase tracking-widest mb-6">
-          {t('socialProof.title')}
-        </p>
+        <p className="text-center text-text-muted font-medium mb-8">{t("socialProof.text")}</p>
         
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale">
-          {items.map((item, idx) => (
-            <div key={idx} className="text-xl md:text-2xl font-display font-bold text-primary tracking-tight">
-              {item}
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+          {logos.map((logo, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="font-display font-bold text-xl text-primary tracking-tight">{logo}</span>
             </div>
           ))}
         </div>
