@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-interface Props {
+interface SectionHeadingProps {
   badge: string;
   title: string;
   subtitle?: string;
@@ -9,14 +9,16 @@ interface Props {
   light?: boolean;
 }
 
-export default function SectionHeading({ badge, title, subtitle, centered = false, light = false }: Props) {
+export default function SectionHeading({ badge, title, subtitle, centered = true, light = false }: SectionHeadingProps) {
   return (
-    <div className={`mb-16 ${centered ? 'text-center flex flex-col items-center' : 'text-left'}`}>
+    <div className={`mb-16 ${centered ? "text-center" : "text-left"}`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block"
+        className={`inline-block text-sm font-bold tracking-wider uppercase mb-4 px-3 py-1 rounded-full ${
+          light ? "bg-white/10 text-accent-light" : "bg-accent/10 text-accent-dark"
+        }`}
       >
         {badge}
       </motion.span>
@@ -26,7 +28,9 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight ${light ? 'text-white' : 'text-primary'}`}
+        className={`text-4xl md:text-5xl font-display font-bold mb-6 ${
+          light ? "text-white" : "text-primary"
+        }`}
       >
         {title}
       </motion.h2>
@@ -36,7 +40,7 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
         whileInView={{ width: 64 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={`h-1 bg-accent rounded-full mb-6 ${centered ? 'mx-auto' : ''}`}
+        className={`h-1 bg-accent rounded-full mb-6 ${centered ? "mx-auto" : ""}`}
       />
       
       {subtitle && (
@@ -45,7 +49,9 @@ export default function SectionHeading({ badge, title, subtitle, centered = fals
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className={`text-lg max-w-2xl ${light ? 'text-white/80' : 'text-text-muted'} ${centered ? 'mx-auto' : ''}`}
+          className={`text-lg max-w-2xl ${centered ? "mx-auto" : ""} ${
+            light ? "text-white/70" : "text-text-muted"
+          }`}
         >
           {subtitle}
         </motion.p>

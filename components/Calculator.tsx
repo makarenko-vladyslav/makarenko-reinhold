@@ -7,103 +7,83 @@ import SectionHeading from "./SectionHeading";
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [service, setService] = useState<'flyttevask' | 'regelmessig'>('flyttevask');
-  const [area, setArea] = useState<number>(80);
-  const [price, setPrice] = useState<number>(0);
+  const config = pricing.flyttevask;
+  const [sqm, setSqm] = useState(config.defaultSqm);
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    const config = pricing.services[service];
-    let calculated = config.basePrice + (area * config.perSqmRate);
+    // Calculate price: base + (sqm * rate)
+    const calculated = config.basePrice + (sqm * config.pricePerSqm);
     setPrice(calculated);
-  }, [service, area]);
+  }, [sqm]);
 
   return (
     <section id="calculator" className="py-24 bg-primary relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-accent/10 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-blue-500/10 blur-[80px] pointer-events-none" />
-
+      {/* Decorative background grid */}
+      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading 
           badge={t('calculator.badge')}
           title={t('calculator.title')}
           subtitle={t('calculator.subtitle')}
-          centered
-          light
+          light={true}
         />
 
-        <div className="max-w-3xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-panel-dark rounded-3xl p-8 md:p-12 shadow-2xl border border-white/10"
-          >
-            {/* Service Toggle */}
-            <div className="mb-10">
-              <label className="block text-sm font-bold text-white/60 uppercase tracking-wider mb-4">{t('calculator.serviceType')}</label>
-              <div className="flex bg-black/30 p-1 rounded-xl">
-                <button 
-                  onClick={() => setService('flyttevask')}
-                  className={`flex-1 py-3 px-4 rounded-lg font-semibold text-sm transition-all ${service === 'flyttevask' ? 'bg-accent text-white shadow-lg' : 'text-white/60 hover:text-white'}`}
-                >
-                  {t('calculator.flyttevask')}
-                </button>
-                <button 
-                  onClick={() => setService('regelmessig')}
-                  className={`flex-1 py-3 px-4 rounded-lg font-semibold text-sm transition-all ${service === 'regelmessig' ? 'bg-accent text-white shadow-lg' : 'text-white/60 hover:text-white'}`}
-                >
-                  {t('calculator.regelmessig')}
-                </button>
-              </div>
-            </div>
-
-            {/* Area Slider */}
-            <div className="mb-12">
-              <div className="flex justify-between items-end mb-4">
-                <label className="block text-sm font-bold text-white/60 uppercase tracking-wider">{t('calculator.area')}</label>
-                <div className="text-3xl font-display font-bold text-white">{area} <span className="text-xl text-white/50">m²</span></div>
-              </div>
-              <input 
-                type="range" 
-                min="30" 
-                max="300" 
-                step="5"
-                value={area}
-                onChange={(e) => setArea(Number(e.target.value))}
-                className="w-full dark-range"
-              />
-              <div className="flex justify-between text-xs text-white/40 mt-2 font-medium">
-                <span>30 m²</span>
-                <span>300 m²</span>
-              </div>
-            </div>
-
-            {/* Price Display & CTA */}
-            <div className="bg-black/40 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="glass-panel-dark rounded-3xl p-8 md:p-12 shadow-2xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              
+              {/* Left: Interactive Slider */}
               <div>
-                <p className="text-sm font-bold text-white/60 uppercase tracking-wider mb-2">{t('calculator.estimatedPrice')}</p>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl md:text-6xl font-display font-bold text-white tracking-tight">
+                <div className="flex justify-between items-end mb-6">
+                  <label className="text-white font-bold text-lg">{t('calculator.sizeLabel')}</label>
+                  <span className="text-3xl font-display font-bold text-accent">{sqm} m²</span>
+                </div>
+                
+                <input 
+                  type="range" 
+                  min={config.minSqm} 
+                  max={config.maxSqm} 
+                  value={sqm} 
+                  onChange={(e) => setSqm(Number(e.target.value))}
+                  className="w-full mb-8"
+                />
+
+                <div className="space-y-4">
+                  {(t('calculator.features') as string[]).map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3 text-white/80">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" className="w-5 h-5 shrink-0">
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Price Display & CTA */}
+              <div className="bg-white rounded-2xl p-8 text-center relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-2 bg-accent" />
+                <p className="text-text-muted font-bold uppercase tracking-wider text-sm mb-4">Estimert Pris</p>
+                <div className="flex justify-center items-baseline gap-2 mb-2">
+                  <span className="text-5xl md:text-6xl font-display font-bold text-primary tracking-tight">
                     {price.toLocaleString('no-NO')}
                   </span>
-                  <span className="text-xl text-accent font-medium">NOK</span>
+                  <span className="text-xl font-bold text-text-muted">{pricing.currency}</span>
                 </div>
-                {service === 'regelmessig' && <p className="text-sm text-white/50 mt-1">per måned (estimat)</p>}
+                <p className="text-xs text-text-muted mb-8">{t('calculator.disclaimer')}</p>
+                
+                <a 
+                  href="#contact" 
+                  className="block w-full py-4 bg-primary hover:bg-primary-light text-white rounded-xl font-bold transition-colors shadow-lg"
+                >
+                  {t('calculator.cta')}
+                </a>
               </div>
-              
-              <a 
-                href="#contact"
-                className="w-full md:w-auto bg-accent hover:bg-accent-hover text-white px-10 py-5 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-lg shadow-accent/20 text-center whitespace-nowrap"
-              >
-                {t('calculator.cta')}
-              </a>
+
             </div>
-            
-            <p className="text-center text-xs text-white/40 mt-6 max-w-lg mx-auto">
-              {t('calculator.disclaimer')}
-            </p>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

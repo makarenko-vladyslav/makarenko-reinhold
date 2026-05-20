@@ -6,7 +6,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function FAQ() {
   const { t } = useLocale();
-  const items = t('faq.items') as { q: string, a: string }[];
+  const items = t('faq.items') as {q: string, a: string}[];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -15,10 +15,9 @@ export default function FAQ() {
         <SectionHeading 
           badge={t('faq.badge')}
           title={t('faq.title')}
-          centered
         />
 
-        <div className="space-y-4 mt-12">
+        <div className="space-y-4">
           {items.map((item, i) => (
             <motion.div 
               key={i}
@@ -26,28 +25,29 @@ export default function FAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:border-accent/30 transition-colors"
+              className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
             >
-              <button 
+              <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between focus:outline-none"
+                className="w-full px-6 py-5 text-left flex justify-between items-center gap-4 focus:outline-none"
               >
                 <span className="font-bold text-primary pr-8">{item.q}</span>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${openIndex === i ? 'bg-accent text-white' : 'bg-bg-light text-primary'}`}>
-                  <svg className={`w-4 h-4 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <span className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${openIndex === i ? 'bg-accent text-white' : 'bg-bg-light text-primary'}`}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-4 h-4 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`}>
+                    <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                </div>
+                </span>
               </button>
+              
               <AnimatePresence>
                 {openIndex === i && (
-                  <motion.div 
+                  <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
+                    animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
+                    transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-6 pt-0 text-text-muted leading-relaxed border-t border-gray-50 mt-2 pt-4">
+                    <div className="px-6 pb-6 text-text-muted leading-relaxed border-t border-gray-50 pt-4">
                       {item.a}
                     </div>
                   </motion.div>

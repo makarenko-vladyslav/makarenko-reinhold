@@ -1,132 +1,127 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
+import { useRef } from "react";
 
 export default function Hero() {
   const { t } = useLocale();
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 1000], [0, 300]);
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden bg-primary">
-      {/* Parallax Background Image */}
+    <section ref={ref} className="relative h-[100svh] min-h-[700px] flex items-center overflow-hidden bg-primary">
+      {/* Parallax Background */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <img 
-          src="https://picsum.photos/seed/norway-home-clean/1920/1080" 
-          alt="Clean home interior" 
+          src="https://picsum.photos/seed/cleaning-livingroom/1920/1080" 
+          alt="Clean living room" 
           className="w-full h-full object-cover"
         />
-        {/* Single elegant gradient overlay - NO muddy stacking */}
+        {/* Gradient Overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-80" />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid lg:grid-cols-12 gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-12 gap-12 items-center pt-20">
         
         {/* Text Content */}
-        <div className="lg:col-span-7 text-white">
+        <motion.div 
+          style={{ opacity }}
+          className="lg:col-span-7 text-white"
+        >
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel-dark mb-6 border-white/20"
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6"
           >
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs font-bold tracking-wider uppercase">{t('hero.badge')}</span>
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+            </span>
+            <span className="text-sm font-semibold tracking-wide">{t('hero.badge')}</span>
           </motion.div>
-          
+
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6 tracking-tight"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6"
           >
-            {t('hero.title').split('Garantert.').map((part: string, i: number, arr: any[]) => (
-              <span key={i}>
-                {part}
-                {i < arr.length - 1 && <span className="text-accent italic">Garantert.</span>}
-              </span>
-            ))}
-            {/* Fallback if split doesn't match translated string perfectly */}
-            {!t('hero.title').includes('Garantert.') && t('hero.title')}
+            {t('hero.title')}
           </motion.h1>
-          
+
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed"
           >
             {t('hero.subtitle')}
           </motion.p>
-          
+
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap items-center gap-4"
           >
-            <a href="#calculator" className="bg-accent hover:bg-accent-hover text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 shadow-lg shadow-accent/30 text-center flex items-center justify-center gap-2">
+            <a 
+              href="#calculator" 
+              className="px-8 py-4 bg-accent hover:bg-accent-light text-white rounded-full font-bold transition-all shadow-[0_0_30px_hsl(185_75%_35%/0.4)] hover:shadow-[0_0_40px_hsl(185_75%_35%/0.6)] hover:-translate-y-1"
+            >
               {t('hero.ctaPrimary')}
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
             </a>
-            <a href="#services" className="glass-panel-dark hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold text-lg transition-all text-center">
+            <a 
+              href="#services" 
+              className="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white rounded-full font-bold transition-all"
+            >
               {t('hero.ctaSecondary')}
             </a>
           </motion.div>
-        </div>
+        </motion.div>
 
-        {/* Floating Trust/Calculator Entry Card */}
+        {/* Floating Glass Card (Stats/Trust) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
           animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-          style={{ perspective: 1000 }}
+          transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
           className="lg:col-span-5 hidden md:block"
+          style={{ perspective: 1000 }}
         >
-          <div className="glass-panel rounded-3xl p-8 transform rotate-y-[-5deg] hover:rotate-y-0 transition-transform duration-500 shadow-2xl">
-            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-100">
-              <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center">
-                <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <div className="glass-panel-dark p-8 rounded-3xl relative overflow-hidden">
+            {/* Decorative orb */}
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-accent rounded-full blur-[60px] opacity-30" />
+            
+            <div className="grid grid-cols-2 gap-6 relative z-10">
+              {(t('hero.stats') as {value: string, label: string}[]).map((stat, i) => (
+                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+                  <div className="text-4xl font-display font-bold text-accent mb-2">{stat.value}</div>
+                  <div className="text-sm text-white/70 font-medium">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 bg-accent/10 border border-accent/20 rounded-2xl p-6 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center shrink-0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-6 h-6">
+                  <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <div>
-                <h3 className="font-display font-bold text-primary text-lg">100% Trygghet</h3>
-                <p className="text-sm text-text-muted">{t('hero.trust')}</p>
-              </div>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-text-main font-medium">Fast pris på Flyttevask</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-text-main font-medium">Overtakelsesgaranti</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                <span className="text-text-main font-medium">Svanemerkede produkter</span>
-              </div>
-            </div>
-            
-            <div className="mt-8 pt-6 border-t border-gray-100">
-              <p className="text-sm text-text-muted mb-2">Priser fra</p>
-              <div className="flex items-end gap-2">
-                <span className="text-4xl font-display font-bold text-primary">550</span>
-                <span className="text-lg text-text-muted mb-1">NOK/time</span>
+                <div className="text-white font-bold mb-1">Svanemerket Renhold</div>
+                <div className="text-sm text-white/60">Miljøvennlig og trygt for alle</div>
               </div>
             </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );

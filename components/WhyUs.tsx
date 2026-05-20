@@ -5,56 +5,71 @@ import SectionHeading from "./SectionHeading";
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const items = t('whyUs.items') as { title: string, desc: string }[];
-
-  const icons = [
-    // Equipment (Wand/Spray)
-    <svg key="1" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M14.5 9.5L19 5M12 12l-8 8M16 16l4 4" strokeLinecap="round" strokeLinejoin="round"/>
-      <circle cx="12" cy="12" r="3" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>,
-    // Checklist (List + Check)
-    <svg key="2" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>,
-    // Local (Map Pin)
-    <svg key="3" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>,
-    // Staff (User + Star)
-    <svg key="4" className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M19 11l-2 2 2 2-3-1-3 1 2-2-2-2 3 1z" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  ];
+  const items = t('whyUs.items') as {title: string, desc: string}[];
 
   return (
-    <section className="py-24 bg-bg-light relative">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading 
-          badge={t('whyUs.badge')}
-          title={t('whyUs.title')}
-          centered
-        />
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          <div>
+            <SectionHeading 
+              badge={t('whyUs.badge')}
+              title={t('whyUs.title')}
+              centered={false}
+            />
+            
+            <div className="space-y-8">
+              {items.map((item, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex gap-6"
+                >
+                  <div className="shrink-0 mt-1">
+                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent font-display font-bold text-xl">
+                      {i + 1}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
+                    <p className="text-text-muted leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          {items.map((item, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center group hover:-translate-y-2 transition-transform duration-300"
-            >
-              <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/5 text-primary flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-300">
-                {icons[i]}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <img 
+              src="https://picsum.photos/seed/cleaning-details/800/800" 
+              alt="Cleaning details" 
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/60 to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8 glass-panel p-6 rounded-2xl">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-primary font-bold">Ingen skjulte kostnader</div>
+                  <div className="text-sm text-text-muted">Fastpris på flyttevask</div>
+                </div>
               </div>
-              <h3 className="text-lg font-display font-bold text-primary mb-3">{item.title}</h3>
-              <p className="text-sm text-text-muted leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
