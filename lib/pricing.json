@@ -1,22 +1,11 @@
 {
   "currency": "NOK",
-  "baseHourlyRate": 550,
+  "baseRatePerHour": 550,
   "flyttevask": {
-    "basePrice": 2500,
-    "pricePerSqm": 45,
-    "minSqm": 30,
-    "maxSqm": 400
-  },
-  "services": [
-    { "id": "flyttevask", "type": "sqm", "multiplier": 1 },
-    { "id": "regelmessig", "type": "hourly", "minHours": 2 },
-    { "id": "visningsvask", "type": "sqm", "multiplier": 0.8 },
-    { "id": "kontorvask", "type": "sqm", "multiplier": 0.6 }
-  ],
-  "extras": [
-    { "id": "vindusvask_utvendig", "price": 450, "type": "fixed" },
-    { "id": "hvitevarer", "price": 600, "type": "fixed" },
-    { "id": "tepperens", "price": 800, "type": "fixed" },
-    { "id": "balkong", "price": 350, "type": "fixed" }
-  ]
+    "basePrice": 1500,
+    "pricePerSqm": 65,
+    "minSqm": 20,
+    "maxSqm": 300,
+    "defaultSqm": 70
+  }
 }

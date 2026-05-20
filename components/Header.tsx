@@ -1,84 +1,97 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useLocale } from '@/lib/i18n';
-import { Phone, List, X, Globe } from '@phosphor-icons/react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import Link from "next/link";
 
 export default function Header() {
-  const { t, locale, setLocale } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, locale, setLocale } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: t('nav.services'), href: '#tjenester' },
-    { name: t('nav.calculator'), href: '#kalkulator' },
-    { name: t('nav.guarantee'), href: '#garanti' },
-    { name: t('nav.faq'), href: '#faq' },
+    { href: "#services", label: t("nav.services") as string },
+    { href: "#calculator", label: t("nav.calculator") as string },
+    { href: "#why-us", label: t("nav.whyUs") as string },
+    { href: "#process", label: t("nav.process") as string },
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-5"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center text-white shadow-premium group-hover:bg-accent-hover transition-colors">
-            <svg width="24" height="24" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M256 100 L120 200 V400 H392 V200 Z" stroke="currentColor" strokeWidth="32" strokeLinejoin="round" />
-              <path d="M256 240 C220 240 190 270 190 310 C190 360 256 420 256 420 C256 420 322 360 322 310 C322 270 292 240 256 240 Z" fill="currentColor" />
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${scrolled ? "bg-accent/10 text-accent" : "bg-white/20 text-white"}`}>
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6">
+              <path d="M16 4 L16 10 M16 22 L16 28 M4 16 L10 16 M22 16 L28 16 M7.5 7.5 L11.5 11.5 M20.5 20.5 L24.5 24.5 M7.5 24.5 L11.5 20.5 M20.5 11.5 L24.5 7.5" strokeLinecap="round" />
+              <circle cx="16" cy="16" r="4" />
             </svg>
           </div>
-          <div className="flex flex-col">
-            <span className={`font-display font-bold text-lg leading-none ${scrolled ? 'text-primary' : 'text-white'}`}>Makarenko</span>
-            <span className={`font-display font-semibold text-sm leading-none tracking-widest uppercase ${scrolled ? 'text-text-muted' : 'text-white/80'}`}>Reinhold</span>
-          </div>
-        </a>
+          <span className={`font-display font-bold text-xl tracking-tight transition-colors ${scrolled ? "text-primary" : "text-white"}`}>
+            Makarenko<span className="font-normal opacity-80">Reinhold</span>
+          </span>
+        </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a 
-              key={link.name} 
+              key={link.href} 
               href={link.href}
-              className={`font-medium text-sm hover:text-accent transition-colors ${scrolled ? 'text-text-main' : 'text-white/90'}`}
+              className={`font-medium text-sm transition-colors hover:text-accent ${scrolled ? "text-text-main" : "text-white/90"}`}
             >
-              {link.name}
+              {link.label}
             </a>
           ))}
         </nav>
 
         {/* Actions */}
-        <div className="hidden md:flex items-center gap-6">
-          <button 
-            onClick={() => setLocale(locale === 'no' ? 'en' : 'no')}
-            className={`flex items-center gap-1 text-sm font-medium hover:text-accent transition-colors ${scrolled ? 'text-text-main' : 'text-white'}`}
+        <div className="hidden lg:flex items-center gap-4">
+          <div className="flex bg-black/5 rounded-full p-1">
+            {["no", "uk"].map((l) => (
+              <button
+                key={l}
+                onClick={() => setLocale(l)}
+                className={`px-3 py-1 text-xs font-bold uppercase rounded-full transition-all ${
+                  locale === l 
+                    ? (scrolled ? "bg-white shadow-sm text-primary" : "bg-white text-primary") 
+                    : (scrolled ? "text-text-muted hover:text-primary" : "text-white/70 hover:text-white")
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+          <a 
+            href="#contact"
+            className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all hover:scale-105 ${
+              scrolled 
+                ? "bg-primary text-white hover:bg-primary-light shadow-lg shadow-primary/20" 
+                : "bg-white text-primary hover:bg-white/90"
+            }`}
           >
-            <Globe size={18} weight="duotone" />
-            {locale.toUpperCase()}
-          </button>
-          
-          <a href="tel:+4796684393" className={`flex items-center gap-2 font-semibold ${scrolled ? 'text-primary' : 'text-white'}`}>
-            <Phone size={20} weight="duotone" className="text-accent" />
-            +47 966 84 393
-          </a>
-          
-          <a href="#kalkulator" className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 rounded-md font-semibold transition-all shadow-premium hover:shadow-premium-hover hover:-translate-y-0.5">
-            {t('nav.book')}
+            {t("nav.cta") as string}
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button 
-          className={`md:hidden p-2 ${scrolled ? 'text-primary' : 'text-white'}`}
-          onClick={() => setMobileMenuOpen(true)}
+          className="lg:hidden p-2"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
-          <List size={28} />
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`w-6 h-6 ${scrolled ? "text-primary" : "text-white"}`}>
+            <path d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </button>
       </div>
 
@@ -86,41 +99,41 @@ export default function Header() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-white z-50 flex flex-col p-6"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-white border-t border-gray-100 overflow-hidden"
           >
-            <div className="flex justify-between items-center mb-12">
-              <span className="font-display font-bold text-xl text-primary">Meny</span>
-              <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-text-muted hover:text-primary">
-                <X size={28} />
-              </button>
-            </div>
-            
-            <nav className="flex flex-col gap-6 text-xl font-display font-semibold text-primary">
+            <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a key={link.name} href={link.href} onClick={() => setMobileMenuOpen(false)} className="border-b border-bg-muted pb-4">
-                  {link.name}
+                <a 
+                  key={link.href} 
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-primary py-2 border-b border-gray-50"
+                >
+                  {link.label}
                 </a>
               ))}
-            </nav>
-
-            <div className="mt-auto flex flex-col gap-4">
-              <button 
-                onClick={() => { setLocale(locale === 'no' ? 'en' : 'no'); setMobileMenuOpen(false); }}
-                className="flex items-center gap-2 text-lg font-medium text-text-main py-4 border-b border-bg-muted"
+              <div className="flex gap-2 mt-2">
+                {["no", "uk"].map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => setLocale(l)}
+                    className={`flex-1 py-2 text-sm font-bold uppercase rounded-lg border ${
+                      locale === l ? "border-accent bg-accent/5 text-accent" : "border-gray-200 text-gray-500"
+                    }`}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+              <a 
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-3 mt-2 bg-primary text-white rounded-xl font-semibold"
               >
-                <Globe size={24} weight="duotone" className="text-accent" />
-                Bytt til {locale === 'no' ? 'Engelsk' : 'Norsk'}
-              </button>
-              <a href="tel:+4796684393" className="flex items-center gap-2 text-lg font-bold text-primary py-4">
-                <Phone size={24} weight="duotone" className="text-accent" />
-                +47 966 84 393
-              </a>
-              <a href="#kalkulator" onClick={() => setMobileMenuOpen(false)} className="bg-accent text-white text-center py-4 rounded-md font-bold text-lg shadow-premium">
-                {t('nav.book')}
+                {t("nav.cta") as string}
               </a>
             </div>
           </motion.div>
