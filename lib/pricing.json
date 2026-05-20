@@ -1,11 +1,16 @@
 {
   "currency": "NOK",
-  "baseRatePerHour": 550,
+  "baseHourlyRate": 550,
   "flyttevask": {
     "basePrice": 2500,
-    "pricePerSqm": 75,
+    "perSqm": 65,
     "minSqm": 30,
     "maxSqm": 300,
-    "defaultSqm": 80
+    "guaranteeIncluded": true
+  },
+  "regularCleaning": {
+    "weeklyMultiplier": 0.85,
+    "biweeklyMultiplier": 0.90,
+    "monthlyMultiplier": 1.0
   }
 }

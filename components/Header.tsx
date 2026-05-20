@@ -1,84 +1,109 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useLocale } from '@/lib/i18n';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const { scrollY } = useScroll();
   const { t, locale, setLocale } = useLocale();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 50);
-  });
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
-    { name: t('nav.services'), href: '#services' },
-    { name: t('nav.calculator'), href: '#calculator' },
-    { name: t('nav.reviews'), href: '#reviews' },
-    { name: t('nav.faq'), href: '#faq' },
+    { href: '#services', label: t('nav.services') },
+    { href: '#calculator', label: t('nav.calculator') },
+    { href: '#about', label: t('nav.about') },
+    { href: '#faq', label: t('nav.faq') },
   ];
 
   return (
-    <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-4' : 'bg-transparent py-6'}`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
-    >
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${scrolled ? 'bg-accent text-white' : 'bg-white text-accent'}`}>
-            <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M16 6L6 14v10a2 2 0 002 2h16a2 2 0 002-2V14L16 6z" />
-              <path d="M12 26v-8h8v8" />
-              <circle cx="16" cy="12" r="1.5" fill="currentColor" stroke="none" />
-              <path d="M19 9l2-2M13 9l-2-2M16 5V3" strokeWidth="1.5" />
-            </svg>
-          </div>
-          <span className={`font-display font-bold text-xl tracking-tight transition-colors ${scrolled ? 'text-primary' : 'text-white'}`}>
-            Makarenko Reinhold
-          </span>
+        <a href="#" className={`flex items-center gap-3 z-50 relative ${scrolled ? 'text-primary' : 'text-white'}`}>
+          <svg className="w-8 h-8 text-accent" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="currentColor" />
+            <path d="M16 6L26 12V22L16 28L6 22V12L16 6Z" fill="none" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
+            <path d="M16 12V22M11 15L16 18L21 15" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          <span className="font-display font-bold text-xl tracking-tight">Makarenko <span className="font-normal opacity-80">Reinhold</span></span>
         </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-accent ${scrolled ? 'text-text-muted' : 'text-white/90'}`}
-            >
-              {link.name}
+            <a key={link.href} href={link.href} className={`text-sm font-medium transition-colors hover:text-accent ${scrolled ? 'text-text-main' : 'text-white/90'}`}>
+              {link.label}
             </a>
           ))}
         </nav>
 
         {/* Actions */}
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 bg-black/10 rounded-full p-1 backdrop-blur-sm">
-            <button 
-              onClick={() => setLocale('no')}
-              className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${locale === 'no' ? 'bg-white text-primary shadow-sm' : 'text-white hover:bg-white/20'}`}
-            >
-              NO
-            </button>
-            <button 
-              onClick={() => setLocale('uk')}
-              className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${locale === 'uk' ? 'bg-white text-primary shadow-sm' : 'text-white hover:bg-white/20'}`}
-            >
-              UK
-            </button>
-          </div>
-          <a 
-            href="#calculator"
-            className={`hidden md:inline-flex px-6 py-2.5 rounded-full text-sm font-bold transition-all ${scrolled ? 'bg-primary text-white hover:bg-primary-light' : 'bg-white text-primary hover:bg-slate-100'}`}
+        <div className="hidden md:flex items-center gap-6">
+          <button 
+            onClick={() => setLocale(locale === 'no' ? 'en' : 'no')}
+            className={`text-sm font-bold uppercase tracking-wider transition-colors hover:text-accent ${scrolled ? 'text-text-main' : 'text-white'}`}
           >
+            {locale === 'no' ? 'EN' : 'NO'}
+          </button>
+          <a href="#contact" className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 rounded-full font-medium transition-all hover:shadow-lg hover:-translate-y-0.5">
             {t('nav.cta')}
           </a>
         </div>
+
+        {/* Mobile Toggle */}
+        <button 
+          className={`md:hidden z-50 relative p-2 ${mobileMenuOpen ? 'text-primary' : (scrolled ? 'text-primary' : 'text-white')}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {mobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
       </div>
-    </motion.header>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-0 left-0 right-0 bg-white shadow-xl pt-24 pb-8 px-6 flex flex-col gap-6 md:hidden"
+          >
+            {navLinks.map((link) => (
+              <a 
+                key={link.href} 
+                href={link.href} 
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg font-medium text-primary border-b border-gray-100 pb-4"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="flex items-center justify-between mt-4">
+              <button 
+                onClick={() => { setLocale(locale === 'no' ? 'en' : 'no'); setMobileMenuOpen(false); }}
+                className="text-primary font-bold uppercase tracking-wider"
+              >
+                Switch to {locale === 'no' ? 'English' : 'Norsk'}
+              </button>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="bg-accent text-white px-6 py-3 rounded-full font-medium text-center">
+                {t('nav.cta')}
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }

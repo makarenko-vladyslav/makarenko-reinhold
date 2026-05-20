@@ -1,52 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: hsl(215 40% 12%); /* Deep Slate/Navy - Authoritative */
-  --color-primary-light: hsl(215 30% 20%);
-  --color-accent: hsl(180 70% 35%); /* Deep Eco Teal - Clean, Trustworthy */
-  --color-accent-light: hsl(180 60% 45%);
-  --color-accent-glow: hsl(180 70% 35% / 0.3);
-  
-  --color-bg-light: hsl(210 20% 98%); /* Very soft cool gray */
-  --color-bg-white: hsl(0 0% 100%);
-  --color-bg-dark: hsl(215 40% 10%);
-  
-  --color-text-main: hsl(215 30% 20%);
-  --color-text-muted: hsl(215 15% 40%);
-  --color-text-inverse: hsl(0 0% 100%);
-  --color-text-inverse-muted: hsl(210 20% 80%);
-
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-draw: draw 2s ease-out forwards;
+  /* Color Palette: Deep Fjord Blue (Authority) + Svanemerket Green (Eco/Action) */
+  --color-primary: hsl(215 40% 18%);
+  --color-primary-light: hsl(215 30% 28%);
+  --color-accent: hsl(150 75% 38%);
+  --color-accent-hover: hsl(150 80% 32%);
+  
+  --color-bg-light: hsl(0 0% 100%);
+  --color-bg-tint: hsl(150 15% 97%);
+  --color-bg-dark: hsl(215 40% 12%);
+  
+  --color-text-main: hsl(215 25% 25%);
+  --color-text-muted: hsl(215 15% 45%);
+  --color-text-inverse: hsl(0 0% 100%);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
+@layer utilities {
+  .img-fallback {
+    background: linear-gradient(135deg, hsl(150 15% 95%) 0%, hsl(215 15% 90%) 100%);
+    min-height: 200px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .glass-panel {
+    background: hsl(0 0% 100% / 0.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(215 20% 90%);
+    box-shadow: 0 20px 40px -10px hsl(215 40% 18% / 0.08);
+  }
 
-@keyframes pulse-slow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-@keyframes draw {
-  to { stroke-dashoffset: 0; }
-}
-
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-bg-light);
-  color: var(--color-text-main);
-  overflow-x: hidden;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 /* Custom Scrollbar */
@@ -54,77 +46,17 @@ h1, h2, h3, h4, h5, h6 {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-light);
+  background: hsl(150 15% 97%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(215 20% 70%);
+  background: hsl(215 20% 80%);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: hsl(215 30% 60%);
 }
 
-/* Utilities */
-.glass-panel {
-  background: hsl(0 0% 100% / 0.8);
-  backdrop-filter: blur(12px);
-  border: 1px solid hsl(0 0% 100% / 0.3);
-  box-shadow: 0 8px 32px hsl(215 40% 12% / 0.05);
-}
-
-.glass-panel-dark {
-  background: hsl(215 40% 12% / 0.6);
-  backdrop-filter: blur(16px);
-  border: 1px solid hsl(0 0% 100% / 0.1);
-  box-shadow: 0 8px 32px hsl(0 0% 0% / 0.2);
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-accent), hsl(190 80% 40%));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.img-fallback {
-  background: linear-gradient(135deg, hsl(215 20% 90%), hsl(215 20% 80%));
-  min-height: 200px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.img-fallback::after {
-  content: 'Image Unavailable';
-  color: hsl(215 20% 50%);
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-}
-
-/* Range Slider Styling */
-input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  background: transparent;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  cursor: pointer;
-  margin-top: -10px;
-  box-shadow: 0 0 10px var(--color-accent-glow);
-  border: 2px solid white;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 4px;
-  cursor: pointer;
-  background: hsl(215 20% 85%);
-  border-radius: 2px;
-}
-input[type=range]:focus {
-  outline: none;
+/* Smooth reveal for sections */
+html {
+  scroll-behavior: smooth;
 }
