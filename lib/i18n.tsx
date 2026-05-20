@@ -15,7 +15,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('locale');
-    if (saved && content.locales[saved as keyof typeof content.locales]) {
+    if (saved && saved in content.locales) {
       setLocaleState(saved);
     }
   }, []);
@@ -29,15 +29,15 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     const keys = path.split('.');
     const locales = content.locales as Record<string, any>;
     
-    // Try current locale
     let val: any = locales[locale];
     for (const k of keys) {
       if (val && typeof val === 'object' && k in val) val = val[k];
       else { val = undefined; break; }
     }
+    
     if (val !== undefined) return val;
     
-    // Fallback to default
+    // Fallback
     val = locales[content.defaultLocale];
     for (const k of keys) {
       if (val && typeof val === 'object' && k in val) val = val[k];
@@ -46,7 +46,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     return val ?? path;
   }, [locale]);
 
-  // Prevent hydration mismatch by not rendering until locale is loaded
+  // Prevent hydration mismatch by not rendering until locale is determined
   if (!mounted) return <div className="min-h-screen bg-bg-light" />;
 
   return <LocaleContext.Provider value={{ locale, setLocale, t }}>{children}</LocaleContext.Provider>;

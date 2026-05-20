@@ -1,39 +1,35 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
-import ServicesFeatured from "@/components/ServicesFeatured";
-import ServicesCatalog from "@/components/ServicesCatalog";
 import Calculator from "@/components/Calculator";
+import Services from "@/components/Services";
 import Trust from "@/components/Trust";
-import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
+import BeforeAfter from "@/components/BeforeAfter";
 import Testimonials from "@/components/Testimonials";
-import Gallery from "@/components/Gallery";
 import Team from "@/components/Team";
 import FAQ from "@/components/FAQ";
 import CTABanner from "@/components/CTABanner";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <Header />
-      <Hero />
-      <SocialProof />
-      <ServicesFeatured />
-      <ServicesCatalog />
-      <Calculator />
-      <Trust />
-      <WhyUs />
-      <Process />
-      <Testimonials />
-      <Gallery />
-      <Team />
-      <FAQ />
-      <CTABanner />
-      <Contact />
+      <main>
+        <Hero />
+        <SocialProof />
+        <Calculator />
+        <Services />
+        <Trust />
+        <Process />
+        <BeforeAfter />
+        <Testimonials />
+        <Team />
+        <FAQ />
+        <CTABanner />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
