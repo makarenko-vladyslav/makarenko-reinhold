@@ -1,48 +1,42 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './ui/SectionHeading';
-import { motion } from 'framer-motion';
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
+import { motion } from "framer-motion";
 
 export default function Process() {
   const { t } = useLocale();
-  const steps = t('process.steps') as { title: string; desc: string }[];
+  const processData = t('process') as any;
 
   return (
-    <section className="py-24 bg-bg-dark relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section className="py-24 bg-bg-light">
+      <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t('process.badge')}
-          title={t('process.title')}
-          light
+          badge={processData.badge}
+          title={processData.title}
           centered
         />
 
-        <div className="mt-20 relative">
-          {/* Connecting Line Desktop */}
-          <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-          <div className="grid md:grid-cols-4 gap-12 md:gap-6">
-            {steps.map((step, i) => (
+        <div className="mt-16 relative">
+          {/* Connecting Line */}
+          <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2 z-0" />
+          
+          <div className="grid md:grid-cols-4 gap-8 relative z-10">
+            {processData.steps.map((step: any, idx: number) => (
               <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="relative text-center md:text-left"
+                transition={{ delay: idx * 0.15 }}
+                className="relative"
               >
-                {/* Number Circle */}
-                <div className="w-24 h-24 mx-auto md:mx-0 bg-bg-dark border-2 border-white/10 rounded-full flex items-center justify-center text-4xl font-display font-bold text-white mb-8 relative z-10 shadow-[0_0_30px_hsl(150_75%_38%_/_0.15)]">
-                  0{i + 1}
-                  {/* Active dot */}
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-bg-dark" />
+                <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-display font-bold text-accent shadow-md border-4 border-bg-light mx-auto mb-6 relative z-10">
+                  {idx + 1}
                 </div>
-
-                <h3 className="text-xl font-display font-bold text-white mb-4">{step.title}</h3>
-                <p className="text-white/60 leading-relaxed">{step.desc}</p>
+                <div className="text-center bg-white p-6 rounded-2xl shadow-sm border border-gray-50">
+                  <h3 className="text-lg font-bold text-primary mb-2">{step.title}</h3>
+                  <p className="text-sm text-text-muted">{step.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
