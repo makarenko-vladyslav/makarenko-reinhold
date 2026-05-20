@@ -1,91 +1,109 @@
-
 "use client";
 import { useState, useEffect } from "react";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./UI/SectionHeading";
-import pricing from "@/lib/pricing.json";
 import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import pricing from "@/lib/pricing.json";
+import SectionHeading from "./SectionHeading";
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [sqm, setSqm] = useState(70);
-  const [price, setPrice] = useState(0);
-  const [hours, setHours] = useState(0);
-
-  const calcData = t("calculator") as any;
+  const [service, setService] = useState<'flyttevask' | 'regelmessig'>('flyttevask');
+  const [area, setArea] = useState<number>(80);
+  const [price, setPrice] = useState<number>(0);
 
   useEffect(() => {
-    // Logic: Base price + (sqm * rate)
-    const calculatedPrice = pricing.flyttevask.basePrice + (sqm * pricing.flyttevask.pricePerSqm);
-    setPrice(calculatedPrice);
-    
-    const calculatedHours = (sqm / 10) * pricing.flyttevask.estimatedHoursPer10Sqm;
-    setHours(Math.max(2, Math.round(calculatedHours * 10) / 10)); // Min 2 hours
-  }, [sqm]);
+    const config = pricing.services[service];
+    let calculated = config.basePrice + (area * config.perSqmRate);
+    setPrice(calculated);
+  }, [service, area]);
 
   return (
     <section id="calculator" className="py-24 bg-primary relative overflow-hidden">
-      {/* Decorative Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,hsl(199_89%_48%_/_0.1),transparent_60%)]" />
-      
+      {/* Decorative background elements */}
+      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-accent/10 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-blue-500/10 blur-[80px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading 
-          badge={calcData.badge}
-          title={calcData.title}
-          subtitle={calcData.subtitle}
-          light={true}
+          badge={t('calculator.badge')}
+          title={t('calculator.title')}
+          subtitle={t('calculator.subtitle')}
+          centered
+          light
         />
 
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
-          {/* Left: Interactive Area */}
-          <div className="p-8 md:p-12 flex-1">
-            <label className="block text-sm font-bold text-text-muted uppercase tracking-wider mb-6">
-              {calcData.sqmLabel}: <span className="text-primary text-2xl ml-2">{sqm} m²</span>
-            </label>
-            
-            <input 
-              type="range" 
-              min={pricing.flyttevask.minSqm} 
-              max={pricing.flyttevask.maxSqm} 
-              value={sqm} 
-              onChange={(e) => setSqm(Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent mb-12"
-            />
-            
-            <div className="space-y-4">
-              {calcData.includes.map((item: string, i: number) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                  </div>
-                  <span className="text-primary font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Result Area */}
-          <div className="bg-bg-light p-8 md:p-12 md:w-1/3 flex flex-col justify-center border-t md:border-t-0 md:border-l border-gray-200">
-            <div className="mb-8">
-              <p className="text-sm font-bold text-text-muted uppercase tracking-wider mb-2">{calcData.priceLabel}</p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl md:text-5xl font-display font-bold text-primary transition-all duration-300">
-                  {price.toLocaleString('no-NO')}
-                </span>
-                <span className="text-xl text-text-muted font-medium">kr</span>
+        <div className="max-w-3xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-panel-dark rounded-3xl p-8 md:p-12 shadow-2xl border border-white/10"
+          >
+            {/* Service Toggle */}
+            <div className="mb-10">
+              <label className="block text-sm font-bold text-white/60 uppercase tracking-wider mb-4">{t('calculator.serviceType')}</label>
+              <div className="flex bg-black/30 p-1 rounded-xl">
+                <button 
+                  onClick={() => setService('flyttevask')}
+                  className={`flex-1 py-3 px-4 rounded-lg font-semibold text-sm transition-all ${service === 'flyttevask' ? 'bg-accent text-white shadow-lg' : 'text-white/60 hover:text-white'}`}
+                >
+                  {t('calculator.flyttevask')}
+                </button>
+                <button 
+                  onClick={() => setService('regelmessig')}
+                  className={`flex-1 py-3 px-4 rounded-lg font-semibold text-sm transition-all ${service === 'regelmessig' ? 'bg-accent text-white shadow-lg' : 'text-white/60 hover:text-white'}`}
+                >
+                  {t('calculator.regelmessig')}
+                </button>
               </div>
             </div>
-            
-            <div className="mb-8">
-              <p className="text-sm font-bold text-text-muted uppercase tracking-wider mb-2">{calcData.timeLabel}</p>
-              <p className="text-2xl font-bold text-primary">~{hours} timer</p>
+
+            {/* Area Slider */}
+            <div className="mb-12">
+              <div className="flex justify-between items-end mb-4">
+                <label className="block text-sm font-bold text-white/60 uppercase tracking-wider">{t('calculator.area')}</label>
+                <div className="text-3xl font-display font-bold text-white">{area} <span className="text-xl text-white/50">m²</span></div>
+              </div>
+              <input 
+                type="range" 
+                min="30" 
+                max="300" 
+                step="5"
+                value={area}
+                onChange={(e) => setArea(Number(e.target.value))}
+                className="w-full dark-range"
+              />
+              <div className="flex justify-between text-xs text-white/40 mt-2 font-medium">
+                <span>30 m²</span>
+                <span>300 m²</span>
+              </div>
             </div>
 
-            <a href="#contact" className="w-full bg-accent hover:bg-accent-dark text-white text-center py-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-accent/20">
-              {calcData.cta}
-            </a>
-            <p className="text-xs text-center text-text-muted mt-4">Inkl. MVA. Endelig pris kan variere ved ekstrem tilsmussing.</p>
-          </div>
+            {/* Price Display & CTA */}
+            <div className="bg-black/40 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/5">
+              <div>
+                <p className="text-sm font-bold text-white/60 uppercase tracking-wider mb-2">{t('calculator.estimatedPrice')}</p>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-5xl md:text-6xl font-display font-bold text-white tracking-tight">
+                    {price.toLocaleString('no-NO')}
+                  </span>
+                  <span className="text-xl text-accent font-medium">NOK</span>
+                </div>
+                {service === 'regelmessig' && <p className="text-sm text-white/50 mt-1">per måned (estimat)</p>}
+              </div>
+              
+              <a 
+                href="#contact"
+                className="w-full md:w-auto bg-accent hover:bg-accent-hover text-white px-10 py-5 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-lg shadow-accent/20 text-center whitespace-nowrap"
+              >
+                {t('calculator.cta')}
+              </a>
+            </div>
+            
+            <p className="text-center text-xs text-white/40 mt-6 max-w-lg mx-auto">
+              {t('calculator.disclaimer')}
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

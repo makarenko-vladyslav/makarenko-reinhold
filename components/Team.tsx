@@ -1,42 +1,43 @@
-
 "use client";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./UI/SectionHeading";
 import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
 
 export default function Team() {
   const { t } = useLocale();
-  const data = t("team") as any;
+  const items = t('team.items') as { name: string, role: string, bio: string, image: string }[];
 
   return (
-    <section className="py-24 bg-bg-light">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={data.badge}
-          title={data.title}
-          subtitle={data.subtitle}
+          badge={t('team.badge')}
+          title={t('team.title')}
+          centered
         />
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mt-12">
-          {data.members.map((member: any, i: number) => (
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          {items.map((item, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 group"
+              className="group"
             >
-              <div className="aspect-[4/3] overflow-hidden relative">
-                <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="relative rounded-3xl overflow-hidden aspect-[4/5] mb-6 bg-bg-light">
+                <img 
+                  src={item.image} 
+                  alt={item.name} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
-              <div className="p-8 text-center relative">
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-accent rounded-full" />
-                <h3 className="text-2xl font-bold text-primary mb-1">{member.name}</h3>
-                <p className="text-accent font-medium text-sm uppercase tracking-wider mb-4">{member.role}</p>
-                <p className="text-text-muted">{member.bio}</p>
-              </div>
+              <h3 className="text-2xl font-display font-bold text-primary mb-1">{item.name}</h3>
+              <p className="text-accent font-medium mb-4">{item.role}</p>
+              <p className="text-text-muted leading-relaxed">{item.bio}</p>
             </motion.div>
           ))}
         </div>

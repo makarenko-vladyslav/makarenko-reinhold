@@ -1,8 +1,7 @@
-
 "use client";
 import { motion } from "framer-motion";
 
-interface SectionHeadingProps {
+interface Props {
   badge: string;
   title: string;
   subtitle?: string;
@@ -10,40 +9,43 @@ interface SectionHeadingProps {
   light?: boolean;
 }
 
-export default function SectionHeading({ badge, title, subtitle, centered = true, light = false }: SectionHeadingProps) {
+export default function SectionHeading({ badge, title, subtitle, centered = false, light = false }: Props) {
   return (
-    <div className={`mb-16 ${centered ? "text-center" : "text-left"}`}>
+    <div className={`mb-16 ${centered ? 'text-center flex flex-col items-center' : 'text-left'}`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className={`inline-block font-bold tracking-wider uppercase text-xs px-3 py-1 rounded-full mb-4 ${light ? "bg-white/10 text-accent" : "bg-primary/5 text-accent"}`}
+        className="text-accent font-bold tracking-widest uppercase text-xs mb-4 block"
       >
         {badge}
       </motion.span>
+      
       <motion.h2 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-3xl md:text-5xl font-display font-bold mb-6 tracking-tight ${light ? "text-white" : "text-primary"}`}
+        className={`text-4xl md:text-5xl font-display font-bold mb-6 tracking-tight ${light ? 'text-white' : 'text-primary'}`}
       >
         {title}
       </motion.h2>
+      
       <motion.div 
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
+        initial={{ width: 0 }}
+        whileInView={{ width: 64 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className={`w-16 h-1 bg-accent rounded-full mb-6 ${centered ? "mx-auto" : ""}`}
+        className={`h-1 bg-accent rounded-full mb-6 ${centered ? 'mx-auto' : ''}`}
       />
+      
       {subtitle && (
         <motion.p 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className={`text-lg max-w-2xl ${centered ? "mx-auto" : ""} ${light ? "text-text-inverse-muted" : "text-text-muted"}`}
+          className={`text-lg max-w-2xl ${light ? 'text-white/80' : 'text-text-muted'} ${centered ? 'mx-auto' : ''}`}
         >
           {subtitle}
         </motion.p>
