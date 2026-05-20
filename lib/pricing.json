@@ -1,3 +1,4 @@
+
 {
   "currency": "NOK",
   "baseHourlyRate": 550,
@@ -6,6 +7,14 @@
     "pricePerSqm": 45,
     "minSqm": 20,
     "maxSqm": 300,
-    "defaultSqm": 70
+    "estimatedHoursPer10Sqm": 0.6
+  },
+  "regelmessig": {
+    "pricePerSqm": 25,
+    "frequencyMultipliers": {
+      "weekly": 0.85,
+      "biweekly": 0.95,
+      "monthly": 1.0
+    }
   }
 }

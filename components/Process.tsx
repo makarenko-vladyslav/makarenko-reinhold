@@ -1,50 +1,58 @@
+
 "use client";
-import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import SectionHeading from "./UI/SectionHeading";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function Process() {
   const { t } = useLocale();
-  const steps = t("process.steps");
+  const data = t("process") as any;
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start center", "end center"] });
+  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="py-24 bg-bg-alt relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section ref={ref} className="py-24 bg-bg-light relative">
+      <div className="max-w-3xl mx-auto px-6">
         <SectionHeading 
-          badge={t("process.badge")}
-          title={t("process.title")}
-          centered={true}
+          badge={data.badge}
+          title={data.title}
         />
 
-        <div className="max-w-4xl mx-auto relative mt-16">
+        <div className="relative mt-16">
           {/* Vertical Line */}
-          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/50 via-accent to-accent/10 md:-translate-x-1/2" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 transform md:-translate-x-1/2" />
+          <motion.div 
+            style={{ scaleY, transformOrigin: "top" }}
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-accent transform md:-translate-x-1/2 z-10" 
+          />
 
-          <div className="space-y-12">
-            {steps.map((step: any, i: number) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 ${
-                  i % 2 === 0 ? 'md:flex-row-reverse' : ''
-                }`}
-              >
-                {/* Number Circle */}
-                <div className="absolute left-0 md:left-1/2 w-14 h-14 rounded-full bg-white border-4 border-accent flex items-center justify-center font-display font-bold text-xl text-primary z-10 md:-translate-x-1/2 shadow-lg">
-                  {i + 1}
-                </div>
-
-                {/* Content Card */}
-                <div className="ml-20 md:ml-0 md:w-1/2 bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all">
-                  <h3 className="text-2xl font-display font-bold text-primary mb-3">{step.title}</h3>
-                  <p className="text-text-muted">{step.desc}</p>
-                </div>
+          <div className="space-y-12 relative z-20">
+            {data.steps.map((step: any, i: number) => (
+              <div key={i} className={`flex flex-col md:flex-row items-start md:items-center gap-8 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
                 
-                {/* Empty space for alternating layout on desktop */}
-                <div className="hidden md:block md:w-1/2" />
-              </motion.div>
+                {/* Content */}
+                <motion.div 
+                  initial={{ opacity: 0, x: i % 2 === 0 ? 20 : -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className={`flex-1 w-full md:w-1/2 ${i % 2 === 0 ? "md:text-left" : "md:text-right"} pl-20 md:pl-0`}
+                >
+                  <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <h3 className="text-xl font-bold text-primary mb-2">{step.title}</h3>
+                    <p className="text-text-muted">{step.description}</p>
+                  </div>
+                </motion.div>
+
+                {/* Node */}
+                <div className="absolute left-8 md:static md:left-auto transform -translate-x-1/2 md:translate-x-0 w-10 h-10 rounded-full bg-white border-4 border-bg-light shadow-md flex items-center justify-center z-20 shrink-0">
+                  <div className="w-3 h-3 rounded-full bg-accent" />
+                </div>
+
+                {/* Empty space for alternating layout */}
+                <div className="hidden md:block flex-1" />
+              </div>
             ))}
           </div>
         </div>
