@@ -1,4 +1,3 @@
-
 "use client";
 import { useLocale } from '@/lib/i18n';
 import { motion } from 'framer-motion';
@@ -45,16 +44,6 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-      `}</style>
     </section>
   );
 }
