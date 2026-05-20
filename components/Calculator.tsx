@@ -1,10 +1,10 @@
-
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocale } from '@/lib/i18n';
 import pricing from '@/lib/pricing.json';
 import { SectionHeading, Button } from './Shared';
+import { IconCheck } from './Icons';
 
 export default function Calculator() {
   const { t } = useLocale();
