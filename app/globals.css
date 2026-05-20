@@ -2,35 +2,34 @@
 
 
 @theme {
-  --color-primary: hsl(215 40% 15%);       /* Deep Fjord Blue - Authority, Trust */
-  --color-accent: hsl(185 80% 35%);        /* Vivid Teal - Svanemerket Eco, Freshness */
-  --color-accent-hover: hsl(185 80% 30%);
-  --color-bg-dark: hsl(215 35% 10%);       /* Slate Navy */
-  --color-bg-light: hsl(210 20% 98%);      /* Snow White / Icy Pearl */
-  --color-surface: hsl(0 0% 100%);         /* Pure White for cards */
-  --color-text-main: hsl(215 25% 20%);
-  --color-text-muted: hsl(215 15% 45%);
+  --color-primary: hsl(220 35% 15%);
+  --color-accent: hsl(150 80% 40%);
+  --color-accent-hover: hsl(150 80% 35%);
+  --color-bg-dark: hsl(220 35% 10%);
+  --color-bg-light: hsl(220 20% 98%);
+  --color-surface: hsl(0 0% 100%);
+  --color-text-main: hsl(220 25% 20%);
+  --color-text-muted: hsl(220 15% 45%);
+  --color-border: hsl(220 20% 90%);
   
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --shadow-premium: 0 10px 40px -10px hsl(220 35% 15% / 0.08);
+  --shadow-premium-hover: 0 20px 40px -10px hsl(220 35% 15% / 0.12), 0 0 0 2px hsl(150 80% 40%);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-  .shadow-premium {
-    box-shadow: 0 10px 30px -10px hsl(215 40% 15% / 0.08), 0 4px 6px -4px hsl(215 40% 15% / 0.04);
-  }
-  .shadow-premium-hover {
-    box-shadow: 0 20px 40px -10px hsl(215 40% 15% / 0.12), 0 8px 12px -6px hsl(215 40% 15% / 0.06);
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   }
 }
 
-html, body {
-  overflow-x: hidden;
+html {
+  scroll-behavior: smooth;
 }
 
 /* Custom Scrollbar */
@@ -41,9 +40,9 @@ html, body {
   background: var(--color-bg-light);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(215 20% 80%);
+  background: var(--color-border);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: var(--color-text-muted);
 }

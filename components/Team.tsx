@@ -1,49 +1,51 @@
 
 "use client";
-import { motion } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
-import { IdentificationCard } from '@phosphor-icons/react';
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
 
 export default function Team() {
   const { t } = useLocale();
-  const content = t('team') as any;
+  const members = t("team.members") as Array<{name: string, role: string, bio: string}>;
 
   return (
     <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading badge={content.badge} title={content.title} centered />
-        
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {content.items.map((member: any, i: number) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-premium group"
-            >
-              <div className="h-64 overflow-hidden relative">
-                <img 
-                  src={`https://picsum.photos/seed/${member.name.replace(' ', '')}/600/600`} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-                {/* HMS Card Badge */}
-                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-bold text-primary shadow-lg">
-                  <IdentificationCard size={16} weight="fill" className="text-green-500" />
-                  HMS-Kort
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-16 items-center">
+          
+          <div>
+            <SectionHeading badge={t("team.badge") as string} title={t("team.title") as string} />
+            <p className="text-text-muted text-lg mb-8">
+              {t("team.desc") as string}
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-8">
+            {members.map((member, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-surface rounded-2xl overflow-hidden shadow-sm border border-border group"
+              >
+                <div className="aspect-square overflow-hidden">
+                  <img 
+                    src={`https://picsum.photos/seed/${member.name.replace(/\s/g, '')}/600/600`} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
                 </div>
-              </div>
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-bold text-primary mb-1">{member.name}</h3>
-                <p className="text-accent text-sm font-medium mb-4">{member.role}</p>
-                <p className="text-text-muted text-sm">{member.bio}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-primary mb-1">{member.name}</h3>
+                  <div className="text-accent font-medium text-sm mb-3">{member.role}</div>
+                  <p className="text-text-muted text-sm">{member.bio}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

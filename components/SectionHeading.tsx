@@ -11,7 +11,7 @@ interface SectionHeadingProps {
 
 export default function SectionHeading({ badge, title, centered = false, light = false }: SectionHeadingProps) {
   return (
-    <div className={`mb-12 ${centered ? "text-center flex flex-col items-center" : "text-left"}`}>
+    <div className={`mb-12 ${centered ? "text-center flex flex-col items-center" : ""}`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export default function SectionHeading({ badge, title, centered = false, light =
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-4xl md:text-5xl font-display font-bold mb-4 text-balance ${light ? "text-white" : "text-primary"}`}
+        className={`text-3xl md:text-5xl font-display font-bold mb-6 text-balance ${light ? "text-surface" : "text-primary"}`}
       >
         {title}
       </motion.h2>
@@ -34,7 +34,7 @@ export default function SectionHeading({ badge, title, centered = false, light =
         whileInView={{ width: 64 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="h-1 bg-accent rounded-full mb-6" 
+        className="h-1 bg-accent rounded-full"
       />
     </div>
   );

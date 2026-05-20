@@ -5,7 +5,7 @@ import TrustBar from "@/components/TrustBar";
 import WhyUs from "@/components/WhyUs";
 import Services from "@/components/Services";
 import Calculator from "@/components/Calculator";
-import FlyttevaskFeature from "@/components/FlyttevaskFeature";
+import Flyttevask from "@/components/Flyttevask";
 import Process from "@/components/Process";
 import BeforeAfter from "@/components/BeforeAfter";
 import Testimonials from "@/components/Testimonials";
@@ -27,7 +27,7 @@ export default function Home() {
         <WhyUs />
         <Services />
         <Calculator />
-        <FlyttevaskFeature />
+        <Flyttevask />
         <Process />
         <BeforeAfter />
         <Testimonials />

@@ -1,20 +1,18 @@
 
 "use client";
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
-import { Phone, EnvelopeSimple, MapPin, PaperPlaneRight } from '@phosphor-icons/react';
+import { useState } from "react";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
+import { Phone, EnvelopeSimple, MapPin } from "@phosphor-icons/react";
 
 export default function Contact() {
   const { t } = useLocale();
-  const content = t('contact') as any;
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus('loading');
-    setTimeout(() => setStatus('success'), 1500);
+    setStatus("loading");
+    setTimeout(() => setStatus("success"), 1500);
   };
 
   return (
@@ -23,85 +21,87 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-16">
           
           <div>
-            <SectionHeading badge={content.badge} title={content.title} />
+            <SectionHeading badge={t("contact.badge") as string} title={t("contact.title") as string} />
             
             <div className="space-y-8 mt-12">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0">
-                  <Phone size={24} weight="duotone" className="text-accent" />
+                <div className="w-12 h-12 bg-surface rounded-xl flex items-center justify-center text-accent shadow-sm border border-border shrink-0">
+                  <Phone size={24} weight="duotone" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary mb-1">Telefon</h4>
-                  <a href="tel:+4796684393" className="text-text-muted hover:text-accent transition-colors text-lg">+47 966 84 393</a>
+                  <div className="text-sm text-text-muted font-medium mb-1">Telefon</div>
+                  <a href={`tel:${t("contact.phoneNumber")}`} className="text-xl font-bold text-primary hover:text-accent transition-colors">
+                    {t("contact.phoneNumber") as string}
+                  </a>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0">
-                  <EnvelopeSimple size={24} weight="duotone" className="text-accent" />
+                <div className="w-12 h-12 bg-surface rounded-xl flex items-center justify-center text-accent shadow-sm border border-border shrink-0">
+                  <EnvelopeSimple size={24} weight="duotone" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary mb-1">E-post</h4>
-                  <a href="mailto:annadizhenko@gmail.com" className="text-text-muted hover:text-accent transition-colors text-lg">annadizhenko@gmail.com</a>
+                  <div className="text-sm text-text-muted font-medium mb-1">E-post</div>
+                  <a href={`mailto:${t("contact.emailAddress")}`} className="text-xl font-bold text-primary hover:text-accent transition-colors">
+                    {t("contact.emailAddress") as string}
+                  </a>
                 </div>
               </div>
-
+              
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0">
-                  <MapPin size={24} weight="duotone" className="text-accent" />
+                <div className="w-12 h-12 bg-surface rounded-xl flex items-center justify-center text-accent shadow-sm border border-border shrink-0">
+                  <MapPin size={24} weight="duotone" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary mb-1">Hovedkontor</h4>
-                  <p className="text-text-muted text-lg">Notodden, Telemark<br/>Norge</p>
+                  <div className="text-sm text-text-muted font-medium mb-1">Adresse</div>
+                  <div className="text-xl font-bold text-primary">
+                    {t("contact.address") as string}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-3xl p-8 shadow-premium"
-          >
-            {status === 'success' ? (
+          <div className="bg-surface p-8 rounded-3xl shadow-premium border border-border">
+            {status === "success" ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mb-6">
-                  <PaperPlaneRight size={40} weight="duotone" className="text-green-500" />
+                <div className="w-20 h-20 bg-accent/10 text-accent rounded-full flex items-center justify-center mb-6">
+                  <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-2">{content.success}</h3>
+                <h3 className="text-2xl font-bold text-primary mb-2">{t("contact.success") as string}</h3>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-primary mb-2">{content.name}</label>
-                  <input required type="text" className="w-full bg-bg-light border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" />
+                  <label className="block text-sm font-bold text-primary mb-2">{t("contact.name") as string}</label>
+                  <input required type="text" className="w-full bg-bg-light border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all" />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-primary mb-2">{content.email}</label>
-                    <input required type="email" className="w-full bg-bg-light border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" />
+                    <label className="block text-sm font-bold text-primary mb-2">{t("contact.phone") as string}</label>
+                    <input required type="tel" className="w-full bg-bg-light border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-primary mb-2">{content.phone}</label>
-                    <input required type="tel" className="w-full bg-bg-light border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" />
+                    <label className="block text-sm font-bold text-primary mb-2">{t("contact.email") as string}</label>
+                    <input required type="email" className="w-full bg-bg-light border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-primary mb-2">{content.message}</label>
-                  <textarea required rows={4} className="w-full bg-bg-light border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all resize-none"></textarea>
+                  <label className="block text-sm font-bold text-primary mb-2">{t("contact.message") as string}</label>
+                  <textarea required rows={4} className="w-full bg-bg-light border border-border rounded-xl px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none"></textarea>
                 </div>
                 <button 
-                  disabled={status === 'loading'}
+                  disabled={status === "loading"}
                   type="submit" 
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                  className="w-full bg-primary text-surface py-4 rounded-xl font-bold text-lg hover:bg-primary/90 transition-colors disabled:opacity-70"
                 >
-                  {status === 'loading' ? 'Sender...' : content.submit}
-                  <PaperPlaneRight size={20} weight="bold" />
+                  {status === "loading" ? "Sender..." : t("contact.submit") as string}
                 </button>
               </form>
             )}
-          </motion.div>
+          </div>
 
         </div>
       </div>

@@ -1,112 +1,102 @@
 
 "use client";
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
-import { ShieldCheck, CheckCircle } from '@phosphor-icons/react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import { ShieldCheck, Star } from "@phosphor-icons/react";
 
 export default function Hero() {
   const { t } = useLocale();
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const y = useTransform(scrollY, [0, 1000], [0, 300]);
 
   return (
     <section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden bg-bg-dark">
-      {/* Background Image with Parallax & Overlay */}
+      {/* Background Image with Parallax */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <img 
-          src="https://picsum.photos/seed/scandinavian-cleaning/1920/1080" 
-          alt="Clean home" 
-          className="w-full h-full object-cover opacity-40"
+          src="https://picsum.photos/seed/cleaningscandi/1920/1080" 
+          alt="Clean Scandinavian Home" 
+          className="w-full h-full object-cover opacity-60"
           onError={(e) => { e.currentTarget.style.display = 'none'; }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-bg-dark via-bg-dark/80 to-transparent mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-transparent mix-blend-multiply" />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10 grid lg:grid-cols-2 gap-12 items-center">
         
-        {/* Left Content */}
+        {/* Text Content */}
         <div className="max-w-2xl">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 bg-surface/10 backdrop-blur-md border border-surface/20 text-surface px-4 py-2 rounded-full text-sm font-medium mb-6"
           >
             <ShieldCheck size={18} weight="duotone" className="text-accent" />
-            {t('hero.badge') as string}
+            {t("hero.badge") as string}
           </motion.div>
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-[1.1] mb-6 text-balance"
+            className="text-5xl md:text-7xl font-display font-bold text-surface leading-tight mb-6 text-balance"
           >
-            {t('hero.title') as string}
+            {t("hero.title") as string}
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl leading-relaxed"
+            className="text-lg md:text-xl text-surface/80 mb-10 leading-relaxed max-w-xl"
           >
-            {t('hero.subtitle') as string}
+            {t("hero.subtitle") as string}
           </motion.p>
           
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-wrap gap-4"
           >
-            <a href="#calculator" className="bg-accent hover:bg-accent-hover text-white px-8 py-4 rounded-xl font-medium text-lg text-center transition-all shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:-translate-y-1">
-              {t('hero.ctaPrimary') as string}
+            <a href="#calculator" className="bg-accent text-surface px-8 py-4 rounded-full font-bold text-lg hover:bg-accent-hover transition-all hover:scale-105 shadow-[0_0_20px_rgba(22,163,74,0.4)]">
+              {t("hero.ctaPrimary") as string}
             </a>
-            <a href="#services" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-medium text-lg text-center transition-all">
-              {t('hero.ctaSecondary') as string}
+            <a href="#services" className="bg-surface/10 backdrop-blur-md text-surface border border-surface/20 px-8 py-4 rounded-full font-bold text-lg hover:bg-surface/20 transition-all">
+              {t("hero.ctaSecondary") as string}
             </a>
-          </motion.div>
-
-          {/* Trust points */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-10 flex flex-wrap gap-x-6 gap-y-3"
-          >
-            {(t('hero.trust') as string[]).map((item, i) => (
-              <div key={i} className="flex items-center gap-2 text-gray-300 text-sm font-medium">
-                <CheckCircle size={18} weight="fill" className="text-accent" />
-                {item}
-              </div>
-            ))}
           </motion.div>
         </div>
 
-        {/* Right Floating Card (USP) */}
+        {/* Floating Stats Card */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-          className="hidden lg:block relative"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, type: "spring" }}
+          className="hidden lg:block justify-self-end relative"
         >
-          <div className="absolute inset-0 bg-accent/20 blur-3xl rounded-full" />
-          <div className="relative bg-white p-8 rounded-3xl shadow-2xl border border-gray-100 ml-auto max-w-sm transform rotate-2 hover:rotate-0 transition-transform duration-500">
-            <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-6">
-              <ShieldCheck size={28} weight="duotone" className="text-primary" />
-            </div>
-            <h3 className="text-2xl font-display font-bold text-primary mb-2">100% Garanti</h3>
-            <p className="text-text-muted mb-6">Vi følger eiendomsmeglernes strenge krav for flyttevask. Godkjent eller vi vasker på nytt gratis.</p>
-            <div className="space-y-3">
-              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                <div className="h-full bg-accent w-full" />
+          <div className="bg-surface p-8 rounded-3xl shadow-premium max-w-sm relative z-10">
+            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+              <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center text-primary">
+                <ShieldCheck size={32} weight="duotone" />
               </div>
-              <div className="flex justify-between text-sm font-medium text-primary">
-                <span>Kvalitetssikret</span>
-                <span className="text-accent">100%</span>
+              <div>
+                <div className="text-3xl font-display font-bold text-primary">{t("hero.stat1") as string}</div>
+                <div className="text-sm text-text-muted font-medium">{t("hero.stat1Label") as string}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center text-accent">
+                <Star size={32} weight="fill" />
+              </div>
+              <div>
+                <div className="text-3xl font-display font-bold text-primary">{t("hero.stat2") as string}</div>
+                <div className="text-sm text-text-muted font-medium">{t("hero.stat2Label") as string}</div>
               </div>
             </div>
           </div>
+          {/* Decorative element */}
+          <div className="absolute -inset-4 border border-surface/20 rounded-[2.5rem] -z-10" />
         </motion.div>
 
       </div>
