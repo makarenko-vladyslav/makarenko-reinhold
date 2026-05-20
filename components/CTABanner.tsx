@@ -1,34 +1,40 @@
+
 "use client";
-import { motion } from 'framer-motion';
 import { useLocale } from '@/lib/i18n';
-import { ArrowRight } from '@phosphor-icons/react';
+import { motion } from 'framer-motion';
+import { Calculator } from '@phosphor-icons/react';
 
 export default function CTABanner() {
   const { t } = useLocale();
-  const cta = t('ctaBanner') as { title: string, desc: string, btn: string };
 
   return (
-    <section className="py-12 bg-bg-light">
+    <section className="py-24 bg-surface">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-accent rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl shadow-accent/20 relative overflow-hidden"
+          className="bg-primary rounded-3xl p-12 md:p-16 text-center relative overflow-hidden shadow-2xl"
         >
-          {/* Decorative circles */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-2xl" />
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-black/10 rounded-full blur-2xl" />
-          
-          <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">{cta.title}</h2>
-            <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">{cta.desc}</p>
+          {/* Decorative background elements */}
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+          </div>
+
+          <div className="relative z-10 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+              {t('cta.title') as string}
+            </h2>
+            <p className="text-lg text-white/80 mb-10">
+              {t('cta.desc') as string}
+            </p>
             <a 
               href="#calculator" 
-              className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-xl group"
+              className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-accent-hover transition-all hover:-translate-y-1 shadow-lg shadow-accent/30"
             >
-              {cta.btn}
-              <ArrowRight size={20} weight="bold" className="group-hover:translate-x-1 transition-transform" />
+              <Calculator size={24} weight="duotone" />
+              {t('cta.btn') as string}
             </a>
           </div>
         </motion.div>

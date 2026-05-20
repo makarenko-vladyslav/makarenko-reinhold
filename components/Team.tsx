@@ -1,46 +1,41 @@
+
 "use client";
-import { motion } from 'framer-motion';
 import { useLocale } from '@/lib/i18n';
-import { IdentificationCard } from '@phosphor-icons/react';
+import { motion } from 'framer-motion';
 
 export default function Team() {
   const { t } = useLocale();
-  const teamData = t('team') as { badge: string, title: string, members: any[] };
+  const items = t('team.items') as Array<{name: string, role: string, bio: string}>;
 
   return (
     <section className="py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16">
-          <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">{teamData.badge}</span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">{teamData.title}</h2>
-          <div className="w-16 h-1 bg-accent rounded-full" />
+        <div className="mb-16 max-w-2xl">
+          <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">{t('team.badge') as string}</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">{t('team.title') as string}</h2>
+          <div className="w-16 h-1 bg-accent rounded-full mb-6" />
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl">
-          {teamData.members.map((member, i) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {items.map((member, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              className="flex gap-6 items-start"
+              className="bg-bg-light rounded-3xl overflow-hidden shadow-card"
             >
-              <div className="w-24 h-24 rounded-2xl overflow-hidden shrink-0 shadow-crisp">
+              <div className="aspect-square relative">
                 <img 
-                  src={`https://picsum.photos/seed/${member.name.replace(/\s/g, '')}-portrait/200/200`} 
+                  src={`https://picsum.photos/seed/${member.name.replace(' ', '')}/600/600`} 
                   alt={member.name}
                   className="w-full h-full object-cover"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-primary">{member.name}</h3>
-                <div className="text-accent font-medium text-sm mb-3 flex items-center gap-1">
-                  {i === 1 && <IdentificationCard size={16} weight="duotone" />}
-                  {member.role}
-                </div>
-                <p className="text-text-muted text-sm leading-relaxed">{member.bio}</p>
+              <div className="p-8">
+                <h3 className="text-2xl font-display font-bold text-primary mb-1">{member.name}</h3>
+                <div className="text-accent font-semibold text-sm mb-4">{member.role}</div>
+                <p className="text-text-muted leading-relaxed">{member.bio}</p>
               </div>
             </motion.div>
           ))}

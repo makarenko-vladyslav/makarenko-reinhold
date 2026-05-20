@@ -1,9 +1,10 @@
+
 "use client";
 import { useLocale } from '@/lib/i18n';
+import { Sparkle, Phone, EnvelopeSimple, MapPin } from '@phosphor-icons/react';
 
 export default function Footer() {
   const { t } = useLocale();
-  const footer = t('footer') as any;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -12,53 +13,73 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           {/* Brand */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <a href="#" className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-accent rounded flex items-center justify-center text-white">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.svg.org/2000/svg">
-                  <path d="M12 4.5C12 4.5 7.5 9 7.5 13.5C7.5 15.9853 9.51472 18 12 18C14.4853 18 16.5 15.9853 16.5 13.5C16.5 9 12 4.5 12 4.5Z" fill="currentColor" />
-                </svg>
+              <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white">
+                <Sparkle size={24} weight="duotone" />
               </div>
-              <div className="flex flex-col">
-                <span className="font-display font-bold text-lg leading-none text-white">Makarenko</span>
-                <span className="text-[10px] tracking-widest uppercase font-semibold text-accent">Reinhold</span>
+              <div className="flex flex-col text-white">
+                <span className="font-display font-bold text-lg leading-none tracking-tight">Makarenko</span>
+                <span className="font-display font-semibold text-sm leading-none opacity-80">Reinhold</span>
               </div>
             </a>
-            <p className="max-w-sm leading-relaxed mb-6">
-              {footer.desc}
+            <p className="text-sm leading-relaxed mb-6">
+              {t('footer.desc') as string}
             </p>
-            <div className="flex items-center gap-4 text-sm font-medium">
-              <span className="bg-white/10 px-3 py-1 rounded text-white">Offentlig Godkjent</span>
-              <span className="bg-white/10 px-3 py-1 rounded text-white">HMS-Kort</span>
+            <div className="flex items-center gap-2 text-sm font-semibold text-white">
+              <span className="w-2 h-2 rounded-full bg-eco"></span>
+              Offentlig Godkjent
             </div>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-white font-display font-bold mb-6">{t('footer.contact') as string}</h4>
+            <ul className="space-y-4 text-sm">
+              <li>
+                <a href="tel:+4796684393" className="flex items-center gap-3 hover:text-accent transition-colors">
+                  <Phone size={18} weight="duotone" className="text-accent" />
+                  +47 966 84 393
+                </a>
+              </li>
+              <li>
+                <a href="mailto:annadizhenko@gmail.com" className="flex items-center gap-3 hover:text-accent transition-colors">
+                  <EnvelopeSimple size={18} weight="duotone" className="text-accent" />
+                  annadizhenko@gmail.com
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={18} weight="duotone" className="text-accent shrink-0 mt-0.5" />
+                <span>Notodden, Telemark<br/>Norge</span>
+              </li>
+            </ul>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">{footer.links}</h4>
-            <ul className="space-y-3">
-              <li><a href="#services" className="hover:text-accent transition-colors">Tjenester</a></li>
-              <li><a href="#calculator" className="hover:text-accent transition-colors">Priskalkulator</a></li>
-              <li><a href="#faq" className="hover:text-accent transition-colors">FAQ</a></li>
-              <li><a href="#contact" className="hover:text-accent transition-colors">Kontakt</a></li>
+            <h4 className="text-white font-display font-bold mb-6">{t('footer.links') as string}</h4>
+            <ul className="space-y-3 text-sm">
+              <li><a href="#services" className="hover:text-accent transition-colors">{t('nav.services') as string}</a></li>
+              <li><a href="#calculator" className="hover:text-accent transition-colors">{t('nav.calculator') as string}</a></li>
+              <li><a href="#faq" className="hover:text-accent transition-colors">{t('nav.faq') as string}</a></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">{footer.legal}</h4>
-            <ul className="space-y-3">
+            <h4 className="text-white font-display font-bold mb-6">{t('footer.legal') as string}</h4>
+            <ul className="space-y-3 text-sm">
               <li><a href="#" className="hover:text-accent transition-colors">Personvernerklæring</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">Salgsbetingelser</a></li>
-              <li className="pt-4 text-white/50 text-sm">{footer.org}</li>
+              <li><a href="#" className="hover:text-accent transition-colors">HMS & Kvalitet</a></li>
             </ul>
           </div>
 
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
-          <div>&copy; {currentYear} Makarenko Reinhold. {footer.rights}</div>
-          <div>Laget med presisjon for Notodden.</div>
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+          <p>&copy; {currentYear} Makarenko Reinhold. {t('footer.rights') as string}</p>
+          <p>Org.nr: 932 123 456 (Placeholder)</p>
         </div>
       </div>
     </footer>
