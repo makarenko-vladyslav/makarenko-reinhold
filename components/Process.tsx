@@ -1,42 +1,41 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
 import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
 
 export default function Process() {
   const { t } = useLocale();
-  const steps = t('process.steps') as Array<{num: string, title: string, desc: string}>;
+  const process = t('process') as { badge: string, title: string, steps: Array<{title: string, desc: string}> };
 
   return (
-    <section className="py-24 bg-bg-light">
+    <section className="py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading 
-          badge={t('process.badge') as string} 
-          title={t('process.title') as string} 
-          centered
-        />
+        <div className="mb-16">
+          <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">{process.badge}</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">{process.title}</h2>
+          <div className="w-16 h-1 bg-accent rounded-full" />
+        </div>
 
-        <div className="mt-16 relative">
-          {/* Connecting Line (Desktop) */}
-          <div className="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-border" />
-
-          <div className="grid lg:grid-cols-4 gap-12 lg:gap-8">
-            {steps.map((step, i) => (
+        <div className="relative">
+          {/* Horizontal Line for Desktop */}
+          <div className="hidden md:block absolute top-8 left-0 w-full h-px bg-border" />
+          
+          <div className="grid md:grid-cols-4 gap-10">
+            {process.steps.map((step, i) => (
               <motion.div 
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="relative z-10"
+                transition={{ delay: i * 0.1 }}
+                className="relative"
               >
-                <div className="w-24 h-24 bg-white rounded-full border-4 border-bg-light shadow-card flex items-center justify-center mb-8 mx-auto lg:mx-0 relative group">
-                  <span className="text-3xl font-display font-bold text-primary group-hover:text-accent transition-colors">{step.num}</span>
-                  {/* Decorative dot on line */}
-                  <div className="hidden lg:block absolute top-1/2 -right-4 w-2 h-2 bg-accent rounded-full transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Number Circle */}
+                <div className="w-16 h-16 rounded-full bg-bg-light border-4 border-surface flex items-center justify-center text-2xl font-display font-bold text-primary relative z-10 mb-6 shadow-sm">
+                  {i + 1}
                 </div>
-                <h3 className="text-xl font-display font-bold text-primary mb-3 text-center lg:text-left">{step.title}</h3>
-                <p className="text-text-muted text-center lg:text-left leading-relaxed">{step.desc}</p>
+                
+                <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
+                <p className="text-text-muted leading-relaxed">{step.desc}</p>
               </motion.div>
             ))}
           </div>

@@ -1,40 +1,42 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
 import { motion } from 'framer-motion';
 
 export default function Gallery() {
-  const { t } = useLocale();
-  const items = t('gallery.items') as Array<{url: string, alt: string}>;
+  const images = [
+    "https://picsum.photos/seed/clean-living-1/800/800",
+    "https://picsum.photos/seed/clean-kitchen-2/800/600",
+    "https://picsum.photos/seed/clean-bathroom-3/600/800",
+    "https://picsum.photos/seed/clean-office-4/800/600",
+    "https://picsum.photos/seed/clean-window-5/600/800",
+    "https://picsum.photos/seed/clean-detail-6/800/800"
+  ];
 
   return (
-    <section className="py-24 bg-surface">
+    <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading 
-          badge={t('gallery.badge') as string} 
-          title={t('gallery.title') as string} 
-        />
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-primary mb-4">Vårt Arbeid</h2>
+          <div className="w-16 h-1 bg-accent rounded-full mx-auto" />
+        </div>
 
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 mt-12">
-          {items.map((item, i) => (
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+          {images.map((src, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="break-inside-avoid rounded-2xl overflow-hidden shadow-subtle group relative"
+              transition={{ delay: (i % 3) * 0.1 }}
+              className="break-inside-avoid rounded-2xl overflow-hidden shadow-crisp group relative"
             >
               <img 
-                src={item.url} 
-                alt={item.alt} 
-                className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+                src={src} 
+                alt="Cleaning result" 
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
-                onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement?.classList.add('bg-surface-alt', 'min-h-[200px]'); }}
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <span className="text-white font-medium">{item.alt}</span>
-              </div>
+              <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300" />
             </motion.div>
           ))}
         </div>

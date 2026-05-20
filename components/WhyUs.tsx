@@ -1,45 +1,39 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Umbrella, Leaf, MapPin } from '@phosphor-icons/react';
-
-const iconMap: Record<string, React.ElementType> = {
-  ShieldCheck, Umbrella, Leaf, MapPin
-};
+import { useLocale } from '@/lib/i18n';
+import { Drop, MapPin, ListChecks, CurrencyNok } from '@phosphor-icons/react';
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const cards = t('whyUs.cards') as Array<{title: string, desc: string, icon: string}>;
+  const items = t('whyUs.items') as Array<{title: string, desc: string}>;
+  const icons = [Drop, MapPin, ListChecks, CurrencyNok];
 
   return (
-    <section className="py-24 bg-surface relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-alt clip-diagonal opacity-50 pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <SectionHeading 
-          badge={t('whyUs.badge') as string} 
-          title={t('whyUs.title') as string} 
-        />
+    <section className="py-24 bg-bg-light">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">{t('whyUs.badge') as string}</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">{t('whyUs.title') as string}</h2>
+          <div className="w-16 h-1 bg-accent rounded-full mx-auto" />
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {cards.map((card, i) => {
-            const Icon = iconMap[card.icon] || ShieldCheck;
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {items.map((item, i) => {
+            const Icon = icons[i];
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
-                className="bg-white p-8 rounded-2xl shadow-subtle hover:shadow-hover transition-all duration-300 group border border-border/50"
+                transition={{ delay: i * 0.1 }}
+                className="bg-surface p-8 rounded-2xl shadow-crisp hover:shadow-crisp-hover transition-all group"
               >
-                <div className="w-14 h-14 bg-surface-alt rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-300 text-primary">
-                  <Icon size={32} weight="duotone" />
+                <div className="w-12 h-12 bg-bg-light rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <Icon size={28} weight="duotone" className="text-accent" />
                 </div>
-                <h3 className="text-xl font-display font-bold text-primary mb-3">{card.title}</h3>
-                <p className="text-text-muted leading-relaxed">{card.desc}</p>
+                <h3 className="text-xl font-bold text-primary mb-3">{item.title}</h3>
+                <p className="text-text-muted leading-relaxed">{item.desc}</p>
               </motion.div>
             );
           })}
