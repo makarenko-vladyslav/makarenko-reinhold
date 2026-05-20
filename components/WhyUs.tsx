@@ -1,12 +1,12 @@
 "use client";
 import { motion } from 'framer-motion';
 import { useLocale } from '@/lib/i18n';
-import { Drop, MapPin, ListChecks, CurrencyNok } from '@phosphor-icons/react';
+import { Drop, MapPin, ListChecks, CurrencyCircleDollar } from '@phosphor-icons/react';
 
 export default function WhyUs() {
   const { t } = useLocale();
   const items = t('whyUs.items') as Array<{title: string, desc: string}>;
-  const icons = [Drop, MapPin, ListChecks, CurrencyNok];
+  const icons = [Drop, MapPin, ListChecks, CurrencyCircleDollar];
 
   return (
     <section className="py-24 bg-bg-light">
