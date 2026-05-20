@@ -1,46 +1,46 @@
+
 "use client";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { Star, Quotes } from '@phosphor-icons/react';
 
 export default function Testimonials() {
   const { t } = useLocale();
-  const data = t('testimonials') as any;
+  const content = t('testimonials') as any;
 
   return (
     <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading 
-          badge={data.badge}
-          title={data.title}
-          centered
-        />
-
+        <SectionHeading badge={content.badge} title={content.title} centered />
+        
         <div className="grid md:grid-cols-3 gap-8 mt-12">
-          {data.items.map((item: any, idx: number) => (
+          {content.items.map((item: any, i: number) => (
             <motion.div 
-              key={idx}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white p-8 rounded-2xl premium-shadow border border-gray-50 flex flex-col"
+              transition={{ delay: i * 0.1 }}
+              className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative"
             >
-              <div className="flex gap-1 text-accent mb-6">
-                {[...Array(item.rating)].map((_, i) => (
-                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+              <Quotes size={40} weight="duotone" className="text-accent/20 absolute top-6 right-6" />
+              <div className="flex gap-1 mb-6">
+                {[...Array(item.stars)].map((_, i) => (
+                  <Star key={i} size={20} weight="fill" className="text-yellow-400" />
                 ))}
               </div>
-              <p className="text-text-main italic mb-8 flex-grow">"{item.text}"</p>
+              <p className="text-text-main italic mb-8 relative z-10">"{item.quote}"</p>
               <div className="flex items-center gap-4">
                 <img 
-                  src={`https://picsum.photos/seed/${item.name.replace(' ', '')}/100/100`} 
+                  src={`https://picsum.photos/seed/${item.name}/100/100`} 
                   alt={item.name} 
                   className="w-12 h-12 rounded-full object-cover"
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
                 <div>
-                  <div className="font-bold text-primary">{item.name}</div>
-                  <div className="text-sm text-text-muted">{item.role}</div>
+                  <h4 className="font-bold text-primary">{item.name}</h4>
+                  <p className="text-xs text-text-muted">{item.role}</p>
                 </div>
               </div>
             </motion.div>

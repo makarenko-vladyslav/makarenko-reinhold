@@ -1,42 +1,47 @@
+
 "use client";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { IdentificationCard } from '@phosphor-icons/react';
 
 export default function Team() {
   const { t } = useLocale();
-  const data = t('team') as any;
+  const content = t('team') as any;
 
   return (
-    <section className="py-24 bg-white border-t border-gray-100">
+    <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading 
-          badge={data.badge}
-          title={data.title}
-          subtitle={data.subtitle}
-        />
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {data.members.map((member: any, idx: number) => (
+        <SectionHeading badge={content.badge} title={content.title} centered />
+        
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          {content.items.map((member: any, i: number) => (
             <motion.div 
-              key={idx}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="group"
+              transition={{ delay: i * 0.1 }}
+              className="bg-white rounded-3xl overflow-hidden shadow-premium group"
             >
-              <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/5] bg-bg-light">
+              <div className="h-64 overflow-hidden relative">
                 <img 
-                  src={member.image} 
+                  src={`https://picsum.photos/seed/${member.name.replace(' ', '')}/600/600`} 
                   alt={member.name} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* HMS Card Badge */}
+                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full flex items-center gap-2 text-xs font-bold text-primary shadow-lg">
+                  <IdentificationCard size={16} weight="fill" className="text-green-500" />
+                  HMS-Kort
+                </div>
               </div>
-              <h3 className="text-2xl font-display font-bold text-primary mb-1">{member.name}</h3>
-              <div className="text-accent font-medium mb-3">{member.role}</div>
-              <p className="text-text-muted">{member.bio}</p>
+              <div className="p-6 text-center">
+                <h3 className="text-xl font-bold text-primary mb-1">{member.name}</h3>
+                <p className="text-accent text-sm font-medium mb-4">{member.role}</p>
+                <p className="text-text-muted text-sm">{member.bio}</p>
+              </div>
             </motion.div>
           ))}
         </div>
