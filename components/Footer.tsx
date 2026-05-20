@@ -1,64 +1,74 @@
 
 "use client";
-import { useLocale } from "@/lib/i18n";
+import React from 'react';
+import { useLocale } from '@/lib/i18n';
+import { LogoMark } from './Icons';
 
 export default function Footer() {
   const { t } = useLocale();
-  const year = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-primary pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="lg:col-span-1">
             <a href="#" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-accent text-white flex items-center justify-center">
-                <svg className="w-6 h-6" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 6C16 6 10 13.5 10 18.5C10 21.5376 12.6863 24 16 24C19.3137 24 22 21.5376 22 18.5C22 13.5 16 6 16 6Z"/>
-                  <path d="M14 16L16 18L20 13"/>
-                </svg>
-              </div>
-              <span className="font-display font-bold text-2xl text-white tracking-tight">
+              <LogoMark className="w-8 h-8 text-white" />
+              <span className="font-display font-bold text-xl tracking-tight text-white">
                 Makarenko<span className="text-accent">.</span>
               </span>
             </a>
-            <p className="text-white/60 max-w-sm leading-relaxed">
+            <p className="text-text-inverse/70 text-sm leading-relaxed">
               {t('footer.description')}
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Meny</h4>
-            <ul className="space-y-4">
-              <li><a href="#services" className="text-white/60 hover:text-accent transition-colors">{t('nav.services')}</a></li>
-              <li><a href="#calculator" className="text-white/60 hover:text-accent transition-colors">{t('nav.calculator')}</a></li>
-              <li><a href="#about" className="text-white/60 hover:text-accent transition-colors">{t('nav.about')}</a></li>
-              <li><a href="#faq" className="text-white/60 hover:text-accent transition-colors">{t('nav.faq')}</a></li>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">{t('footer.linksTitle')}</h4>
+            <ul className="space-y-3">
+              <li><a href="#about" className="text-text-inverse/70 hover:text-accent transition-colors text-sm">{t('nav.about')}</a></li>
+              <li><a href="#calculator" className="text-text-inverse/70 hover:text-accent transition-colors text-sm">{t('nav.calculator')}</a></li>
+              <li><a href="#faq" className="text-text-inverse/70 hover:text-accent transition-colors text-sm">{t('nav.faq')}</a></li>
+              <li><a href="#contact" className="text-text-inverse/70 hover:text-accent transition-colors text-sm">{t('nav.contact')}</a></li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Services */}
           <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Kontakt</h4>
-            <ul className="space-y-4 text-white/60">
-              <li>{t('contact.address')}</li>
-              <li><a href={`tel:${t('contact.phoneNumber')}`} className="hover:text-accent transition-colors">{t('contact.phoneNumber')}</a></li>
-              <li><a href={`mailto:${t('contact.emailAddress')}`} className="hover:text-accent transition-colors">{t('contact.emailAddress')}</a></li>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">{t('footer.servicesTitle')}</h4>
+            <ul className="space-y-3">
+              <li className="text-text-inverse/70 text-sm">Flyttevask</li>
+              <li className="text-text-inverse/70 text-sm">Regelmessig vask</li>
+              <li className="text-text-inverse/70 text-sm">Kontorvask</li>
+              <li className="text-text-inverse/70 text-sm">Visningsvask</li>
+            </ul>
+          </div>
+
+          {/* Legal / Trust */}
+          <div>
+            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">{t('footer.legalTitle')}</h4>
+            <ul className="space-y-3">
+              <li className="text-text-inverse/70 text-sm">Personvernerklæring</li>
+              <li className="text-text-inverse/70 text-sm">Brukervilkår</li>
+              <li className="text-text-inverse/70 text-sm flex items-center gap-2 mt-4">
+                <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                Offentlig Godkjent
+              </li>
             </ul>
           </div>
 
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
-            © {year} Makarenko Reinhold. {t('footer.rights')}
+          <p className="text-text-inverse/50 text-sm">
+            © {currentYear} Makarenko Reinhold. {t('footer.rights')}
           </p>
-          <div className="flex gap-4 text-white/40 text-sm">
-            <span>Org.nr: 933 123 456</span>
-            <span>Offentlig Godkjent</span>
+          <div className="flex gap-4">
+            <span className="text-text-inverse/50 text-sm">Org.nr: 933 123 456</span>
           </div>
         </div>
       </div>

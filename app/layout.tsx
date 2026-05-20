@@ -5,22 +5,26 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Makarenko Reinhold | Profesjonell Renhold i Notodden",
-  description: "Offentlig godkjent renholdsbedrift i Notodden. Vi tilbyr flyttevask med garanti, regelmessig renhold og bedriftsrenhold. 100% fornøydgaranti.",
-  keywords: ["renhold notodden", "flyttevask telemark", "vaskebyrå", "makarenko reinhold", "hms kort renhold"],
+  description: "Offentlig godkjent renholdsbedrift i Notodden. Vi tilbyr flyttevask med garanti, regelmessig vask og bedriftsrenhold. Fullt forsikret, HMS-kort og Svanemerkede produkter.",
+  keywords: ["renhold Notodden", "flyttevask Telemark", "vaskehjelp", "Makarenko Reinhold", "offentlig godkjent renhold"],
   icons: {
     icon: "/icon.svg",
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="no" className="scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body text-text-main bg-bg-light antialiased selection:bg-accent/20 selection:text-primary">
+      <body>
         <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>

@@ -1,65 +1,43 @@
 
 "use client";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./ui/SectionHeading";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import { SectionHeading } from './Shared';
+import { getIconByName } from './Icons';
 
 export default function WhyUs() {
   const { t } = useLocale();
+  const items = t('whyUs.items') as any[];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
           badge={t('whyUs.badge')}
           title={t('whyUs.title')}
           subtitle={t('whyUs.subtitle')}
-          align="center"
         />
 
-        <div className="mt-16 max-w-4xl mx-auto">
-          <div className="grid grid-cols-3 gap-4 mb-6 px-6">
-            <div className="col-span-1"></div>
-            <div className="col-span-1 text-center font-display font-bold text-xl text-primary">Makarenko</div>
-            <div className="col-span-1 text-center font-display font-bold text-xl text-text-muted">Andre</div>
-          </div>
-
-          <div className="space-y-4">
-            {[
-              { label: "Offentlig Godkjent (Arbeidstilsynet)", us: true, them: false },
-              { label: "Svanemerkede Produkter", us: true, them: false },
-              { label: "Online Priskalkulator", us: true, them: false },
-              { label: "10M Ansvarsforsikring", us: true, them: "Delvis" },
-              { label: "Fast Sjekkliste for Flyttevask", us: true, them: "Varierer" },
-            ].map((row, i) => (
-              <div key={i} className="grid grid-cols-3 gap-4 items-center p-6 rounded-2xl bg-bg-light border border-border hover:border-accent/30 transition-colors">
-                <div className="col-span-1 font-bold text-primary text-sm md:text-base">{row.label}</div>
-                
-                <div className="col-span-1 flex justify-center">
-                  {row.us === true ? (
-                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    </div>
-                  ) : (
-                    <span className="font-bold text-primary">{row.us}</span>
-                  )}
-                </div>
-
-                <div className="col-span-1 flex justify-center opacity-50">
-                  {row.them === true ? (
-                    <div className="w-8 h-8 rounded-full bg-text-muted/20 flex items-center justify-center text-text-muted">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    </div>
-                  ) : row.them === false ? (
-                    <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-red-500">
-                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    </div>
-                  ) : (
-                    <span className="font-bold text-text-muted">{row.them}</span>
-                  )}
-                </div>
+        <div className="grid md:grid-cols-2 gap-6 mt-12">
+          {items.map((item, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="flex gap-6 bg-bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            >
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent">
+                {getIconByName(item.icon, "w-6 h-6")}
               </div>
-            ))}
-          </div>
+              <div>
+                <h3 className="text-lg font-bold text-primary mb-2">{item.title}</h3>
+                <p className="text-text-muted leading-relaxed">{item.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,126 +1,150 @@
 
 "use client";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import pricing from "@/lib/pricing.json";
-import SectionHeading from "./ui/SectionHeading";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import pricing from '@/lib/pricing.json';
+import { SectionHeading, Button } from './Shared';
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [area, setArea] = useState(80);
-  const [type, setType] = useState<"flyttevask" | "regelmessig" | "visning">("flyttevask");
-  const [total, setTotal] = useState(0);
+  const [area, setArea] = useState(pricing.defaultArea);
+  const [type, setType] = useState<'flyttevask' | 'regelmessig'>('flyttevask');
+  const [extras, setExtras] = useState({ vindu: false, teppe: false });
+  const [estimate, setEstimate] = useState(0);
 
   useEffect(() => {
-    const config = pricing.services[type];
-    const calc = config.basePrice + (area * config.perSqmRate);
-    setTotal(calc);
-  }, [area, type]);
+    // Base calculation: (basePrice * area) / standard_factor
+    // Simplified for demo: basePrice is per hour, assume 1 hr per 15m2 for flyttevask, 1 hr per 25m2 for regelmessig
+    const baseRate = pricing.basePrices[type];
+    const efficiency = type === 'flyttevask' ? 15 : 25;
+    let hours = Math.max(2, area / efficiency); // Min 2 hours
+    
+    let price = hours * baseRate;
+    
+    if (extras.vindu) price *= pricing.multipliers.vindu;
+    if (extras.teppe) price *= pricing.multipliers.teppe;
+
+    setEstimate(Math.round(price));
+  }, [area, type, extras]);
 
   return (
-    <section id="calculator" className="py-24 bg-white relative">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-bg-light rounded-bl-[100px] opacity-50 pointer-events-none" />
+    <section id="calculator" className="py-24 bg-primary relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute inset-0 opacity-10">
+        <svg className="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" strokeWidth="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading 
           badge={t('calculator.badge')}
           title={t('calculator.title')}
           subtitle={t('calculator.subtitle')}
-          align="center"
+          centered={true}
+          light={true}
         />
 
-        <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-[0_20px_60px_hsl(222,47%,11%,0.08)] border border-border p-8 md:p-12">
-          <div className="grid md:grid-cols-2 gap-12">
+        <div className="max-w-4xl mx-auto mt-12 bg-bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+          
+          {/* Left: Controls */}
+          <div className="p-8 md:p-12 md:w-3/5">
             
-            {/* Controls */}
-            <div className="space-y-10">
-              {/* Service Type */}
-              <div>
-                <label className="block text-sm font-bold text-primary uppercase tracking-wider mb-4">
-                  {t('calculator.typeLabel')}
-                </label>
-                <div className="space-y-3">
-                  {(["flyttevask", "regelmessig", "visning"] as const).map((tOption) => (
-                    <button
-                      key={tOption}
-                      onClick={() => setType(tOption)}
-                      className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all ${
-                        type === tOption 
-                          ? "border-accent bg-accent/5 text-primary" 
-                          : "border-border hover:border-accent/30 text-text-muted"
-                      }`}
-                    >
-                      <span className="font-semibold">{t(`calculator.type${tOption.charAt(0).toUpperCase() + tOption.slice(1)}`)}</span>
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${type === tOption ? "border-accent" : "border-border"}`}>
-                        {type === tOption && <div className="w-2.5 h-2.5 bg-accent rounded-full" />}
-                      </div>
-                    </button>
-                  ))}
-                </div>
+            {/* Area Slider */}
+            <div className="mb-10">
+              <div className="flex justify-between items-end mb-4">
+                <label className="font-bold text-primary">{t('calculator.areaLabel')}</label>
+                <span className="text-2xl font-display font-bold text-accent">{area} m²</span>
               </div>
-
-              {/* Area Slider */}
-              <div>
-                <div className="flex justify-between items-end mb-4">
-                  <label className="block text-sm font-bold text-primary uppercase tracking-wider">
-                    {t('calculator.areaLabel')}
-                  </label>
-                  <span className="text-2xl font-display font-bold text-accent">{area} m²</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="20" 
-                  max="300" 
-                  step="5"
-                  value={area}
-                  onChange={(e) => setArea(Number(e.target.value))}
-                  className="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
-                />
-                <div className="flex justify-between text-xs text-text-muted mt-2 font-medium">
-                  <span>20 m²</span>
-                  <span>300 m²</span>
-                </div>
+              <input 
+                type="range" 
+                min={pricing.minArea} 
+                max={pricing.maxArea} 
+                value={area}
+                onChange={(e) => setArea(Number(e.target.value))}
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+              <div className="flex justify-between text-xs text-text-muted mt-2">
+                <span>{pricing.minArea} m²</span>
+                <span>{pricing.maxArea} m²</span>
               </div>
             </div>
 
-            {/* Result */}
-            <div className="bg-primary rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl -mr-10 -mt-10" />
-              
-              <div>
-                <p className="text-white/60 text-sm font-bold uppercase tracking-wider mb-2">
-                  {t('calculator.totalLabel')}
-                </p>
-                <div className="flex items-baseline gap-2">
-                  <motion.span 
-                    key={total}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-5xl md:text-6xl font-display font-bold text-white"
-                  >
-                    {total.toLocaleString('no-NO')}
-                  </motion.span>
-                  <span className="text-xl text-accent-light font-bold">NOK</span>
-                </div>
-                {type === "regelmessig" && <p className="text-white/60 mt-2 text-sm">per gang</p>}
-              </div>
-
-              <div className="mt-10 space-y-4">
-                <a 
-                  href="#contact"
-                  className="block w-full py-4 rounded-xl bg-accent text-white font-bold text-center transition-all hover:bg-accent-light hover:shadow-[0_0_20px_hsl(158,64%,42%,0.4)] active:scale-95"
+            {/* Type Selection */}
+            <div className="mb-10">
+              <label className="font-bold text-primary block mb-4">{t('calculator.typeLabel')}</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button
+                  onClick={() => setType('flyttevask')}
+                  className={`p-4 rounded-xl border-2 text-left transition-all ${type === 'flyttevask' ? 'border-accent bg-accent/5' : 'border-gray-200 hover:border-accent/50'}`}
                 >
-                  {t('calculator.cta')}
-                </a>
-                <p className="text-xs text-white/40 text-center">
-                  {t('calculator.disclaimer')}
-                </p>
+                  <div className={`w-4 h-4 rounded-full border-2 mb-2 flex items-center justify-center ${type === 'flyttevask' ? 'border-accent' : 'border-gray-300'}`}>
+                    {type === 'flyttevask' && <div className="w-2 h-2 bg-accent rounded-full" />}
+                  </div>
+                  <span className="font-semibold text-primary block">{t('calculator.typeFlyttevask')}</span>
+                </button>
+                <button
+                  onClick={() => setType('regelmessig')}
+                  className={`p-4 rounded-xl border-2 text-left transition-all ${type === 'regelmessig' ? 'border-accent bg-accent/5' : 'border-gray-200 hover:border-accent/50'}`}
+                >
+                  <div className={`w-4 h-4 rounded-full border-2 mb-2 flex items-center justify-center ${type === 'regelmessig' ? 'border-accent' : 'border-gray-300'}`}>
+                    {type === 'regelmessig' && <div className="w-2 h-2 bg-accent rounded-full" />}
+                  </div>
+                  <span className="font-semibold text-primary block">{t('calculator.typeRegelmessig')}</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Extras */}
+            <div>
+              <label className="font-bold text-primary block mb-4">{t('calculator.extrasLabel')}</label>
+              <div className="space-y-3">
+                <label className="flex items-center gap-3 cursor-pointer group">
+                  <div className={`w-6 h-6 rounded border flex items-center justify-center transition-colors ${extras.vindu ? 'bg-accent border-accent' : 'border-gray-300 group-hover:border-accent'}`}>
+                    {extras.vindu && <IconCheck className="w-4 h-4 text-white" />}
+                  </div>
+                  <input type="checkbox" className="hidden" checked={extras.vindu} onChange={() => setExtras({...extras, vindu: !extras.vindu})} />
+                  <span className="text-text-main font-medium">{t('calculator.extraVindu')}</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer group">
+                  <div className={`w-6 h-6 rounded border flex items-center justify-center transition-colors ${extras.teppe ? 'bg-accent border-accent' : 'border-gray-300 group-hover:border-accent'}`}>
+                    {extras.teppe && <IconCheck className="w-4 h-4 text-white" />}
+                  </div>
+                  <input type="checkbox" className="hidden" checked={extras.teppe} onChange={() => setExtras({...extras, teppe: !extras.teppe})} />
+                  <span className="text-text-main font-medium">{t('calculator.extraTeppe')}</span>
+                </label>
               </div>
             </div>
 
           </div>
+
+          {/* Right: Result */}
+          <div className="bg-bg-light p-8 md:p-12 md:w-2/5 flex flex-col justify-center border-t md:border-t-0 md:border-l border-gray-200">
+            <p className="text-text-muted font-semibold uppercase tracking-wider text-sm mb-2">{t('calculator.estimatedPrice')}</p>
+            <div className="text-5xl md:text-6xl font-display font-bold text-primary mb-4 flex items-baseline gap-2">
+              <motion.span 
+                key={estimate}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-accent"
+              >
+                {estimate}
+              </motion.span>
+              <span className="text-2xl text-text-muted">{pricing.currency}</span>
+            </div>
+            <p className="text-sm text-text-muted mb-8">{t('calculator.priceDisclaimer')}</p>
+            
+            <a href="#contact" className="w-full">
+              <Button className="w-full py-4 text-lg">{t('calculator.cta')}</Button>
+            </a>
+          </div>
+
         </div>
       </div>
     </section>

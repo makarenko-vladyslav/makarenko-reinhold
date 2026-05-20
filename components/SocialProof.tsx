@@ -1,40 +1,33 @@
 
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLocale } from '@/lib/i18n';
+import { IconCheck } from './Icons';
 
 export default function SocialProof() {
   const { t } = useLocale();
-  
-  const partners = [
-    "Arbeidstilsynet", "Svanemerket", "Gjensidige Forsikring", "Telemark Eiendom", "Notodden Kommune"
-  ];
+  const items = t('socialProof.items') as string[];
 
   return (
-    <section className="py-12 bg-bg-light border-b border-border overflow-hidden">
+    <section className="py-8 bg-bg-light border-b border-gray-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <p className="text-center text-sm font-bold text-text-muted uppercase tracking-widest mb-8">
-          {t('socialProof.title')}
-        </p>
-        
-        <div className="relative flex overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-bg-light to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-bg-light to-transparent z-10" />
-          
-          <motion.div 
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
-            className="flex whitespace-nowrap gap-16 items-center"
-          >
-            {[...partners, ...partners].map((partner, i) => (
-              <div key={i} className="flex items-center gap-2 opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-                <div className="w-8 h-8 rounded-full bg-border flex items-center justify-center">
-                  <div className="w-4 h-4 bg-primary rounded-sm" />
-                </div>
-                <span className="font-display font-bold text-xl text-primary">{partner}</span>
+        <div className="flex flex-wrap justify-center md:justify-between items-center gap-6 md:gap-4">
+          {items.map((item, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="flex items-center gap-2"
+            >
+              <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                <IconCheck className="w-3 h-3 text-accent-dark" />
               </div>
-            ))}
-          </motion.div>
+              <span className="text-sm font-semibold text-text-main tracking-wide">{item}</span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
