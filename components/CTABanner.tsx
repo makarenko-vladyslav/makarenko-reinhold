@@ -1,42 +1,46 @@
-
 "use client";
 import { useLocale } from '@/lib/i18n';
 import { motion } from 'framer-motion';
-import { Calculator } from '@phosphor-icons/react';
+import { ArrowRight } from '@phosphor-icons/react';
 
 export default function CTABanner() {
   const { t } = useLocale();
 
   return (
-    <section className="py-24 bg-surface">
-      <div className="max-w-5xl mx-auto px-6">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+    <section className="bg-accent py-20 relative overflow-hidden">
+      {/* Decorative pattern */}
+      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-primary rounded-3xl p-12 md:p-16 text-center relative overflow-hidden shadow-2xl"
+          className="text-4xl md:text-5xl font-display font-bold text-white mb-6"
         >
-          {/* Decorative background elements */}
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-            <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
-            <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-          </div>
-
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-              {t('cta.title') as string}
-            </h2>
-            <p className="text-lg text-white/80 mb-10">
-              {t('cta.desc') as string}
-            </p>
-            <a 
-              href="#calculator" 
-              className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-accent-hover transition-all hover:-translate-y-1 shadow-lg shadow-accent/30"
-            >
-              <Calculator size={24} weight="duotone" />
-              {t('cta.btn') as string}
-            </a>
-          </div>
+          {t('cta.title')}
+        </motion.h2>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
+        >
+          {t('cta.desc')}
+        </motion.p>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          <a href="#kalkulator" className="inline-flex items-center gap-2 bg-primary hover:bg-bg-dark text-white px-8 py-4 rounded-md font-bold text-lg transition-all shadow-xl hover:-translate-y-1">
+            {t('cta.btn')}
+            <ArrowRight size={20} weight="bold" />
+          </a>
         </motion.div>
       </div>
     </section>

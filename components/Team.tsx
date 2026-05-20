@@ -1,41 +1,41 @@
-
 "use client";
 import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
 import { motion } from 'framer-motion';
 
 export default function Team() {
   const { t } = useLocale();
-  const items = t('team.items') as Array<{name: string, role: string, bio: string}>;
+  const items = t('team.items') as { name: string; role: string; bio: string }[];
+  
+  const seeds = ["anna-d", "team-1", "inspector"];
 
   return (
-    <section className="py-24 bg-surface">
+    <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16 max-w-2xl">
-          <span className="text-accent font-bold tracking-wider uppercase text-sm mb-3 block">{t('team.badge') as string}</span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-4">{t('team.title') as string}</h2>
-          <div className="w-16 h-1 bg-accent rounded-full mb-6" />
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {items.map((member, i) => (
-            <motion.div 
+        <SectionHeading badge={t('team.badge')} title={t('team.title')} />
+        
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          {items.map((item, i) => (
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-bg-light rounded-3xl overflow-hidden shadow-card"
+              transition={{ delay: i * 0.1 }}
+              className="bg-white rounded-2xl overflow-hidden shadow-premium group"
             >
-              <div className="aspect-square relative">
+              <div className="aspect-[4/3] bg-bg-muted overflow-hidden">
                 <img 
-                  src={`https://picsum.photos/seed/${member.name.replace(' ', '')}/600/600`} 
-                  alt={member.name}
-                  className="w-full h-full object-cover"
+                  src={`https://api.dicebear.com/7.x/notionists/svg?seed=${seeds[i]}&backgroundColor=e2e8f0`} 
+                  alt={item.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
                 />
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-display font-bold text-primary mb-1">{member.name}</h3>
-                <div className="text-accent font-semibold text-sm mb-4">{member.role}</div>
-                <p className="text-text-muted leading-relaxed">{member.bio}</p>
+                <h3 className="font-display font-bold text-xl text-primary mb-1">{item.name}</h3>
+                <p className="text-accent font-medium text-sm mb-4">{item.role}</p>
+                <p className="text-text-muted text-sm leading-relaxed">{item.bio}</p>
               </div>
             </motion.div>
           ))}

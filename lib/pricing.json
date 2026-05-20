@@ -1,15 +1,22 @@
-
 {
-  "baseRate": 550,
+  "currency": "NOK",
+  "baseHourlyRate": 550,
+  "flyttevask": {
+    "basePrice": 2500,
+    "pricePerSqm": 45,
+    "minSqm": 30,
+    "maxSqm": 400
+  },
   "services": [
-    { "id": "flyttevask", "nameNo": "Flyttevask", "nameEn": "Move-Out Cleaning", "baseMultiplier": 1.5, "perSqm": 80 },
-    { "id": "regelmessig", "nameNo": "Regelmessig Vask", "nameEn": "Regular Cleaning", "baseMultiplier": 1.0, "perSqm": 45 },
-    { "id": "visningsvask", "nameNo": "Visningsvask", "nameEn": "Pre-Sale Cleaning", "baseMultiplier": 1.3, "perSqm": 65 },
-    { "id": "kontorvask", "nameNo": "Kontorvask", "nameEn": "Office Cleaning", "baseMultiplier": 0.9, "perSqm": 40 }
+    { "id": "flyttevask", "type": "sqm", "multiplier": 1 },
+    { "id": "regelmessig", "type": "hourly", "minHours": 2 },
+    { "id": "visningsvask", "type": "sqm", "multiplier": 0.8 },
+    { "id": "kontorvask", "type": "sqm", "multiplier": 0.6 }
   ],
   "extras": [
-    { "id": "ovn", "nameNo": "Dyprens Stekeovn", "nameEn": "Deep Clean Oven", "price": 450 },
-    { "id": "kjoleskap", "nameNo": "Vask Kjøleskap", "nameEn": "Clean Fridge", "price": 350 },
-    { "id": "vindu_ekstra", "nameNo": "Ekstra Vindusvask (vanskelig tilgang)", "nameEn": "Extra Window Cleaning", "price": 600 }
+    { "id": "vindusvask_utvendig", "price": 450, "type": "fixed" },
+    { "id": "hvitevarer", "price": 600, "type": "fixed" },
+    { "id": "tepperens", "price": 800, "type": "fixed" },
+    { "id": "balkong", "price": 350, "type": "fixed" }
   ]
 }

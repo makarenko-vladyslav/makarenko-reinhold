@@ -1,4 +1,3 @@
-
 {
   "defaultLocale": "no",
   "locales": {
@@ -6,6 +5,7 @@
       "nav": {
         "services": "Tjenester",
         "calculator": "Priskalkulator",
+        "guarantee": "Garanti",
         "about": "Om Oss",
         "faq": "FAQ",
         "contact": "Kontakt",
@@ -13,130 +13,172 @@
       },
       "hero": {
         "badge": "Offentlig Godkjent Renholdsbedrift",
-        "title": "Plettfrie rom. Garantert.",
-        "subtitle": "Profesjonell rengjøring i Notodden og Telemark. Vi leverer trygghet, kvalitet og miljøvennlige løsninger for ditt hjem eller bedrift.",
+        "title": "Plettfrie Resultater.<br/>Garantert Godkjent.",
+        "subtitle": "Profesjonelt renhold i Notodden og Telemark. Vi sikrer hjemmet ditt med 100% fornøydgaranti, HMS-kort og Svanemerkede produkter.",
         "ctaPrimary": "Beregn Pris Nå",
         "ctaSecondary": "Våre Tjenester",
-        "stat1": "10M NOK",
-        "stat1Label": "Ansvarsforsikring",
-        "stat2": "100%",
-        "stat2Label": "Fornøydgaranti"
+        "trust": [
+          "Arbeidstilsynet Godkjent",
+          "10 MNOK Ansvarsforsikring",
+          "Svanemerket Kjemi"
+        ]
       },
-      "trust": {
-        "approved": "Godkjent av Arbeidstilsynet",
-        "hms": "HMS-kort for alle ansatte",
-        "eco": "Svanemerkede produkter",
-        "insurance": "Fullt forsikret (10M NOK)"
+      "trustBar": {
+        "title": "Din trygghet er vår prioritet. Vi opererer etter strenge norske standarder."
       },
-      "whyUs": {
+      "features": {
         "badge": "Hvorfor Velge Oss",
-        "title": "Trygghet i Hver Detalj",
+        "title": "Data-Drevet Renhold for Din Trygghet",
         "items": [
           {
-            "title": "100% Lovlig & Forsikret",
-            "desc": "Unngå risiko. Vi er en offentlig godkjent renholdsbedrift med HMS-kort og ansvarsforsikring opptil 10 millioner NOK."
+            "title": "100% Godkjenningsgaranti",
+            "desc": "Vår Flyttevask følger en streng sjekkliste utviklet med ledende eiendomsmeglere i Telemark. Blir det ikke godkjent, retter vi det kostnadsfritt innen 48 timer."
           },
           {
-            "title": "Miljøvennlig & Skånsomt",
-            "desc": "Vi bruker Svanemerkede midler og profesjonelle damprensere som fjerner 99% av bakterier uten skadelige kjemikalier."
+            "title": "Svanemerket & Trygt",
+            "desc": "Vi bruker utelukkende miljøsertifiserte produkter og industriell damprens som fjerner 99% av bakterier uten skadelige kjemikalier for barn, kjæledyr eller dyre overflater."
           },
           {
-            "title": "Garantert Godkjenning",
-            "desc": "Vår flyttevask følger strenge sjekklister utarbeidet med ledende eiendomsmeglere i Telemark. Vi garanterer at vasken blir godkjent."
+            "title": "Fullt Forsikret & Lovlig",
+            "desc": "Som offentlig godkjent renholdsbedrift har alle våre ansatte HMS-kort, og vi har en ansvarsforsikring på opptil 10 millioner NOK for å beskytte din eiendom."
           },
           {
             "title": "Lokal Pålitelighet",
-            "desc": "Basert i Notodden. Vi er alltid presise, uten forsinkelser på grunn av lang reisevei."
+            "desc": "Med base i Notodden garanterer vi at våre spesialister ankommer nøyaktig til avtalt tid, uten forsinkelser grunnet lang reisevei."
           }
         ]
       },
-      "flyttevask": {
-        "badge": "Vår Spesialitet",
-        "title": "Flyttevask med Garanti",
-        "desc": "Å flytte er stressende nok. La oss ta oss av utvasken. Vi garanterer at utleier eller ny eier blir fornøyd, ellers kommer vi tilbake og retter opp – kostnadsfritt.",
-        "features": [
-          "Fast sjekkliste iht. meglernes krav",
-          "Vindusvask innvendig/utvendig inkludert",
-          "Dyprens av hvitevarer",
-          "Fjerning av kalk og smuss på bad"
+      "services": {
+        "badge": "Våre Tjenester",
+        "title": "Komplett Renhold for Hjem og Bedrift",
+        "items": [
+          {
+            "id": "flyttevask",
+            "title": "Flyttevask med Garanti",
+            "desc": "Komplett nedvask inkludert hvitevarer og vinduer. Garantert godkjent av huseier eller kjøper.",
+            "icon": "House"
+          },
+          {
+            "id": "regelmessig",
+            "title": "Regelmessig Vask",
+            "desc": "Fast avtale for et alltid rent hjem. Du velger frekvens, vi stiller med fast renholder.",
+            "icon": "CalendarCheck"
+          },
+          {
+            "id": "visningsvask",
+            "title": "Visningsvask",
+            "desc": "Detaljert rengjøring som maksimerer verdien av boligen din før fotografering og visning.",
+            "icon": "Sparkle"
+          },
+          {
+            "id": "kontorvask",
+            "title": "Kontor & Bedrift",
+            "desc": "Skreddersydde renholdsplaner for et sunt og produktivt arbeidsmiljø.",
+            "icon": "Buildings"
+          },
+          {
+            "id": "vindusvask",
+            "title": "Vindusvask",
+            "desc": "Stripefrie vinduer innvendig og utvendig, selv på vanskelig tilgjengelige steder.",
+            "icon": "Drop"
+          },
+          {
+            "id": "spesial",
+            "title": "Spesialrenhold",
+            "desc": "Tepperens, byggvask, og dyprens av kjøkken/bad med profesjonelt damputstyr.",
+            "icon": "ShieldCheck"
+          }
         ]
       },
       "calculator": {
-        "badge": "Gjennomsiktige Priser",
-        "title": "Beregn Din Pris",
-        "sizeLabel": "Størrelse på bolig (m²)",
-        "serviceLabel": "Velg Tjeneste",
+        "badge": "Prisoverslag",
+        "title": "Beregn Pris på Flyttevask",
+        "sqmLabel": "Størrelse på bolig (m²)",
         "extrasLabel": "Tilleggstjenester",
-        "totalLabel": "Estimert Pris",
-        "disclaimer": "Prisen er et estimat inkl. MVA. Endelig pris bekreftes ved befaring eller bestilling.",
+        "totalLabel": "Estimert Pris (inkl. MVA)",
+        "disclaimer": "Dette er et estimat. Endelig pris bekreftes ved befaring eller detaljert avtale.",
         "bookBtn": "Bestill Nå"
       },
-      "services": {
-        "badge": "Våre Tjenester",
-        "title": "Komplett Renhold",
-        "items": [
-          { "title": "Regelmessig Vask", "desc": "Fast avtale for et alltid rent hjem, tilpasset dine behov." },
-          { "title": "Visningsvask", "desc": "Gjør et perfekt førsteinntrykk før fotografering og visning." },
-          { "title": "Kontorvask", "desc": "Et rent og sunt arbeidsmiljø for dine ansatte." },
-          { "title": "Vindusvask", "desc": "Stripefrie vinduer, uansett etasje eller størrelse." },
-          { "title": "Hyttevask", "desc": "Kom frem til en ren hytte, klar for avslapning." },
-          { "title": "Tepperens", "desc": "Dyprens som fjerner flekker, lukt og allergener." }
-        ],
-        "moreBtn": "Se alle 20 tjenester"
+      "guarantee": {
+        "badge": "Vårt Løfte",
+        "title": "Sjekklisten som Garanterer Depositumet Ditt",
+        "desc": "Vår flyttevask er ikke bare en vask, det er en systematisk gjennomgang av boligen din basert på kravene fra Forbrukerrådet og lokale eiendomsmeglere.",
+        "points": [
+          "Tørrmopping av tak og vegger",
+          "Dyprens av sluk og avtrekksvifter",
+          "Innvendig vask av alle skap og skuffer",
+          "Rengjøring bak komfyr og kjøleskap",
+          "Pussing av vinduer inn- og utvendig"
+        ]
       },
       "process": {
         "badge": "Slik Fungerer Det",
-        "title": "Enkel og Trygg Prosess",
+        "title": "Fra Tilbud til Plettfritt Hjem",
         "steps": [
-          { "title": "Få Pris", "desc": "Bruk kalkulatoren vår eller kontakt oss for et uforpliktende tilbud." },
-          { "title": "Avtal Tid", "desc": "Vi finner et tidspunkt som passer deg. Nøkkelhåndtering skjer trygt og diskret." },
-          { "title": "Vi Vasker", "desc": "Våre profesjonelle renholdere utfører jobben med topp utstyr." },
-          { "title": "Godkjenning", "desc": "Du inspiserer. Ved flyttevask gjelder vår fornøydgaranti." }
+          { "title": "Få Prisoverslag", "desc": "Bruk kalkulatoren vår eller kontakt oss for et uforpliktende tilbud." },
+          { "title": "Bekreft Avtale", "desc": "Vi avtaler tidspunkt og går gjennom eventuelle spesielle behov." },
+          { "title": "Profesjonell Utførelse", "desc": "Vårt team ankommer med alt nødvendig utstyr og miljøvennlige midler." },
+          { "title": "Godkjent Resultat", "desc": "Du inspiserer arbeidet. Vi drar ikke før du er 100% fornøyd." }
         ]
       },
       "testimonials": {
         "badge": "Kundeomtaler",
         "title": "Hva Våre Kunder Sier",
         "items": [
-          { "name": "Lars O.", "role": "Huseier, Notodden", "quote": "Fantastisk flyttevask! Megleren var imponert over detaljnivået. Veldig betryggende at de er offentlig godkjent." },
-          { "name": "Kari M.", "role": "Fast kunde", "quote": "Har brukt Makarenko Reinhold til regelmessig vask i et halvt år nå. Alltid presise, og huset lukter friskt, ikke kjemikalier." },
-          { "name": "Ole T.", "role": "Utleier", "quote": "Rask respons og utmerket resultat etter oppussing. Damprensingen av badet gjorde at flisene så helt nye ut." },
-          { "name": "Ingrid S.", "role": "Familie på 4", "quote": "Å komme hjem til nyvasket hus på fredager er gull verdt. Føles trygt med HMS-kort og faste renholdere." },
-          { "name": "Petter V.", "role": "Bedriftseier", "quote": "De tar kontorvasken vår. Veldig profesjonelle, usynlige i arbeidstiden og alltid perfekt resultat." },
-          { "name": "Hanne L.", "role": "Student USN", "quote": "Gikk sammen med kollektivet om flyttevask. Fikk depositumet rett tilbake uten spørsmål. Anbefales!" }
+          { "name": "Lars O.", "role": "Huseier, Notodden", "quote": "Fantastisk service! Flyttevasken ble godkjent på første forsøk av en veldig streng utleier. Anbefales på det sterkeste.", "stars": 5 },
+          { "name": "Kari M.", "role": "Fast kunde", "quote": "Har brukt Makarenko til regelmessig vask i et halvt år nå. Alltid presise, grundige og veldig hyggelige.", "stars": 5 },
+          { "name": "Thomas E.", "role": "Eiendomsmegler", "quote": "Anbefaler alltid Makarenko til mine kunder for visningsvask. De leverer alltid et plettfritt resultat som hever inntrykket av boligen.", "stars": 5 },
+          { "name": "Ingrid H.", "role": "Student, USN", "quote": "Veldig betryggende at de er offentlig godkjent. Følte meg helt trygg på å gi dem nøkkelen. Vasken var perfekt.", "stars": 5 },
+          { "name": "Ole P.", "role": "Bedriftseier", "quote": "Vi byttet til Makarenko for kontorvasken vår. Merket stor forskjell på inneklimaet, og de ansatte er veldig fornøyde.", "stars": 5 },
+          { "name": "Silje N.", "role": "Småbarnsmor", "quote": "Elsker at de bruker Svanemerkede produkter. Det lukter rent, ikke kjemisk. Perfekt for oss med små barn.", "stars": 5 },
+          { "name": "Morten K.", "role": "Huseier", "quote": "Rask respons, tydelig pris og strålende utført arbeid. Tepperensen gjorde underverker på stuegulvet.", "stars": 4 },
+          { "name": "Anita B.", "role": "Leietaker", "quote": "Fikk fullt depositum tilbake takket være flyttevasken fra Makarenko. Verdt hver krone for sjelefreden.", "stars": 5 },
+          { "name": "Jan F.", "role": "Hytteeier", "quote": "De tok storrengjøringen på hytta før sesongen. Veldig grundig arbeid, til og med vinduene ble skinnende rene.", "stars": 5 },
+          { "name": "Eva S.", "role": "Fast kunde", "quote": "Det er en luksus å komme hjem til nyvasket hus hver fredag. Makarenko leverer kvalitet hver gang.", "stars": 5 },
+          { "name": "Rune T.", "role": "Utleier", "quote": "Som utleier krever jeg høy standard. Makarenko innfrir alltid, og jeg slipper å bekymre meg for klager fra nye leietakere.", "stars": 5 },
+          { "name": "Camilla L.", "role": "Huseier", "quote": "Veldig profesjonelle fra første kontakt. Fikk et detaljert tilbud, og resultatet overgikk forventningene.", "stars": 5 }
         ]
       },
       "team": {
         "badge": "Vårt Team",
-        "title": "Møt Ledelsen",
+        "title": "Menneskene Bak Renheten",
         "items": [
-          { "name": "Anna Dizhenko", "role": "Grunnlegger & Daglig Leder", "bio": "Anna grunnla Makarenko Reinhold med en visjon om å heve standarden for renhold i Telemark, med fokus på lovlighet, kvalitet og miljø." }
+          { "name": "Anna Dizhenko", "role": "Daglig Leder & Grunnlegger", "bio": "Anna grunnla Makarenko Reinhold med en visjon om å heve standarden for renhold i Telemark gjennom lovlighet, kvalitet og miljøfokus." },
+          { "name": "Sertifisert Team", "role": "Renholdsspesialister", "bio": "Alle våre ansatte har gyldig HMS-kort, er fullt forsikret og har gjennomgått grundig opplæring i moderne renholdsteknikker." },
+          { "name": "Kvalitetskontroll", "role": "Inspektører", "bio": "Våre erfarne inspektører sikrer at hver eneste jobb, spesielt flyttevask, møter våre strenge interne krav før overlevering." }
         ]
       },
       "faq": {
-        "badge": "Spørsmål & Svar",
-        "title": "Ofte Stilte Spørsmål",
+        "badge": "Ofte Stilte Spørsmål",
+        "title": "Svar på Dine Spørsmål",
         "items": [
-          { "q": "Er dere godkjent av Arbeidstilsynet?", "a": "Ja, vi er en offentlig godkjent renholdsbedrift. Alle våre ansatte har gyldige HMS-kort og lovlige arbeidsforhold." },
-          { "q": "Hva skjer hvis noe blir ødelagt under vasken?", "a": "Vi er fullt forsikret med en ansvarsforsikring på opptil 10 millioner NOK. Skulle uhellet være ute, dekker vi skaden." },
-          { "q": "Må jeg være hjemme når dere vasker?", "a": "Nei, det er ikke nødvendig. Mange av våre faste kunder gir oss en nøkkel som vi oppbevarer trygt og anonymisert i en safe." },
-          { "q": "Hva innebærer fornøydgarantien på flyttevask?", "a": "Dersom utleier, kjøper eller megler ikke godkjenner vasken, kommer vi tilbake og retter opp feilene kostnadsfritt innen 48 timer." },
-          { "q": "Hvilke rengjøringsmidler bruker dere?", "a": "Vi bruker primært Svanemerkede, miljøvennlige produkter og profesjonelle damprensere. Dette er skånsomt for overflater, inneklima og miljø." },
-          { "q": "Tar dere med alt av utstyr?", "a": "Ja, vi stiller med alt av nødvendig utstyr, inkludert støvsugere, damprensere og mikrofiberkluter av industristandard." },
-          { "q": "Hvordan betaler jeg?", "a": "Vi sender faktura etter utført oppdrag. For bedrifter kan vi avtale månedlig fakturering." },
-          { "q": "Hvor lang tid tar en flyttevask?", "a": "Dette avhenger av boligens størrelse og tilstand, men normalt beregner vi mellom 5-10 timer for en standard bolig." },
-          { "q": "Vasker dere hvitevarer?", "a": "Utvendig vask er inkludert i standard renhold. Innvendig dyprens av stekeovn, kjøleskap etc. er inkludert i flyttevask, og kan velges som tillegg ellers." },
-          { "q": "Har dere bindingstid på regelmessig vask?", "a": "Nei, vi har ingen lang bindingstid, kun en standard oppsigelsestid på 14 dager." }
+          { "q": "Er dere en lovlig og godkjent renholdsbedrift?", "a": "Ja, Makarenko Reinhold er en offentlig godkjent renholdsbedrift registrert hos Arbeidstilsynet. Alle våre ansatte har gyldige HMS-kort." },
+          { "q": "Hva skjer hvis flyttevasken ikke blir godkjent?", "a": "Vi har 100% fornøydgaranti. Skulle huseier eller kjøper finne mangler ved overlevering, kommer vi tilbake og retter dette kostnadsfritt innen 48 timer." },
+          { "q": "Hvilke rengjøringsmidler bruker dere?", "a": "Vi bruker utelukkende miljøvennlige, Svanemerkede produkter og profesjonelle damprensere. Dette sikrer et rent resultat uten skadelige kjemikalier, trygt for barn og dyr." },
+          { "q": "Er dere forsikret hvis noe blir ødelagt?", "a": "Ja, vi har en omfattende ansvarsforsikring på opptil 10 millioner NOK som dekker eventuelle skader på din eiendom under utførelse av oppdraget." },
+          { "q": "Må jeg være hjemme mens dere vasker?", "a": "Nei, det er ikke nødvendig. Mange av våre faste kunder gir oss en nøkkel, som vi oppbevarer trygt i henhold til våre sikkerhetsrutiner." },
+          { "q": "Hva er inkludert i en flyttevask?", "a": "Vår flyttevask er svært omfattende og inkluderer vask av tak, vegger, gulv, vinduer (inn/ut), skap og skuffer (inn/ut), hvitevarer, sluk, og ventiler. Vi følger en detaljert sjekkliste." },
+          { "q": "Tar dere med eget utstyr?", "a": "Ja, vi stiller med alt nødvendig profesjonelt utstyr og rengjøringsmidler. Du trenger ikke å holde noe selv." },
+          { "q": "Hvordan fungerer betalingen?", "a": "Vi sender faktura etter at oppdraget er utført og godkjent. For bedrifter tilbyr vi faste faktureringsrutiner." },
+          { "q": "Kan dere vaske dyre overflater som marmor eller ubehandlet eik?", "a": "Absolutt. Våre ansatte er opplært i riktig behandling av spesialoverflater og bruker skånsomme metoder og tilpassede midler for å unngå skader." },
+          { "q": "Hvor lang tid tar en flyttevask?", "a": "Dette avhenger av boligens størrelse og tilstand, men typisk tar en bolig på 100 kvm mellom 6-10 timer for et team på to personer." },
+          { "q": "Tilbyr dere tjenester utenfor Notodden?", "a": "Vi dekker primært Notodden og omkringliggende områder i Telemark. Ta kontakt for å høre om vi kan hjelpe deg der du bor." }
         ]
       },
+      "coverage": {
+        "badge": "Vårt Område",
+        "title": "Lokalt Forankret i Telemark",
+        "desc": "Med base i Notodden rykker vi raskt ut til oppdrag i hele regionen. Lokal tilstedeværelse betyr punktlighet og pålitelighet for deg.",
+        "areas": ["Notodden Sentrum", "Heddal", "Gransherad", "Sauland", "Kongsberg (etter avtale)"]
+      },
       "cta": {
-        "title": "Klar for et renere hjem?",
-        "desc": "Få et uforpliktende pristilbud i dag. Vi svarer raskt.",
-        "btn": "Kontakt Oss"
+        "title": "Klar for et plettfritt resultat?",
+        "desc": "Få et uforpliktende tilbud i dag. Vi garanterer kvalitet, trygghet og et skinnende rent hjem.",
+        "btn": "Beregn Pris på Flyttevask"
       },
       "footer": {
-        "desc": "Din lokale, offentlig godkjente renholdspartner i Notodden og Telemark.",
-        "contact": "Kontakt",
+        "desc": "Makarenko Reinhold leverer profesjonelle renholdstjenester med fokus på kvalitet, miljø og trygghet i Notodden og Telemark.",
+        "contact": "Kontakt Oss",
         "links": "Hurtiglenker",
         "legal": "Juridisk",
         "rights": "Alle rettigheter reservert."
@@ -145,7 +187,8 @@
     "en": {
       "nav": {
         "services": "Services",
-        "calculator": "Pricing",
+        "calculator": "Calculator",
+        "guarantee": "Guarantee",
         "about": "About",
         "faq": "FAQ",
         "contact": "Contact",
@@ -153,130 +196,172 @@
       },
       "hero": {
         "badge": "Officially Approved Cleaning Company",
-        "title": "Spotless spaces. Guaranteed.",
-        "subtitle": "Professional cleaning in Notodden and Telemark. We deliver safety, quality, and eco-friendly solutions for your home or business.",
-        "ctaPrimary": "Calculate Price",
+        "title": "Spotless Results.<br/>Guaranteed Approved.",
+        "subtitle": "Professional cleaning in Notodden and Telemark. We secure your home with a 100% satisfaction guarantee, HMS cards, and Nordic Swan Ecolabelled products.",
+        "ctaPrimary": "Calculate Price Now",
         "ctaSecondary": "Our Services",
-        "stat1": "10M NOK",
-        "stat1Label": "Liability Insurance",
-        "stat2": "100%",
-        "stat2Label": "Satisfaction Guarantee"
+        "trust": [
+          "Labor Inspection Approved",
+          "10 MNOK Liability Insurance",
+          "Eco-friendly Chemicals"
+        ]
       },
-      "trust": {
-        "approved": "Approved by Labor Inspection",
-        "hms": "HMS cards for all staff",
-        "eco": "Eco-labeled products",
-        "insurance": "Fully insured (10M NOK)"
+      "trustBar": {
+        "title": "Your safety is our priority. We operate according to strict Norwegian standards."
       },
-      "whyUs": {
+      "features": {
         "badge": "Why Choose Us",
-        "title": "Safety in Every Detail",
+        "title": "Data-Driven Cleaning for Your Peace of Mind",
         "items": [
           {
-            "title": "100% Legal & Insured",
-            "desc": "Avoid risks. We are an officially approved cleaning company with HMS cards and liability insurance up to 10 million NOK."
+            "title": "100% Approval Guarantee",
+            "desc": "Our Move-out Cleaning follows a strict checklist developed with leading real estate agents. If not approved, we fix it free of charge within 48 hours."
           },
           {
-            "title": "Eco-Friendly & Gentle",
-            "desc": "We use Nordic Swan Ecolabelled products and professional steam cleaners that remove 99% of bacteria without harmful chemicals."
+            "title": "Eco-friendly & Safe",
+            "desc": "We exclusively use eco-certified products and industrial steam cleaning that removes 99% of bacteria without harmful chemicals for children, pets, or expensive surfaces."
           },
           {
-            "title": "Guaranteed Approval",
-            "desc": "Our move-out cleaning follows strict checklists developed with leading real estate agents. We guarantee the cleaning will be approved."
+            "title": "Fully Insured & Legal",
+            "desc": "As an officially approved cleaning company, all our employees have HMS cards, and we have liability insurance up to 10 million NOK to protect your property."
           },
           {
             "title": "Local Reliability",
-            "desc": "Based in Notodden. We are always punctual, without delays due to long travel times."
+            "desc": "Based in Notodden, we guarantee our specialists arrive exactly on time, without delays due to long travel distances."
           }
         ]
       },
-      "flyttevask": {
-        "badge": "Our Specialty",
-        "title": "Move-Out Cleaning with Guarantee",
-        "desc": "Moving is stressful enough. Let us handle the cleaning. We guarantee that the landlord or new owner will be satisfied, otherwise we return and fix it – free of charge.",
-        "features": [
-          "Fixed checklist per agent requirements",
-          "Window cleaning in/out included",
-          "Deep cleaning of appliances",
-          "Removal of limescale and grime in bathrooms"
+      "services": {
+        "badge": "Our Services",
+        "title": "Complete Cleaning for Home and Business",
+        "items": [
+          {
+            "id": "flyttevask",
+            "title": "Move-out Cleaning with Guarantee",
+            "desc": "Complete deep clean including appliances and windows. Guaranteed approved by landlord or buyer.",
+            "icon": "House"
+          },
+          {
+            "id": "regelmessig",
+            "title": "Regular Cleaning",
+            "desc": "Fixed agreement for an always clean home. You choose the frequency, we provide a dedicated cleaner.",
+            "icon": "CalendarCheck"
+          },
+          {
+            "id": "visningsvask",
+            "title": "Pre-sale Cleaning",
+            "desc": "Detailed cleaning that maximizes the value of your home before photography and viewing.",
+            "icon": "Sparkle"
+          },
+          {
+            "id": "kontorvask",
+            "title": "Office & Business",
+            "desc": "Tailored cleaning plans for a healthy and productive work environment.",
+            "icon": "Buildings"
+          },
+          {
+            "id": "vindusvask",
+            "title": "Window Cleaning",
+            "desc": "Streak-free windows inside and out, even in hard-to-reach places.",
+            "icon": "Drop"
+          },
+          {
+            "id": "spesial",
+            "title": "Specialized Cleaning",
+            "desc": "Carpet cleaning, post-construction cleaning, and deep cleaning of kitchens/bathrooms with professional steam equipment.",
+            "icon": "ShieldCheck"
+          }
         ]
       },
       "calculator": {
-        "badge": "Transparent Pricing",
-        "title": "Calculate Your Price",
-        "sizeLabel": "Property Size (m²)",
-        "serviceLabel": "Select Service",
+        "badge": "Price Estimate",
+        "title": "Calculate Move-out Cleaning Price",
+        "sqmLabel": "Size of home (m²)",
         "extrasLabel": "Additional Services",
-        "totalLabel": "Estimated Price",
-        "disclaimer": "Price is an estimate incl. VAT. Final price confirmed upon inspection or booking.",
+        "totalLabel": "Estimated Price (incl. VAT)",
+        "disclaimer": "This is an estimate. Final price is confirmed upon inspection or detailed agreement.",
         "bookBtn": "Book Now"
       },
-      "services": {
-        "badge": "Our Services",
-        "title": "Complete Cleaning",
-        "items": [
-          { "title": "Regular Cleaning", "desc": "Fixed agreement for an always clean home, tailored to your needs." },
-          { "title": "Pre-Sale Cleaning", "desc": "Make a perfect first impression before photography and viewings." },
-          { "title": "Office Cleaning", "desc": "A clean and healthy work environment for your employees." },
-          { "title": "Window Cleaning", "desc": "Streak-free windows, regardless of floor or size." },
-          { "title": "Cabin Cleaning", "desc": "Arrive at a clean cabin, ready for relaxation." },
-          { "title": "Carpet Cleaning", "desc": "Deep cleaning that removes stains, odors, and allergens." }
-        ],
-        "moreBtn": "See all 20 services"
+      "guarantee": {
+        "badge": "Our Promise",
+        "title": "The Checklist That Guarantees Your Deposit",
+        "desc": "Our move-out cleaning is not just a wash, it's a systematic review of your home based on requirements from the Consumer Council and local real estate agents.",
+        "points": [
+          "Dry mopping of ceilings and walls",
+          "Deep cleaning of drains and extractor fans",
+          "Interior cleaning of all cabinets and drawers",
+          "Cleaning behind stove and refrigerator",
+          "Polishing of windows inside and out"
+        ]
       },
       "process": {
         "badge": "How It Works",
-        "title": "Simple and Safe Process",
+        "title": "From Quote to Spotless Home",
         "steps": [
-          { "title": "Get Price", "desc": "Use our calculator or contact us for a free quote." },
-          { "title": "Schedule", "desc": "We find a time that suits you. Key handling is safe and discreet." },
-          { "title": "We Clean", "desc": "Our professional cleaners do the job with top equipment." },
-          { "title": "Approval", "desc": "You inspect. For move-out cleaning, our satisfaction guarantee applies." }
+          { "title": "Get an Estimate", "desc": "Use our calculator or contact us for a non-binding offer." },
+          { "title": "Confirm Appointment", "desc": "We agree on a time and discuss any special needs." },
+          { "title": "Professional Execution", "desc": "Our team arrives with all necessary equipment and eco-friendly products." },
+          { "title": "Approved Result", "desc": "You inspect the work. We don't leave until you are 100% satisfied." }
         ]
       },
       "testimonials": {
-        "badge": "Testimonials",
-        "title": "What Our Clients Say",
+        "badge": "Customer Reviews",
+        "title": "What Our Customers Say",
         "items": [
-          { "name": "Lars O.", "role": "Homeowner", "quote": "Fantastic move-out cleaning! The agent was impressed by the detail. Very reassuring that they are officially approved." },
-          { "name": "Kari M.", "role": "Regular Client", "quote": "Have used Makarenko Reinhold for regular cleaning for half a year now. Always punctual, and the house smells fresh, not chemical." },
-          { "name": "Ole T.", "role": "Landlord", "quote": "Fast response and excellent result after renovation. The steam cleaning of the bathroom made the tiles look brand new." },
-          { "name": "Ingrid S.", "role": "Family of 4", "quote": "Coming home to a newly cleaned house on Fridays is golden. Feels safe with HMS cards and regular cleaners." },
-          { "name": "Petter V.", "role": "Business Owner", "quote": "They handle our office cleaning. Very professional, invisible during working hours, and always perfect results." },
-          { "name": "Hanne L.", "role": "Student", "quote": "Got together with flatmates for move-out cleaning. Got the deposit right back without questions. Recommended!" }
+          { "name": "Lars O.", "role": "Homeowner", "quote": "Fantastic service! The move-out cleaning was approved on the first try by a very strict landlord.", "stars": 5 },
+          { "name": "Kari M.", "role": "Regular Customer", "quote": "Have used Makarenko for regular cleaning for six months now. Always precise, thorough, and very pleasant.", "stars": 5 },
+          { "name": "Thomas E.", "role": "Real Estate Agent", "quote": "Always recommend Makarenko to my clients for pre-sale cleaning. They always deliver a spotless result.", "stars": 5 },
+          { "name": "Ingrid H.", "role": "Student", "quote": "Very reassuring that they are officially approved. Felt completely safe giving them the key.", "stars": 5 },
+          { "name": "Ole P.", "role": "Business Owner", "quote": "We switched to Makarenko for our office cleaning. Noticed a big difference in the indoor climate.", "stars": 5 },
+          { "name": "Silje N.", "role": "Mother", "quote": "Love that they use eco-labeled products. It smells clean, not chemical. Perfect for us with small children.", "stars": 5 },
+          { "name": "Morten K.", "role": "Homeowner", "quote": "Fast response, clear pricing, and brilliantly executed work. The carpet cleaning worked wonders.", "stars": 4 },
+          { "name": "Anita B.", "role": "Tenant", "quote": "Got my full deposit back thanks to the move-out cleaning from Makarenko. Worth every penny for peace of mind.", "stars": 5 },
+          { "name": "Jan F.", "role": "Cabin Owner", "quote": "They did the spring cleaning at the cabin. Very thorough work, even the windows were sparkling clean.", "stars": 5 },
+          { "name": "Eva S.", "role": "Regular Customer", "quote": "It's a luxury to come home to a freshly cleaned house every Friday. Makarenko delivers quality every time.", "stars": 5 },
+          { "name": "Rune T.", "role": "Landlord", "quote": "As a landlord, I demand a high standard. Makarenko always delivers, and I don't have to worry about complaints.", "stars": 5 },
+          { "name": "Camilla L.", "role": "Homeowner", "quote": "Very professional from the first contact. Received a detailed offer, and the result exceeded expectations.", "stars": 5 }
         ]
       },
       "team": {
         "badge": "Our Team",
-        "title": "Meet the Management",
+        "title": "The People Behind the Cleanliness",
         "items": [
-          { "name": "Anna Dizhenko", "role": "Founder & CEO", "bio": "Anna founded Makarenko Reinhold with a vision to raise the standard of cleaning in Telemark, focusing on legality, quality, and the environment." }
+          { "name": "Anna Dizhenko", "role": "CEO & Founder", "bio": "Anna founded Makarenko Reinhold with a vision to raise the standard for cleaning in Telemark through legality, quality, and environmental focus." },
+          { "name": "Certified Team", "role": "Cleaning Specialists", "bio": "All our employees have valid HMS cards, are fully insured, and have undergone thorough training in modern cleaning techniques." },
+          { "name": "Quality Control", "role": "Inspectors", "bio": "Our experienced inspectors ensure that every single job, especially move-out cleaning, meets our strict internal requirements before handover." }
         ]
       },
       "faq": {
-        "badge": "Q&A",
-        "title": "Frequently Asked Questions",
+        "badge": "Frequently Asked Questions",
+        "title": "Answers to Your Questions",
         "items": [
-          { "q": "Are you approved by the Labor Inspection?", "a": "Yes, we are an officially approved cleaning company. All our employees have valid HMS cards and legal working conditions." },
-          { "q": "What happens if something breaks during cleaning?", "a": "We are fully insured with liability insurance up to 10 million NOK. Should an accident occur, we cover the damage." },
-          { "q": "Do I need to be home when you clean?", "a": "No, it is not necessary. Many of our regular customers give us a key which we store safely and anonymously in a safe." },
-          { "q": "What does the satisfaction guarantee on move-out cleaning mean?", "a": "If the landlord, buyer or agent does not approve the cleaning, we return and correct the errors free of charge within 48 hours." },
-          { "q": "What cleaning products do you use?", "a": "We primarily use Nordic Swan Ecolabelled, environmentally friendly products and professional steam cleaners. This is gentle on surfaces, indoor climate, and the environment." },
-          { "q": "Do you bring all equipment?", "a": "Yes, we provide all necessary equipment, including vacuum cleaners, steam cleaners, and industrial standard microfiber cloths." },
-          { "q": "How do I pay?", "a": "We send an invoice after the assignment is completed. For businesses, we can arrange monthly invoicing." },
-          { "q": "How long does a move-out cleaning take?", "a": "This depends on the size and condition of the home, but normally we calculate between 5-10 hours for a standard home." },
-          { "q": "Do you clean appliances?", "a": "Exterior cleaning is included in standard cleaning. Interior deep cleaning of oven, fridge etc. is included in move-out cleaning, and can be chosen as an extra otherwise." },
-          { "q": "Do you have a binding period for regular cleaning?", "a": "No, we have no long binding period, only a standard notice period of 14 days." }
+          { "q": "Are you a legal and approved cleaning company?", "a": "Yes, Makarenko Reinhold is an officially approved cleaning company registered with the Norwegian Labor Inspection Authority. All our employees have valid HMS cards." },
+          { "q": "What happens if the move-out cleaning is not approved?", "a": "We have a 100% satisfaction guarantee. Should the landlord or buyer find deficiencies upon handover, we will return and fix this free of charge within 48 hours." },
+          { "q": "What cleaning products do you use?", "a": "We exclusively use eco-friendly, Nordic Swan Ecolabelled products and professional steam cleaners. This ensures a clean result without harmful chemicals, safe for children and pets." },
+          { "q": "Are you insured if something gets broken?", "a": "Yes, we have comprehensive liability insurance up to 10 million NOK that covers any damage to your property during the execution of the assignment." },
+          { "q": "Do I have to be home while you clean?", "a": "No, it is not necessary. Many of our regular customers give us a key, which we store safely in accordance with our security routines." },
+          { "q": "What is included in a move-out cleaning?", "a": "Our move-out cleaning is very comprehensive and includes cleaning of ceilings, walls, floors, windows (in/out), cabinets and drawers (in/out), appliances, drains, and vents. We follow a detailed checklist." },
+          { "q": "Do you bring your own equipment?", "a": "Yes, we provide all necessary professional equipment and cleaning supplies. You do not need to provide anything." },
+          { "q": "How does payment work?", "a": "We send an invoice after the assignment has been completed and approved. For businesses, we offer regular invoicing routines." },
+          { "q": "Can you clean expensive surfaces like marble or untreated oak?", "a": "Absolutely. Our employees are trained in the correct treatment of special surfaces and use gentle methods and adapted products to avoid damage." },
+          { "q": "How long does a move-out cleaning take?", "a": "This depends on the size and condition of the home, but typically a home of 100 sqm takes between 6-10 hours for a team of two people." },
+          { "q": "Do you offer services outside Notodden?", "a": "We primarily cover Notodden and surrounding areas in Telemark. Contact us to hear if we can help you where you live." }
         ]
       },
+      "coverage": {
+        "badge": "Our Area",
+        "title": "Locally Rooted in Telemark",
+        "desc": "Based in Notodden, we respond quickly to assignments throughout the region. Local presence means punctuality and reliability for you.",
+        "areas": ["Notodden Center", "Heddal", "Gransherad", "Sauland", "Kongsberg (by agreement)"]
+      },
       "cta": {
-        "title": "Ready for a cleaner home?",
-        "desc": "Get a free quote today. We respond quickly.",
-        "btn": "Contact Us"
+        "title": "Ready for a spotless result?",
+        "desc": "Get a non-binding offer today. We guarantee quality, safety, and a sparkling clean home.",
+        "btn": "Calculate Move-out Cleaning Price"
       },
       "footer": {
-        "desc": "Your local, officially approved cleaning partner in Notodden and Telemark.",
-        "contact": "Contact",
+        "desc": "Makarenko Reinhold delivers professional cleaning services focusing on quality, environment, and safety in Notodden and Telemark.",
+        "contact": "Contact Us",
         "links": "Quick Links",
         "legal": "Legal",
         "rights": "All rights reserved."

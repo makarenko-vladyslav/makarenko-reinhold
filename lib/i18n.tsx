@@ -1,9 +1,8 @@
-
 "use client";
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 import content from '@/lib/content.json';
 
-const LocaleContext = createContext<{ locale: string; setLocale: (l: string) => void; t: (path: string) => unknown }>({
+const LocaleContext = createContext<{ locale: string; setLocale: (l: string) => void; t: (path: string) => any }>({
   locale: content.defaultLocale,
   setLocale: () => {},
   t: () => '',
@@ -20,20 +19,33 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     if (typeof window !== 'undefined') localStorage.setItem('locale', l);
   }, []);
 
-  const t = useCallback((path: string): unknown => {
+  const t = useCallback((path: string): any => {
     const keys = path.split('.');
-    const locales = content.locales as Record<string, Record<string, unknown>>;
-    let val: unknown = locales[locale];
+    const locales = content.locales as Record<string, any>;
+    let val: any = locales[locale];
+    
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in (val as Record<string, unknown>)) val = (val as Record<string, unknown>)[k];
-      else { val = undefined; break; }
+      if (val && typeof val === 'object' && k in val) {
+        val = val[k];
+      } else {
+        val = undefined;
+        break;
+      }
     }
+    
     if (val !== undefined) return val;
+    
+    // Fallback to default locale
     val = locales[content.defaultLocale];
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in (val as Record<string, unknown>)) val = (val as Record<string, unknown>)[k];
-      else { val = undefined; break; }
+      if (val && typeof val === 'object' && k in val) {
+        val = val[k];
+      } else {
+        val = undefined;
+        break;
+      }
     }
+    
     return val ?? path;
   }, [locale]);
 
