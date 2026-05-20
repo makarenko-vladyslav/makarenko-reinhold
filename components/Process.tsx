@@ -1,45 +1,49 @@
-
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useLocale } from '@/lib/i18n';
-import { SectionHeading } from './Shared';
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
 
 export default function Process() {
   const { t } = useLocale();
-  const steps = t('process.steps') as any[];
+  const steps = t("process.steps");
 
   return (
-    <section className="py-24 bg-bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 bg-bg-alt relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <SectionHeading 
-          badge={t('process.badge')}
-          title={t('process.title')}
-          subtitle={t('process.subtitle')}
+          badge={t("process.badge")}
+          title={t("process.title")}
           centered={true}
         />
 
-        <div className="relative mt-20 max-w-5xl mx-auto">
-          {/* Connecting Line */}
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2 hidden md:block" />
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            {steps.map((step, index) => (
+        <div className="max-w-4xl mx-auto relative mt-16">
+          {/* Vertical Line */}
+          <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/50 via-accent to-accent/10 md:-translate-x-1/2" />
+
+          <div className="space-y-12">
+            {steps.map((step: any, i: number) => (
               <motion.div 
-                key={index}
+                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="relative flex flex-col items-center text-center"
+                viewport={{ once: true, margin: "-100px" }}
+                className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 ${
+                  i % 2 === 0 ? 'md:flex-row-reverse' : ''
+                }`}
               >
-                {/* Number Node */}
-                <div className="w-16 h-16 rounded-full bg-white border-4 border-bg-white shadow-[0_0_0_2px_hsl(185_75%_40%)] flex items-center justify-center text-2xl font-display font-bold text-accent mb-6 relative z-10">
-                  {index + 1}
+                {/* Number Circle */}
+                <div className="absolute left-0 md:left-1/2 w-14 h-14 rounded-full bg-white border-4 border-accent flex items-center justify-center font-display font-bold text-xl text-primary z-10 md:-translate-x-1/2 shadow-lg">
+                  {i + 1}
+                </div>
+
+                {/* Content Card */}
+                <div className="ml-20 md:ml-0 md:w-1/2 bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all">
+                  <h3 className="text-2xl font-display font-bold text-primary mb-3">{step.title}</h3>
+                  <p className="text-text-muted">{step.desc}</p>
                 </div>
                 
-                <h3 className="text-xl font-bold text-primary mb-3">{step.title}</h3>
-                <p className="text-text-muted text-sm leading-relaxed">{step.description}</p>
+                {/* Empty space for alternating layout on desktop */}
+                <div className="hidden md:block md:w-1/2" />
               </motion.div>
             ))}
           </div>

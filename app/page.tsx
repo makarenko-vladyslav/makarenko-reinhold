@@ -1,14 +1,12 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import SocialProof from "@/components/SocialProof";
-import ServicesFeatured from "@/components/ServicesFeatured";
-import ServicesCatalog from "@/components/ServicesCatalog";
+import TrustStrip from "@/components/TrustStrip";
+import FeaturedServices from "@/components/FeaturedServices";
+import ServiceDirectory from "@/components/ServiceDirectory";
 import Calculator from "@/components/Calculator";
-import Trust from "@/components/Trust";
-import WhyUs from "@/components/WhyUs";
-import BeforeAfter from "@/components/BeforeAfter";
+import Advantages from "@/components/Advantages";
 import Process from "@/components/Process";
+import BeforeAfter from "@/components/BeforeAfter";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
 import Team from "@/components/Team";
@@ -23,14 +21,13 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <SocialProof />
-        <ServicesFeatured />
-        <ServicesCatalog />
+        <TrustStrip />
+        <FeaturedServices />
+        <ServiceDirectory />
         <Calculator />
-        <Trust />
-        <WhyUs />
-        <BeforeAfter />
+        <Advantages />
         <Process />
+        <BeforeAfter />
         <Testimonials />
         <Gallery />
         <Team />
