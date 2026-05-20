@@ -1,53 +1,49 @@
-
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
-import * as PhosphorIcons from "@phosphor-icons/react";
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { motion } from 'framer-motion';
+import { ShieldCheck, Umbrella, Leaf, MapPin } from '@phosphor-icons/react';
+
+const iconMap: Record<string, React.ElementType> = {
+  ShieldCheck, Umbrella, Leaf, MapPin
+};
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const cards = t("whyUs.cards") as Array<{title: string, desc: string, icon: string}>;
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
+  const cards = t('whyUs.cards') as Array<{title: string, desc: string, icon: string}>;
 
   return (
-    <section className="py-24 bg-bg-light">
-      <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading badge={t("whyUs.badge") as string} title={t("whyUs.title") as string} centered />
-        
-        <motion.div 
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12"
-        >
+    <section className="py-24 bg-surface relative overflow-hidden">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-alt clip-diagonal opacity-50 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <SectionHeading 
+          badge={t('whyUs.badge') as string} 
+          title={t('whyUs.title') as string} 
+        />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {cards.map((card, i) => {
-            const Icon = (PhosphorIcons as any)[card.icon] || PhosphorIcons.CheckCircle;
+            const Icon = iconMap[card.icon] || ShieldCheck;
             return (
-              <motion.div 
+              <motion.div
                 key={i}
-                variants={item}
-                className="bg-surface p-8 rounded-2xl shadow-sm hover:shadow-premium-hover transition-all duration-300 group border border-border"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
+                className="bg-white p-8 rounded-2xl shadow-subtle hover:shadow-hover transition-all duration-300 group border border-border/50"
               >
-                <div className="w-14 h-14 bg-primary/5 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-accent group-hover:text-surface transition-colors">
+                <div className="w-14 h-14 bg-surface-alt rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-300 text-primary">
                   <Icon size={32} weight="duotone" />
                 </div>
                 <h3 className="text-xl font-display font-bold text-primary mb-3">{card.title}</h3>
-                <p className="text-text-muted leading-relaxed text-sm">{card.desc}</p>
+                <p className="text-text-muted leading-relaxed">{card.desc}</p>
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

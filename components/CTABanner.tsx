@@ -1,33 +1,38 @@
-
 "use client";
-import { useLocale } from "@/lib/i18n";
+import { useLocale } from '@/lib/i18n';
+import { motion } from 'framer-motion';
+import { ArrowRight } from '@phosphor-icons/react';
 
 export default function CTABanner() {
   const { t } = useLocale();
+  const data = t('ctaBanner') as any;
 
   return (
     <section className="py-12 bg-surface">
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="bg-primary rounded-3xl p-12 text-center relative overflow-hidden shadow-2xl">
-          {/* Decorative elements */}
-          <div className="absolute top-0 left-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none" />
-          
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-surface mb-6">Klar for et plettfritt hjem?</h2>
-            <p className="text-surface/80 text-lg mb-8 max-w-2xl mx-auto">
-              Bruk vår priskalkulator for å få et umiddelbart estimat, eller kontakt oss for en uforpliktende prat.
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-accent rounded-3xl p-10 md:p-16 text-center shadow-accent relative overflow-hidden"
+        >
+          {/* Abstract background shapes */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-primary/20 rounded-full blur-2xl translate-y-1/4 -translate-x-1/4 pointer-events-none" />
+
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+              {data.title}
+            </h2>
+            <p className="text-xl text-white/90 mb-10">
+              {data.desc}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a href="#calculator" className="bg-accent text-surface px-8 py-4 rounded-full font-bold text-lg hover:bg-accent-hover transition-colors shadow-lg shadow-accent/20">
-                Beregn Pris Nå
-              </a>
-              <a href="tel:+4796684393" className="bg-surface/10 text-surface border border-surface/20 px-8 py-4 rounded-full font-bold text-lg hover:bg-surface/20 transition-colors">
-                Ring +47 966 84 393
-              </a>
-            </div>
+            <a href="#contact" className="inline-flex items-center gap-2 bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-xl font-bold text-lg transition-all group shadow-lg hover:shadow-xl hover:-translate-y-1">
+              {data.btn}
+              <ArrowRight size={20} weight="bold" className="group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

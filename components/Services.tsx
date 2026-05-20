@@ -1,49 +1,49 @@
-
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
-import * as PhosphorIcons from "@phosphor-icons/react";
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import { motion } from 'framer-motion';
+import { HouseLine, CalendarCheck, Sparkle, Buildings, SquareHalf, Broom } from '@phosphor-icons/react';
+
+const iconMap: Record<string, React.ElementType> = {
+  HouseLine, CalendarCheck, Sparkle, Buildings, SquareHalf, Broom
+};
 
 export default function Services() {
   const { t } = useLocale();
-  const services = t("services.items") as Array<{title: string, desc: string, icon: string}>;
+  const items = t('services.items') as Array<{title: string, desc: string, icon: string}>;
 
   return (
-    <section id="services" className="py-24 bg-surface">
+    <section id="services" className="py-24 bg-surface scroll-mt-20">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-16">
-          
-          <div className="lg:sticky lg:top-32 self-start">
-            <SectionHeading badge={t("services.badge") as string} title={t("services.title") as string} />
-            <p className="text-text-muted text-lg mb-8">
-              Vi tilbyr et bredt spekter av renholdstjenester tilpasset dine behov. Alle oppdrag utføres med samme høye standard og kvalitetsgaranti.
-            </p>
-            <a href="#calculator" className="inline-flex items-center gap-2 text-accent font-bold hover:text-primary transition-colors">
-              Gå til priskalkulator <PhosphorIcons.ArrowRight weight="bold" />
-            </a>
-          </div>
+        <SectionHeading 
+          badge={t('services.badge') as string} 
+          title={t('services.title') as string} 
+          centered
+        />
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            {services.map((srv, i) => {
-              const Icon = (PhosphorIcons as any)[srv.icon] || PhosphorIcons.Broom;
-              return (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="p-6 rounded-2xl bg-bg-light border border-border hover:border-accent/30 hover:shadow-premium transition-all group"
-                >
-                  <Icon size={32} weight="duotone" className="text-accent mb-4 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-lg font-bold text-primary mb-2">{srv.title}</h3>
-                  <p className="text-text-muted text-sm">{srv.desc}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+          {items.map((item, i) => {
+            const Icon = iconMap[item.icon] || HouseLine;
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group p-8 rounded-2xl border border-border bg-white hover:shadow-hover transition-all duration-300 relative overflow-hidden"
+              >
+                {/* Hover accent line */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-accent transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                
+                <div className="w-12 h-12 bg-bg-light rounded-lg flex items-center justify-center mb-6 text-primary group-hover:text-accent transition-colors">
+                  <Icon size={28} weight="duotone" />
+                </div>
+                <h3 className="text-xl font-display font-bold text-primary mb-3">{item.title}</h3>
+                <p className="text-text-muted leading-relaxed">{item.desc}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

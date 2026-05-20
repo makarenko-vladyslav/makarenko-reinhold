@@ -1,117 +1,96 @@
-
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
-import pricing from "@/lib/pricing.json";
+import { useState, useEffect } from 'react';
+import { useLocale } from '@/lib/i18n';
+import SectionHeading from './SectionHeading';
+import pricingData from '@/lib/pricing.json';
+import { motion } from 'framer-motion';
+import { Calculator as CalcIcon, ArrowRight } from '@phosphor-icons/react';
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [sqm, setSqm] = useState(80);
-  const [type, setType] = useState<"flyttevask" | "regular">("flyttevask");
+  const [sqm, setSqm] = useState(70);
+  const [price, setPrice] = useState(0);
 
-  const calculatePrice = () => {
-    if (type === "flyttevask") {
-      return pricing.flyttevask.basePrice + (sqm * pricing.flyttevask.perSqmRate);
-    }
-    return pricing.regularCleaning.basePrice + (sqm * pricing.regularCleaning.perSqmRate);
-  };
+  useEffect(() => {
+    const { basePrice, perSqmRate, minSqm } = pricingData.flyttevask;
+    const billableSqm = Math.max(0, sqm - minSqm);
+    const calculated = basePrice + (billableSqm * perSqmRate);
+    setPrice(calculated);
+  }, [sqm]);
 
   return (
-    <section id="calculator" className="py-24 bg-primary relative overflow-hidden clip-diagonal">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section id="calculator" className="py-24 bg-bg-light scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
           <div>
-            <SectionHeading badge={t("calculator.badge") as string} title={t("calculator.title") as string} light />
-            <p className="text-surface/80 text-lg mb-8 max-w-md">
-              {t("calculator.subtitle") as string}
+            <SectionHeading 
+              badge={t('calculator.badge') as string} 
+              title={t('calculator.title') as string} 
+            />
+            <p className="text-lg text-text-muted mb-8 leading-relaxed">
+              {t('calculator.subtitle') as string}
             </p>
-            
-            <div className="space-y-6">
-              <div className="flex items-center gap-4 bg-surface/10 p-4 rounded-xl border border-surface/20">
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center text-surface font-bold text-xl">1</div>
-                <p className="text-surface font-medium">Velg tjeneste og størrelse</p>
-              </div>
-              <div className="flex items-center gap-4 bg-surface/10 p-4 rounded-xl border border-surface/20">
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center text-surface font-bold text-xl">2</div>
-                <p className="text-surface font-medium">Få umiddelbar pris</p>
-              </div>
-              <div className="flex items-center gap-4 bg-surface/10 p-4 rounded-xl border border-surface/20">
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center text-surface font-bold text-xl">3</div>
-                <p className="text-surface font-medium">Send forespørsel uforpliktende</p>
-              </div>
-            </div>
+            <ul className="space-y-4 mb-8">
+              {['Svanemerkede produkter inkludert', '100% Overtakelsesgaranti', 'Alt utstyr medbringes', 'MVA inkludert i prisen'].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-primary font-medium">
+                  <div className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center text-success">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="bg-surface rounded-3xl p-8 shadow-2xl"
+            className="bg-white p-8 md:p-12 rounded-3xl shadow-card border border-border relative overflow-hidden"
           >
-            <div className="space-y-8">
-              
-              {/* Type Selection */}
-              <div>
-                <label className="block text-sm font-bold text-primary mb-3 uppercase tracking-wide">{t("calculator.typeLabel") as string}</label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <button 
-                    onClick={() => setType("flyttevask")}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${type === "flyttevask" ? "border-accent bg-accent/5" : "border-border hover:border-primary/30"}`}
-                  >
-                    <div className="font-bold text-primary">{t("calculator.typeFlyttevask") as string}</div>
-                  </button>
-                  <button 
-                    onClick={() => setType("regular")}
-                    className={`p-4 rounded-xl border-2 text-left transition-all ${type === "regular" ? "border-accent bg-accent/5" : "border-border hover:border-primary/30"}`}
-                  >
-                    <div className="font-bold text-primary">{t("calculator.typeRegular") as string}</div>
-                  </button>
-                </div>
-              </div>
-
-              {/* Slider */}
-              <div>
-                <div className="flex justify-between mb-3">
-                  <label className="text-sm font-bold text-primary uppercase tracking-wide">{t("calculator.sqmLabel") as string}</label>
-                  <span className="font-bold text-accent text-lg">{sqm} m²</span>
+            {/* Decorative background icon */}
+            <CalcIcon size={200} weight="duotone" className="absolute -top-10 -right-10 text-surface-alt opacity-50 pointer-events-none" />
+            
+            <div className="relative z-10">
+              <div className="mb-10">
+                <div className="flex justify-between items-end mb-4">
+                  <label className="font-display font-bold text-primary text-lg">{t('calculator.sqmLabel') as string}</label>
+                  <span className="text-3xl font-bold text-accent">{sqm} m²</span>
                 </div>
                 <input 
                   type="range" 
-                  min="30" 
-                  max="300" 
-                  step="5"
-                  value={sqm}
+                  min={pricingData.flyttevask.minSqm} 
+                  max={pricingData.flyttevask.maxSqm} 
+                  value={sqm} 
                   onChange={(e) => setSqm(Number(e.target.value))}
-                  className="w-full h-2 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
+                  className="w-full"
                 />
-                <div className="flex justify-between text-xs text-text-muted mt-2">
-                  <span>30 m²</span>
-                  <span>300 m²</span>
+                <div className="flex justify-between text-sm text-text-muted mt-2 font-medium">
+                  <span>{pricingData.flyttevask.minSqm} m²</span>
+                  <span>{pricingData.flyttevask.maxSqm} m²</span>
                 </div>
               </div>
 
-              {/* Result */}
-              <div className="bg-bg-light p-6 rounded-2xl border border-border text-center">
-                <div className="text-sm font-medium text-text-muted mb-2">{t("calculator.estimatedPrice") as string}</div>
-                <div className="text-5xl font-display font-bold text-primary mb-2">
-                  {calculatePrice().toLocaleString("no-NO")} <span className="text-2xl text-text-muted">NOK</span>
+              <div className="bg-surface-alt p-6 rounded-2xl mb-8 border border-border/50">
+                <p className="text-sm font-bold text-text-muted uppercase tracking-wider mb-2">{t('calculator.priceLabel') as string}</p>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-5xl font-display font-bold text-primary">
+                    {price.toLocaleString('no-NO')}
+                  </span>
+                  <span className="text-xl font-medium text-text-muted">NOK</span>
                 </div>
-                <div className="text-xs text-text-muted">{t("calculator.includesMva") as string}</div>
               </div>
 
-              <a href="#contact" className="block w-full bg-accent text-surface text-center py-4 rounded-xl font-bold text-lg hover:bg-accent-hover transition-colors shadow-lg shadow-accent/20">
-                {t("calculator.bookNow") as string}
+              <a href="#contact" className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-light text-white py-4 rounded-xl font-bold text-lg transition-all group">
+                {t('calculator.cta') as string}
+                <ArrowRight size={20} weight="bold" className="group-hover:translate-x-1 transition-transform" />
               </a>
-
+              
+              <p className="text-xs text-text-muted mt-4 text-center">
+                {t('calculator.disclaimer') as string}
+              </p>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
