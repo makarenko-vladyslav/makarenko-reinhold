@@ -1,20 +1,15 @@
 {
-  "basePrices": {
-    "flyttevask": 85, 
-    "regelmessig": 550,
-    "visning": 75,
-    "kontor": 450
-  },
-  "multipliers": {
-    "En gang": 1.0,
-    "Hver uke": 0.8,
-    "Hver 14. dag": 0.85,
-    "Månedlig": 0.9,
-    "Один раз": 1.0,
-    "Щотижня": 0.8,
-    "Кожні 2 тижні": 0.85,
-    "Щомісяця": 0.9
-  },
   "currency": "NOK",
-  "estimationLogic": "range"
+  "baseHourlyRate": 550,
+  "services": {
+    "fast": { "name": "Fast vask", "multiplier": 1.0, "baseHoursPer10m2": 0.25 },
+    "flytte": { "name": "Flyttevask", "multiplier": 1.5, "baseHoursPer10m2": 0.6 },
+    "var": { "name": "Vårrengjøring", "multiplier": 1.3, "baseHoursPer10m2": 0.5 },
+    "hytte": { "name": "Hyttevask", "multiplier": 1.2, "baseHoursPer10m2": 0.4 }
+  },
+  "extras": [
+    { "id": "vindu", "name": "Vindusvask", "price": 800 },
+    { "id": "ovn", "name": "Innvendig stekeovn", "price": 500 },
+    { "id": "kjoleskap", "name": "Innvendig kjøleskap", "price": 400 }
+  ]
 }

@@ -4,14 +4,14 @@ import SocialProof from "@/components/SocialProof";
 import Calculator from "@/components/Calculator";
 import Services from "@/components/Services";
 import Trust from "@/components/Trust";
+import WhyUs from "@/components/WhyUs";
 import Process from "@/components/Process";
 import BeforeAfter from "@/components/BeforeAfter";
 import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
-import VideoSection from "@/components/VideoSection";
 import Team from "@/components/Team";
+import CoverageArea from "@/components/CoverageArea";
 import FAQ from "@/components/FAQ";
-import Coverage from "@/components/Coverage";
 import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -26,14 +26,14 @@ export default function Home() {
         <Calculator />
         <Services />
         <Trust />
-        <BeforeAfter />
+        <WhyUs />
         <Process />
+        <BeforeAfter />
         <Testimonials />
         <Gallery />
-        <VideoSection />
         <Team />
+        <CoverageArea />
         <FAQ />
-        <Coverage />
         <CTABanner />
         <Contact />
       </main>

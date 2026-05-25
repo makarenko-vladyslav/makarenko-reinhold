@@ -23,32 +23,21 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     const keys = path.split('.');
     const locales = content.locales as Record<string, any>;
     let val: any = locales[locale];
-    
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in val) {
-        val = val[k];
-      } else {
-        val = undefined;
-        break;
-      }
+      if (val && typeof val === 'object' && k in val) val = val[k];
+      else { val = undefined; break; }
     }
-    
     if (val !== undefined) return val;
     
-    // Fallback
     val = locales[content.defaultLocale];
     for (const k of keys) {
-      if (val && typeof val === 'object' && k in val) {
-        val = val[k];
-      } else {
-        val = undefined;
-        break;
-      }
+      if (val && typeof val === 'object' && k in val) val = val[k];
+      else { val = undefined; break; }
     }
     return val ?? path;
   }, [locale]);
 
-  return <LocaleContext value={{ locale, setLocale, t }}>{children}</LocaleContext>;
+  return <LocaleContext.Provider value={{ locale, setLocale, t }}>{children}</LocaleContext.Provider>;
 }
 
 export function useLocale() { return useContext(LocaleContext); }

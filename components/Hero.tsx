@@ -1,102 +1,94 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import { useRef } from "react";
 
 export default function Hero() {
   const { t } = useLocale();
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-
-  const stats = t('hero.stats') as { value: string, label: string }[];
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
-    <section ref={ref} className="relative h-[100svh] min-h-[600px] flex items-center overflow-hidden bg-primary">
-      {/* Background Image with Parallax */}
+    <section ref={ref} className="relative h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      {/* Parallax Background */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <img 
-          src="https://picsum.photos/seed/cleanlivingroom/1920/1080" 
-          alt="Clean home" 
+          src={t("hero.imageUrl")} 
+          alt="Cleaning Service Notodden" 
           className="w-full h-full object-cover"
+          loading="eager"
         />
-        {/* Single clean gradient overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40 mix-blend-multiply" />
+        {/* Single clean gradient overlay as per rules */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/60 to-primary/90 mix-blend-multiply" />
       </motion.div>
 
-      {/* Decorative SVG Sparkles */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <svg className="absolute top-1/4 right-1/4 w-12 h-12 text-white/10 animate-float" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10Z" />
-        </svg>
-        <svg className="absolute bottom-1/3 right-1/3 w-8 h-8 text-accent/20 animate-float" style={{ animationDelay: '1s' }} viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10Z" />
-        </svg>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-semibold tracking-wide mb-6">
-              <svg className="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {t('hero.badge')}
-            </span>
-          </motion.div>
-
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-[1.1] whitespace-pre-line"
-          >
-            {t('hero.title')}
-          </motion.h1>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 mb-10 max-w-xl leading-relaxed"
-          >
-            {t('hero.subtitle')}
-          </motion.p>
-
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row items-center justify-between gap-12 pt-20">
+        
+        {/* Text Content */}
+        <div className="max-w-2xl text-white">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 mb-6"
+          >
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-sm font-medium tracking-wide">{t("hero.badge")}</span>
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] mb-6 text-balance"
+          >
+            {t("hero.title")}
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-white/80 mb-10 max-w-xl text-balance"
+          >
+            {t("hero.subtitle")}
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <a href="#calculator" className="px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-full font-bold text-lg transition-all shadow-[0_0_30px_hsl(175_80%_35%/0.4)] hover:shadow-[0_0_40px_hsl(175_80%_35%/0.6)] hover:-translate-y-1">
-              {t('hero.ctaPrimary')}
+            <a href="#calculator" className="bg-accent hover:bg-accent-hover text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_30px_hsl(195_85%_45%/0.4)] hover:shadow-[0_0_40px_hsl(195_85%_45%/0.6)] hover:-translate-y-1">
+              {t("hero.ctaPrimary")}
             </a>
-            <a href="#services" className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/20 rounded-full font-bold text-lg transition-all">
-              {t('hero.ctaSecondary')}
+            <a href="#services" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-bold text-lg transition-all">
+              {t("hero.ctaSecondary")}
             </a>
-          </motion.div>
-
-          {/* Stats Row */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 flex items-center gap-8 md:gap-12"
-          >
-            {stats.map((stat, idx) => (
-              <div key={idx} className="flex flex-col">
-                <span className="text-3xl font-display font-bold text-white">{stat.value}</span>
-                <span className="text-sm text-white/60 font-medium">{stat.label}</span>
-              </div>
-            ))}
           </motion.div>
         </div>
+
+        {/* Floating Trust Card */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, rotate: 5 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+          className="hidden lg:block w-80 glass-card rounded-3xl p-6 shadow-2xl relative animate-float"
+        >
+          <div className="absolute -top-4 -right-4 w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-lg">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+          </div>
+          <p className="text-sm text-text-muted font-bold uppercase tracking-wider mb-1">Startpris</p>
+          <p className="text-4xl font-display font-bold text-primary mb-6">{t("hero.priceTag").replace('Fra ', '').replace('Від ', '')}</p>
+          
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-bg-light flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              </div>
+              <p className="text-sm font-medium text-text-main leading-tight">Arbeidstilsynet Godkjent</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-bg-light flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" /></svg>
+              </div>
+              <p className="text-sm font-medium text-text-main leading-tight">Personlige HMS-kort</p>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

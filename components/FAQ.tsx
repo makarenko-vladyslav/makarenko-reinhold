@@ -1,63 +1,46 @@
 "use client";
-import { useState } from 'react';
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
 
 export default function FAQ() {
   const { t } = useLocale();
-  const faqData = t('faq') as { badge: string, title: string, items: { question: string, answer: string }[] };
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const items = t("faq.items") as { question: string, answer: string }[];
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 bg-white">
+    <section id="faq" className="py-24 bg-bg-light border-y border-border-light">
       <div className="max-w-4xl mx-auto px-6">
-        <SectionHeading 
-          badge={faqData.badge}
-          title={faqData.title}
-          centered
-        />
+        <SectionHeading badge={t("faq.badge")} title={t("faq.title")} />
 
-        <div className="mt-12 space-y-4">
-          {faqData.items.map((item, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="border border-gray-200 rounded-2xl overflow-hidden"
-            >
+        <div className="space-y-4">
+          {items.map((item, i) => (
+            <div key={i} className="bg-white rounded-2xl border border-border-light overflow-hidden transition-shadow hover:shadow-sm">
               <button
-                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-6 text-left bg-white hover:bg-gray-50 transition-colors"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full flex items-center justify-between p-6 text-left"
               >
-                <span className="font-bold text-primary pr-8">{item.question}</span>
-                <svg 
-                  className={`w-5 h-5 text-accent shrink-0 transition-transform duration-300 ${openIdx === idx ? 'rotate-180' : ''}`} 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+                <span className="font-bold text-primary text-lg pr-8">{item.question}</span>
+                <span className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? "bg-accent text-white" : "bg-bg-light text-text-muted"}`}>
+                  <svg className={`w-5 h-5 transition-transform duration-300 ${openIndex === i ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                </span>
               </button>
               <AnimatePresence>
-                {openIdx === idx && (
+                {openIndex === i && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
+                    animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden bg-bg-light"
+                    className="overflow-hidden"
                   >
-                    <p className="p-6 pt-0 text-text-muted leading-relaxed border-t border-gray-100 mt-4 mx-6">
+                    <div className="p-6 pt-0 text-text-muted leading-relaxed border-t border-border-light/50 mt-2">
                       {item.answer}
-                    </p>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
