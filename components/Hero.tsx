@@ -1,4 +1,3 @@
-
 "use client";
 import { useLocale } from "@/lib/i18n";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -13,7 +12,6 @@ export default function Hero() {
   });
   
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   const stats = t("hero.stats") as { value: string; label: string }[];
 
@@ -74,34 +72,34 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Floating Trust Card */}
+          {/* Floating Trust Card - Redesigned for Cleanliness */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-5 hidden lg:block"
           >
-            <div className="dark-glass rounded-3xl p-8 relative overflow-hidden">
-              {/* Decorative glow */}
-              <div className="absolute -top-20 -right-20 w-64 h-64 bg-accent/30 rounded-full blur-[80px]" />
+            <div className="bg-white rounded-3xl p-8 relative overflow-hidden shadow-2xl">
+              {/* Decorative subtle background element */}
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-bg-tint rounded-full" />
               
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
                     <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-white font-bold text-lg">Makarenko Garanti</h3>
-                    <p className="text-white/60 text-sm">Din trygghet i fokus</p>
+                    <h3 className="text-primary font-bold text-lg">Makarenko Garanti</h3>
+                    <p className="text-text-muted text-sm">Din trygghet i fokus</p>
                   </div>
                 </div>
 
                 <div className="space-y-6">
                   {stats.map((stat, i) => (
-                    <div key={i} className="flex items-center justify-between border-b border-white/10 pb-4 last:border-0 last:pb-0">
-                      <span className="text-white/80">{stat.label}</span>
+                    <div key={i} className="flex items-center justify-between border-b border-gray-100 pb-4 last:border-0 last:pb-0">
+                      <span className="text-text-main font-medium">{stat.label}</span>
                       <span className="text-2xl font-display font-bold text-accent">{stat.value}</span>
                     </div>
                   ))}
