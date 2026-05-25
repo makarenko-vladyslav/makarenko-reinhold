@@ -1,60 +1,62 @@
 "use client";
-import { useLocale } from "@/lib/i18n";
-import Link from "next/link";
+import { useLocale } from '@/lib/i18n';
+import Link from 'next/link';
 
 export default function Footer() {
   const { t } = useLocale();
+  const footerData = t('footer') as any;
+  const contactInfo = t('contact.info') as any;
 
   return (
     <footer className="bg-primary text-white pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-12 mb-16">
+        <div className="grid md:grid-cols-4 gap-12 mb-16">
           
-          {/* Brand */}
-          <div>
-            <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-white">
-                <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-6 h-6">
-                  <path d="M16 4 L16 10 M16 22 L16 28 M4 16 L10 16 M22 16 L28 16 M7.5 7.5 L11.5 11.5 M20.5 20.5 L24.5 24.5 M7.5 24.5 L11.5 20.5 M20.5 11.5 L24.5 7.5" strokeLinecap="round" />
-                  <circle cx="16" cy="16" r="4" />
+          <div className="md:col-span-2">
+            <Link href="/" className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center">
+                <svg viewBox="0 0 32 32" className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M16 6 L18 12 L24 14 L18 16 L16 22 L14 16 L8 14 L14 12 Z" fill="currentColor" stroke="none" />
+                  <path d="M22 20 L23 23 L26 24 L23 25 L22 28 L21 25 L18 24 L21 23 Z" fill="currentColor" stroke="none" />
                 </svg>
               </div>
-              <span className="font-display font-bold text-xl tracking-tight">
-                Makarenko<span className="font-normal opacity-80">Reinhold</span>
-              </span>
+              <div className="flex flex-col">
+                <span className="font-display font-bold text-lg leading-tight tracking-tight text-white">Makarenko</span>
+                <span className="font-display font-semibold text-sm leading-tight tracking-widest uppercase text-accent">Reinhold</span>
+              </div>
             </Link>
-            <p className="text-white/70 leading-relaxed max-w-sm">
-              {t("footer.description") as string}
+            <p className="text-white/60 max-w-sm leading-relaxed">
+              {footerData.description}
             </p>
           </div>
 
-          {/* Links */}
           <div>
-            <h4 className="font-bold text-lg mb-6">Snarveier</h4>
+            <h4 className="font-bold text-lg mb-6">{footerData.quickLinks}</h4>
             <ul className="space-y-3">
-              <li><a href="#services" className="text-white/70 hover:text-accent transition-colors">Tjenester</a></li>
-              <li><a href="#calculator" className="text-white/70 hover:text-accent transition-colors">Priskalkulator</a></li>
-              <li><a href="#why-us" className="text-white/70 hover:text-accent transition-colors">Hvorfor velge oss</a></li>
-              <li><a href="#process" className="text-white/70 hover:text-accent transition-colors">Slik fungerer det</a></li>
+              <li><a href="#services" className="text-white/60 hover:text-accent transition-colors">{t('nav.services')}</a></li>
+              <li><a href="#calculator" className="text-white/60 hover:text-accent transition-colors">{t('nav.calculator')}</a></li>
+              <li><a href="#about" className="text-white/60 hover:text-accent transition-colors">{t('nav.about')}</a></li>
+              <li><a href="#faq" className="text-white/60 hover:text-accent transition-colors">{t('nav.faq')}</a></li>
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="font-bold text-lg mb-6">Kontakt</h4>
-            <ul className="space-y-3 text-white/70">
-              <li>Notodden, Telemark, Norge</li>
-              <li><a href="tel:+4796684393" className="hover:text-accent transition-colors">+47 966 84 393</a></li>
-              <li><a href="mailto:annadizhenko@gmail.com" className="hover:text-accent transition-colors">annadizhenko@gmail.com</a></li>
+            <h4 className="font-bold text-lg mb-6">{t('nav.contact')}</h4>
+            <ul className="space-y-3">
+              <li className="text-white/60">{contactInfo.address}</li>
+              <li><a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="text-white/60 hover:text-accent transition-colors">{contactInfo.phone}</a></li>
+              <li><a href={`mailto:${contactInfo.email}`} className="text-white/60 hover:text-accent transition-colors">{contactInfo.email}</a></li>
             </ul>
           </div>
+
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
-          <p>© {new Date().getFullYear()} Makarenko Reinhold. {t("footer.rights") as string}</p>
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-white/40 text-sm">
+            © {new Date().getFullYear()} Makarenko Reinhold. {footerData.rights}
+          </p>
           <div className="flex gap-4">
-            <span className="opacity-50 hover:opacity-100 transition-opacity cursor-pointer">Personvern</span>
-            <span className="opacity-50 hover:opacity-100 transition-opacity cursor-pointer">Vilkår</span>
+            <a href="#" className="text-white/40 hover:text-white transition-colors text-sm">{footerData.legal}</a>
           </div>
         </div>
       </div>

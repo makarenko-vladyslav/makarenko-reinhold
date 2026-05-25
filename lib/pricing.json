@@ -1,11 +1,20 @@
 {
+  "basePrices": {
+    "flyttevask": 85, 
+    "regelmessig": 550,
+    "visning": 75,
+    "kontor": 450
+  },
+  "multipliers": {
+    "En gang": 1.0,
+    "Hver uke": 0.8,
+    "Hver 14. dag": 0.85,
+    "Månedlig": 0.9,
+    "Один раз": 1.0,
+    "Щотижня": 0.8,
+    "Кожні 2 тижні": 0.85,
+    "Щомісяця": 0.9
+  },
   "currency": "NOK",
-  "baseRatePerHour": 550,
-  "flyttevask": {
-    "basePrice": 1500,
-    "pricePerSqm": 65,
-    "minSqm": 20,
-    "maxSqm": 300,
-    "defaultSqm": 70
-  }
+  "estimationLogic": "range"
 }

@@ -1,114 +1,100 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import { useRef } from "react";
+import { useLocale } from '@/lib/i18n';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Hero() {
   const { t } = useLocale();
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
+  const stats = t('hero.stats') as { value: string, label: string }[];
 
   return (
-    <section ref={ref} className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden bg-primary">
-      {/* Background Image with Parallax & Overlay */}
+    <section ref={ref} className="relative h-[100svh] min-h-[600px] flex items-center overflow-hidden bg-primary">
+      {/* Background Image with Parallax */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <img 
-          src={t("hero.image") as string} 
-          alt="Cleaning Service" 
-          className="w-full h-full object-cover object-center"
+          src="https://picsum.photos/seed/cleanlivingroom/1920/1080" 
+          alt="Clean home" 
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/40 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-80" />
+        {/* Single clean gradient overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40 mix-blend-multiply" />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full grid lg:grid-cols-2 gap-12 items-center">
-        {/* Left: Content */}
+      {/* Decorative SVG Sparkles */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <svg className="absolute top-1/4 right-1/4 w-12 h-12 text-white/10 animate-float" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10Z" />
+        </svg>
+        <svg className="absolute bottom-1/3 right-1/3 w-8 h-8 text-accent/20 animate-float" style={{ animationDelay: '1s' }} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10Z" />
+        </svg>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
         <div className="max-w-2xl">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-semibold mb-8"
+            transition={{ duration: 0.6 }}
           >
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            {t("hero.badge") as string}
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-semibold tracking-wide mb-6">
+              <svg className="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {t('hero.badge')}
+            </span>
           </motion.div>
 
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-[1.1] mb-6"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-display font-bold text-white mb-6 leading-[1.1] whitespace-pre-line"
           >
-            {t("hero.title") as string}
+            {t('hero.title')}
           </motion.h1>
 
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed max-w-xl"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl text-white/80 mb-10 max-w-xl leading-relaxed"
           >
-            {t("hero.subtitle") as string}
+            {t('hero.subtitle')}
           </motion.p>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap items-center gap-4"
           >
-            <a href="#calculator" className="px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-xl font-bold text-lg text-center transition-all hover:scale-105 shadow-lg shadow-accent/30 flex items-center justify-center gap-2">
-              {t("hero.ctaPrimary") as string}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <a href="#calculator" className="px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-full font-bold text-lg transition-all shadow-[0_0_30px_hsl(175_80%_35%/0.4)] hover:shadow-[0_0_40px_hsl(175_80%_35%/0.6)] hover:-translate-y-1">
+              {t('hero.ctaPrimary')}
             </a>
-            <a href="#services" className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-xl font-bold text-lg text-center transition-all backdrop-blur-md border border-white/10">
-              {t("hero.ctaSecondary") as string}
+            <a href="#services" className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm border border-white/20 rounded-full font-bold text-lg transition-all">
+              {t('hero.ctaSecondary')}
             </a>
           </motion.div>
-        </div>
 
-        {/* Right: Floating Stats Cards */}
-        <div className="hidden lg:block relative h-[500px]">
+          {/* Stats Row */}
           <motion.div 
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, type: "spring" }}
-            className="absolute top-1/4 right-0 glass-panel p-6 rounded-2xl w-72"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-16 flex items-center gap-8 md:gap-12"
           >
-            <div className="flex items-center gap-4 mb-2">
-              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+            {stats.map((stat, idx) => (
+              <div key={idx} className="flex flex-col">
+                <span className="text-3xl font-display font-bold text-white">{stat.value}</span>
+                <span className="text-sm text-white/60 font-medium">{stat.label}</span>
               </div>
-              <div>
-                <div className="text-3xl font-display font-bold text-primary">{t("hero.stat2Value") as string}</div>
-                <div className="text-sm font-medium text-text-muted">{t("hero.stat2Label") as string}</div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, type: "spring" }}
-            className="absolute bottom-1/4 left-10 glass-panel p-6 rounded-2xl w-72"
-          >
-            <div className="flex items-center gap-4 mb-2">
-              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-6 h-6">
-                  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <div>
-                <div className="text-3xl font-display font-bold text-primary">{t("hero.stat1Value") as string}</div>
-                <div className="text-sm font-medium text-text-muted">{t("hero.stat1Label") as string}</div>
-              </div>
-            </div>
+            ))}
           </motion.div>
         </div>
       </div>
