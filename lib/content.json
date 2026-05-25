@@ -33,6 +33,16 @@
         "badge": "Gjennomsiktig Prising",
         "title": "Beregn din pris umiddelbart",
         "subtitle": "Ingen skjulte gebyrer. Få et nøyaktig estimat for ditt renholdsbehov på sekunder.",
+        "features": [
+          {
+            "title": "Raskt Svar",
+            "description": "Se prisen umiddelbart uten å vente på tilbud."
+          },
+          {
+            "title": "Ingen Skjulte Kostnader",
+            "description": "Prisen inkluderer utstyr, kjøring og MVA."
+          }
+        ],
         "serviceLabel": "Velg Tjeneste",
         "services": {
           "flyttevask": "Flyttevask",
@@ -333,6 +343,16 @@
         "badge": "Прозорі ціни",
         "title": "Розрахуйте вартість миттєво",
         "subtitle": "Жодних прихованих платежів. Отримайте точну оцінку для ваших потреб за секунди.",
+        "features": [
+          {
+            "title": "Швидка відповідь",
+            "description": "Дізнайтеся ціну миттєво, не чекаючи на прорахунок."
+          },
+          {
+            "title": "Жодних прихованих витрат",
+            "description": "У вартість входить обладнання, виїзд та ПДВ."
+          }
+        ],
         "serviceLabel": "Оберіть послугу",
         "services": {
           "flyttevask": "При переїзді",
@@ -633,6 +653,16 @@
         "badge": "Transparent Pricing",
         "title": "Calculate your price instantly",
         "subtitle": "No hidden fees. Get an accurate estimate for your cleaning needs in seconds.",
+        "features": [
+          {
+            "title": "Instant Response",
+            "description": "See the price immediately without waiting for a quote."
+          },
+          {
+            "title": "No Hidden Costs",
+            "description": "The price includes equipment, travel, and VAT."
+          }
+        ],
         "serviceLabel": "Select Service",
         "services": {
           "flyttevask": "Move-out",
