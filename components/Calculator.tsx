@@ -9,17 +9,18 @@ export default function Calculator() {
   const { t } = useLocale();
   const [sqm, setSqm] = useState(70);
   const [service, setService] = useState('flyttevask');
-  const [frequency, setFrequency] = useState(t('calculator.frequencies.0'));
+  const [freqIndex, setFreqIndex] = useState(0);
   const [price, setPrice] = useState(0);
 
   const frequencies = t('calculator.frequencies') as string[];
+  const frequency = frequencies[freqIndex] || frequencies[0];
 
   useEffect(() => {
     // Reset frequency if not regular cleaning
-    if (service !== 'regelmessig') {
-      setFrequency(frequencies[0]);
+    if (service !== 'regelmessig' && service !== 'kontor') {
+      setFreqIndex(0);
     }
-  }, [service, frequencies]);
+  }, [service]);
 
   useEffect(() => {
     const baseRate = pricing.basePrices[service as keyof typeof pricing.basePrices] || 0;
@@ -61,8 +62,8 @@ export default function Calculator() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-lg">Raskt Svar</h4>
-                  <p className="text-text-muted">Se prisen umiddelbart uten å vente på tilbud.</p>
+                  <h4 className="font-bold text-primary text-lg">{t('calculator.features.0.title')}</h4>
+                  <p className="text-text-muted">{t('calculator.features.0.description')}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -72,8 +73,8 @@ export default function Calculator() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-lg">Ingen Skjulte Kostnader</h4>
-                  <p className="text-text-muted">Prisen inkluderer utstyr, kjøring og MVA.</p>
+                  <h4 className="font-bold text-primary text-lg">{t('calculator.features.1.title')}</h4>
+                  <p className="text-text-muted">{t('calculator.features.1.description')}</p>
                 </div>
               </div>
             </div>
@@ -93,17 +94,17 @@ export default function Calculator() {
                 <label className="block text-sm font-bold text-primary mb-3 uppercase tracking-wider">{t('calculator.serviceLabel')}</label>
                 <div className="grid grid-cols-2 gap-3">
                   {[
-                    { id: 'flyttevask', label: 'Flyttevask' },
-                    { id: 'regelmessig', label: 'Regelmessig' },
-                    { id: 'visning', label: 'Visningsvask' },
-                    { id: 'kontor', label: 'Kontorvask' }
+                    { id: 'flyttevask' },
+                    { id: 'regelmessig' },
+                    { id: 'visning' },
+                    { id: 'kontor' }
                   ].map(s => (
                     <button
                       key={s.id}
                       onClick={() => setService(s.id)}
                       className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all border ${service === s.id ? 'bg-primary text-white border-primary shadow-md' : 'bg-white text-text-muted border-gray-200 hover:border-accent hover:text-primary'}`}
                     >
-                      {s.label}
+                      {t(`calculator.services.${s.id}`)}
                     </button>
                   ))}
                 </div>
@@ -134,12 +135,12 @@ export default function Calculator() {
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
                   <label className="block text-sm font-bold text-primary mb-3 uppercase tracking-wider">{t('calculator.frequencyLabel')}</label>
                   <select 
-                    value={frequency}
-                    onChange={(e) => setFrequency(e.target.value)}
+                    value={freqIndex}
+                    onChange={(e) => setFreqIndex(Number(e.target.value))}
                     className="w-full p-4 rounded-xl border border-gray-200 bg-white text-primary font-medium focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent appearance-none"
                   >
-                    {frequencies.map(f => (
-                      <option key={f} value={f}>{f}</option>
+                    {frequencies.map((f, idx) => (
+                      <option key={idx} value={idx}>{f}</option>
                     ))}
                   </select>
                 </motion.div>
