@@ -1,13 +1,24 @@
-
 {
+  "basePrices": {
+    "flyttevask": 85, 
+    "regelmessig": 550,
+    "visning": 75,
+    "kontor": 450
+  },
+  "multipliers": {
+    "En gang": 1.0,
+    "Hver uke": 0.8,
+    "Hver 14. dag": 0.85,
+    "Månedlig": 0.9,
+    "Один раз": 1.0,
+    "Щотижня": 0.8,
+    "Кожні 2 тижні": 0.85,
+    "Щомісяця": 0.9,
+    "Once": 1.0,
+    "Weekly": 0.8,
+    "Bi-weekly": 0.85,
+    "Monthly": 0.9
+  },
   "currency": "NOK",
-  "services": [
-    { "id": "flyttevask", "name": "Flyttevask", "basePrice": 0, "pricePerSqm": 85 },
-    { "id": "fastvask", "name": "Fast vask", "basePrice": 0, "pricePerSqm": 45 },
-    { "id": "nedvask", "name": "Nedvask", "basePrice": 0, "pricePerSqm": 75 },
-    { "id": "byggvask", "name": "Byggvask", "basePrice": 0, "pricePerSqm": 95 }
-  ],
-  "minSqm": 20,
-  "maxSqm": 300,
-  "defaultSqm": 60
+  "estimationLogic": "range"
 }

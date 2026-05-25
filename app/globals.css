@@ -1,22 +1,17 @@
 @import "tailwindcss";
 
-
 @theme {
-  --color-primary: hsl(215 40% 15%);
-  --color-primary-light: hsl(215 30% 25%);
-  --color-accent: hsl(185 80% 35%);
-  --color-accent-hover: hsl(185 85% 30%);
-  --color-accent-light: hsl(185 80% 95%);
-  --color-bg-light: hsl(210 20% 98%);
+  --color-primary: hsl(215 45% 15%); /* Deep Fjord Blue - Authority/Trust */
+  --color-primary-light: hsl(215 40% 25%);
+  --color-accent: hsl(175 80% 35%); /* Crisp Eco Teal - Clean/Svanemerket */
+  --color-accent-hover: hsl(175 85% 30%);
+  --color-bg-light: hsl(210 20% 98%); /* Very subtle cool tint */
+  --color-bg-tint: hsl(175 30% 96%); /* Subtle teal tint for alternation */
   --color-text-main: hsl(215 30% 20%);
-  --color-text-muted: hsl(215 15% 40%);
+  --color-text-muted: hsl(215 15% 45%);
   
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
-
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  --animate-marquee: marquee 40s linear infinite;
 }
 
 body {
@@ -27,22 +22,39 @@ h1, h2, h3, h4, h5, h6, .font-display {
   font-family: var(--font-display);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+/* Custom Range Slider Styling */
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  margin-top: -10px;
+  box-shadow: 0 2px 6px hsl(175 80% 35% / 0.4);
+  border: 4px solid white;
+  transition: transform 0.2s;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  background: hsl(215 20% 90%);
+  border-radius: 3px;
+}
+input[type=range]:focus {
+  outline: none;
 }
 
-@keyframes pulse-slow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Custom scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -54,34 +66,22 @@ h1, h2, h3, h4, h5, h6, .font-display {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: var(--color-primary-light);
 }
 
-/* Range Slider Styling */
-input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  background: transparent;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  cursor: pointer;
-  margin-top: -10px;
-  box-shadow: 0 4px 10px hsl(185 80% 35% / 0.3);
-  border: 4px solid white;
-  transition: transform 0.2s;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
-input[type=range]::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
+
+@keyframes drawPath {
+  to { stroke-dashoffset: 0; }
 }
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8px;
-  cursor: pointer;
-  background: hsl(215 20% 90%);
-  border-radius: 4px;
+.path-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 2s ease-out forwards;
 }

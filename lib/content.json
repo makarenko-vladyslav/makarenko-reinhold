@@ -1,299 +1,904 @@
-
 {
-  "defaultLocale": "uk",
+  "defaultLocale": "no",
   "locales": {
+    "no": {
+      "meta": {
+        "title": "Makarenko Reinhold | Profesjonelt Renhold i Notodden",
+        "description": "Offentlig godkjent renholdsbedrift i Notodden. Flyttevask med garanti, regelmessig renhold. Svanemerkede produkter."
+      },
+      "nav": {
+        "services": "Tjenester",
+        "calculator": "Priskalkulator",
+        "about": "Om Oss",
+        "faq": "FAQ",
+        "contact": "Kontakt",
+        "cta": "Få Tilbud"
+      },
+      "hero": {
+        "badge": "Offentlig Godkjent Renholdsbedrift",
+        "title": "Plettfritt Hjem.\nGarantert.",
+        "subtitle": "Vi leverer profesjonelt renhold i Notodden og Telemark. Fra flyttevask med 100% overleveringsgaranti til regelmessig vask med Svanemerkede produkter.",
+        "ctaPrimary": "Beregn Pris Nå",
+        "ctaSecondary": "Se Tjenester",
+        "stats": [
+          { "value": "100%", "label": "Fornøydgaranti" },
+          { "value": "10M", "label": "Ansvarsforsikring" },
+          { "value": "24t", "label": "Responstid" }
+        ]
+      },
+      "socialProof": {
+        "items": ["Arbeidstilsynet Godkjent", "HMS-Kort påkrevd", "Svanemerket Kjemi", "Fullt Forsikret", "Lokal Bedrift"]
+      },
+      "calculator": {
+        "badge": "Gjennomsiktig Prising",
+        "title": "Beregn din pris umiddelbart",
+        "subtitle": "Ingen skjulte gebyrer. Få et nøyaktig estimat for ditt renholdsbehov på sekunder.",
+        "serviceLabel": "Velg Tjeneste",
+        "services": {
+          "flyttevask": "Flyttevask",
+          "regelmessig": "Regelmessig",
+          "visning": "Visningsvask",
+          "kontor": "Kontorvask"
+        },
+        "sizeLabel": "Størrelse på bolig (m²)",
+        "frequencyLabel": "Hvor ofte?",
+        "frequencies": ["En gang", "Hver uke", "Hver 14. dag", "Månedlig"],
+        "totalLabel": "Estimert Pris",
+        "cta": "Bestill Nå",
+        "disclaimer": "*Endelig pris kan variere basert på boligens tilstand. Inkluderer MVA."
+      },
+      "services": {
+        "badge": "Våre Tjenester",
+        "title": "Komplett Renhold for Hjem og Bedrift",
+        "subtitle": "Vi bruker industri-standard damprensere og mikrofiber for å fjerne 99% av bakterier uten kjemikalielukt.",
+        "items": [
+          {
+            "id": "flyttevask",
+            "title": "Flyttevask med Garanti",
+            "description": "Streng sjekkliste utviklet med eiendomsmeglere. Vi garanterer at boligen blir godkjent ved overlevering.",
+            "icon": "move"
+          },
+          {
+            "id": "regelmessig",
+            "title": "Regelmessig Vask",
+            "description": "Fast renholder til fast tid. Nyt helgen mens vi tar oss av husvasken med miljøvennlige midler.",
+            "icon": "calendar"
+          },
+          {
+            "id": "visning",
+            "title": "Visningsvask",
+            "description": "Gjør et perfekt førsteinntrykk. Grundig rengjøring som fremhever boligens beste sider før salg.",
+            "icon": "sparkle"
+          },
+          {
+            "id": "kontor",
+            "title": "Kontorvask",
+            "description": "Et rent arbeidsmiljø øker produktiviteten. Skreddersydde avtaler for bedrifter i Notodden.",
+            "icon": "building"
+          },
+          {
+            "id": "vindu",
+            "title": "Vindusvask",
+            "description": "Krystallklare vinduer uten skjolder. Vi vasker både innvendig og utvendig, inkludert karmer.",
+            "icon": "window"
+          },
+          {
+            "id": "hytte",
+            "title": "Hyttevask",
+            "description": "Kom frem til en ren og innbydende hytte. Vi tilbyr renhold av hytter i hele Telemark-regionen.",
+            "icon": "cabin"
+          }
+        ]
+      },
+      "trust": {
+        "badge": "Hvorfor Velge Oss",
+        "title": "Trygghet i Hvert Steg",
+        "subtitle": "Vi forstår at du slipper oss inn i ditt mest private rom. Derfor tar vi sikkerhet og kvalitet på dypeste alvor.",
+        "items": [
+          {
+            "title": "Offentlig Godkjent",
+            "description": "Registrert i Arbeidstilsynet. Alle våre ansatte har gyldig HMS-kort og jobber under lovlige, trygge forhold.",
+            "icon": "shield"
+          },
+          {
+            "title": "Skånsom Kjemi",
+            "description": "Vi bruker Svanemerkede produkter som er tøffe mot smuss, men trygge for barn, kjæledyr og dyre overflater som eik og marmor.",
+            "icon": "leaf"
+          },
+          {
+            "title": "10M NOK Forsikring",
+            "description": "Full ansvarsforsikring opp til 10 millioner kroner. Skulle uhellet være ute, er du og ditt hjem 100% dekket.",
+            "icon": "umbrella"
+          },
+          {
+            "title": "Nøkkel-Sikkerhet",
+            "description": "Strenge rutiner for nøkkelhåndtering. Din trygghet er vår prioritet, og vi garanterer sikker oppbevaring.",
+            "icon": "key"
+          }
+        ]
+      },
+      "process": {
+        "badge": "Slik Fungerer Det",
+        "title": "Fra Bestilling til Plettfritt Hjem",
+        "steps": [
+          {
+            "title": "Få et Estimat",
+            "description": "Bruk vår kalkulator eller kontakt oss for en nøyaktig pris basert på dine behov."
+          },
+          {
+            "title": "Avtal Tid",
+            "description": "Vi finner et tidspunkt som passer deg. Våre lokale renholdere ankommer presis."
+          },
+          {
+            "title": "Profesjonell Vask",
+            "description": "Vi utfører jobben med spesialutstyr og miljøvennlige produkter etter fast sjekkliste."
+          },
+          {
+            "title": "Kvalitetskontroll",
+            "description": "Vi går over arbeidet. Ved flyttevask gjelder vår 100% overleveringsgaranti."
+          }
+        ]
+      },
+      "beforeAfter": {
+        "badge": "Resultater",
+        "title": "Forskjellen Ligger i Detaljene",
+        "subtitle": "Se hva profesjonelt utstyr og grundighet kan gjøre med fastgrodde flekker og smuss.",
+        "items": [
+          { "before": "https://picsum.photos/seed/dirtykitchen/800/600", "after": "https://picsum.photos/seed/cleankitchen/800/600", "label": "Kjøkken" },
+          { "before": "https://picsum.photos/seed/dirtybath/800/600", "after": "https://picsum.photos/seed/cleanbath/800/600", "label": "Baderom" }
+        ]
+      },
+      "testimonials": {
+        "badge": "Kundeomtaler",
+        "title": "Hva Våre Kunder Sier",
+        "items": [
+          {
+            "name": "Kari Nordmann",
+            "role": "Huseier, Notodden",
+            "text": "Brukte Makarenko til flyttevask. Megleren var imponert over standarden, og overtakelsen gikk helt uten problemer. Anbefales på det sterkeste!",
+            "rating": 5
+          },
+          {
+            "name": "Ole Hansen",
+            "role": "Fast Kunde",
+            "text": "Har hatt regelmessig vask i 6 måneder nå. Det er fantastisk å komme hjem til et rent hus på fredager. Veldig pålitelige og hyggelige ansatte.",
+            "rating": 5
+          },
+          {
+            "name": "Ingrid Berg",
+            "role": "Bedriftseier",
+            "text": "De tar kontorvasken vår. Alltid presise, og de bruker produkter som ikke etterlater sterk kjemikalielukt, noe de ansatte setter pris på.",
+            "rating": 5
+          },
+          {
+            "name": "Lars Johansen",
+            "role": "Hytteeier",
+            "text": "Bestilte storrengjøring av hytta etter vinteren. Resultatet var over all forventning. Vinduene har aldri vært så rene.",
+            "rating": 5
+          }
+        ]
+      },
+      "gallery": {
+        "badge": "Vårt Arbeid",
+        "title": "Glimt fra Vår Hverdag",
+        "items": [
+          { "url": "https://picsum.photos/seed/clean1/800/800", "alt": "Rent kjøkken" },
+          { "url": "https://picsum.photos/seed/clean2/800/800", "alt": "Støvsuging" },
+          { "url": "https://picsum.photos/seed/clean3/800/800", "alt": "Rent bad" },
+          { "url": "https://picsum.photos/seed/clean4/800/800", "alt": "Vindusvask" },
+          { "url": "https://picsum.photos/seed/clean5/800/800", "alt": "Kontor" },
+          { "url": "https://picsum.photos/seed/clean6/800/800", "alt": "Stue" }
+        ]
+      },
+      "video": {
+        "badge": "Se Hvordan Vi Jobber",
+        "title": "Kvalitet i Hver Bevegelse",
+        "posterUrl": "https://picsum.photos/seed/cleaningvideo/1200/600"
+      },
+      "team": {
+        "badge": "Vårt Team",
+        "title": "Menneskene Bak Renholdet",
+        "subtitle": "Alle våre ansatte er fast ansatt, har HMS-kort og får kontinuerlig opplæring i moderne renholdsteknikker.",
+        "items": [
+          {
+            "name": "Anna Dizhenko",
+            "role": "Daglig Leder & Grunnlegger",
+            "bio": "Grunnla selskapet med en visjon om å heve standarden for renhold i Telemark gjennom lovlige forhold og høy kvalitet.",
+            "imageUrl": "https://picsum.photos/seed/anna/400/500"
+          },
+          {
+            "name": "Maria S.",
+            "role": "Teamleder Flyttevask",
+            "bio": "Spesialist på krevende oppdrag og kvalitetskontroll før overlevering.",
+            "imageUrl": "https://picsum.photos/seed/maria/400/500"
+          },
+          {
+            "name": "Elena K.",
+            "role": "Renholdsspesialist",
+            "bio": "Ekspert på skånsom behandling av naturmaterialer og Svanemerket kjemi.",
+            "imageUrl": "https://picsum.photos/seed/elena/400/500"
+          }
+        ]
+      },
+      "faq": {
+        "badge": "Ofte Stilte Spørsmål",
+        "title": "Svar på Dine Spørsmål",
+        "items": [
+          {
+            "question": "Hva dekker deres flyttevask-garanti?",
+            "answer": "Vår garanti betyr at dersom ny eier, leietaker eller megler ikke er fornøyd med renholdet ved overtagelse, kommer vi tilbake og retter opp feilene kostnadsfritt innen 48 timer."
+          },
+          {
+            "question": "Må jeg være hjemme mens dere vasker?",
+            "answer": "Nei, det er ikke nødvendig. Mange av våre faste kunder gir oss en nøkkel (som oppbevares i safe) eller en kode til dørlåsen. Vi jobber diskret og effektivt mens du er på jobb."
+          },
+          {
+            "question": "Hvilke rengjøringsmidler bruker dere?",
+            "answer": "Vi bruker primært Svanemerkede, miljøvennlige produkter som er trygge for både overflater, barn og kjæledyr. Vi bruker også profesjonelle damprensere som fjerner bakterier uten kjemikalier."
+          },
+          {
+            "question": "Er dere en godkjent renholdsbedrift?",
+            "answer": "Ja, Makarenko Reinhold er en offentlig godkjent renholdsbedrift registrert hos Arbeidstilsynet. Alle våre ansatte bærer gyldig HMS-kort."
+          },
+          {
+            "question": "Hva skjer hvis noe blir ødelagt under vaskingen?",
+            "answer": "Vi er fullt forsikret med en ansvarsforsikring på opptil 10 millioner NOK. Skulle vi være uheldige å skade noe, dekkes dette i sin helhet av vår forsikring."
+          },
+          {
+            "question": "Hvor lang tid tar en standard flyttevask?",
+            "answer": "Dette avhenger av boligens størrelse og tilstand. En leilighet på 70 kvm tar typisk 4-6 timer for et team på to personer. Vi gir et tidsestimat ved bestilling."
+          },
+          {
+            "question": "Vasker dere vinduer utvendig?",
+            "answer": "Ja, utvendig vindusvask er inkludert i flyttevask og kan bestilles som tilleggstjeneste ved regelmessig vask, forutsatt at vinduene er trygt tilgjengelige."
+          },
+          {
+            "question": "Har dere med eget utstyr?",
+            "answer": "Ja, vi stiller med alt av nødvendig utstyr, inkludert profesjonelle støvsugere, damprensere, mopper og kluter i mikrofiber av industristandard."
+          },
+          {
+            "question": "Hvordan betaler jeg for tjenesten?",
+            "answer": "Vi sender faktura etter utført oppdrag. For faste avtaler fakturerer vi vanligvis månedlig."
+          },
+          {
+            "question": "Hvor i Telemark tilbyr dere tjenester?",
+            "answer": "Vår hovedbase er i Notodden, men vi dekker store deler av Telemark, inkludert Kongsberg, Bø, og omliggende hytteområder."
+          }
+        ]
+      },
+      "coverage": {
+        "badge": "Vårt Område",
+        "title": "Vi Dekker Telemark",
+        "subtitle": "Med base i Notodden rykker vi raskt ut til hele regionen uten forsinkelser.",
+        "areas": ["Notodden", "Kongsberg", "Bø i Telemark", "Sauherad", "Hjartdal", "Gransherad"]
+      },
+      "ctaBanner": {
+        "title": "Klar for et renere hjem?",
+        "subtitle": "Bestill i dag og opplev forskjellen med profesjonelt renhold.",
+        "button": "Få Gratis Estimat"
+      },
+      "contact": {
+        "badge": "Kontakt Oss",
+        "title": "La Oss Ta Praten",
+        "subtitle": "Har du spørsmål eller ønsker et skreddersydd tilbud? Fyll ut skjemaet, så kontakter vi deg raskt.",
+        "nameLabel": "Ditt Navn",
+        "emailLabel": "E-postadresse",
+        "phoneLabel": "Telefonnummer",
+        "messageLabel": "Melding / Behov",
+        "submitButton": "Send Melding",
+        "successMessage": "Takk for din henvendelse! Vi tar kontakt snart.",
+        "info": {
+          "phone": "+47 966 84 393",
+          "email": "annadizhenko@gmail.com",
+          "address": "Notodden, Telemark, Norge",
+          "hours": "Man-Fre: 08:00 - 16:00"
+        }
+      },
+      "footer": {
+        "description": "Makarenko Reinhold er din lokale partner for profesjonelt renhold i Notodden. Offentlig godkjent og fullt forsikret for din trygghet.",
+        "quickLinks": "Hurtiglenker",
+        "legal": "Juridisk",
+        "rights": "Alle rettigheter reservert."
+      }
+    },
     "uk": {
       "meta": {
         "title": "Makarenko Reinhold | Професійний клінінг у Нотоддені",
-        "description": "Сімейний клінінговий сервіс у Нотоддені. Прибирання при виїзді з 24-годинною гарантією, регулярне прибирання, еко-хімія."
+        "description": "Офіційно затверджена клінінгова компанія в Нотоддені. Прибирання при переїзді з гарантією, регулярне прибирання. Екологічні засоби Svanemerket."
       },
       "nav": {
         "services": "Послуги",
-        "calculator": "Ціни",
+        "calculator": "Калькулятор",
         "about": "Про нас",
-        "reviews": "Відгуки",
         "faq": "FAQ",
         "contact": "Контакти",
         "cta": "Отримати ціну"
       },
       "hero": {
-        "badge": "Godkjent renholdsbedrift",
-        "title": "Бездоганна чистота з норвезькою гарантією якості",
-        "subtitle": "Сімейний клінінговий сервіс у Нотоддені. Особиста відповідальність власників, еко-хімія Svanemerket та 100% легальність.",
+        "badge": "Офіційно затверджена компанія",
+        "title": "Бездоганна чистота.\nГарантовано.",
+        "subtitle": "Професійний клінінг у Нотоддені та Телемарку. Від прибирання при переїзді з 100% гарантією здачі до регулярного прибирання еко-засобами.",
         "ctaPrimary": "Розрахувати вартість",
         "ctaSecondary": "Наші послуги",
-        "imageUrl": "https://picsum.photos/seed/cleaning-hero-nordic/1920/1080",
         "stats": [
-          { "value": "10M", "label": "Страхування NOK" },
-          { "value": "24h", "label": "Гарантія на Flyttevask" },
-          { "value": "100%", "label": "Еко-засоби" }
+          { "value": "100%", "label": "Гарантія якості" },
+          { "value": "10M", "label": "Страхування" },
+          { "value": "24г", "label": "Реагування" }
         ]
       },
-      "trust": {
-        "title": "Офіційно та безпечно",
-        "items": [
-          "Реєстрація в Arbeidstilsynet",
-          "Офіційні HMS-картки",
-          "Страхування Gjensidige",
-          "Хімія Svanemerket",
-          "Без субпідрядників"
-        ]
-      },
-      "whyUs": {
-        "badge": "Чому ми",
-        "title": "Більше ніж просто прибирання",
-        "subtitle": "Ми поєднуємо суворе дотримання норвезьких стандартів якості з особистою відповідальністю за кожен куточок вашого дому.",
-        "cards": [
-          {
-            "title": "Особиста відповідальність",
-            "description": "Роботу виконують виключно власники — Анна та Максим. Жодних сторонніх субпідрядників чи випадкових працівників.",
-            "icon": "shield"
-          },
-          {
-            "title": "Залізна гарантія",
-            "description": "24-годинна гарантія на Flyttevask. Ми безкоштовно виправимо будь-які зауваження орендодавця при здачі житла.",
-            "icon": "check"
-          },
-          {
-            "title": "Екологічність",
-            "description": "Використовуємо лише професійну еко-хімію Nilfisk та Lilleborg із маркуванням Svanemerket. Безпечно для дітей та тварин.",
-            "icon": "leaf"
-          },
-          {
-            "title": "Повна легальність",
-            "description": "Офіційний статус у реєстрі Arbeidstilsynet, наявність HMS-карток та страхування відповідальності на 10 млн NOK.",
-            "icon": "doc"
-          }
-        ]
-      },
-      "services": {
-        "badge": "Наші послуги",
-        "title": "Що ми пропонуємо",
-        "subtitle": "Комплексні рішення для чистоти вашого дому, офісу чи котеджу.",
-        "items": [
-          {
-            "id": "flyttevask",
-            "title": "Flyttevask (При виїзді)",
-            "description": "Генеральне прибирання перед здачею житла з 24-годинною гарантією повернення депозиту.",
-            "icon": "box"
-          },
-          {
-            "id": "fastvask",
-            "title": "Fast vask (Регулярне)",
-            "description": "Щотижнева або двотижнева підтримка ідеальної чистоти для зайнятих сімей.",
-            "icon": "calendar"
-          },
-          {
-            "id": "nedvask",
-            "title": "Nedvask (Генеральне)",
-            "description": "Глибоке очищення всіх поверхонь, включаючи важкодоступні місця та техніку.",
-            "icon": "sparkles"
-          },
-          {
-            "id": "kontorvask",
-            "title": "Kontorvask (Офіси)",
-            "description": "Професійне прибирання комерційних приміщень для комфортної роботи команди.",
-            "icon": "building"
-          },
-          {
-            "id": "vindusvask",
-            "title": "Vindusvask (Вікна)",
-            "description": "Миття вікон без розводів, включаючи рами та підвіконня. Сезонне обслуговування.",
-            "icon": "window"
-          },
-          {
-            "id": "byggvask",
-            "title": "Byggvask (Після ремонту)",
-            "description": "Видалення будівельного пилу, залишків фарби та підготовка до заселення.",
-            "icon": "tools"
-          }
-        ]
+      "socialProof": {
+        "items": ["Схвалено Arbeidstilsynet", "Наявність HMS-карт", "Еко-засоби Svanemerket", "Повне страхування", "Локальний бізнес"]
       },
       "calculator": {
         "badge": "Прозорі ціни",
-        "title": "Розрахуйте вартість онлайн",
-        "subtitle": "Фіксована ціна за квадратний метр без прихованих платежів. Всі ціни включають MVA.",
-        "serviceLabel": "Оберіть тип прибирання",
-        "areaLabel": "Площа приміщення (м²)",
-        "resultLabel": "Орієнтовна вартість",
-        "currency": "NOK",
-        "cta": "Забронювати зараз",
-        "disclaimer": "*Остаточна ціна може змінюватись залежно від ступеня забруднення."
+        "title": "Розрахуйте вартість миттєво",
+        "subtitle": "Жодних прихованих платежів. Отримайте точну оцінку для ваших потреб за секунди.",
+        "serviceLabel": "Оберіть послугу",
+        "services": {
+          "flyttevask": "При переїзді",
+          "regelmessig": "Регулярне",
+          "visning": "Передпродажне",
+          "kontor": "Офісне"
+        },
+        "sizeLabel": "Площа приміщення (м²)",
+        "frequencyLabel": "Як часто?",
+        "frequencies": ["Один раз", "Щотижня", "Кожні 2 тижні", "Щомісяця"],
+        "totalLabel": "Орієнтовна ціна",
+        "cta": "Замовити зараз",
+        "disclaimer": "*Кінцева ціна може залежати від стану приміщення. Включає MVA."
+      },
+      "services": {
+        "badge": "Наші послуги",
+        "title": "Комплексний клінінг для дому та бізнесу",
+        "subtitle": "Ми використовуємо промислові пароочисники та мікрофібру для видалення 99% бактерій без запаху хімії.",
+        "items": [
+          {
+            "id": "flyttevask",
+            "title": "Прибирання при переїзді",
+            "description": "Суворий чек-лист від агентів з нерухомості. Гарантуємо, що житло буде прийнято при здачі.",
+            "icon": "move"
+          },
+          {
+            "id": "regelmessig",
+            "title": "Регулярне прибирання",
+            "description": "Постійний клінер у зручний час. Насолоджуйтесь вихідними, поки ми дбаємо про чистоту еко-засобами.",
+            "icon": "calendar"
+          },
+          {
+            "id": "visning",
+            "title": "Передпродажне прибирання",
+            "description": "Ідеальне перше враження. Ретельне прибирання, що підкреслює найкращі сторони нерухомості.",
+            "icon": "sparkle"
+          },
+          {
+            "id": "kontor",
+            "title": "Офісне прибирання",
+            "description": "Чисте середовище підвищує продуктивність. Індивідуальні графіки для бізнесу в Нотоддені.",
+            "icon": "building"
+          },
+          {
+            "id": "vindu",
+            "title": "Миття вікон",
+            "description": "Кришталево чисті вікна без розводів. Миємо як всередині, так і зовні, включаючи рами.",
+            "icon": "window"
+          },
+          {
+            "id": "hytte",
+            "title": "Прибирання котеджів",
+            "description": "Приїжджайте в чисту та затишну кабіну. Обслуговуємо котеджі по всьому регіону Телемарк.",
+            "icon": "cabin"
+          }
+        ]
+      },
+      "trust": {
+        "badge": "Чому обирають нас",
+        "title": "Безпека на кожному кроці",
+        "subtitle": "Ми розуміємо, що ви впускаєте нас у свій приватний простір. Тому безпека та якість — наш пріоритет.",
+        "items": [
+          {
+            "title": "Офіційно затверджені",
+            "description": "Зареєстровані в Arbeidstilsynet. Всі працівники мають HMS-карти та працюють легально.",
+            "icon": "shield"
+          },
+          {
+            "title": "Безпечна хімія",
+            "description": "Використовуємо засоби Svanemerket, безпечні для дітей, тварин та дорогих поверхонь (дуб, мармур).",
+            "icon": "leaf"
+          },
+          {
+            "title": "Страхування 10 млн NOK",
+            "description": "Повне страхування відповідальності. У разі непередбачуваних ситуацій ви на 100% захищені.",
+            "icon": "umbrella"
+          },
+          {
+            "title": "Безпека ключів",
+            "description": "Суворі протоколи поводження з ключами. Ваша безпека гарантована.",
+            "icon": "key"
+          }
+        ]
       },
       "process": {
-        "badge": "Як ми працюємо",
-        "title": "Простий шлях до чистоти",
+        "badge": "Як це працює",
+        "title": "Від замовлення до ідеальної чистоти",
         "steps": [
           {
-            "title": "Заявка та прорахунок",
-            "description": "Залиште заявку на сайті або зателефонуйте. Ми узгодимо деталі та зафіксуємо ціну."
+            "title": "Отримайте розрахунок",
+            "description": "Використайте калькулятор або зв'яжіться з нами для точної оцінки."
           },
           {
-            "title": "Прибирання",
-            "description": "Ми приїжджаємо зі своїм професійним обладнанням та еко-засобами у визначений час."
+            "title": "Узгодьте час",
+            "description": "Обираємо зручний для вас час. Наші локальні фахівці прибувають вчасно."
           },
           {
-            "title": "Прийом роботи",
-            "description": "Ви перевіряєте якість. Для Flyttevask діє 24-годинна гарантія для орендодавця."
+            "title": "Професійне прибирання",
+            "description": "Виконуємо роботу за чек-листом з використанням спецобладнання."
           },
           {
-            "title": "Оплата",
-            "description": "Оплата здійснюється після виконання роботи. Надаємо офіційний рахунок (faktura)."
+            "title": "Контроль якості",
+            "description": "Перевіряємо результат. Для переїздів діє 100% гарантія здачі."
           }
         ]
       },
       "beforeAfter": {
         "badge": "Результати",
-        "title": "Різниця, яку видно одразу",
-        "subtitle": "Перетягніть повзунок, щоб побачити результат нашої роботи.",
-        "beforeLabel": "До",
-        "afterLabel": "Після",
-        "imageBefore": "https://picsum.photos/seed/dirty-kitchen-before/800/600",
-        "imageAfter": "https://picsum.photos/seed/clean-kitchen-after/800/600"
+        "title": "Різниця в деталях",
+        "subtitle": "Подивіться, що робить професійне обладнання зі складними забрудненнями.",
+        "items": [
+          { "before": "https://picsum.photos/seed/dirtykitchen/800/600", "after": "https://picsum.photos/seed/cleankitchen/800/600", "label": "Кухня" },
+          { "before": "https://picsum.photos/seed/dirtybath/800/600", "after": "https://picsum.photos/seed/cleanbath/800/600", "label": "Ванна кімната" }
+        ]
       },
       "testimonials": {
         "badge": "Відгуки",
         "title": "Що кажуть наші клієнти",
         "items": [
           {
-            "name": "Lars Johansen",
-            "role": "Орендар",
-            "text": "Замовляв Flyttevask. Орендодавець прийняв квартиру без жодного зауваження. Депозит повернули повністю. Дуже вдячний Анні та Максиму за професіоналізм!",
-            "rating": 5,
-            "avatar": "https://picsum.photos/seed/lars/100/100"
-          },
-          {
             "name": "Kari Nordmann",
             "role": "Власниця будинку",
-            "text": "Користуємось послугою Fast vask вже півроку. Завжди вчасно, ідеально чисто, і головне — жодного запаху хімії, що важливо для нашого собаки.",
-            "rating": 5,
-            "avatar": "https://picsum.photos/seed/kari/100/100"
+            "text": "Замовляла прибирання при переїзді. Агент був вражений, здача пройшла без проблем. Рекомендую!",
+            "rating": 5
           },
           {
             "name": "Ole Hansen",
-            "role": "Студент USN",
-            "text": "Найкраща ціна в Нотоддені за таку якість. Зробили генеральне прибирання після вечірки — квартира виглядає краще, ніж до мого заїзду.",
-            "rating": 5,
-            "avatar": "https://picsum.photos/seed/ole/100/100"
+            "role": "Постійний клієнт",
+            "text": "Вже 6 місяців замовляю регулярне прибирання. Чудово повертатися в чистий дім у п'ятницю.",
+            "rating": 5
           },
           {
             "name": "Ingrid Berg",
-            "role": "Власниця Hytte",
-            "text": "Надійно готують мій котедж перед заїздом гостей з Airbnb. Рейтинг чистоти у мене тепер 5.0. Рекомендую!",
-            "rating": 5,
-            "avatar": "https://picsum.photos/seed/ingrid/100/100"
+            "role": "Власниця бізнесу",
+            "text": "Прибирають наш офіс. Завжди вчасно, без різкого запаху хімії, що дуже цінують працівники.",
+            "rating": 5
+          },
+          {
+            "name": "Lars Johansen",
+            "role": "Власник котеджу",
+            "text": "Замовляв генеральне прибирання після зими. Результат перевершив очікування. Вікна ідеальні.",
+            "rating": 5
           }
         ]
       },
       "gallery": {
-        "badge": "Галерея",
-        "title": "Наш підхід до деталей",
+        "badge": "Наші роботи",
+        "title": "Моменти нашої роботи",
         "items": [
-          { "url": "https://picsum.photos/seed/clean-living-room/800/800", "alt": "Чиста вітальня" },
-          { "url": "https://picsum.photos/seed/clean-bathroom/800/800", "alt": "Сяюча ванна кімната" },
-          { "url": "https://picsum.photos/seed/clean-kitchen/800/800", "alt": "Ідеальна кухня" },
-          { "url": "https://picsum.photos/seed/clean-windows/800/800", "alt": "Миття вікон" },
-          { "url": "https://picsum.photos/seed/clean-office/800/800", "alt": "Прибирання офісу" },
-          { "url": "https://picsum.photos/seed/clean-terrace/800/800", "alt": "Миття тераси" }
+          { "url": "https://picsum.photos/seed/clean1/800/800", "alt": "Чиста кухня" },
+          { "url": "https://picsum.photos/seed/clean2/800/800", "alt": "Пилосос" },
+          { "url": "https://picsum.photos/seed/clean3/800/800", "alt": "Чиста ванна" },
+          { "url": "https://picsum.photos/seed/clean4/800/800", "alt": "Миття вікон" },
+          { "url": "https://picsum.photos/seed/clean5/800/800", "alt": "Офіс" },
+          { "url": "https://picsum.photos/seed/clean6/800/800", "alt": "Вітальня" }
         ]
       },
       "video": {
-        "badge": "Відео",
-        "title": "Процес нашої роботи",
-        "posterUrl": "https://picsum.photos/seed/cleaning-video-poster/1200/600"
+        "badge": "Як ми працюємо",
+        "title": "Якість у кожному русі",
+        "posterUrl": "https://picsum.photos/seed/cleaningvideo/1200/600"
       },
       "team": {
-        "badge": "Команда",
-        "title": "Хто дбає про ваш дім",
-        "subtitle": "Ми не наймаємо випадкових людей. Ми особисто гарантуємо якість.",
-        "members": [
+        "badge": "Наша команда",
+        "title": "Люди, які створюють чистоту",
+        "subtitle": "Всі працівники офіційно працевлаштовані, мають HMS-карти та проходять постійне навчання.",
+        "items": [
           {
-            "name": "Анна Макаренко",
-            "role": "Співзасновниця / Експерт з клінінгу",
-            "bio": "Контролює якість еко-засобів та відповідає за ідеальну чистоту делікатних поверхонь.",
-            "imageUrl": "https://picsum.photos/seed/anna-portrait/400/500"
+            "name": "Анна Діженко",
+            "role": "Засновниця та Керівник",
+            "bio": "Заснувала компанію з метою підвищення стандартів клінінгу в Телемарку через легальність та якість.",
+            "imageUrl": "https://picsum.photos/seed/anna/400/500"
           },
           {
-            "name": "Максим Рейнгольд",
-            "role": "Співзасновник / Технічний спеціаліст",
-            "bio": "Відповідає за роботу з професійною технікою, миття вікон та післябудівельний клінінг.",
-            "imageUrl": "https://picsum.photos/seed/maxim-portrait/400/500"
+            "name": "Марія С.",
+            "role": "Тімлід (Переїзди)",
+            "bio": "Спеціаліст зі складних об'єктів та контролю якості перед здачею.",
+            "imageUrl": "https://picsum.photos/seed/maria/400/500"
+          },
+          {
+            "name": "Олена К.",
+            "role": "Спеціаліст",
+            "bio": "Експерт з догляду за натуральними матеріалами та використання еко-засобів.",
+            "imageUrl": "https://picsum.photos/seed/elena/400/500"
           }
         ]
       },
       "faq": {
-        "badge": "Питання та відповіді",
-        "title": "Часті запитання",
+        "badge": "Часті питання",
+        "title": "Відповіді на ваші питання",
         "items": [
           {
-            "question": "Що покриває 24-годинна гарантія на Flyttevask?",
-            "answer": "Якщо орендодавець або новий власник знайде недоліки у прибиранні протягом 24 годин після здачі, ми приїдемо і безкоштовно все виправимо. Це гарантує повернення вашого депозиту."
+            "question": "Що покриває гарантія при переїзді?",
+            "answer": "Якщо новий власник або агент не задоволені прибиранням, ми безкоштовно усунемо недоліки протягом 48 годин."
           },
           {
-            "question": "Чи потрібно мені надавати свої миючі засоби чи пилосос?",
-            "answer": "Ні, ми привозимо всю необхідну професійну техніку (Nilfisk) та сертифіковану еко-хімію (Svanemerket) з собою. Це входить у вартість."
+            "question": "Чи потрібно мені бути вдома?",
+            "answer": "Ні. Багато клієнтів залишають нам ключі (зберігаються в сейфі) або код від дверей. Ми працюємо, поки ви у справах."
           },
           {
-            "question": "Чи безпечні ваші засоби для домашніх тварин?",
-            "answer": "Абсолютно. Ми використовуємо екологічні засоби без агресивного хлору та різких запахів, які повністю безпечні для дітей, алергіків та домашніх улюбленців."
+            "question": "Які засоби ви використовуєте?",
+            "answer": "Переважно екологічні засоби Svanemerket, безпечні для дітей і тварин, а також професійні пароочисники."
+          },
+          {
+            "question": "Ви офіційна компанія?",
+            "answer": "Так, ми зареєстровані в Arbeidstilsynet. Всі працівники мають HMS-карти."
+          },
+          {
+            "question": "Що якщо щось пошкодиться?",
+            "answer": "Ми маємо страхування відповідальності до 10 млн NOK, що повністю покриває будь-які збитки."
+          },
+          {
+            "question": "Скільки часу займає прибирання при переїзді?",
+            "answer": "Квартира 70 кв.м зазвичай займає 4-6 годин для команди з двох осіб."
+          },
+          {
+            "question": "Ви миєте вікна зовні?",
+            "answer": "Так, це включено у прибирання при переїзді (за умови безпечного доступу)."
+          },
+          {
+            "question": "У вас своє обладнання?",
+            "answer": "Так, ми привозимо все необхідне: професійні пилососи, пароочисники, мікрофібру."
           },
           {
             "question": "Як відбувається оплата?",
-            "answer": "Оплата здійснюється після виконання та прийняття роботи. Ми виставляємо офіційний рахунок (faktura), який ви можете оплатити через банк."
+            "answer": "Ми надсилаємо рахунок (faktura) після виконання роботи."
           },
           {
-            "question": "Що означає статус 'Godkjent renholdsbedrift'?",
-            "answer": "Це означає, що ми офіційно зареєстровані в Норвезькій інспекції праці (Arbeidstilsynet). Наймаючи нас, ви не несете солідарної відповідальності за нелегальну працю, що є ризиком при наймі неофіційних прибиральників."
-          },
-          {
-            "question": "Чи застрахована ваша відповідальність?",
-            "answer": "Так, ми маємо повне страхування цивільної відповідальності в компанії Gjensidige з покриттям до 10 млн NOK на випадок випадкового пошкодження майна під час прибирання."
-          },
-          {
-            "question": "Як передати вам ключі, якщо я на роботі?",
-            "answer": "Ми можемо домовитись про передачу ключів напередодні, або ви можете залишити їх у безпечному місці (наприклад, у keybox). Ми гарантуємо повну конфіденційність та безпеку."
-          },
-          {
-            "question": "Чи прибираєте ви за меблями?",
-            "answer": "Під час генерального прибирання (Nedvask) та при виїзді (Flyttevask) ми відсуваємо легкі меблі, щоб прибрати за ними. Важкі меблі ми не рухаємо з міркувань безпеки, але максимально очищаємо доступні зони."
-          },
-          {
-            "question": "Чи миєте ви духовки та витяжки всередині?",
-            "answer": "Так, глибоке чищення кухонної техніки, включаючи духовку, мікрохвильовку та фільтри витяжки, входить у стандартний пакет Flyttevask та Nedvask."
-          },
-          {
-            "question": "Чи працюєте ви у вихідні?",
-            "answer": "Так, ми працюємо у вихідні дні за попередньою домовленістю. Зверніть увагу, що на вихідні може застосовуватись невелика націнка."
+            "question": "Де ви працюєте?",
+            "answer": "База в Нотоддені, обслуговуємо Телемарк: Kongsberg, Bø, Sauherad та інші."
           }
         ]
       },
+      "coverage": {
+        "badge": "Зона обслуговування",
+        "title": "Працюємо в Телемарку",
+        "subtitle": "З базою в Нотоддені ми швидко прибуваємо на об'єкти без затримок.",
+        "areas": ["Notodden", "Kongsberg", "Bø i Telemark", "Sauherad", "Hjartdal", "Gransherad"]
+      },
       "ctaBanner": {
         "title": "Готові до ідеальної чистоти?",
-        "subtitle": "Забронюйте прибирання сьогодні та отримайте більше вільного часу для себе та родини.",
-        "button": "Отримати розрахунок"
+        "subtitle": "Замовте сьогодні та відчуйте різницю професійного підходу.",
+        "button": "Отримати безкоштовну оцінку"
       },
       "contact": {
         "badge": "Контакти",
         "title": "Зв'яжіться з нами",
-        "subtitle": "Ми завжди на зв'язку і готові відповісти на ваші запитання.",
+        "subtitle": "Маєте питання або потрібен розрахунок? Заповніть форму, і ми швидко відповімо.",
+        "nameLabel": "Ваше ім'я",
+        "emailLabel": "Email",
+        "phoneLabel": "Телефон",
+        "messageLabel": "Повідомлення / Потреби",
+        "submitButton": "Відправити",
+        "successMessage": "Дякуємо! Ми зв'яжемося з вами найближчим часом.",
         "info": {
           "phone": "+47 966 84 393",
           "email": "annadizhenko@gmail.com",
-          "address": "Notodden, Norway",
-          "hours": "Пн-Пт: 08:00 - 18:00"
-        },
-        "form": {
-          "name": "Ваше ім'я",
-          "phone": "Телефон",
-          "service": "Послуга",
-          "message": "Повідомлення (необов'язково)",
-          "submit": "Надіслати запит",
-          "success": "Дякуємо! Ми зв'яжемось з вами найближчим часом."
+          "address": "Notodden, Telemark, Norge",
+          "hours": "Пн-Пт: 08:00 - 16:00"
         }
       },
       "footer": {
-        "description": "Професійний клінінговий сервіс у Нотоддені. Якість, якій довіряють.",
-        "rights": "Всі права захищено."
+        "description": "Makarenko Reinhold — ваш локальний партнер з професійного клінінгу в Нотоддені. Офіційно затверджені та застраховані.",
+        "quickLinks": "Швидкі посилання",
+        "legal": "Юридична інформація",
+        "rights": "Всі права захищені."
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "Makarenko Reinhold | Professional Cleaning in Notodden",
+        "description": "Officially approved cleaning company in Notodden. Move-out cleaning with guarantee, regular cleaning. Eco-friendly products."
+      },
+      "nav": {
+        "services": "Services",
+        "calculator": "Calculator",
+        "about": "About Us",
+        "faq": "FAQ",
+        "contact": "Contact",
+        "cta": "Get Quote"
+      },
+      "hero": {
+        "badge": "Officially Approved Cleaning Company",
+        "title": "Spotless Home.\nGuaranteed.",
+        "subtitle": "We deliver professional cleaning in Notodden and Telemark. From move-out cleaning with a 100% handover guarantee to regular cleaning with eco-friendly products.",
+        "ctaPrimary": "Calculate Price Now",
+        "ctaSecondary": "View Services",
+        "stats": [
+          { "value": "100%", "label": "Satisfaction Guarantee" },
+          { "value": "10M", "label": "Liability Insurance" },
+          { "value": "24h", "label": "Response Time" }
+        ]
+      },
+      "socialProof": {
+        "items": ["Arbeidstilsynet Approved", "HMS Card Required", "Nordic Swan Ecolabel", "Fully Insured", "Local Business"]
+      },
+      "calculator": {
+        "badge": "Transparent Pricing",
+        "title": "Calculate your price instantly",
+        "subtitle": "No hidden fees. Get an accurate estimate for your cleaning needs in seconds.",
+        "serviceLabel": "Select Service",
+        "services": {
+          "flyttevask": "Move-out",
+          "regelmessig": "Regular",
+          "visning": "Pre-sale",
+          "kontor": "Office"
+        },
+        "sizeLabel": "Home Size (m²)",
+        "frequencyLabel": "How often?",
+        "frequencies": ["Once", "Weekly", "Bi-weekly", "Monthly"],
+        "totalLabel": "Estimated Price",
+        "cta": "Book Now",
+        "disclaimer": "*Final price may vary based on home condition. Includes VAT."
+      },
+      "services": {
+        "badge": "Our Services",
+        "title": "Complete Cleaning for Home and Business",
+        "subtitle": "We use industry-standard steam cleaners and microfiber to remove 99% of bacteria without chemical odors.",
+        "items": [
+          {
+            "id": "flyttevask",
+            "title": "Move-out Cleaning",
+            "description": "Strict checklist developed with real estate agents. We guarantee the home will be approved upon handover.",
+            "icon": "move"
+          },
+          {
+            "id": "regelmessig",
+            "title": "Regular Cleaning",
+            "description": "Dedicated cleaner at a fixed time. Enjoy your weekend while we take care of the house cleaning with eco-friendly products.",
+            "icon": "calendar"
+          },
+          {
+            "id": "visning",
+            "title": "Pre-sale Cleaning",
+            "description": "Make a perfect first impression. Thorough cleaning that highlights the property's best features before a sale.",
+            "icon": "sparkle"
+          },
+          {
+            "id": "kontor",
+            "title": "Office Cleaning",
+            "description": "A clean work environment increases productivity. Tailored agreements for businesses in Notodden.",
+            "icon": "building"
+          },
+          {
+            "id": "vindu",
+            "title": "Window Cleaning",
+            "description": "Crystal clear windows without streaks. We wash both inside and outside, including frames.",
+            "icon": "window"
+          },
+          {
+            "id": "hytte",
+            "title": "Cabin Cleaning",
+            "description": "Arrive at a clean and welcoming cabin. We offer cleaning of cabins throughout the Telemark region.",
+            "icon": "cabin"
+          }
+        ]
+      },
+      "trust": {
+        "badge": "Why Choose Us",
+        "title": "Safety in Every Step",
+        "subtitle": "We understand you are letting us into your most private space. That's why we take security and quality seriously.",
+        "items": [
+          {
+            "title": "Officially Approved",
+            "description": "Registered with Arbeidstilsynet. All our employees have valid HMS cards and work under legal, safe conditions.",
+            "icon": "shield"
+          },
+          {
+            "title": "Gentle Chemistry",
+            "description": "We use Nordic Swan Ecolabel products that are tough on dirt but safe for children, pets, and expensive surfaces like oak and marble.",
+            "icon": "leaf"
+          },
+          {
+            "title": "10M NOK Insurance",
+            "description": "Full liability insurance up to 10 million NOK. Should an accident occur, you and your home are 100% covered.",
+            "icon": "umbrella"
+          },
+          {
+            "title": "Key Security",
+            "description": "Strict routines for key handling. Your safety is our priority, and we guarantee secure storage.",
+            "icon": "key"
+          }
+        ]
+      },
+      "process": {
+        "badge": "How It Works",
+        "title": "From Booking to Spotless Home",
+        "steps": [
+          {
+            "title": "Get an Estimate",
+            "description": "Use our calculator or contact us for an accurate price based on your needs."
+          },
+          {
+            "title": "Schedule Time",
+            "description": "We find a time that suits you. Our local cleaners arrive punctually."
+          },
+          {
+            "title": "Professional Cleaning",
+            "description": "We perform the job with special equipment and eco-friendly products according to a fixed checklist."
+          },
+          {
+            "title": "Quality Control",
+            "description": "We review the work. For move-out cleaning, our 100% handover guarantee applies."
+          }
+        ]
+      },
+      "beforeAfter": {
+        "badge": "Results",
+        "title": "The Difference is in the Details",
+        "subtitle": "See what professional equipment and thoroughness can do to stubborn stains and dirt.",
+        "items": [
+          { "before": "https://picsum.photos/seed/dirtykitchen/800/600", "after": "https://picsum.photos/seed/cleankitchen/800/600", "label": "Kitchen" },
+          { "before": "https://picsum.photos/seed/dirtybath/800/600", "after": "https://picsum.photos/seed/cleanbath/800/600", "label": "Bathroom" }
+        ]
+      },
+      "testimonials": {
+        "badge": "Customer Reviews",
+        "title": "What Our Customers Say",
+        "items": [
+          {
+            "name": "Kari Nordmann",
+            "role": "Homeowner, Notodden",
+            "text": "Used Makarenko for move-out cleaning. The agent was impressed with the standard, and the handover went completely without problems. Highly recommended!",
+            "rating": 5
+          },
+          {
+            "name": "Ole Hansen",
+            "role": "Regular Customer",
+            "text": "Have had regular cleaning for 6 months now. It's fantastic to come home to a clean house on Fridays. Very reliable and pleasant staff.",
+            "rating": 5
+          },
+          {
+            "name": "Ingrid Berg",
+            "role": "Business Owner",
+            "text": "They do our office cleaning. Always punctual, and they use products that don't leave a strong chemical smell, which the employees appreciate.",
+            "rating": 5
+          },
+          {
+            "name": "Lars Johansen",
+            "role": "Cabin Owner",
+            "text": "Ordered a deep cleaning of the cabin after winter. The result was beyond all expectations. The windows have never been so clean.",
+            "rating": 5
+          }
+        ]
+      },
+      "gallery": {
+        "badge": "Our Work",
+        "title": "Glimpses of Our Everyday",
+        "items": [
+          { "url": "https://picsum.photos/seed/clean1/800/800", "alt": "Clean kitchen" },
+          { "url": "https://picsum.photos/seed/clean2/800/800", "alt": "Vacuuming" },
+          { "url": "https://picsum.photos/seed/clean3/800/800", "alt": "Clean bathroom" },
+          { "url": "https://picsum.photos/seed/clean4/800/800", "alt": "Window washing" },
+          { "url": "https://picsum.photos/seed/clean5/800/800", "alt": "Office" },
+          { "url": "https://picsum.photos/seed/clean6/800/800", "alt": "Living room" }
+        ]
+      },
+      "video": {
+        "badge": "See How We Work",
+        "title": "Quality in Every Movement",
+        "posterUrl": "https://picsum.photos/seed/cleaningvideo/1200/600"
+      },
+      "team": {
+        "badge": "Our Team",
+        "title": "The People Behind the Cleaning",
+        "subtitle": "All our employees are permanently employed, have HMS cards, and receive continuous training in modern cleaning techniques.",
+        "items": [
+          {
+            "name": "Anna Dizhenko",
+            "role": "General Manager & Founder",
+            "bio": "Founded the company with a vision to raise the standard of cleaning in Telemark through legal conditions and high quality.",
+            "imageUrl": "https://picsum.photos/seed/anna/400/500"
+          },
+          {
+            "name": "Maria S.",
+            "role": "Team Leader Move-out",
+            "bio": "Specialist in demanding assignments and quality control before handover.",
+            "imageUrl": "https://picsum.photos/seed/maria/400/500"
+          },
+          {
+            "name": "Elena K.",
+            "role": "Cleaning Specialist",
+            "bio": "Expert in gentle treatment of natural materials and Nordic Swan Ecolabel chemistry.",
+            "imageUrl": "https://picsum.photos/seed/elena/400/500"
+          }
+        ]
+      },
+      "faq": {
+        "badge": "Frequently Asked Questions",
+        "title": "Answers to Your Questions",
+        "items": [
+          {
+            "question": "What does your move-out cleaning guarantee cover?",
+            "answer": "Our guarantee means that if the new owner, tenant, or real estate agent is not satisfied with the cleaning upon handover, we will return and correct the errors free of charge within 48 hours."
+          },
+          {
+            "question": "Do I need to be home while you clean?",
+            "answer": "No, it is not necessary. Many of our regular customers give us a key (which is kept in a safe) or a code for the door lock. We work discreetly and efficiently while you are at work."
+          },
+          {
+            "question": "What cleaning products do you use?",
+            "answer": "We primarily use Nordic Swan Ecolabelled, eco-friendly products that are safe for surfaces, children, and pets. We also use professional steam cleaners that remove bacteria without chemicals."
+          },
+          {
+            "question": "Are you an approved cleaning company?",
+            "answer": "Yes, Makarenko Reinhold is an officially approved cleaning company registered with Arbeidstilsynet. All our employees carry a valid HMS card."
+          },
+          {
+            "question": "What happens if something gets broken during cleaning?",
+            "answer": "We are fully insured with liability insurance of up to 10 million NOK. Should we be unfortunate enough to damage something, this is fully covered by our insurance."
+          },
+          {
+            "question": "How long does a standard move-out cleaning take?",
+            "answer": "This depends on the size and condition of the home. A 70 sqm apartment typically takes 4-6 hours for a team of two people. We provide a time estimate upon booking."
+          },
+          {
+            "question": "Do you wash windows outside?",
+            "answer": "Yes, exterior window washing is included in move-out cleaning and can be ordered as an additional service for regular cleaning, provided the windows are safely accessible."
+          },
+          {
+            "question": "Do you bring your own equipment?",
+            "answer": "Yes, we provide all necessary equipment, including professional vacuum cleaners, steam cleaners, mops, and industrial-standard microfiber cloths."
+          },
+          {
+            "question": "How do I pay for the service?",
+            "answer": "We send an invoice after the assignment is completed. For regular agreements, we usually invoice monthly."
+          },
+          {
+            "question": "Where in Telemark do you offer services?",
+            "answer": "Our main base is in Notodden, but we cover large parts of Telemark, including Kongsberg, Bø, and surrounding cabin areas."
+          }
+        ]
+      },
+      "coverage": {
+        "badge": "Our Area",
+        "title": "We Cover Telemark",
+        "subtitle": "Based in Notodden, we quickly respond to the entire region without delays.",
+        "areas": ["Notodden", "Kongsberg", "Bø i Telemark", "Sauherad", "Hjartdal", "Gransherad"]
+      },
+      "ctaBanner": {
+        "title": "Ready for a cleaner home?",
+        "subtitle": "Book today and experience the difference with professional cleaning.",
+        "button": "Get Free Estimate"
+      },
+      "contact": {
+        "badge": "Contact Us",
+        "title": "Let's Talk",
+        "subtitle": "Have questions or want a custom quote? Fill out the form and we'll get back to you quickly.",
+        "nameLabel": "Your Name",
+        "emailLabel": "Email Address",
+        "phoneLabel": "Phone Number",
+        "messageLabel": "Message / Needs",
+        "submitButton": "Send Message",
+        "successMessage": "Thank you for your inquiry! We will contact you shortly.",
+        "info": {
+          "phone": "+47 966 84 393",
+          "email": "annadizhenko@gmail.com",
+          "address": "Notodden, Telemark, Norway",
+          "hours": "Mon-Fri: 08:00 - 16:00"
+        }
+      },
+      "footer": {
+        "description": "Makarenko Reinhold is your local partner for professional cleaning in Notodden. Officially approved and fully insured for your peace of mind.",
+        "quickLinks": "Quick Links",
+        "legal": "Legal",
+        "rights": "All rights reserved."
       }
     }
   }
