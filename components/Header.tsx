@@ -1,9 +1,11 @@
+
 "use client";
 import { useState, useEffect } from "react";
 import { useLocale } from "@/lib/i18n";
+import { Button, LogoMark } from "./Shared";
 
 export default function Header() {
-  const { t, locale, setLocale } = useLocale();
+  const { t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -14,70 +16,64 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: "#services", label: t("nav.services") },
-    { href: "#calculator", label: t("nav.calculator") },
-    { href: "#faq", label: t("nav.faq") },
-    { href: "#contact", label: t("nav.contact") },
+    { name: t('nav.services'), href: '#services' },
+    { name: t('nav.calculator'), href: '#calculator' },
+    { name: t('nav.reviews'), href: '#reviews' },
+    { name: t('nav.faq'), href: '#faq' },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-4" : "bg-transparent py-6"}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className={`flex items-center gap-3 group ${scrolled ? "text-primary" : "text-white"}`}>
-          <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-            <svg className="w-6 h-6 text-white" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M16 6L6 14v10a2 2 0 002 2h16a2 2 0 002-2V14L16 6z" />
-              <path d="M16 12v10M12 16h8" />
-              <path d="M22 8l1-1m2 2l1-1M20 10l-1 1" strokeWidth="2" />
-            </svg>
-          </div>
-          <span className="font-display font-bold text-xl tracking-tight">Makarenko<br/><span className="text-sm font-medium opacity-80 leading-none block">Reinhold</span></span>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <a href="#" className={`flex items-center gap-2 font-display font-bold text-xl tracking-tight z-50 ${scrolled ? 'text-primary' : 'text-white'}`}>
+          <LogoMark className="w-8 h-8 text-accent" />
+          <span>Makarenko<span className="text-accent">Reinhold</span></span>
         </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className={`font-medium text-sm hover:text-accent transition-colors ${scrolled ? "text-text-main" : "text-white/90"}`}>
-              {link.label}
+            <a key={link.name} href={link.href} className={`text-sm font-medium transition-colors ${scrolled ? 'text-text-main hover:text-accent' : 'text-white/90 hover:text-white'}`}>
+              {link.name}
             </a>
           ))}
+          <Button variant={scrolled ? 'primary' : 'secondary'} href="#calculator" className="py-2.5 px-6 text-sm">
+            {t('nav.cta')}
+          </Button>
         </nav>
 
-        {/* Actions */}
-        <div className="hidden md:flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            <button onClick={() => setLocale('no')} className={`text-sm font-bold ${locale === 'no' ? 'text-accent' : scrolled ? 'text-text-muted' : 'text-white/60'}`}>NO</button>
-            <span className={scrolled ? "text-border-light" : "text-white/30"}>|</span>
-            <button onClick={() => setLocale('uk')} className={`text-sm font-bold ${locale === 'uk' ? 'text-accent' : scrolled ? 'text-text-muted' : 'text-white/60'}`}>UK</button>
-          </div>
-          <a href="#calculator" className="bg-accent hover:bg-accent-hover text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all shadow-lg shadow-accent/30 hover:shadow-accent/50 hover:-translate-y-0.5">
-            {t("nav.book")}
-          </a>
-        </div>
-
         {/* Mobile Toggle */}
-        <button className={`md:hidden p-2 ${scrolled ? "text-primary" : "text-white"}`} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <button 
+          className={`md:hidden z-50 p-2 ${scrolled || mobileMenuOpen ? 'text-primary' : 'text-white'}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            {mobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
           </svg>
         </button>
-      </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-xl border-t border-border-light p-6 flex flex-col gap-4 md:hidden">
+        {/* Mobile Menu */}
+        <div className={`fixed inset-0 bg-white z-40 flex flex-col justify-center items-center gap-8 transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} className="text-text-main font-medium text-lg py-2 border-b border-border-light/50">
-              {link.label}
+            <a 
+              key={link.name} 
+              href={link.href} 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-2xl font-display font-bold text-primary"
+            >
+              {link.name}
             </a>
           ))}
-          <div className="flex gap-4 pt-4">
-            <button onClick={() => { setLocale('no'); setMobileMenuOpen(false); }} className={`px-4 py-2 rounded-md ${locale === 'no' ? 'bg-bg-light text-accent font-bold' : 'text-text-muted'}`}>Norsk</button>
-            <button onClick={() => { setLocale('uk'); setMobileMenuOpen(false); }} className={`px-4 py-2 rounded-md ${locale === 'uk' ? 'bg-bg-light text-accent font-bold' : 'text-text-muted'}`}>Українська</button>
-          </div>
+          <Button href="#calculator" onClick={() => setMobileMenuOpen(false)}>
+            {t('nav.cta')}
+          </Button>
         </div>
-      )}
+      </div>
     </header>
   );
 }

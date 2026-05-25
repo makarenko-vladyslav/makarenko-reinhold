@@ -1,30 +1,44 @@
+
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import { SectionHeading } from "./Shared";
 
 export default function FAQ() {
   const { t } = useLocale();
-  const items = t("faq.items") as { question: string, answer: string }[];
+  const items = t('faq.items') as { question: string, answer: string }[];
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 bg-bg-light border-y border-border-light">
+    <section id="faq" className="py-24 bg-white">
       <div className="max-w-4xl mx-auto px-6">
-        <SectionHeading badge={t("faq.badge")} title={t("faq.title")} />
+        <SectionHeading 
+          badge={t('faq.badge')}
+          title={t('faq.title')}
+          centered
+        />
 
-        <div className="space-y-4">
+        <div className="space-y-4 mt-12">
           {items.map((item, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-border-light overflow-hidden transition-shadow hover:shadow-sm">
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="border border-black/10 rounded-2xl overflow-hidden bg-bg-light"
+            >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-6 text-left"
+                className="w-full px-6 py-5 text-left flex justify-between items-center bg-white hover:bg-bg-light transition-colors"
               >
-                <span className="font-bold text-primary text-lg pr-8">{item.question}</span>
-                <span className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${openIndex === i ? "bg-accent text-white" : "bg-bg-light text-text-muted"}`}>
-                  <svg className={`w-5 h-5 transition-transform duration-300 ${openIndex === i ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
-                </span>
+                <span className="font-bold text-primary pr-8">{item.question}</span>
+                <svg 
+                  className={`w-5 h-5 text-accent transform transition-transform duration-300 shrink-0 ${openIndex === i ? 'rotate-180' : ''}`} 
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                >
+                  <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </button>
               <AnimatePresence>
                 {openIndex === i && (
@@ -34,13 +48,13 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-6 pt-0 text-text-muted leading-relaxed border-t border-border-light/50 mt-2">
+                    <div className="px-6 pb-5 pt-2 text-text-muted leading-relaxed border-t border-black/5">
                       {item.answer}
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

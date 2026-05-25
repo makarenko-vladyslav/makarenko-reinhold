@@ -1,60 +1,52 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import { SectionHeading } from "./Shared";
+
+const icons: Record<string, React.ReactNode> = {
+  shield: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round"/><path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  check: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  leaf: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M11 20A7 7 0 014 13c0-3.866 3.134-7 7-7h6v6a7 7 0 01-7 7z" strokeLinecap="round" strokeLinejoin="round"/><path d="M11 20v-6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  doc: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+};
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const points = t("whyUs.points") as string[];
+  const cards = t('whyUs.cards') as { title: string, description: string, icon: string }[];
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
-        
-        <div className="w-full lg:w-1/2">
-          <SectionHeading badge={t("whyUs.badge")} title={t("whyUs.title")} subtitle={t("whyUs.subtitle")} centered={false} />
-          
-          <div className="space-y-4">
-            {points.map((point, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-start gap-4 p-4 rounded-2xl hover:bg-bg-light transition-colors"
-              >
-                <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
+    <section className="py-24 bg-white relative">
+      {/* Decorative background element */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <SectionHeading 
+          badge={t('whyUs.badge')}
+          title={t('whyUs.title')}
+          subtitle={t('whyUs.subtitle')}
+        />
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {cards.map((card, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group bg-white border border-black/5 rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-14 h-14 rounded-xl bg-bg-light flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                <div className="w-7 h-7">
+                  {icons[card.icon]}
                 </div>
-                <p className="font-medium text-text-main">{point}</p>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+              <h3 className="text-xl font-display font-bold text-primary mb-3">{card.title}</h3>
+              <p className="text-text-muted leading-relaxed">{card.description}</p>
+            </motion.div>
+          ))}
         </div>
-
-        <div className="w-full lg:w-1/2 relative">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5]"
-          >
-            <img src={t("whyUs.imageUrl")} alt="Cleaning Checklist" className="w-full h-full object-cover" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
-            
-            <div className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl">
-              <p className="text-4xl font-display font-bold text-accent mb-2">40+</p>
-              <p className="font-semibold text-primary">Sjekkpunkter per vask</p>
-              <p className="text-sm text-text-muted mt-1">Garanterer feilfritt resultat hver gang.</p>
-            </div>
-          </motion.div>
-          
-          {/* Decorative elements */}
-          <div className="absolute -top-10 -right-10 w-40 h-40 border border-border-light rounded-full -z-10" />
-          <div className="absolute -bottom-10 -left-10 w-60 h-60 border border-border-light rounded-full -z-10" />
-        </div>
-
       </div>
     </section>
   );

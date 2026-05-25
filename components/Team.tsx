@@ -1,38 +1,40 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import { SectionHeading } from "./Shared";
 
 export default function Team() {
   const { t } = useLocale();
-  const items = t("team.items") as { name: string, role: string, bio: string, imageUrl: string }[];
+  const members = t('team.members') as { name: string, role: string, bio: string, imageUrl: string }[];
 
   return (
-    <section className="py-24 bg-bg-light border-y border-border-light">
+    <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading badge={t("team.badge")} title={t("team.title")} subtitle={t("team.subtitle")} />
+        <SectionHeading 
+          badge={t('team.badge')}
+          title={t('team.title')}
+          subtitle={t('team.subtitle')}
+          centered
+        />
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {items.map((item, i) => (
+        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto mt-12">
+          {members.map((member, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm border border-border-light group"
+              transition={{ delay: i * 0.2 }}
+              className="bg-white rounded-3xl overflow-hidden shadow-lg border border-black/5"
             >
-              <div className="aspect-[4/5] overflow-hidden relative">
-                <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-accent flex items-center gap-1 shadow-sm">
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                  HMS-Kort
-                </div>
+              <div className="aspect-[4/5] overflow-hidden">
+                <img src={member.imageUrl} alt={member.name} className="w-full h-full object-cover" />
               </div>
               <div className="p-8 text-center">
-                <h3 className="text-2xl font-display font-bold text-primary mb-1">{item.name}</h3>
-                <p className="text-accent font-medium text-sm uppercase tracking-wider mb-4">{item.role}</p>
-                <p className="text-text-muted text-sm">{item.bio}</p>
+                <h3 className="text-2xl font-display font-bold text-primary mb-1">{member.name}</h3>
+                <div className="text-accent font-medium text-sm uppercase tracking-wider mb-4">{member.role}</div>
+                <p className="text-text-muted leading-relaxed">{member.bio}</p>
               </div>
             </motion.div>
           ))}

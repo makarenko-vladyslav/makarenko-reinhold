@@ -1,30 +1,34 @@
+
 "use client";
 import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import { SectionHeading } from "./Shared";
 
 export default function Gallery() {
   const { t } = useLocale();
-  const items = t("gallery.items") as { url: string, alt: string }[];
+  const items = t('gallery.items') as { url: string, alt: string }[];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-bg-light">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading badge={t("gallery.badge")} title={t("gallery.title")} />
+        <SectionHeading 
+          badge={t('gallery.badge')}
+          title={t('gallery.title')}
+        />
 
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {items.map((item, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: (i % 3) * 0.1 }}
-              className="break-inside-avoid relative group rounded-2xl overflow-hidden"
+              transition={{ delay: i * 0.1 }}
+              className="relative aspect-square rounded-2xl overflow-hidden group cursor-pointer"
             >
-              <img src={item.url} alt={item.alt} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="text-white font-medium">{item.alt}</p>
+              <img src={item.url} alt={item.alt} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <span className="text-white font-medium px-4 py-2 border border-white/50 rounded-full backdrop-blur-sm">{item.alt}</span>
               </div>
             </motion.div>
           ))}
