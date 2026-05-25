@@ -1,110 +1,65 @@
+
 "use client";
-import { useState, useEffect } from 'react';
-import { useLocale } from '@/lib/i18n';
-import pricing from '@/lib/pricing.json';
-import SectionHeading from './SectionHeading';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { useLocale } from "@/lib/i18n";
+import pricing from "@/lib/pricing.json";
+import SectionHeading from "./SectionHeading";
+import { motion } from "framer-motion";
 
 export default function Calculator() {
   const { t } = useLocale();
+  const [service, setService] = useState("flyttevask");
   const [sqm, setSqm] = useState(70);
-  const [service, setService] = useState('flyttevask');
-  const [freqIndex, setFreqIndex] = useState(0);
   const [price, setPrice] = useState(0);
 
-  const frequencies = t('calculator.frequencies') as string[];
-  const frequency = frequencies[freqIndex] || frequencies[0];
+  const services = Object.entries(pricing.services).map(([key, val]) => ({
+    id: key,
+    name: val.name,
+    base: val.basePrice,
+    perSqm: val.perSqm
+  }));
 
   useEffect(() => {
-    // Reset frequency if not regular cleaning
-    if (service !== 'regelmessig' && service !== 'kontor') {
-      setFreqIndex(0);
+    const selectedService = pricing.services[service as keyof typeof pricing.services];
+    if (selectedService) {
+      const calculated = selectedService.basePrice + (sqm * selectedService.perSqm);
+      setPrice(calculated);
     }
-  }, [service]);
-
-  useEffect(() => {
-    const baseRate = pricing.basePrices[service as keyof typeof pricing.basePrices] || 0;
-    let calculated = 0;
-
-    if (service === 'flyttevask' || service === 'visning') {
-      // Sqm based pricing
-      calculated = sqm * baseRate;
-    } else if (service === 'regelmessig' || service === 'kontor') {
-      // Hourly based, let's estimate hours based on sqm (rough estimate: 1hr per 30sqm, min 2hrs)
-      const estHours = Math.max(2, Math.ceil(sqm / 30));
-      const mult = pricing.multipliers[frequency as keyof typeof pricing.multipliers] || 1;
-      calculated = estHours * baseRate * mult;
-    }
-
-    setPrice(calculated);
-  }, [sqm, service, frequency]);
+  }, [service, sqm]);
 
   return (
-    <section id="calculator" className="py-24 bg-bg-light relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-bg-tint rounded-l-[100px] opacity-50 pointer-events-none" />
+    <section id="calculator" className="py-24 bg-bg-tint relative overflow-hidden">
+      {/* Decorative background shape */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-accent/5 rounded-l-[100px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           <div>
             <SectionHeading 
-              badge={t('calculator.badge')}
-              title={t('calculator.title')}
-              subtitle={t('calculator.subtitle')}
+              badge={t("calculator.badge")}
+              title={t("calculator.title")}
+              subtitle={t("calculator.subtitle")}
             />
             
-            <div className="space-y-6 mt-8 hidden lg:block">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0">
-                  <svg className="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary text-lg">{t('calculator.features.0.title')}</h4>
-                  <p className="text-text-muted">{t('calculator.features.0.description')}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0">
-                  <svg className="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-bold text-primary text-lg">{t('calculator.features.1.title')}</h4>
-                  <p className="text-text-muted">{t('calculator.features.1.description')}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100 relative"
-          >
-            {/* Form Elements */}
-            <div className="space-y-8">
-              
-              {/* Service Type */}
+            <div className="space-y-8 bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+              {/* Service Selection */}
               <div>
-                <label className="block text-sm font-bold text-primary mb-3 uppercase tracking-wider">{t('calculator.serviceLabel')}</label>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { id: 'flyttevask' },
-                    { id: 'regelmessig' },
-                    { id: 'visning' },
-                    { id: 'kontor' }
-                  ].map(s => (
+                <label className="block text-sm font-bold text-text-main mb-4 uppercase tracking-wide">
+                  {t("calculator.serviceLabel")}
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {services.map((s) => (
                     <button
                       key={s.id}
                       onClick={() => setService(s.id)}
-                      className={`py-3 px-4 rounded-xl text-sm font-semibold transition-all border ${service === s.id ? 'bg-primary text-white border-primary shadow-md' : 'bg-white text-text-muted border-gray-200 hover:border-accent hover:text-primary'}`}
+                      className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all border-2 ${
+                        service === s.id 
+                          ? "border-accent bg-accent/5 text-accent" 
+                          : "border-gray-100 bg-white text-text-muted hover:border-accent/30"
+                      }`}
                     >
-                      {t(`calculator.services.${s.id}`)}
+                      {s.name}
                     </button>
                   ))}
                 </div>
@@ -112,59 +67,74 @@ export default function Calculator() {
 
               {/* Slider */}
               <div>
-                <div className="flex justify-between mb-3">
-                  <label className="text-sm font-bold text-primary uppercase tracking-wider">{t('calculator.sizeLabel')}</label>
-                  <span className="text-xl font-display font-bold text-accent">{sqm} m²</span>
+                <div className="flex justify-between items-end mb-4">
+                  <label className="block text-sm font-bold text-text-main uppercase tracking-wide">
+                    {t("calculator.sizeLabel")}
+                  </label>
+                  <span className="text-2xl font-display font-bold text-primary">{sqm} m²</span>
                 </div>
                 <input 
                   type="range" 
-                  min="30" 
+                  min="20" 
                   max="300" 
-                  step="5" 
-                  value={sqm} 
+                  step="5"
+                  value={sqm}
                   onChange={(e) => setSqm(Number(e.target.value))}
+                  className="w-full"
+                  style={{
+                    background: `linear-gradient(to right, var(--color-accent) ${((sqm - 20) / 280) * 100}%, var(--color-bg-tint) ${((sqm - 20) / 280) * 100}%)`
+                  }}
                 />
                 <div className="flex justify-between text-xs text-text-muted mt-2 font-medium">
-                  <span>30 m²</span>
+                  <span>20 m²</span>
                   <span>300 m²</span>
                 </div>
               </div>
+            </div>
+          </div>
 
-              {/* Frequency (Only for Regelmessig/Kontor) */}
-              {(service === 'regelmessig' || service === 'kontor') && (
-                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                  <label className="block text-sm font-bold text-primary mb-3 uppercase tracking-wider">{t('calculator.frequencyLabel')}</label>
-                  <select 
-                    value={freqIndex}
-                    onChange={(e) => setFreqIndex(Number(e.target.value))}
-                    className="w-full p-4 rounded-xl border border-gray-200 bg-white text-primary font-medium focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent appearance-none"
-                  >
-                    {frequencies.map((f, idx) => (
-                      <option key={idx} value={idx}>{f}</option>
-                    ))}
-                  </select>
-                </motion.div>
-              )}
-
-              {/* Total */}
-              <div className="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div>
-                  <span className="block text-sm font-bold text-text-muted uppercase tracking-wider mb-1">{t('calculator.totalLabel')}</span>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl md:text-5xl font-display font-bold text-primary transition-all">
-                      {price.toLocaleString('no-NO')}
-                    </span>
-                    <span className="text-lg font-bold text-text-muted">NOK</span>
-                  </div>
-                  <p className="text-xs text-text-muted mt-2">{t('calculator.disclaimer')}</p>
+          {/* Result Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-primary rounded-3xl p-10 text-white shadow-2xl relative overflow-hidden"
+          >
+            <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent/40 rounded-full blur-[80px]" />
+            
+            <div className="relative z-10 flex flex-col h-full justify-between">
+              <div>
+                <p className="text-accent-light font-semibold mb-2 uppercase tracking-wider text-sm">
+                  {t("calculator.resultLabel")}
+                </p>
+                <div className="flex items-baseline gap-2 mb-4">
+                  <span className="text-6xl md:text-7xl font-display font-bold tabular-nums tracking-tight">
+                    {price.toLocaleString('no-NO')}
+                  </span>
+                  <span className="text-xl text-white/60 font-medium">NOK</span>
                 </div>
-                <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-accent hover:bg-accent-hover text-white rounded-xl font-bold text-center transition-all shadow-lg hover:-translate-y-1">
-                  {t('calculator.cta')}
-                </a>
+                <p className="text-white/70 flex items-center gap-2">
+                  <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  {t("calculator.mvaNote")}
+                </p>
               </div>
 
+              <div className="mt-12">
+                <a 
+                  href="#contact"
+                  className="block w-full text-center bg-accent hover:bg-accent-hover text-white py-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-accent/20"
+                >
+                  {t("calculator.cta")}
+                </a>
+                <p className="text-center text-white/50 text-xs mt-4">
+                  *Dette er et estimat. Endelig pris bekreftes ved befaring.
+                </p>
+              </div>
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -1,3 +1,4 @@
+
 "use client";
 import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 import content from '@/lib/content.json';
@@ -48,7 +49,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     return val ?? path;
   }, [locale]);
 
-  return <LocaleContext value={{ locale, setLocale, t }}>{children}</LocaleContext>;
+  return <LocaleContext.Provider value={{ locale, setLocale, t }}>{children}</LocaleContext.Provider>;
 }
 
 export function useLocale() { return useContext(LocaleContext); }

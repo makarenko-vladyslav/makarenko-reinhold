@@ -1,81 +1,98 @@
+
 "use client";
-import { useState } from 'react';
-import { useLocale } from '@/lib/i18n';
-import SectionHeading from './SectionHeading';
-import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from "react";
+import { useLocale } from "@/lib/i18n";
+import SectionHeading from "./SectionHeading";
+import { motion } from "framer-motion";
 
 export default function BeforeAfter() {
   const { t } = useLocale();
-  const items = t('beforeAfter.items') as { before: string, after: string, label: string }[];
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [sliderPos, setSliderPos] = useState(50);
+  const [sliderPosition, setSliderPosition] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleDrag = (e: React.MouseEvent | React.TouchEvent | any) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-    const pos = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
-    setSliderPos(pos);
+  const handleMove = (clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    const percent = (x / rect.width) * 100;
+    setSliderPosition(percent);
   };
 
+  useEffect(() => {
+    const handleMouseUp = () => setIsDragging(false);
+    const handleMouseMove = (e: MouseEvent) => {
+      if (isDragging) handleMove(e.clientX);
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isDragging) handleMove(e.touches[0].clientX);
+    };
+
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchend", handleMouseUp);
+    window.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchend", handleMouseUp);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [isDragging]);
+
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 bg-bg-tint">
+      <div className="max-w-5xl mx-auto px-6">
         <SectionHeading 
-          badge={t('beforeAfter.badge')}
-          title={t('beforeAfter.title')}
-          subtitle={t('beforeAfter.subtitle')}
+          badge={t("beforeAfter.badge")}
+          title={t("beforeAfter.title")}
+          subtitle={t("beforeAfter.subtitle")}
           centered
         />
-
-        <div className="flex justify-center gap-4 mb-8">
-          {items.map((item, idx) => (
-            <button
-              key={idx}
-              onClick={() => { setActiveIdx(idx); setSliderPos(50); }}
-              className={`px-6 py-2 rounded-full font-bold text-sm transition-colors ${activeIdx === idx ? 'bg-primary text-white' : 'bg-bg-light text-text-muted hover:bg-gray-200'}`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
 
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="relative w-full max-w-4xl mx-auto aspect-[4/3] md:aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl cursor-ew-resize select-none"
-          onMouseMove={handleDrag}
-          onTouchMove={handleDrag}
+          className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl cursor-ew-resize select-none"
+          ref={containerRef}
+          onMouseDown={(e) => { setIsDragging(true); handleMove(e.clientX); }}
+          onTouchStart={(e) => { setIsDragging(true); handleMove(e.touches[0].clientX); }}
         >
-          {/* After Image (Bottom) */}
+          {/* After Image (Background) */}
           <img 
-            src={items[activeIdx].after} 
-            alt="After cleaning" 
+            src={t("beforeAfter.afterImage")} 
+            alt="After" 
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           />
-          <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">Etter</div>
+          <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+            {t("beforeAfter.afterLabel")}
+          </div>
 
-          {/* Before Image (Top, Clipped) */}
+          {/* Before Image (Clipped) */}
           <div 
-            className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
-            style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
+            className="absolute inset-0 w-full h-full"
+            style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
           >
             <img 
-              src={items[activeIdx].before} 
-              alt="Before cleaning" 
-              className="absolute inset-0 w-full h-full object-cover"
+              src={t("beforeAfter.beforeImage")} 
+              alt="Before" 
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none filter grayscale-[30%]"
             />
-            <div className="absolute top-4 left-4 bg-gray-800 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">Før</div>
+            <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+              {t("beforeAfter.beforeLabel")}
+            </div>
           </div>
 
           {/* Slider Handle */}
           <div 
-            className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] pointer-events-none"
-            style={{ left: `${sliderPos}%`, transform: 'translateX(-50%)' }}
+            className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_10px_rgba(0,0,0,0.3)]"
+            style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
-              <svg className="w-6 h-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l-3 3 3 3m8-6l3 3-3 3" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-accent">
+              <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" transform="rotate(90 12 12)" />
               </svg>
             </div>
           </div>

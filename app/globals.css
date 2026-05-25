@@ -1,28 +1,93 @@
 @import "tailwindcss";
 
+
 @theme {
-  --color-primary: hsl(215 45% 15%); /* Deep Fjord Blue - Authority/Trust */
-  --color-primary-light: hsl(215 40% 25%);
-  --color-accent: hsl(175 80% 35%); /* Crisp Eco Teal - Clean/Svanemerket */
-  --color-accent-hover: hsl(175 85% 30%);
-  --color-bg-light: hsl(210 20% 98%); /* Very subtle cool tint */
-  --color-bg-tint: hsl(175 30% 96%); /* Subtle teal tint for alternation */
+  --color-primary: hsl(215 40% 15%);
+  --color-primary-light: hsl(215 30% 25%);
+  --color-accent: hsl(185 75% 40%);
+  --color-accent-hover: hsl(185 80% 35%);
+  --color-accent-light: hsl(185 70% 92%);
+  --color-bg-light: hsl(210 20% 99%);
+  --color-bg-tint: hsl(210 20% 96%);
   --color-text-main: hsl(215 30% 20%);
-  --color-text-muted: hsl(215 15% 45%);
+  --color-text-muted: hsl(215 15% 40%);
   
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+}
+
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 body {
   font-family: var(--font-body);
 }
 
-h1, h2, h3, h4, h5, h6, .font-display {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
 }
 
-/* Custom Range Slider Styling */
+/* Custom Utilities */
+.glass-panel {
+  background: hsl(0 0% 100% / 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(215 20% 90% / 0.5);
+  box-shadow: 0 8px 32px hsl(215 40% 15% / 0.08);
+}
+
+.dark-glass {
+  background: hsl(215 40% 15% / 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid hsl(0 0% 100% / 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.img-fallback {
+  background: linear-gradient(135deg, var(--color-bg-tint) 0%, var(--color-accent-light) 100%);
+  min-height: 200px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide scrollbar for clean carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 input[type=range] {
   -webkit-appearance: none;
   width: 100%;
@@ -36,9 +101,8 @@ input[type=range]::-webkit-slider-thumb {
   background: var(--color-accent);
   cursor: pointer;
   margin-top: -10px;
-  box-shadow: 0 2px 6px hsl(175 80% 35% / 0.4);
-  border: 4px solid white;
-  transition: transform 0.2s;
+  box-shadow: 0 0 10px hsl(185 75% 40% / 0.4);
+  transition: transform 0.1s;
 }
 input[type=range]::-webkit-slider-thumb:hover {
   transform: scale(1.1);
@@ -47,41 +111,7 @@ input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
   cursor: pointer;
-  background: hsl(215 20% 90%);
-  border-radius: 3px;
-}
-input[type=range]:focus {
-  outline: none;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background: var(--color-bg-light);
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(215 20% 80%);
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary-light);
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes drawPath {
-  to { stroke-dashoffset: 0; }
-}
-.path-draw {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: drawPath 2s ease-out forwards;
+  background: var(--color-bg-tint);
+  border-radius: 4px;
+  border: 1px solid hsl(215 20% 90%);
 }
