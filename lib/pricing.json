@@ -1,27 +1,11 @@
-
 {
   "currency": "NOK",
-  "services": {
-    "flyttevask": {
-      "name": "Flyttevask",
-      "basePrice": 1500,
-      "perSqm": 65,
-      "minSqm": 20,
-      "maxSqm": 300
-    },
-    "fastvask": {
-      "name": "Fast Vask (Ukentlig)",
-      "basePrice": 600,
-      "perSqm": 15,
-      "minSqm": 20,
-      "maxSqm": 300
-    },
-    "nedvask": {
-      "name": "Nedvask (Dyprens)",
-      "basePrice": 1200,
-      "perSqm": 55,
-      "minSqm": 20,
-      "maxSqm": 300
-    }
+  "estimationLogic": "range",
+  "basePrices": {
+    "flyttevask_per_sqm": 85,
+    "min_price": 2500
+  },
+  "multipliers": {
+    "heavy_dirt": 1.3
   }
 }
