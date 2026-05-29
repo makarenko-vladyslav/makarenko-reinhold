@@ -1,45 +1,52 @@
+
 "use client";
-import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
 import SectionHeading from "./SectionHeading";
+import { motion } from "framer-motion";
 
 export default function Testimonials() {
   const { t } = useLocale();
-  const items = t('testimonials.items') as any[];
+  const items = t("testimonials.items") as any[];
 
   return (
-    <section className="py-24 bg-bg-tint overflow-hidden">
+    <section className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeading 
-          badge={t('testimonials.badge')}
-          title={t('testimonials.title')}
-          subtitle={t('testimonials.subtitle')}
+          badge={t("testimonials.badge")}
+          title={t("testimonials.title")}
           centered
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((item, i) => (
+        {/* Masonry Grid with staggered fade */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+          {items.map((item, index) => (
             <motion.div
-              key={i}
+              key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full"
+              transition={{ delay: index * 0.1 }}
+              className="bg-bg-tint p-8 rounded-3xl border border-gray-100"
             >
-              <div className="flex gap-1 mb-4 text-accent">
-                {[...Array(item.rating)].map((_, j) => (
-                  <svg key={j} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              <div className="flex gap-1 text-accent mb-6">
+                {[...Array(item.rating)].map((_, i) => (
+                  <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                   </svg>
                 ))}
               </div>
-              <p className="text-text-main italic mb-6 flex-grow">"{item.quote}"</p>
-              <div className="flex items-center gap-4 mt-auto">
-                <img src={item.avatarUrl} alt={item.name} className="w-12 h-12 rounded-full object-cover" />
+              <p className="text-text-main text-lg italic mb-8 leading-relaxed">
+                "{item.quote}"
+              </p>
+              <div className="flex items-center gap-4">
+                <img 
+                  src={`https://picsum.photos/seed/${item.name.replace(' ', '')}/100/100`} 
+                  alt={item.name} 
+                  className="w-12 h-12 rounded-full object-cover"
+                />
                 <div>
-                  <div className="font-bold text-primary">{item.name}</div>
-                  <div className="text-xs text-text-muted">{item.role}</div>
+                  <h4 className="font-bold text-primary">{item.name}</h4>
+                  <p className="text-sm text-text-muted">{item.role}</p>
                 </div>
               </div>
             </motion.div>

@@ -1,18 +1,19 @@
+
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
-import Services from "@/components/Services";
 import Calculator from "@/components/Calculator";
-import Trust from "@/components/Trust";
+import FeaturedServices from "@/components/FeaturedServices";
+import AllServices from "@/components/AllServices";
 import WhyUs from "@/components/WhyUs";
-import Process from "@/components/Process";
+import TrustEngineering from "@/components/TrustEngineering";
 import BeforeAfter from "@/components/BeforeAfter";
-import Testimonials from "@/components/Testimonials";
-import Gallery from "@/components/Gallery";
+import Process from "@/components/Process";
 import Team from "@/components/Team";
-import Coverage from "@/components/Coverage";
+import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
-import CTABanner from "@/components/CTABanner";
+import CtaBanner from "@/components/CtaBanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -20,21 +21,21 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="overflow-hidden">
+      <main>
         <Hero />
         <SocialProof />
-        <Services />
         <Calculator />
-        <Trust />
+        <FeaturedServices />
+        <TrustEngineering />
+        <AllServices />
         <WhyUs />
-        <Process />
         <BeforeAfter />
-        <Testimonials />
+        <Process />
         <Gallery />
+        <Testimonials />
         <Team />
-        <Coverage />
         <FAQ />
-        <CTABanner />
+        <CtaBanner />
         <Contact />
       </main>
       <Footer />

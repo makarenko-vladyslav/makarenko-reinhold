@@ -1,93 +1,116 @@
+
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
-import { ShieldCheck } from "./Icons";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function Hero() {
   const { t } = useLocale();
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 1000], [0, 300]);
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
+  const stats = t("hero.stats") as { value: string; label: string }[];
 
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-primary">
+    <section ref={ref} className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-primary">
       {/* Parallax Background */}
-      <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
+      <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
         <img 
-          src={t('hero.imageUrl')} 
-          alt="Clean interior" 
+          src={t("hero.imageUrl")} 
+          alt="Cleaning Service" 
           className="w-full h-full object-cover"
-          loading="eager"
         />
-        {/* Gradient Overlay - Single layer, multiply blend for rich color without muddying */}
+        {/* Deep overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/60 to-primary/95 mix-blend-multiply" />
       </motion.div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-12 pt-20">
-        
-        {/* Text Content */}
-        <div className="flex-1 text-white">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6 border border-white/10"
-          >
-            <ShieldCheck className="w-4 h-4 text-accent" />
-            <span className="text-sm font-semibold tracking-wide uppercase">{t('hero.badge')}</span>
-          </motion.div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
           
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-display font-bold leading-[1.1] mb-6 drop-shadow-lg"
-          >
-            {t('hero.title')}
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed"
-          >
-            {t('hero.subtitle')}
-          </motion.p>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <a href="#calculator" className="bg-accent hover:bg-accent-light text-white px-8 py-4 rounded-full font-bold text-center transition-all shadow-[0_0_30px_hsl(185_75%_35%/0.4)] hover:shadow-[0_0_40px_hsl(185_75%_35%/0.6)] hover:-translate-y-1">
-              {t('hero.cta1')}
-            </a>
-            <a href="#services" className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold text-center transition-all">
-              {t('hero.cta2')}
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Floating Trust Card */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ delay: 0.4, type: "spring" }}
-          className="hidden lg:block w-72 bg-white rounded-3xl p-6 shadow-2xl shadow-black/50 relative animate-float"
-        >
-          <div className="absolute -top-4 -right-4 w-12 h-12 bg-accent rounded-full flex items-center justify-center shadow-lg">
-            <ShieldCheck className="w-6 h-6 text-white" />
-          </div>
-          <div className="space-y-6">
-            {(t('hero.stats') as any[]).map((stat, i) => (
-              <div key={i} className="border-b border-gray-100 pb-4 last:border-0 last:pb-0">
-                <div className="text-3xl font-display font-bold text-primary mb-1">{stat.value}</div>
-                <div className="text-sm font-medium text-text-muted uppercase tracking-wider">{stat.label}</div>
+          {/* Text Content */}
+          <div className="lg:col-span-7 text-white">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold mb-6">
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                {t("hero.badge")}
+              </span>
+              
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.1] mb-6">
+                {t("hero.title")} <br />
+                <span className="text-accent">{t("hero.titleAccent")}</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed">
+                {t("hero.subtitle")}
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                <a 
+                  href="#calculator"
+                  className="bg-accent hover:bg-accent-hover text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_30px_hsl(185_75%_40%_/_0.4)] hover:shadow-[0_0_40px_hsl(185_75%_40%_/_0.6)] hover:-translate-y-1 flex items-center gap-2"
+                >
+                  {t("hero.ctaPrimary")}
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+                <a 
+                  href="#services"
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg transition-all"
+                >
+                  {t("hero.ctaSecondary")}
+                </a>
               </div>
-            ))}
+            </motion.div>
           </div>
-        </motion.div>
+
+          {/* Floating Trust Card */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-5 hidden lg:block"
+          >
+            <div className="dark-glass rounded-3xl p-8 relative overflow-hidden">
+              {/* Decorative glow */}
+              <div className="absolute -top-20 -right-20 w-64 h-64 bg-accent/30 rounded-full blur-[80px]" />
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-lg">Makarenko Garanti</h3>
+                    <p className="text-white/60 text-sm">Din trygghet i fokus</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {stats.map((stat, i) => (
+                    <div key={i} className="flex items-center justify-between border-b border-white/10 pb-4 last:border-0 last:pb-0">
+                      <span className="text-white/80">{stat.label}</span>
+                      <span className="text-2xl font-display font-bold text-accent">{stat.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
