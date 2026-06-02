@@ -1,4 +1,4 @@
-
+import React from "react";
 import type { Metadata } from "next";
 import { LocaleProvider } from "@/lib/i18n";
 import "./globals.css";

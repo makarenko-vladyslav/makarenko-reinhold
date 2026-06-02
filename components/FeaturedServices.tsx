@@ -1,5 +1,5 @@
-
 "use client";
+import React from "react";
 import { useLocale } from "@/lib/i18n";
 import SectionHeading from "./SectionHeading";
 import { motion } from "framer-motion";
