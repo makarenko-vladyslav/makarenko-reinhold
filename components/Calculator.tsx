@@ -156,37 +156,22 @@ export default function Calculator() {
                   </span>
                   <span className="text-lg font-display font-bold text-primary">kr</span>
                 </div>
-                <p className="text-[10px] text-text-muted font-medium uppercase tracking-widest">
+                <p className="text-[10px] text-text-muted font-semibold uppercase tracking-widest">
                   {t('calculator.taxIncluded')}
                 </p>
-                <div className="mt-8 space-y-3">
-                  <div className="flex items-center gap-2 text-xs text-text-main/70">
-                    <span className="text-accent">✓</span>
-                    <span>{t('calculator.noTravelFee')}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-text-main/70">
-                    <span className="text-accent">✓</span>
-                    <span>Svanemerket kjemikalier inkludert</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-text-main/70">
-                    <span className="text-accent">✓</span>
-                    <span>Betaling via Vipps eller faktura</span>
-                  </div>
+                <div className="mt-8 p-4 rounded-xl bg-primary-light/20 border border-primary-light/50">
+                  <p className="text-[11px] text-primary font-bold leading-relaxed">
+                    {t('calculator.noTravelFee')}
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-10">
-                <button 
-                  onClick={handleScrollToContact}
-                  className="w-full py-4 rounded-xl bg-accent hover:bg-accent-dark text-white font-bold tracking-wider uppercase text-xs transition-all duration-300 glow-glow"
-                >
-                  {t('calculator.cta')}
-                </button>
-                <div className="flex items-center justify-center gap-4 mt-4 opacity-40 grayscale">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Vipps_logo.svg" alt="Vipps" className="h-4" />
-                  <span className="text-[9px] font-bold uppercase tracking-widest">Sikker betaling</span>
-                </div>
-              </div>
+              <button 
+                onClick={handleScrollToContact}
+                className="w-full py-4 rounded-xl bg-accent hover:bg-accent-dark text-white font-bold tracking-wider uppercase text-xs transition-all duration-300 shadow-lg mt-8"
+              >
+                {t('calculator.cta')}
+              </button>
             </div>
           </div>
         </div>
