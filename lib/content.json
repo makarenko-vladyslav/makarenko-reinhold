@@ -35,29 +35,29 @@
         "items": [
           {
             "id": "flyttevask",
-            "title": "Flyttevask (Flyttevask)",
+            "title": "Trygg Flytting (Flyttevask)",
             "description": "Total nedvask med 48-timers garanti. Inkluderer vinduspuss, hvitevarer og dyprens av våtrom.",
             "price": "fra 85 kr/m²",
             "tag": "Mest populær"
           },
           {
             "id": "daglig",
-            "title": "Regelmessig renhold",
-            "description": "Fast vedlikehold av hjemmet ditt. Sikrer et støvfritt og allergivennlig inneklima.",
-            "price": "fra 450 kr/t",
-            "tag": "Hjemmekos"
+            "title": "Hjemmekos (Regelmessig)",
+            "description": "Fast vedlikehold av hjemmet ditt hver 14. dag. Sikrer et støvfritt og allergivennlig inneklima.",
+            "price": "fra 1900 kr/mnd",
+            "tag": "Fast avtale"
           },
           {
             "id": "visning",
-            "title": "Visningsvask",
-            "description": "Klargjøring før salg. Vi fokuserer på detaljene som øker verdien på boligen din.",
+            "title": "Klar til Visning (Visningsvask)",
+            "description": "Klargjøring før salg. Vi fokuserer på detaljene som øker verdien på boligen din før fotografering.",
             "price": "fra 5500 kr",
-            "tag": "Klar til Visning"
+            "tag": "Verdiøkende"
           },
           {
             "id": "bygg",
             "title": "Byggrengjøring",
-            "description": "Fjerning av byggestøv og rester etter renovering eller nybygg.",
+            "description": "Fjerning av byggestøv og rester etter renovering eller nybygg. HMS-fokusert arbeid.",
             "price": "Etter avtale",
             "tag": "HMS-fokus"
           }
@@ -167,66 +167,33 @@
         "items": [
           {
             "id": "flyttevask",
-            "title": "Move-out Cleaning (Flyttevask)",
+            "title": "Safe Move (Flyttevask)",
             "description": "Total deep clean with 48-hour guarantee. Includes window cleaning, appliances, and wet room deep clean.",
             "price": "from 85 kr/m²",
             "tag": "Most Popular"
           },
           {
             "id": "daglig",
-            "title": "Regular Cleaning",
-            "description": "Regular maintenance of your home. Ensures a dust-free and allergy-friendly indoor climate.",
-            "price": "from 450 kr/h",
-            "tag": "Home Comfort"
+            "title": "Home Comfort (Regular)",
+            "description": "Regular maintenance every 14 days. Ensures a dust-free and allergy-friendly indoor climate.",
+            "price": "from 1900 kr/mo",
+            "tag": "Fixed Contract"
           },
           {
             "id": "visning",
-            "title": "Pre-sale Cleaning",
-            "description": "Preparation before sale. We focus on the details that increase the value of your home.",
+            "title": "Ready for Viewing",
+            "description": "Pre-sale preparation. We focus on details that increase your property value before photography.",
             "price": "from 5500 kr",
-            "tag": "Ready for Viewing"
-          }
-        ]
-      },
-      "whyUs": {
-        "kicker": "OUR CLEANING & METHODOLOGY",
-        "title": "Uncompromising craftsmanship, locally rooted",
-        "description": "Many cleaning companies charge expensive travel fees for assignments in Notodden. Makarenko Reinhold is based locally. This means faster response times and direct contact with the landlord.",
-        "quote": "Our job is to eliminate the stress of moving. We deliver a documented result that landlords approve immediately.",
-        "stats": {
-          "year": "2024",
-          "rate": "100%",
-          "insurance": "1M NOK",
-          "guarantee": "48h"
-        },
-        "founder": "Anna Dizhenko — Manager & Cleaning Specialist"
-      },
-      "faq": {
-        "kicker": "Answers to your questions",
-        "title": "Frequently Asked Questions",
-        "subtitle": "Here you will find answers to the most common questions about our services and guarantees.",
-        "items": [
-          {
-            "question": "What does the 48-hour guarantee cover?",
-            "answer": "If the landlord or buyer has remarks about the cleaning during handover, we will return and rectify it free of charge within 24 hours."
+            "tag": "Value Adding"
           },
           {
-            "question": "Are you an approved cleaning company?",
-            "answer": "Yes, we are publicly approved by Arbeidstilsynet. It is mandatory for anyone buying cleaning services to check the registry."
+            "id": "bygg",
+            "title": "Construction Cleaning",
+            "description": "Removal of construction dust and debris after renovation or new builds. HSE focused.",
+            "price": "By agreement",
+            "tag": "HSE Focus"
           }
         ]
-      },
-      "contact": {
-        "kicker": "CONTACT US",
-        "title": "Let us handle the cleaning",
-        "subtitle": "Fill out the form for a non-binding offer, or call us directly for a friendly chat about your cleaning needs.",
-        "name": "Full Name",
-        "phone": "Phone Number",
-        "email": "Email Address",
-        "size": "Property Size (m²)",
-        "message": "Message / Special Needs",
-        "cta": "Send Request",
-        "success": "Thank you! We have received your message and will contact you shortly."
       }
     }
   }
