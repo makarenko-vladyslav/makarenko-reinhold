@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '@/lib/i18n';
 
 interface TestimonialItem {
@@ -14,6 +14,26 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeItem = testimonialItems[activeIndex] || testimonialItems[0];
+
+  const handleNext = useCallback(() => {
+    if (testimonialItems && testimonialItems.length > 0) {
+      setActiveIndex((prev) => (prev + 1) % testimonialItems.length);
+    }
+  }, [testimonialItems]);
+
+  const handlePrev = useCallback(() => {
+    if (testimonialItems && testimonialItems.length > 0) {
+      setActiveIndex((prev) => (prev - 1 + testimonialItems.length) % testimonialItems.length);
+    }
+  }, [testimonialItems]);
+
+  // Auto-rotate every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [handleNext]);
 
   // Touch Swipe Detection
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -41,14 +61,6 @@ export default function Testimonials() {
     } else if (isRightSwipe) {
       handlePrev();
     }
-  };
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonialItems.length);
-  };
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonialItems.length) % testimonialItems.length);
   };
 
   return (
@@ -111,24 +123,10 @@ export default function Testimonials() {
 
             {/* Slider Navigation Affordance with Swipe Hint & Next/Prev Buttons */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mt-12 pt-6 border-t border-primary-light/30">
-              {/* Bullets */}
-              <div className="flex items-center gap-3">
-                {testimonialItems.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveIndex(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      idx === activeIndex ? 'w-8 bg-accent' : 'w-2 bg-text-muted/30 hover:bg-text-muted'
-                    }`}
-                    aria-label={`Vis referanse ${idx + 1}`}
-                  />
-                ))}
-              </div>
-
               {/* Swipe Hint & Next/Prev Buttons */}
-              <div className="flex items-center gap-4">
-                <span className="text-[10px] text-text-muted/50 tracking-widest uppercase font-display hidden sm:inline">
-                  Sveip eller klikk for å bla
+              <div className="flex items-center justify-between w-full">
+                <span className="text-[10px] text-text-muted/50 tracking-widest uppercase font-display">
+                  Sveip for å bla · Roterer hvert 3. sekund
                 </span>
                 <div className="flex items-center gap-2">
                   <button 
