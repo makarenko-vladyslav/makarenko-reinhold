@@ -1,21 +1,55 @@
 "use client";
-import { useLocale } from "@/lib/i18n";
-import { ShieldCheck } from "./Icons";
 
 export default function SocialProof() {
-  const { t } = useLocale();
-  const items = t('socialProof.items') as string[];
-
   return (
-    <section className="bg-primary-light py-6 border-b border-white/5 overflow-hidden">
-      <div className="flex whitespace-nowrap">
-        <div className="animate-marquee flex items-center gap-12 px-6">
-          {[...items, ...items, ...items].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 text-white/70">
-              <ShieldCheck className="w-5 h-5 text-accent" />
-              <span className="font-medium tracking-wide">{item}</span>
-            </div>
-          ))}
+    <section className="bg-white border-y border-bg-light/80 py-8 overflow-hidden relative z-20">
+      {/* Infinite scrolling ticker */}
+      <div className="relative w-full flex overflow-x-hidden">
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-16 py-1">
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            ARBEIDSTILSYNET GODKJENT BEDRIFT
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            1 000 000 NOK ANSVARSFORSIKRING HOS GJENSIDIGE
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            48-TIMERS UTBEDRINGSGARANTI
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            SVANEMERKET PRODUKTSORTIMENT
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            LOVPÅLAGT HMS-KORT PÅ ALLE ANSATTE
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+        </div>
+
+        {/* Duplicate for seamless loop */}
+        <div className="animate-marquee whitespace-nowrap flex items-center gap-16 py-1" aria-hidden="true">
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            ARBEIDSTILSYNET GODKJENT BEDRIFT
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            1 000 000 NOK ANSVARSFORSIKRING HOS GJENSIDIGE
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            48-TIMERS UTBEDRINGSGARANTI
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            SVANEMERKET PRODUKTSORTIMENT
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
+          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
+            LOVPÅLAGT HMS-KORT PÅ ALLE ANSATTE
+          </span>
+          <span className="text-text-muted/20 text-lg select-none">•</span>
         </div>
       </div>
     </section>

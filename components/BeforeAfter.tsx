@@ -1,70 +1,83 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
+import { useState } from 'react';
+import { useLocale } from '@/lib/i18n';
 
 export default function BeforeAfter() {
   const { t } = useLocale();
-  const [sliderPos, setSliderPos] = useState(50);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [sliderPosition, setSliderPosition] = useState(50);
 
-  const handleMove = (clientX: number) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    setSliderPos((x / rect.width) * 100);
+  const handleSliderMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const container = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - container.left;
+    const percentage = Math.max(0, Math.min(100, (x / container.width) * 100));
+    setSliderPosition(percentage);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const container = e.currentTarget.getBoundingClientRect();
+    const touch = e.touches[0];
+    const x = touch.clientX - container.left;
+    const percentage = Math.max(0, Math.min(100, (x / container.width) * 100));
+    setSliderPosition(percentage);
   };
 
   return (
-    <section className="py-24 bg-bg-light">
+    <section className="py-12 lg:py-24 bg-white relative z-20">
       <div className="max-w-7xl mx-auto px-6">
-        <SectionHeading 
-          badge={t('beforeAfter.badge')}
-          title={t('beforeAfter.title')}
-          subtitle={t('beforeAfter.subtitle')}
-          centered
-        />
+        {/* Section Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
+            {t('beforeAfter.kicker')}
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
+            {t('beforeAfter.title')}
+          </h2>
+          <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
+            {t('beforeAfter.subtitle')}
+          </p>
+        </div>
 
+        {/* Interactive Image Compare Slider Container - FULL container width match */}
         <div 
-          ref={containerRef}
-          className="relative w-full max-w-4xl mx-auto h-[400px] md:h-[600px] rounded-3xl overflow-hidden cursor-ew-resize shadow-2xl"
-          onMouseMove={(e) => handleMove(e.clientX)}
-          onTouchMove={(e) => handleMove(e.touches[0].clientX)}
+          className="relative w-full aspect-[16/9] max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-xl border border-primary-light select-none cursor-ew-resize"
+          onMouseMove={handleSliderMove}
+          onTouchMove={handleTouchMove}
         >
-          {/* After Image (Background) */}
+          {/* Before Image (Background) */}
           <img 
-            src={t('beforeAfter.afterUrl')} 
-            alt="After cleaning" 
+            src="https://images.pexels.com/photos/4239128/pexels-photo-4239128.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=675&w=1200" 
+            alt="Før dyp rengjøring" 
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
           />
-          <div className="absolute top-4 right-4 bg-accent text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">
-            {t('beforeAfter.afterLabel')}
+          <div className="absolute top-4 left-4 bg-red-800 text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 rounded backdrop-blur-md">
+            FØR / BEFORE
           </div>
 
-          {/* Before Image (Foreground/Clipped) */}
+          {/* After Image (Overlaid, width regulated by slider) */}
           <div 
-            className="absolute inset-0 w-full h-full"
-            style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
+            className="absolute inset-y-0 left-0 overflow-hidden"
+            style={{ width: `${sliderPosition}%` }}
           >
             <img 
-              src={t('beforeAfter.beforeUrl')} 
-              alt="Before cleaning" 
-              className="absolute inset-0 w-full h-full object-cover"
+              src="https://images.pexels.com/photos/4239145/pexels-photo-4239145.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=675&w=1200" 
+              alt="Etter dyp rengjøring" 
+              className="absolute inset-y-0 left-0 w-full max-w-none h-full object-cover"
+              style={{ width: '100%' }}
+              loading="lazy"
             />
-            <div className="absolute top-4 left-4 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">
-              {t('beforeAfter.beforeLabel')}
+            <div className="absolute top-4 left-4 bg-accent text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1.5 rounded backdrop-blur-md whitespace-nowrap">
+              ETTER / AFTER
             </div>
           </div>
 
-          {/* Slider Line & Handle */}
+          {/* Custom Slider Bar & Handle */}
           <div 
-            className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-            style={{ left: `calc(${sliderPos}% - 2px)` }}
+            className="absolute inset-y-0 w-[2px] bg-white cursor-ew-resize flex items-center justify-center"
+            style={{ left: `${sliderPosition}%` }}
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
-              </svg>
+            <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-bold shadow-lg border border-white font-display text-xs tracking-tighter select-none">
+              ↔
             </div>
           </div>
         </div>

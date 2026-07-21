@@ -1,47 +1,51 @@
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
-import { IconMap } from "./Icons";
+import { useLocale } from '@/lib/i18n';
+
+interface TrustCard {
+  title: string;
+  text: string;
+}
 
 export default function Trust() {
   const { t } = useLocale();
-  const items = t('trust.items') as any[];
+  const trustItems = t('trust.items') as TrustCard[];
 
   return (
-    <section className="py-24 bg-primary text-white relative overflow-hidden">
-      {/* Subtle radial gradient for depth */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/20 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <SectionHeading 
-          badge={t('trust.badge')}
-          title={t('trust.title')}
-          subtitle={t('trust.subtitle')}
-          centered
-          light
-        />
+    <section id="trust" className="py-12 lg:py-24 bg-white relative z-20">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Heading */}
+        <div className="max-w-3xl mb-16">
+          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
+            {t('trust.kicker')}
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
+            {t('trust.title')}
+          </h2>
+          <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
+            {t('trust.subtitle')}
+          </p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {items.map((item, i) => {
-            const Icon = IconMap[item.icon] || IconMap['shield-check'];
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-colors"
-              >
-                <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center mb-6 text-accent">
-                  <Icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold mb-3">{item.title}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{item.description}</p>
-              </motion.div>
-            );
-          })}
+        {/* Elegant Grid without generic icons */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {trustItems.map((item, idx) => (
+            <div 
+              key={idx}
+              className="bg-bg-light p-8 rounded-2xl border border-primary-light flex items-start gap-6 transition-all duration-300 hover:border-primary/20"
+            >
+              <div className="text-accent font-display font-black text-2xl leading-none">
+                {String(idx + 1).padStart(2, '0')}
+              </div>
+              <div>
+                <h3 className="text-base font-display font-bold text-text-main mb-2 uppercase tracking-tight">
+                  {item.title}
+                </h3>
+                <p className="text-text-muted text-xs sm:text-sm font-light leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

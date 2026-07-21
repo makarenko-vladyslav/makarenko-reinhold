@@ -1,65 +1,94 @@
 "use client";
-import { motion } from "framer-motion";
-import { useLocale } from "@/lib/i18n";
-import SectionHeading from "./SectionHeading";
-import { BadgeCheck } from "./Icons";
+import { useLocale } from '@/lib/i18n';
 
 export default function WhyUs() {
   const { t } = useLocale();
-  const points = t('whyUs.points') as any[];
 
   return (
-    <section className="py-24 bg-bg-light">
+    <section className="py-12 lg:py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        {/* Kicker & Heading */}
+        <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
+          VÅRT REINHOLD & METODIKK
+        </span>
+        <h2 className="text-3xl sm:text-5xl font-display font-black tracking-tight text-text-main mb-8 uppercase">
+          Kompromissløst håndverk, lokalt forankret
+        </h2>
+
+        {/* 2-Photo Cluster & Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
-          <div className="order-2 lg:order-1 relative">
-            <div className="absolute inset-0 bg-accent/10 rounded-3xl translate-x-4 translate-y-4" />
-            <img 
-              src={t('whyUs.imageUrl')} 
-              alt="Cleaning details" 
-              className="relative rounded-3xl shadow-xl w-full object-cover h-[600px]"
-            />
-            {/* Floating stat */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 animate-float">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center text-accent">
-                  <BadgeCheck className="w-6 h-6" />
-                </div>
-                <div>
-                  <div className="text-2xl font-display font-bold text-primary">100%</div>
-                  <div className="text-sm font-medium text-text-muted">Godkjent Garanti</div>
-                </div>
+          {/* Left Block: Deep Editorial Copy, Stat Row, Person Caption */}
+          <div className="lg:col-span-7 space-y-8">
+            <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
+              Mange renholdsbedrifter krever kostbare reisetillegg for oppdrag i Notodden-regionen. Makarenko Reinhold er stasjonert lokalt. Det betyr raskere responstid, personlig oppfølging uten administrative mellomledd og direkte kontakt med utleier for sømløs overlevering.
+            </p>
+
+            {/* Elegant pull-quote statement line */}
+            <blockquote className="border-l-2 border-accent pl-6 py-2 italic text-lg sm:text-xl font-display font-light text-primary">
+              “Vår oppgave er å eliminere stresset ved utflytting. Vi leverer et dokumentert resultat huseiere godkjenner umiddelbart.”
+            </blockquote>
+
+            {/* Stat Row: 4 Real Numerals */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-text-muted/10">
+              <div>
+                <span className="block font-display font-black text-3xl text-primary">2018</span>
+                <span className="block text-[10px] tracking-widest uppercase font-semibold text-text-muted mt-1">Etableringsår</span>
               </div>
+              <div>
+                <span className="block font-display font-black text-3xl text-primary">100%</span>
+                <span className="block text-[10px] tracking-widest uppercase font-semibold text-text-muted mt-1">Overtakelsesrate</span>
+              </div>
+              <div>
+                <span className="block font-display font-black text-3xl text-primary">1M NOK</span>
+                <span className="block text-[10px] tracking-widest uppercase font-semibold text-text-muted mt-1">Ansvarsforsikring</span>
+              </div>
+              <div>
+                <span className="block font-display font-black text-3xl text-primary">48h</span>
+                <span className="block text-[10px] tracking-widest uppercase font-semibold text-text-muted mt-1">Garantiutbedring</span>
+              </div>
+            </div>
+
+            {/* Named Person role caption */}
+            <div className="pt-4">
+              <p className="text-xs font-display font-bold text-text-main">
+                Anna Dizhenko — Daglig leder & fagansvarlig renhold
+              </p>
             </div>
           </div>
 
-          <div className="order-1 lg:order-2">
-            <SectionHeading 
-              badge={t('whyUs.badge')}
-              title={t('whyUs.title')}
-              subtitle={t('whyUs.subtitle')}
-            />
-            
-            <div className="space-y-8">
-              {points.map((point, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="flex gap-4"
-                >
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent mt-1">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-primary mb-2">{point.title}</h4>
-                    <p className="text-text-muted leading-relaxed">{point.description}</p>
-                  </div>
-                </motion.div>
-              ))}
+          {/* Right Block: 2-Photo Overlapped/Framed Cluster */}
+          <div className="lg:col-span-5 relative pt-12 sm:pt-20">
+            {/* Background decorative path line */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-2xl"></div>
+
+            <div className="relative">
+              {/* Photo 1: Large Main Image */}
+              <div className="rounded-2xl overflow-hidden shadow-lg border border-primary-light/40 w-4/5">
+                <img 
+                  src="https://picsum.photos/seed/notodden-clean/800/600" 
+                  alt="Anna og teamet utfører renhold" 
+                  className="object-cover w-full h-[320px]"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Photo 2: Small Overlapped, framed/tilted image */}
+              <div className="absolute -bottom-8 right-0 w-1/2 rounded-2xl overflow-hidden shadow-xl border-4 border-white transform rotate-2">
+                <img 
+                  src="https://picsum.photos/seed/cleaner-precision/400/400" 
+                  alt="Presisjon vasking" 
+                  className="object-cover w-full aspect-square"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            {/* Photo caption-with-rule */}
+            <div className="mt-14 border-t border-accent/20 pt-4">
+              <span className="text-[10px] tracking-wider font-semibold text-text-muted block">
+                Fig. 1.1 — Kvalitetskontroll av detaljarbeid ved Notodden boligpark.
+              </span>
             </div>
           </div>
 

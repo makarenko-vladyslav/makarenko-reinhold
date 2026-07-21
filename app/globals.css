@@ -1,111 +1,99 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: hsl(215 30% 15%);
-  --color-primary-light: hsl(215 25% 25%);
-  --color-accent: hsl(185 75% 35%);
-  --color-accent-light: hsl(185 70% 45%);
-  --color-accent-dark: hsl(185 80% 25%);
-  --color-bg-light: hsl(0 0% 100%);
-  --color-bg-tint: hsl(185 20% 97%);
-  --color-bg-dark: hsl(215 30% 12%);
-  --color-text-main: hsl(215 20% 25%);
-  --color-text-muted: hsl(215 15% 45%);
-  
-  --font-display: 'Plus Jakarta Sans', sans-serif;
-  --font-sans: 'Inter', sans-serif;
-
-  --animate-marquee: marquee 30s linear infinite;
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --color-primary: hsl(165 80% 22%);
+  --color-primary-light: hsl(165 60% 94%);
+  --color-accent: hsl(150 90% 36%);
+  --color-accent-dark: hsl(150 90% 24%);
+  --color-bg-dark: hsl(210 35% 10%);
+  --color-bg-light: hsl(180 20% 98%);
+  --color-text-main: hsl(210 30% 15%);
+  --color-text-muted: hsl(210 15% 46%);
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Karla', sans-serif;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+:root {
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Karla', sans-serif;
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6, .font-display {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
 }
 
-/* Custom Scrollbar */
+.glow-glow {
+  box-shadow: 0 0 40px hsl(150 90% 36% / 0.18);
+}
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: drift 45s linear infinite;
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .animate-spin-slow {
+    animation: none !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid hsl(150 90% 36%);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for premium touch */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-tint);
+  background: hsl(180 20% 98%);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary-light);
-  border-radius: 5px;
+  background: hsl(165 40% 70%);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+  background: hsl(165 80% 22%);
 }
 
-/* Hide number input spinners */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-/* Range Slider Styling */
-input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  background: transparent;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  cursor: pointer;
-  margin-top: -10px;
-  box-shadow: 0 0 10px hsl(185 75% 35% / 0.5);
-  border: 4px solid white;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 6px;
-  cursor: pointer;
-  background: hsl(215 20% 90%);
-  border-radius: 3px;
-}
-input[type=range]:focus {
-  outline: none;
-}
-
-.img-fallback { 
-  background: linear-gradient(135deg, var(--color-bg-tint) 0%, hsl(215 20% 90%) 100%); 
-  min-height: 200px; 
-  border-radius: 12px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.img-fallback::after {
-  content: 'Image unavailable';
-  color: var(--color-text-muted);
-  font-size: 0.875rem;
+.dotted-leader {
+  background-image: radial-gradient(circle, hsl(210 15% 46% / 0.3) 1px, transparent 1.5px);
+  background-position: bottom;
+  background-size: 6px 1px;
+  background-repeat: repeat-x;
 }
