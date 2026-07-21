@@ -8,9 +8,49 @@ interface FaqItem {
 }
 
 export default function Faq() {
-  const { t } = useLocale();
-  const faqItems = t('faq.items') as FaqItem[];
+  const { locale, t } = useLocale();
+  const rawFaq = t('faq.items');
+  const faqItems: FaqItem[] = Array.isArray(rawFaq) ? rawFaq : (locale === 'no' ? [
+    {
+      question: "Hva dekker 48-timers garantien?",
+      answer: "Dersom utleier eller kjøper har anmerkninger til vasken ved overlevering, kommer vi tilbake og utbedrer dette helt kostnadsfritt innen 24 timer."
+    },
+    {
+      question: "Er dere en godkjent renholdsbedrift?",
+      answer: "Ja, vi er offentlig godkjent av Arbeidstilsynet. Det er lovpålagt for alle som kjøper renholdstjenester å sjekke at bedriften er registrert i renholdsregisteret."
+    },
+    {
+      question: "Hvilke områder dekker dere?",
+      answer: "Vi dekker Notodden, Kongsberg, Bø, Heddal, Sauland, Gvarv og Akkerhaugen uten ekstra kjøretillegg."
+    },
+    {
+      question: "Bruker dere miljøvennlige produkter?",
+      answer: "Vi benytter Svanemerket-sertifiserte produkter som er skånsomme mot både overflater, inneklima og miljøet."
+    }
+  ] : [
+    {
+      question: "What does the 48-hour guarantee cover?",
+      answer: "If the landlord or buyer has comments on the cleaning at handover, we return and correct it free of charge within 24 hours."
+    },
+    {
+      question: "Are you an approved cleaning company?",
+      answer: "Yes, we are publicly approved by the Norwegian Labour Inspection Authority. It is legally required for buyers to verify registration."
+    },
+    {
+      question: "Which areas do you cover?",
+      answer: "We cover Notodden, Kongsberg, Bø, Heddal, Sauland, Gvarv, and Akkerhaugen without extra travel fees."
+    },
+    {
+      question: "Do you use eco-friendly products?",
+      answer: "We use Swan-labeled certified products that are gentle on both surfaces, the indoor climate, and the environment."
+    }
+  ]);
+
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const kicker = t('faq.kicker') === 'faq.kicker' ? (locale === 'no' ? 'Ofte stilte spørsmål' : 'Frequently Asked Questions') : t('faq.kicker');
+  const title = t('faq.title') === 'faq.title' ? (locale === 'no' ? 'Svar på det du lurer på' : 'Answer to your questions') : t('faq.title');
+  const subtitle = t('faq.subtitle') === 'faq.subtitle' ? (locale === 'no' ? 'Her finner du svar på de vanligste spørsmålene om våre tjenester.' : 'Here you will find answers to the most common questions.') : t('faq.subtitle');
 
   return (
     <section id="faq" className="py-12 lg:py-24 bg-bg-light relative overflow-hidden">
@@ -18,13 +58,13 @@ export default function Faq() {
         {/* Section Heading */}
         <div className="max-w-3xl mb-16">
           <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
-            {t('faq.kicker')}
+            {kicker}
           </span>
           <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
-            {t('faq.title')}
+            {title}
           </h2>
           <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
-            {t('faq.subtitle')}
+            {subtitle}
           </p>
         </div>
 

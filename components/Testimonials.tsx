@@ -9,8 +9,42 @@ interface TestimonialItem {
 }
 
 export default function Testimonials() {
-  const { t } = useLocale();
-  const testimonialItems = t('testimonials.items') as TestimonialItem[];
+  const { locale, t } = useLocale();
+  const rawTestimonials = t('testimonials.items');
+  const testimonialItems: TestimonialItem[] = Array.isArray(rawTestimonials) ? rawTestimonials : (locale === 'no' ? [
+    {
+      name: "Morten Hansen",
+      role: "Utleier, Notodden",
+      quote: "Makarenko Reinhold leverte en flyttevask som overgikk alle forventninger. Utleier godkjente leiligheten på 5 minutter uten en eneste anmerkning."
+    },
+    {
+      name: "Lise Berg",
+      role: "Huseier, Bø",
+      quote: "Veldig fornøyd med fast avtale på daglig renhold. Det er deilig å komme hjem til et støvfritt hus og vite at alt er gjort profesjonelt."
+    },
+    {
+      name: "Andreas Foss",
+      role: "Selger, Kongsberg",
+      quote: "Brukt dem til visningsvask før salg. Megleren var imponert over detaljene, spesielt vinduene og kjøkkenet. Anbefales!"
+    }
+  ] : [
+    {
+      name: "Morten Hansen",
+      role: "Landlord, Notodden",
+      quote: "Makarenko Reinhold delivered a move-out clean that exceeded all expectations. The landlord approved the apartment in 5 minutes flat."
+    },
+    {
+      name: "Lise Berg",
+      role: "Homeowner, Bø",
+      quote: "Very happy with the regular home cleaning contract. It's wonderful to come home to a dust-free house knowing it's professionally done."
+    },
+    {
+      name: "Andreas Foss",
+      role: "Seller, Kongsberg",
+      quote: "Used them for pre-sale viewing clean. The real estate agent was impressed by the details, especially the windows and kitchen."
+    }
+  ]);
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeItem = testimonialItems[activeIndex] || testimonialItems[0];
@@ -63,6 +97,10 @@ export default function Testimonials() {
     }
   };
 
+  const kicker = t('testimonials.kicker') === 'testimonials.kicker' ? (locale === 'no' ? 'Kundenes erfaringer' : 'Customer Experiences') : t('testimonials.kicker');
+  const title = t('testimonials.title') === 'testimonials.title' ? (locale === 'no' ? 'Hva sier våre kunder i Telemark?' : 'What our customers in Telemark say') : t('testimonials.title');
+  const subtitle = t('testimonials.subtitle') === 'testimonials.subtitle' ? (locale === 'no' ? 'Vi lever av fornøyde kunder. Her er noen av tilbakemeldingene.' : 'We live on satisfied customers. Here are some of the reviews.') : t('testimonials.subtitle');
+
   return (
     <section id="testimonials" className="py-12 lg:py-24 bg-bg-light relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
@@ -70,13 +108,13 @@ export default function Testimonials() {
         {/* Section Heading */}
         <div className="max-w-3xl mb-16">
           <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
-            {t('testimonials.kicker')}
+            {kicker}
           </span>
           <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
-            {t('testimonials.title')}
+            {title}
           </h2>
           <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
-            {t('testimonials.subtitle')}
+            {subtitle}
           </p>
         </div>
 
@@ -95,7 +133,7 @@ export default function Testimonials() {
           <div className="relative z-10">
             {/* Display Quote in display type */}
             <p className="text-xl sm:text-2xl md:text-3xl font-display font-bold leading-normal text-text-main mb-10 min-h-[120px] transition-all duration-300">
-              {activeItem.quote}
+              {activeItem ? activeItem.quote : ""}
             </p>
 
             {/* Separation & Metadata Row */}
@@ -103,10 +141,10 @@ export default function Testimonials() {
               {/* Attribution */}
               <div>
                 <span className="font-display font-bold text-base text-text-main block">
-                  {activeItem.name}
+                  {activeItem ? activeItem.name : ""}
                 </span>
                 <span className="text-xs text-text-muted font-medium block uppercase tracking-wider mt-0.5">
-                  {activeItem.role}
+                  {activeItem ? activeItem.role : ""}
                 </span>
               </div>
 

@@ -10,8 +10,71 @@ interface ServiceItem {
 }
 
 export default function Services() {
-  const { t } = useLocale();
-  const servicesList = t('services.items') as ServiceItem[];
+  const { locale, t } = useLocale();
+  const rawServices = t('services.items');
+  const servicesList: ServiceItem[] = Array.isArray(rawServices) ? rawServices : (locale === 'no' ? [
+    {
+      id: "flyttevask",
+      title: "Trygg Flytting (Flyttevask)",
+      description: "Total nedvask med 48-timers garanti. Inkluderer vinduspuss, hvitevarer og dyprens av våtrom.",
+      price: "fra 85 kr/m²",
+      tag: "Mest populær"
+    },
+    {
+      id: "daglig",
+      title: "Hjemmekos (Regelmessig)",
+      description: "Fast vedlikehold av hjemmet ditt hver 14. dag. Sikrer et støvfritt og allergivennlig inneklima.",
+      price: "fra 1900 kr/mnd",
+      tag: "Fast avtale"
+    },
+    {
+      id: "visning",
+      title: "Klar til Visning (Visningsvask)",
+      description: "Klargjøring før salg. Vi fokuserer på detaljene som øker verdien på boligen din før fotografering.",
+      price: "fra 5500 kr",
+      tag: "Verdiøkende"
+    },
+    {
+      id: "bygg",
+      title: "Byggrengjøring",
+      description: "Fjerning av byggestøv og rester etter renovering eller nybygg. HMS-fokusert arbeid.",
+      price: "Etter avtale",
+      tag: "HMS-fokus"
+    }
+  ] : [
+    {
+      id: "flyttevask",
+      title: "Safe Move (Flyttevask)",
+      description: "Total deep clean with 48-hour guarantee. Includes window cleaning, appliances, and wet room deep clean.",
+      price: "from 85 kr/m²",
+      tag: "Most Popular"
+    },
+    {
+      id: "daglig",
+      title: "Home Comfort (Regular)",
+      description: "Regular maintenance every 14 days. Ensures a dust-free and allergy-friendly indoor climate.",
+      price: "from 1900 kr/mo",
+      tag: "Fixed Contract"
+    },
+    {
+      id: "visning",
+      title: "Ready for Viewing",
+      description: "Pre-sale preparation. We focus on details that increase your property value before photography.",
+      price: "from 5500 kr",
+      tag: "Value Adding"
+    },
+    {
+      id: "bygg",
+      title: "Construction Cleaning",
+      description: "Removal of construction dust and debris after renovation or new builds. HSE focused.",
+      price: "By agreement",
+      tag: "HSE Focus"
+    }
+  ]);
+
+  const kicker = t('services.kicker') === 'services.kicker' ? (locale === 'no' ? 'PRISLISTE & TJENESTER' : 'PRICING & SERVICES') : t('services.kicker');
+  const title = t('services.title') === 'services.title' ? (locale === 'no' ? 'Transparente satser uten skjulte gebyrer' : 'Transparent rates with no hidden fees') : t('services.title');
+  const subtitle = t('services.subtitle') === 'services.subtitle' ? (locale === 'no' ? 'Vi opererer med faste priser og timesatser tilpasset dine behov. Ingen kjøretillegg i Notodden-regionen.' : 'We operate with fixed prices and hourly rates tailored to your needs. No travel fees in the Notodden region.') : t('services.subtitle');
 
   return (
     <section id="services" className="py-12 lg:py-24 bg-bg-light relative overflow-hidden">
@@ -22,13 +85,13 @@ export default function Services() {
         {/* Section Heading & Lede */}
         <div className="max-w-3xl mb-16">
           <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
-            {t('services.kicker')}
+            {kicker}
           </span>
           <h2 className="text-3xl sm:text-5xl font-display font-black tracking-tight text-text-main mb-6 uppercase">
-            {t('services.title')}
+            {title}
           </h2>
           <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
-            {t('services.subtitle')}
+            {subtitle}
           </p>
         </div>
 
@@ -89,7 +152,7 @@ export default function Services() {
             {/* Visual Header */}
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
               <img 
-                src={t('services.image')} 
+                src={t('services.image') === 'services.image' ? "https://picsum.photos/seed/norwegian-interior-clean/800/1000" : t('services.image')} 
                 alt="Makarenko Reinhold arbeid" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
@@ -132,7 +195,7 @@ export default function Services() {
                 const el = document.getElementById('contact');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="w-full py-4 rounded-xl bg-primary hover:bg-accent text-white font-bold tracking-wider uppercase text-xs transition-colors block text-center"
+              className="w-full py-4 rounded-xl bg-primary hover:bg-accent text-white font-bold tracking-wider uppercase text-xs transition-colors block text-center cursor-pointer"
             >
               Bestill eller be om befaring
             </button>
