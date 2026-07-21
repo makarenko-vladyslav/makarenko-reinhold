@@ -35,7 +35,6 @@ export default function Calculator() {
   return (
     <section id="calculator" className="py-12 lg:py-24 bg-white relative z-20">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
             {t('calculator.kicker')}
@@ -48,12 +47,9 @@ export default function Calculator() {
           </p>
         </div>
 
-        {/* Real Interactive Calculator Container */}
         <div className="max-w-4xl mx-auto bg-bg-light rounded-3xl p-6 sm:p-10 border border-primary-light shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
-            {/* Controls */}
             <div className="space-y-8 flex flex-col justify-between">
-              {/* Type Switcher */}
               <div>
                 <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-3">
                   {t('calculator.labelType')}
@@ -86,7 +82,6 @@ export default function Calculator() {
                 </div>
               </div>
 
-              {/* Slider for size */}
               <div>
                 <div className="flex justify-between items-center mb-3">
                   <label className="text-[10px] font-bold tracking-widest uppercase text-text-muted font-display">
@@ -110,7 +105,6 @@ export default function Calculator() {
                 </div>
               </div>
 
-              {/* Extras checklist */}
               <div>
                 <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-3">
                   {t('calculator.labelExtra')}
@@ -147,56 +141,51 @@ export default function Calculator() {
                     </div>
                     <span className="text-xs font-display font-extrabold text-primary">+{pricingData.extras.oven} kr</span>
                   </button>
-
-                  <button 
-                    type="button"
-                    onClick={() => setExtras({...extras, balcony: !extras.balcony})}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl border text-left transition-colors cursor-pointer ${
-                      extras.balcony ? 'bg-primary-light/40 border-primary text-text-main' : 'bg-white border-primary-light/40 text-text-muted'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-bold ${extras.balcony ? 'text-accent' : 'text-text-muted/30'}`}>
-                        {extras.balcony ? '—' : '+'}
-                      </span>
-                      <span className="text-xs font-semibold text-text-main">{t('calculator.extraBalcony')}</span>
-                    </div>
-                    <span className="text-xs font-display font-extrabold text-primary">+{pricingData.extras.balcony} kr</span>
-                  </button>
                 </div>
               </div>
             </div>
 
-            {/* Price Output Display Area */}
-            <div className="bg-primary text-white p-8 rounded-2xl flex flex-col justify-between shadow-inner relative overflow-hidden">
-              <div className="absolute -bottom-10 -right-10 w-44 h-44 rounded-full bg-accent/15 pointer-events-none"></div>
-
+            <div className="bg-white rounded-2xl p-8 border border-primary-light flex flex-col justify-between">
               <div>
-                <span className="text-[10px] tracking-widest font-extrabold uppercase font-display text-accent block mb-2">
-                  {t('calculator.noTravelFee')}
-                </span>
-                <span className="text-white/60 text-xs font-semibold block mb-8 uppercase tracking-wider">
+                <span className="text-[10px] font-bold tracking-widest uppercase text-text-muted font-display block mb-4">
                   {t('calculator.priceEstimate')}
                 </span>
-
-                <div className="mb-2">
-                  <span className="text-5xl sm:text-6xl font-display font-black tracking-tight tabular-nums">
-                    {totalEstimate}
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-4xl sm:text-5xl font-display font-black text-primary tabular-nums">
+                    {totalEstimate.toLocaleString('no-NO')}
                   </span>
-                  <span className="text-xl font-bold ml-1">kr</span>
+                  <span className="text-lg font-display font-bold text-primary">kr</span>
                 </div>
-                <span className="text-white/70 text-[9px] uppercase tracking-widest font-semibold block">
+                <p className="text-[10px] text-text-muted font-medium uppercase tracking-widest">
                   {t('calculator.taxIncluded')}
-                </span>
+                </p>
+                <div className="mt-8 space-y-3">
+                  <div className="flex items-center gap-2 text-xs text-text-main/70">
+                    <span className="text-accent">✓</span>
+                    <span>{t('calculator.noTravelFee')}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-text-main/70">
+                    <span className="text-accent">✓</span>
+                    <span>Svanemerket kjemikalier inkludert</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-text-main/70">
+                    <span className="text-accent">✓</span>
+                    <span>Betaling via Vipps eller faktura</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-12 relative z-10">
+              <div className="mt-10">
                 <button 
                   onClick={handleScrollToContact}
-                  className="cursor-pointer w-full py-4.5 rounded-xl bg-accent hover:bg-accent-dark text-white font-bold tracking-wider uppercase text-xs transition-colors glow-glow"
+                  className="w-full py-4 rounded-xl bg-accent hover:bg-accent-dark text-white font-bold tracking-wider uppercase text-xs transition-all duration-300 glow-glow"
                 >
                   {t('calculator.cta')}
                 </button>
+                <div className="flex items-center justify-center gap-4 mt-4 opacity-40 grayscale">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Vipps_logo.svg" alt="Vipps" className="h-4" />
+                  <span className="text-[9px] font-bold uppercase tracking-widest">Sikker betaling</span>
+                </div>
               </div>
             </div>
           </div>
