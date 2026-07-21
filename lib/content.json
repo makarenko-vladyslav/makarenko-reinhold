@@ -4,7 +4,7 @@
     "no": {
       "meta": {
         "title": "Makarenko Reinhold — Offentlig Godkjent Flyttevask i Notodden",
-        "description": "Profesjonell flyttevask med 48-timers garanti. Ingen uventede kjøretillegg i Notodden.",
+        "description": "Profesjonell flyttevask med 48-timers garanti. Godkjent renholdsbedrift med ansvarsforsikring i Telemark.",
         "lang": "no"
       },
       "nav": {
@@ -21,147 +21,84 @@
         "badge": "Offentlig Godkjent Renholdsbedrift i Arbeidstilsynet",
         "title1": "Sikre depositumet ditt med en",
         "title2": "godkjent flyttevask",
-        "subtitle": "Vi leverer renhold i Notodden med 48-timers garanti. Registrert renholdsbedrift med ansvarsforsikring opptil 1 000 000 NOK.",
+        "subtitle": "Vi leverer profesjonelt renhold i Notodden med 48-timers garanti. Registrert renholdsbedrift med ansvarsforsikring opptil 1 000 000 NOK.",
         "ctaPrimary": "Beregn pris",
-        "ctaSecondary": "Se våre faste satser",
-        "guarantee": "48-timers garanti for overlevering to utleier",
+        "ctaSecondary": "Se våre tjenester",
+        "guarantee": "48-timers garanti for overlevering til utleier",
         "videoSrc": "https://videos.pexels.com/video-files/4238760/4238760-hd_1920_1080_30fps.mp4",
-        "videoPoster": "https://images.pexels.com/videos/4238760/pexels-photo-4238760.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
-        "meta": {
-          "phone": "+47 966 84 397",
-          "email": "annadizhenko@gmail.com",
-          "location": "Notodden, Telemark"
-        }
+        "videoPoster": "https://images.pexels.com/videos/4238760/pexels-photo-4238760.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
       },
       "services": {
         "kicker": "PRISLISTE & TJENESTER",
-        "title": "Transparente satser tilpasset dine krav",
-        "subtitle": "Vi opererer med faste, oversiktlige priser basert på boligens størrelse. Ingen uventede kjøretillegg eller administrative gebyrer i Notodden.",
+        "title": "Transparente satser uten skjulte gebyrer",
+        "subtitle": "Vi opererer med faste priser og timesatser tilpasset dine behov. Ingen kjøretillegg i Notodden-regionen.",
         "items": [
           {
-            "id": "flyttevask-small",
-            "title": "Flyttevask — Under 50 m²",
-            "description": "Fullstendig dyprent av mindre leiligheter og studentboliger. Følger sjekklister for rask overtakelse.",
-            "price": "3 900 kr",
-            "tag": "Mest populær student"
+            "id": "flyttevask",
+            "title": "Flyttevask (Flyttevask)",
+            "description": "Total nedvask med 48-timers garanti. Inkluderer vinduspuss, hvitevarer og dyprens av våtrom.",
+            "price": "fra 85 kr/m²",
+            "tag": "Mest populær"
           },
           {
-            "id": "flyttevask-medium",
-            "title": "Flyttevask — 50 til 100 m²",
-            "description": "Komplett nedvask av middels leiligheter eller rekkehus inkludert skapvask, lister, ventiler og sluk.",
-            "price": "5 400 kr",
-            "tag": "Standard leilighet"
+            "id": "daglig",
+            "title": "Regelmessig renhold",
+            "description": "Fast vedlikehold av hjemmet ditt. Sikrer et støvfritt og allergivennlig inneklima.",
+            "price": "fra 450 kr/t",
+            "tag": "Hjemmekos"
           },
           {
-            "id": "flyttevask-large",
-            "title": "Flyttevask — Over 100 m²",
-            "description": "Total dyptgående rengjøring av store eneboliger. Omfattende sjekkliste garanterer huseiers godkjenning.",
-            "price": "Fra 7 200 kr",
-            "tag": "Anbefalt enebolig"
+            "id": "visning",
+            "title": "Visningsvask",
+            "description": "Klargjøring før salg. Vi fokuserer på detaljene som øker verdien på boligen din.",
+            "price": "fra 5500 kr",
+            "tag": "Klar til Visning"
           },
           {
-            "id": "daglig-standard",
-            "title": "Regelmessig Renhold — Fast avtale",
-            "description": "Faste intervaller for private hjem. Sikrer et støvfritt og allergivennlig inneklima med kjente ansikter.",
-            "price": "450 kr / t",
-            "tag": "Ingen bindingstid"
-          },
-          {
-            "id": "visning-premium",
-            "title": "Klargjøring før Salg & Visning",
-            "description": "Estetisk renhold fokusert på lysinnslipp, fjerning av striper og grundig puss av alle flater.",
-            "price": "Fra 2 900 kr",
-            "tag": "Meglerens favoritt"
-          },
-          {
-            "id": "bygg-pro",
-            "title": "Byggrengjøring etter renovering",
-            "description": "Spesialisert fjerning av fint sementstøv, malingsrester, fugemasse og byggavfall.",
+            "id": "bygg",
+            "title": "Byggrengjøring",
+            "description": "Fjerning av byggestøv og rester etter renovering eller nybygg.",
             "price": "Etter avtale",
-            "tag": "HMS-sertifisert"
+            "tag": "HMS-fokus"
           }
         ],
         "image": "https://picsum.photos/seed/norwegian-interior-clean/800/1000"
       },
-      "calculator": {
-        "kicker": "MVA inkludert — Ingen skjulte kostnader",
-        "title": "Motta et uforpliktende pristilbud umiddelbart",
-        "subtitle": "Velg boligtype, juster kvadratmeter, og se estimert pris. Vi inkluderer kjøring i Notodden uten skjulte gebyrer.",
-        "labelType": "Boligtype",
-        "labelSize": "Størrelse på boligen (m²)",
-        "labelExtra": "Ekstra tjenester å legge til",
-        "optionApartment": "Leilighet",
-        "optionHouse": "Enebolig / Rekkehus",
-        "optionOffice": "Kontorlokale",
-        "extraWindows": "Mye vinduspuss (vask av alle sider)",
-        "extraOven": "Ekstremt fettholdig stekeovn",
-        "extraBalcony": "Rengjøring av balkong / terrasse",
-        "priceEstimate": "Estimert totalpris",
-        "taxIncluded": "inkludert 25% MVA",
-        "noTravelFee": "Ingen kjøretillegg i Notodden og omegn",
-        "cta": "Reserver denne prisen nå"
+      "whyUs": {
+        "kicker": "VÅRT REINHOLD & METODIKK",
+        "title": "Kompromissløst håndverk, lokalt forankret",
+        "description": "Mange renholdsbedrifter krever kostbare reisetillegg for oppdrag i Notodden. Makarenko Reinhold er stasjonert lokalt. Det betyr raskere responstid, personlig oppfølging uten administrative mellomledd og direkte kontakt med utleier for sømløs overlevering.",
+        "quote": "Vår oppgave er å eliminere stresset ved utflytting. Vi leverer et dokumentert resultat huseiere godkjenner umiddelbart.",
+        "stats": {
+          "year": "2024",
+          "rate": "100%",
+          "insurance": "1M NOK",
+          "guarantee": "48h"
+        },
+        "founder": "Anna Dizhenko — Daglig leder & fagansvarlig"
       },
-      "checklist": {
-        "kicker": "Vår presisjonsgaranti",
-        "title": "Hva er inkludert i en Flyttevask?",
-        "subtitle": "Vi vasker ikke bare overflatene — vi demonterer ventiler, renser sluk og fjerner fastbrent fett for å sikre feilfri godkjenning.",
-        "zones": [
-          {
-            "name": "Kjøkken",
-            "items": [
-              "Innvendig og utvendig vask av alle skap og skuffer",
-              "Grundig avfetting av stekeovn, rister og ventilator",
-              "Rengjøring bak komfyr og kjøleskap (om de kan dras ut)",
-              "Avtørking av alle flater, fliser, vask og armatur"
-            ]
-          },
-          {
-            "name": "Baderom",
-            "items": [
-              "Fjerning av kalkavleiringer i dusjkabinett og på fliser",
-              "Rensing av sluk og fjerning av oppsamlet smuss",
-              "Rengjøring av toalett, servant og baderomsinnredning",
-              "Pussing av speil og fuktig tørking av tak og vegger"
-            ]
-          },
-          {
-            "name": "Oppholdsrom & Soverom",
-            "items": [
-              "Støvsuging og skånsom vask av ubehandlet parkett",
-              "Vask av dører, lister, karmer, lysbrytere og stikkontakter",
-              "Rengjøring av fastmonterte garderober og skap",
-              "Innvendig og utvendig vinduspuss av standard vinduer"
-            ]
-          }
-        ]
-      },
-      "trust": {
-        "kicker": "Din trygghet i fokus",
-        "title": "Hvorfor velge Makarenko Reinhold?",
-        "subtitle": "Vi distanserer oss fra uregistrerte aktører ved å tilby full transparens, ryddige arbeidsforhold og kompromissløs kvalitet.",
+      "faq": {
+        "kicker": "Svar på det du lurer på",
+        "title": "Ofte stilte spørsmål",
+        "subtitle": "Her finner du svar på de vanligste spørsmålene om våre tjenester, garantier og priser.",
         "items": [
           {
-            "title": "48-timers Godkjenningsgaranti",
-            "text": "Dersom huseier eller kjøper påpeker mangler ved overlevering, utbedrer vi dette helt kostnadsfritt innen 24 timer."
+            "question": "Hva dekker 48-timers garantien?",
+            "answer": "Dersom utleier eller kjøper har anmerkninger til vasken ved overlevering, kommer vi tilbake og utbedrer dette helt kostnadsfritt innen 24 timer."
           },
           {
-            "title": "Godkjent i Arbeidstilsynet",
-            "text": "Vi er registrert i renholdsregisteret. Det er ulovlig å kjøpe renholdstjenester fra bedrifter som ikke er godkjent."
+            "question": "Er dere en godkjent renholdsbedrift?",
+            "answer": "Ja, vi er offentlig godkjent av Arbeidstilsynet. Det er lovpålagt for alle som kjøper renholdstjenester å sjekke at bedriften er registrert i renholdsregisteret."
           },
           {
-            "title": "Ansvarsforsikring opptil 1M",
-            "text": "Vi er forsikret hos Gjensidige. Dette gir deg full trygghet dersom uhell skulle oppstå under utførelse av arbeidet."
+            "question": "Hvilke områder dekker dere?",
+            "answer": "Vi dekker Notodden, Kongsberg, Bø, Heddal, Sauland, Gvarv og Akkerhaugen uten ekstra kjøretillegg."
           },
           {
-            "title": "Lokalt i Notodden",
-            "text": "Vi er basert lokalt, noe som betyr ingen skjulte reisekostnader og rask oppfølging dersom du trenger oss på kort varsel."
+            "question": "Bruker dere miljøvennlige produkter?",
+            "answer": "Vi benytter Svanemerket-sertifiserte produkter som er skånsomme mot både overflater, inneklima og miljøet."
           }
         ]
-      },
-      "beforeAfter": {
-        "kicker": "Resultater som taler for seg",
-        "title": "Se forskjellen med profesjonell dyprens",
-        "subtitle": "Vi fjerner fastbrent fett, kalk og smuss som vanlige vaskemidler ikke rår på. Her er et utvalg fra våre siste oppdrag."
       },
       "testimonials": {
         "kicker": "Kundenes erfaringer",
@@ -171,9 +108,125 @@
           {
             "name": "Morten Hansen",
             "role": "Utleier, Notodden",
-            "quote": "Makarenko Reinhold leverte en flyttevask som overgikk alle forventninger. Overtakelsen gikk knirkefritt uten en eneste anmerkning."
+            "quote": "Makarenko Reinhold leverte en flyttevask som overgikk alle forventninger. Utleier godkjente leiligheten på 5 minutter uten en eneste anmerkning."
+          },
+          {
+            "name": "Lise Berg",
+            "role": "Huseier, Bø",
+            "quote": "Veldig fornøyd med fast avtale på daglig renhold. Det er deilig å komme hjem til et støvfritt hus og vite at alt er gjort profesjonelt."
+          },
+          {
+            "name": "Andreas Foss",
+            "role": "Selger, Kongsberg",
+            "quote": "Brukt dem til visningsvask før salg. Megleren var imponert over detaljene, spesielt vinduene og kjøkkenet. Anbefales!"
           }
         ]
+      },
+      "contact": {
+        "kicker": "KONTAKT OSS",
+        "title": "La oss ta vaskeansvaret",
+        "subtitle": "Fyll ut skjemaet for et uforpliktende tilbud, eller ring oss direkte for en hyggelig prat om ditt renholdsbehov.",
+        "name": "Fullt navn",
+        "phone": "Telefonnummer",
+        "email": "E-postadresse",
+        "size": "Boligstørrelse (m²)",
+        "message": "Melding / Spesielle behov",
+        "cta": "Send forespørsel",
+        "success": "Takk! Vi har mottatt din melding og kontakter deg så snart som mulig."
+      }
+    },
+    "en": {
+      "meta": {
+        "title": "Makarenko Reinhold — Approved Moving Cleaning in Notodden",
+        "description": "Professional move-out cleaning with 48-hour guarantee. Approved cleaning company with liability insurance in Telemark.",
+        "lang": "en"
+      },
+      "nav": {
+        "services": "Services",
+        "calculator": "Price Calculator",
+        "checklist": "Our Standard",
+        "about": "About Us",
+        "testimonials": "Testimonials",
+        "faq": "FAQ",
+        "contact": "Book Cleaning",
+        "cta": "Get Fixed Price"
+      },
+      "hero": {
+        "badge": "Approved Cleaning Company by Arbeidstilsynet",
+        "title1": "Secure your deposit with an",
+        "title2": "approved move-out clean",
+        "subtitle": "We provide professional cleaning in Notodden with a 48-hour guarantee. Registered cleaning company with liability insurance up to 1,000,000 NOK.",
+        "ctaPrimary": "Calculate Price",
+        "ctaSecondary": "Our Services",
+        "guarantee": "48-hour guarantee for landlord handover"
+      },
+      "services": {
+        "kicker": "PRICING & SERVICES",
+        "title": "Transparent rates with no hidden fees",
+        "subtitle": "We operate with fixed prices and hourly rates tailored to your needs. No travel fees in the Notodden region.",
+        "items": [
+          {
+            "id": "flyttevask",
+            "title": "Move-out Cleaning (Flyttevask)",
+            "description": "Total deep clean with 48-hour guarantee. Includes window cleaning, appliances, and wet room deep clean.",
+            "price": "from 85 kr/m²",
+            "tag": "Most Popular"
+          },
+          {
+            "id": "daglig",
+            "title": "Regular Cleaning",
+            "description": "Regular maintenance of your home. Ensures a dust-free and allergy-friendly indoor climate.",
+            "price": "from 450 kr/h",
+            "tag": "Home Comfort"
+          },
+          {
+            "id": "visning",
+            "title": "Pre-sale Cleaning",
+            "description": "Preparation before sale. We focus on the details that increase the value of your home.",
+            "price": "from 5500 kr",
+            "tag": "Ready for Viewing"
+          }
+        ]
+      },
+      "whyUs": {
+        "kicker": "OUR CLEANING & METHODOLOGY",
+        "title": "Uncompromising craftsmanship, locally rooted",
+        "description": "Many cleaning companies charge expensive travel fees for assignments in Notodden. Makarenko Reinhold is based locally. This means faster response times and direct contact with the landlord.",
+        "quote": "Our job is to eliminate the stress of moving. We deliver a documented result that landlords approve immediately.",
+        "stats": {
+          "year": "2024",
+          "rate": "100%",
+          "insurance": "1M NOK",
+          "guarantee": "48h"
+        },
+        "founder": "Anna Dizhenko — Manager & Cleaning Specialist"
+      },
+      "faq": {
+        "kicker": "Answers to your questions",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Here you will find answers to the most common questions about our services and guarantees.",
+        "items": [
+          {
+            "question": "What does the 48-hour guarantee cover?",
+            "answer": "If the landlord or buyer has remarks about the cleaning during handover, we will return and rectify it free of charge within 24 hours."
+          },
+          {
+            "question": "Are you an approved cleaning company?",
+            "answer": "Yes, we are publicly approved by Arbeidstilsynet. It is mandatory for anyone buying cleaning services to check the registry."
+          }
+        ]
+      },
+      "contact": {
+        "kicker": "CONTACT US",
+        "title": "Let us handle the cleaning",
+        "subtitle": "Fill out the form for a non-binding offer, or call us directly for a friendly chat about your cleaning needs.",
+        "name": "Full Name",
+        "phone": "Phone Number",
+        "email": "Email Address",
+        "size": "Property Size (m²)",
+        "message": "Message / Special Needs",
+        "cta": "Send Request",
+        "success": "Thank you! We have received your message and will contact you shortly."
       }
     }
   }

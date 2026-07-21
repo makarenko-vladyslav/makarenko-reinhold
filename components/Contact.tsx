@@ -28,7 +28,7 @@ export default function Contact() {
               {t('contact.kicker')}
             </span>
             <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
-              La oss ta vaskeansvaret
+              {t('contact.title')}
             </h2>
             <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed mb-10">
               {t('contact.subtitle')}
