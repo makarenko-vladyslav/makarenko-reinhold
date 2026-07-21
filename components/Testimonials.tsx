@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { useLocale } from '@/lib/i18n';
 
 interface TestimonialItem {
@@ -9,97 +9,11 @@ interface TestimonialItem {
 }
 
 export default function Testimonials() {
-  const { locale, t } = useLocale();
-  const rawTestimonials = t('testimonials.items');
-  const testimonialItems: TestimonialItem[] = Array.isArray(rawTestimonials) ? rawTestimonials : (locale === 'no' ? [
-    {
-      name: "Morten Hansen",
-      role: "Utleier, Notodden",
-      quote: "Makarenko Reinhold leverte en flyttevask som overgikk alle forventninger. Utleier godkjente leiligheten på 5 minutter uten en eneste anmerkning."
-    },
-    {
-      name: "Lise Berg",
-      role: "Huseier, Bø",
-      quote: "Veldig fornøyd med fast avtale på daglig renhold. Det er deilig å komme hjem til et støvfritt hus og vite at alt er gjort profesjonelt."
-    },
-    {
-      name: "Andreas Foss",
-      role: "Selger, Kongsberg",
-      quote: "Brukt dem til visningsvask før salg. Megleren var imponert over detaljene, spesielt vinduene og kjøkkenet. Anbefales!"
-    }
-  ] : [
-    {
-      name: "Morten Hansen",
-      role: "Landlord, Notodden",
-      quote: "Makarenko Reinhold delivered a move-out clean that exceeded all expectations. The landlord approved the apartment in 5 minutes flat."
-    },
-    {
-      name: "Lise Berg",
-      role: "Homeowner, Bø",
-      quote: "Very happy with the regular home cleaning contract. It's wonderful to come home to a dust-free house knowing it's professionally done."
-    },
-    {
-      name: "Andreas Foss",
-      role: "Seller, Kongsberg",
-      quote: "Used them for pre-sale viewing clean. The real estate agent was impressed by the details, especially the windows and kitchen."
-    }
-  ]);
-
+  const { t } = useLocale();
+  const testimonialItems = t('testimonials.items') as TestimonialItem[];
   const [activeIndex, setActiveIndex] = useState(0);
 
   const activeItem = testimonialItems[activeIndex] || testimonialItems[0];
-
-  const handleNext = useCallback(() => {
-    if (testimonialItems && testimonialItems.length > 0) {
-      setActiveIndex((prev) => (prev + 1) % testimonialItems.length);
-    }
-  }, [testimonialItems]);
-
-  const handlePrev = useCallback(() => {
-    if (testimonialItems && testimonialItems.length > 0) {
-      setActiveIndex((prev) => (prev - 1 + testimonialItems.length) % testimonialItems.length);
-    }
-  }, [testimonialItems]);
-
-  // Auto-rotate every 3 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [handleNext]);
-
-  // Touch Swipe Detection
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  const minSwipeDistance = 50;
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-    
-    if (isLeftSwipe) {
-      handleNext();
-    } else if (isRightSwipe) {
-      handlePrev();
-    }
-  };
-
-  const kicker = t('testimonials.kicker') === 'testimonials.kicker' ? (locale === 'no' ? 'Kundenes erfaringer' : 'Customer Experiences') : t('testimonials.kicker');
-  const title = t('testimonials.title') === 'testimonials.title' ? (locale === 'no' ? 'Hva sier våre kunder i Telemark?' : 'What our customers in Telemark say') : t('testimonials.title');
-  const subtitle = t('testimonials.subtitle') === 'testimonials.subtitle' ? (locale === 'no' ? 'Vi lever av fornøyde kunder. Her er noen av tilbakemeldingene.' : 'We live on satisfied customers. Here are some of the reviews.') : t('testimonials.subtitle');
 
   return (
     <section id="testimonials" className="py-12 lg:py-24 bg-bg-light relative overflow-hidden">
@@ -108,23 +22,18 @@ export default function Testimonials() {
         {/* Section Heading */}
         <div className="max-w-3xl mb-16">
           <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
-            {kicker}
+            {t('testimonials.kicker')}
           </span>
           <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
-            {title}
+            {t('testimonials.title')}
           </h2>
           <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
-            {subtitle}
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
-        {/* Elegant Slider / Multi-Layer Review Board with Swipe Support */}
-        <div 
-          className="bg-white rounded-3xl p-8 sm:p-16 border border-primary-light shadow-sm relative overflow-hidden max-w-5xl mx-auto touch-pan-y select-none"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
+        {/* Elegant Slider / Multi-Layer Review Board */}
+        <div className="bg-white rounded-3xl p-8 sm:p-16 border border-primary-light shadow-sm relative overflow-hidden max-w-5xl mx-auto">
           {/* Huge decorative quotation character */}
           <span className="absolute top-6 left-8 sm:left-12 font-display font-black text-primary/[0.04] text-[15rem] leading-none pointer-events-none select-none">
             “
@@ -132,8 +41,8 @@ export default function Testimonials() {
 
           <div className="relative z-10">
             {/* Display Quote in display type */}
-            <p className="text-xl sm:text-2xl md:text-3xl font-display font-bold leading-normal text-text-main mb-10 min-h-[120px] transition-all duration-300">
-              {activeItem ? activeItem.quote : ""}
+            <p className="text-xl sm:text-2xl md:text-3xl font-display font-bold leading-normal text-text-main mb-10">
+              {activeItem.quote}
             </p>
 
             {/* Separation & Metadata Row */}
@@ -141,10 +50,10 @@ export default function Testimonials() {
               {/* Attribution */}
               <div>
                 <span className="font-display font-bold text-base text-text-main block">
-                  {activeItem ? activeItem.name : ""}
+                  {activeItem.name}
                 </span>
                 <span className="text-xs text-text-muted font-medium block uppercase tracking-wider mt-0.5">
-                  {activeItem ? activeItem.role : ""}
+                  {activeItem.role}
                 </span>
               </div>
 
@@ -159,30 +68,18 @@ export default function Testimonials() {
               </div>
             </div>
 
-            {/* Slider Navigation Affordance with Swipe Hint & Next/Prev Buttons */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mt-12 pt-6 border-t border-primary-light/30">
-              {/* Swipe Hint & Next/Prev Buttons */}
-              <div className="flex items-center justify-between w-full">
-                <span className="text-[10px] text-text-muted/50 tracking-widest uppercase font-display">
-                  Sveip for å bla · Roterer hvert 3. sekund
-                </span>
-                <div className="flex items-center gap-2">
-                  <button 
-                    onClick={handlePrev}
-                    className="w-10 h-10 rounded-full border border-primary-light hover:border-accent hover:text-accent text-text-main flex items-center justify-center transition-colors cursor-pointer"
-                    aria-label="Forrige omtale"
-                  >
-                    ←
-                  </button>
-                  <button 
-                    onClick={handleNext}
-                    className="w-10 h-10 rounded-full border border-primary-light hover:border-accent hover:text-accent text-text-main flex items-center justify-center transition-colors cursor-pointer"
-                    aria-label="Neste omtale"
-                  >
-                    →
-                  </button>
-                </div>
-              </div>
+            {/* Slider Navigation Affordance */}
+            <div className="flex items-center gap-3 mt-12 pt-6 border-t border-primary-light/30">
+              {testimonialItems.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    idx === activeIndex ? 'w-8 bg-accent' : 'w-2 bg-text-muted/30 hover:bg-text-muted'
+                  }`}
+                  aria-label={`Vis referanse ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>

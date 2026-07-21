@@ -42,7 +42,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Column */}
+          {/* Contact Column (Separate lines for maximum NAP structured data) */}
           <div>
             <h4 className="font-display font-bold text-xs tracking-widest uppercase text-accent mb-6">
               KONTAKT & ADRESSE
@@ -69,6 +69,7 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Social Row as Text links */}
           <div className="flex items-center gap-6 text-[10px] tracking-widest uppercase font-bold">
             <a href="#" className="hover:text-accent transition-colors">[ INSTAGRAM ]</a>
             <a href="#" className="hover:text-accent transition-colors">[ FACEBOOK ]</a>

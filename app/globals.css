@@ -9,12 +9,12 @@
   --color-bg-light: hsl(180 20% 98%);
   --color-text-main: hsl(210 30% 15%);
   --color-text-muted: hsl(210 15% 46%);
-  --font-display: 'Montserrat', sans-serif;
+  --font-display: 'Playfair Display', serif;
   --font-body: 'Karla', sans-serif;
 }
 
 :root {
-  --font-display: 'Montserrat', sans-serif;
+  --font-display: 'Playfair Display', serif;
   --font-body: 'Karla', sans-serif;
 }
 
@@ -28,7 +28,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  letter-spacing: -0.02em;
 }
 
 .glow-glow {
@@ -77,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
   outline-offset: 2px;
 }
 
+/* Custom scrollbar for premium touch */
 ::-webkit-scrollbar {
   width: 8px;
 }

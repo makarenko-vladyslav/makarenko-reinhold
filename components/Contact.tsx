@@ -18,22 +18,25 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-12 lg:py-24 bg-primary-light/60 relative z-20">
+      {/* Decorative absolute background grid */}
       <div className="absolute top-0 right-10 w-48 h-48 rounded-full border border-primary/5 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           
+          {/* Info Side (Structured as requested) */}
           <div className="lg:col-span-5">
             <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
               {t('contact.kicker')}
             </span>
             <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
-              {t('contact.title')}
+              La oss ta vaskeansvaret
             </h2>
             <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed mb-10">
               {t('contact.subtitle')}
             </p>
 
+            {/* Structured Hours Mini-Table */}
             <div className="border-t border-b border-primary/15 py-6 mb-8">
               <span className="text-[10px] tracking-widest font-extrabold uppercase font-display text-text-muted block mb-4">
                 ÅPNINGSTIDER & TELEFONTID
@@ -54,6 +57,7 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Address & Direct Connection links */}
             <div className="space-y-4 text-xs font-display font-bold">
               <div>
                 <span className="text-[9px] tracking-widest uppercase text-text-muted block mb-1">E-post</span>
@@ -69,13 +73,24 @@ export default function Contact() {
               </div>
               <div>
                 <span className="text-[9px] tracking-widest uppercase text-text-muted block mb-1">Adresse</span>
-                <span className="text-text-main block text-sm">
-                  Notodden, Telemark
-                </span>
+                <a 
+                  href="https://www.google.com/maps?q=Notodden,Telemark,Norway&output=embed" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-text-main hover:text-accent transition-colors block text-sm"
+                >
+                  Notodden, Telemark — Vis i Google Maps
+                </a>
               </div>
             </div>
+
+            {/* Trust Micro-Line */}
+            <p className="text-[10px] text-text-muted/80 font-light italic mt-10">
+              * Skulle uhellet være ute, er arbeidet fullt ut dekket av ansvarsforsikring hos Gjensidige opptil 1M NOK.
+            </p>
           </div>
 
+          {/* Form Side with Solid Opaque Background */}
           <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-primary-light shadow-md">
             {isSuccess ? (
               <div className="text-center py-12">
@@ -146,21 +161,32 @@ export default function Contact() {
 
                 <div>
                   <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
+                    {t('contact.date')}
+                  </label>
+                  <input 
+                    type="date" 
+                    required
+                    className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
                     {t('contact.message')}
                   </label>
                   <textarea 
                     rows={4}
+                    placeholder="Fortell oss litt om boligen..."
                     className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main placeholder-text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none resize-none"
-                    placeholder="Skriv din melding her..."
                   ></textarea>
                 </div>
 
                 <button 
                   type="submit"
                   disabled={isSending}
-                  className="w-full py-4 rounded-xl bg-primary hover:bg-accent text-white font-bold tracking-wider uppercase text-xs transition-all duration-300 shadow-lg disabled:opacity-50"
+                  className="w-full py-4 rounded-xl bg-primary hover:bg-accent text-white font-bold tracking-wider uppercase text-xs transition-colors glow-glow cursor-pointer"
                 >
-                  {isSending ? 'Sender...' : t('contact.cta')}
+                  {isSending ? t('contact.sending') : t('contact.submit')}
                 </button>
               </form>
             )}
