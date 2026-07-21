@@ -46,7 +46,7 @@ export default function BeforeAfter() {
           {/* Before Image (Background) */}
           <img 
             src="https://images.pexels.com/photos/4239128/pexels-photo-4239128.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=675&w=1200" 
-            alt="Før dyp rengjøring" 
+            alt="Kjøkken før profesjonell flyttevask — synlig fett og smuss"
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
           />
@@ -61,7 +61,7 @@ export default function BeforeAfter() {
           >
             <img 
               src="https://images.pexels.com/photos/4239145/pexels-photo-4239145.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=675&w=1200" 
-              alt="Etter dyp rengjøring" 
+              alt="Kjøkken etter dyprens — klar for godkjenning av utleier"
               className="absolute inset-y-0 left-0 w-full max-w-none h-full object-cover"
               style={{ width: '100%' }}
               loading="lazy"

@@ -66,8 +66,8 @@ export default function WhyUs() {
               {/* Photo 1: Large Main Image */}
               <div className="rounded-2xl overflow-hidden shadow-lg border border-primary-light/40 w-4/5">
                 <img 
-                  src="https://picsum.photos/seed/notodden-clean/800/600" 
-                  alt="Anna og teamet utfører renhold" 
+                  src="https://picsum.photos/seed/scandinavian-cleaning-service/800/600" 
+                  alt="Anna og teamet utfører profesjonelt renhold i Notodden med gyldig HMS-kort"
                   className="object-cover w-full h-[320px]"
                   loading="lazy"
                 />
@@ -76,8 +76,8 @@ export default function WhyUs() {
               {/* Photo 2: Small Overlapped, framed/tilted image */}
               <div className="absolute -bottom-8 right-0 w-1/2 rounded-2xl overflow-hidden shadow-xl border-4 border-white transform rotate-2">
                 <img 
-                  src="https://picsum.photos/seed/cleaner-precision/400/400" 
-                  alt="Presisjon vasking" 
+                  src="https://picsum.photos/seed/hms-card-cleaning/400/400" 
+                  alt="Detaljfokusert renhold i tråd med Arbeidstilsynets standarder"
                   className="object-cover w-full aspect-square"
                   loading="lazy"
                 />
@@ -87,7 +87,7 @@ export default function WhyUs() {
             {/* Photo caption-with-rule */}
             <div className="mt-14 border-t border-accent/20 pt-4">
               <span className="text-[10px] tracking-wider font-semibold text-text-muted block">
-                Fig. 1.1 — Kvalitetskontroll av detaljarbeid ved Notodden boligpark.
+                Fig. 1.1 — Kvalitetskontroll av detaljarbeid utført av godkjent personell i Notodden.
               </span>
             </div>
           </div>
