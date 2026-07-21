@@ -150,4 +150,82 @@
           },
           {
             "title": "Ansvarsforsikring opptil 1M",
-            
+            "text": "Vi er forsikret hos Gjensidige. Dette gir deg full trygghet dersom uhell skulle oppstå under utførelse av arbeidet."
+          },
+          {
+            "title": "Lokalt i Notodden",
+            "text": "Vi er basert lokalt, noe som betyr ingen skjulte reisekostnader og rask oppfølging dersom du trenger oss på kort varsel."
+          }
+        ]
+      },
+      "beforeAfter": {
+        "kicker": "Resultater som taler for seg",
+        "title": "Se forskjellen med profesjonell dyprens",
+        "subtitle": "Vi fjerner fastbrent fett, kalk og smuss som vanlige vaskemidler ikke rår på. Her er et utvalg fra våre siste oppdrag."
+      },
+      "testimonials": {
+        "kicker": "Kundenes erfaringer",
+        "title": "Hva sier våre kunder i Telemark?",
+        "subtitle": "Vi lever av fornøyde kunder. Her er noen av tilbakemeldingene vi har fått fra boligeiere og leietakere i Notodden.",
+        "items": [
+          {
+            "name": "Morten Hansen",
+            "role": "Utleier, Notodden",
+            "quote": "Makarenko Reinhold leverte en flyttevask som overgikk alle forventninger. Leiligheten så helt ny ut, og overtakelsen gikk uten en eneste anmerkning."
+          },
+          {
+            "name": "Ingrid Berg",
+            "role": "Privatkunde",
+            "quote": "Veldig profesjonelle og punktlige. De vasket ned hele huset før visning, og jeg er sikker på at det hjalp på salgsprisen. Anbefales på det varmeste!"
+          },
+          {
+            "name": "Lars Erik Nilsen",
+            "role": "Student",
+            "quote": "Fikk tilbake hele depositumet takket være flyttevasken deres. Rimelig pris og utrolig grundig arbeid på kjøkkenet."
+          }
+        ]
+      },
+      "videoSection": {
+        "kicker": "Vår arbeidsmetodikk",
+        "title": "Slik sikrer vi kvaliteten",
+        "description": "Vi bruker kun profesjonelt utstyr og miljøvennlige vaskemidler. Se hvordan vi går frem for å sikre at hver krik og krok blir skinnende ren.",
+        "videoSrc": "https://videos.pexels.com/video-files/4239145/4239145-hd_1920_1080_30fps.mp4",
+        "videoPoster": "https://images.pexels.com/photos/4239145/pexels-photo-4239145.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
+      },
+      "faq": {
+        "kicker": "Spørsmål og svar",
+        "title": "Ofte stilte spørsmål",
+        "subtitle": "Her finner du svar på det meste kundene våre lurer på angående flyttevask og våre garantier.",
+        "items": [
+          {
+            "question": "Hva dekker 48-timers garantien?",
+            "answer": "Garantien betyr at dersom huseier eller ny eier ikke godkjenner vasken ved overlevering, kommer vi tilbake og utbedrer manglene kostnadsfritt innen 24 timer."
+          },
+          {
+            "question": "Er vindusvask inkludert i flyttevask?",
+            "answer": "Ja, innvendig og utvendig vask av alle standard vinduer er inkludert i våre faste priser for flyttevask."
+          },
+          {
+            "question": "Må jeg være til stede under vaskingen?",
+            "answer": "Nei, det er ikke nødvendig. Vi kan avtale nøkkeloverlevering på forhånd, slik at du kan fokusere på flyttingen."
+          },
+          {
+            "question": "Bruker dere egne vaskemidler og utstyr?",
+            "answer": "Ja, vi stiller med alt av nødvendig utstyr og profesjonelle vaskemidler som er skånsomme mot miljøet og overflatene dine."
+          }
+        ]
+      },
+      "contact": {
+        "kicker": "Kontakt oss i dag",
+        "subtitle": "Fyll ut skjemaet under for et uforpliktende tilbud, eller ring oss direkte for en hyggelig prat om dine behov.",
+        "name": "Fullt navn",
+        "phone": "Telefonnummer",
+        "email": "E-postadresse",
+        "size": "Boligens størrelse (m²)",
+        "message": "Melding / Spesielle ønsker",
+        "cta": "Send forespørsel",
+        "success": "Takk for din henvendelse! Vi tar kontakt med deg så snart som mulig, vanligvis innen få timer."
+      }
+    }
+  }
+}

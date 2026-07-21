@@ -156,19 +156,25 @@ export default function Calculator() {
                   </span>
                   <span className="text-lg font-display font-bold text-primary">kr</span>
                 </div>
-                <p className="text-[10px] text-text-muted font-semibold uppercase tracking-widest">
+                <p className="text-[10px] text-text-muted font-medium uppercase tracking-widest mb-6">
                   {t('calculator.taxIncluded')}
                 </p>
-                <div className="mt-8 p-4 rounded-xl bg-primary-light/20 border border-primary-light/50">
-                  <p className="text-[11px] text-primary font-bold leading-relaxed">
-                    {t('calculator.noTravelFee')}
-                  </p>
+                
+                <div className="space-y-4 border-t border-primary-light pt-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent text-[10px] font-bold">✓</div>
+                    <span className="text-xs text-text-main font-medium">{t('calculator.noTravelFee')}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent text-[10px] font-bold">✓</div>
+                    <span className="text-xs text-text-main font-medium">48-timers godkjenningsgaranti</span>
+                  </div>
                 </div>
               </div>
 
               <button 
                 onClick={handleScrollToContact}
-                className="w-full py-4 rounded-xl bg-accent hover:bg-accent-dark text-white font-bold tracking-wider uppercase text-xs transition-all duration-300 shadow-lg mt-8"
+                className="w-full mt-8 py-4 rounded-xl bg-primary hover:bg-accent text-white font-bold tracking-wider uppercase text-xs transition-all duration-300 shadow-lg"
               >
                 {t('calculator.cta')}
               </button>
