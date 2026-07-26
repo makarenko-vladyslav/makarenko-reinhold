@@ -1,142 +1,175 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useLocale } from '@/lib/i18n';
+
+import { useState, useEffect } from "react";
+import { useLocale } from "@/lib/i18n";
 
 export default function Header() {
-  const { locale, setLocale, t } = useLocale();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useLocale();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 40);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    setIsMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const companyName = String(t("company.name"));
+  const companyPhone = String(t("company.phone"));
 
   return (
-    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white shadow-md py-3 text-text-main' : 'bg-transparent py-5 text-white'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Typographic Logo */}
-        <div className="flex items-center gap-4">
-          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-left group cursor-pointer">
-            <span className="font-display font-bold text-xl tracking-tight block">
-              MAKARENKO <span className="text-accent">REINHOLD</span>
-            </span>
-            <span className={`text-[9px] tracking-widest uppercase font-semibold block transition-colors ${
-              isScrolled ? 'text-text-muted' : 'text-white/80'
-            }`}>
-              Godkjent renholdsbedrift
-            </span>
-          </button>
-        </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 font-semibold text-sm">
-          <button onClick={() => scrollToSection('services')} className="hover:text-accent cursor-pointer transition-colors">{t('nav.services')}</button>
-          <button onClick={() => scrollToSection('calculator')} className="hover:text-accent cursor-pointer transition-colors">{t('nav.calculator')}</button>
-          <button onClick={() => scrollToSection('checklist')} className="hover:text-accent cursor-pointer transition-colors">{t('nav.checklist')}</button>
-          <button onClick={() => scrollToSection('trust')} className="hover:text-accent cursor-pointer transition-colors">{t('nav.about')}</button>
-          <button onClick={() => scrollToSection('testimonials')} className="hover:text-accent cursor-pointer transition-colors">{t('nav.testimonials')}</button>
-          <button onClick={() => scrollToSection('faq')} className="hover:text-accent cursor-pointer transition-colors">{t('nav.faq')}</button>
-        </nav>
-
-        {/* Actions */}
-        <div className="hidden md:flex items-center gap-6">
-          <a href="tel:+4796684397" className="text-xs font-bold font-display hover:text-accent transition-colors">+47 966 84 397</a>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-primary/95 backdrop-blur-md py-3 shadow-xl border-b border-white/10"
+          : "bg-gradient-to-b from-bg-dark/95 via-bg-dark/60 to-transparent py-5"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
           
-          {/* i18n Switcher */}
-          <div className="flex gap-2 text-xs font-bold border rounded-full px-3 py-1.5 border-current/20">
-            <button 
-              onClick={() => setLocale('no')} 
-              className={`transition-colors cursor-pointer ${locale === 'no' ? 'text-accent' : 'opacity-60 hover:opacity-100'}`}
+          {/* Typographic Wordmark + Monogram Badge */}
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white font-display font-bold text-lg shadow-md transition-transform group-hover:scale-105">
+              MR
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display font-bold text-lg sm:text-xl tracking-tight text-white leading-none">
+                {companyName}
+              </span>
+              <span className="text-[10px] uppercase tracking-widest text-accent font-bold mt-1">
+                Godkjent Renhold • Notodden
+              </span>
+            </div>
+          </a>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-7 text-xs uppercase tracking-wider font-bold text-white/90">
+            <a href="#tjenester" className="hover:text-accent transition-colors">
+              {String(t("nav.services"))}
+            </a>
+            <a href="#kalkulator" className="hover:text-accent transition-colors">
+              {String(t("nav.calculator"))}
+            </a>
+            <a href="#garanti" className="hover:text-accent transition-colors">
+              {String(t("nav.guarantee"))}
+            </a>
+            <a href="#hvorfor-oss" className="hover:text-accent transition-colors">
+              {String(t("nav.whyUs"))}
+            </a>
+            <a href="#dekning" className="hover:text-accent transition-colors">
+              {String(t("nav.coverage"))}
+            </a>
+            <a href="#faq" className="hover:text-accent transition-colors">
+              {String(t("nav.faq"))}
+            </a>
+          </nav>
+
+          {/* Header Action Pair */}
+          <div className="hidden sm:flex items-center gap-3">
+            <a
+              href={`tel:${companyPhone.replace(/\s+/g, "")}`}
+              className="text-white font-display font-bold text-xs tracking-wider uppercase hover:text-accent transition-colors px-3 py-2 border border-white/20 rounded-lg"
             >
-              NO
-            </button>
-            <span className="opacity-20">|</span>
-            <button 
-              onClick={() => setLocale('en')} 
-              className={`transition-colors cursor-pointer ${locale === 'en' ? 'text-accent' : 'opacity-60 hover:opacity-100'}`}
+              Tlf: {companyPhone}
+            </a>
+            <a
+              href="#kalkulator"
+              className="bg-accent hover:bg-accent-hover text-white font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5"
             >
-              EN
-            </button>
+              {String(t("nav.cta"))}
+            </a>
           </div>
 
-          <button 
-            onClick={() => scrollToSection('contact')}
-            className={`cursor-pointer px-5 py-2.5 rounded-full text-xs font-bold tracking-wider uppercase transition-all duration-300 ${
-              isScrolled 
-                ? 'bg-primary text-white hover:bg-accent glow-glow' 
-                : 'bg-white text-primary hover:bg-accent hover:text-white'
-            }`}
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-white hover:text-accent focus:outline-none"
+            aria-label="Meny"
           >
-            {t('nav.contact')}
-          </button>
-        </div>
-
-        {/* Mobile Hamburger Button */}
-        <button 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle Menu"
-          className="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer"
-        >
-          <span className={`w-6 h-0.5 transition-transform ${isScrolled ? 'bg-text-main' : 'bg-white'} ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-          <span className={`w-6 h-0.5 transition-opacity ${isScrolled ? 'bg-text-main' : 'bg-white'} ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`w-6 h-0.5 transition-transform ${isScrolled ? 'bg-text-main' : 'bg-white'} ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-        </button>
-      </div>
-
-      {/* Full-Screen Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-bg-dark text-white z-40 transition-transform duration-500 flex flex-col justify-between p-8 md:hidden ${
-        isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
-        <div className="flex justify-between items-center mt-4">
-          <span className="font-display font-bold text-lg">MAKARENKO REINHOLD</span>
-          <button onClick={() => setIsMobileMenuOpen(false)} className="text-white text-2xl p-2 cursor-pointer">✕</button>
-        </div>
-
-        <nav className="flex flex-col gap-6 text-2xl font-display font-bold tracking-tight text-center my-auto">
-          <button onClick={() => scrollToSection('services')} className="hover:text-accent text-left">{t('nav.services')}</button>
-          <button onClick={() => scrollToSection('calculator')} className="hover:text-accent text-left">{t('nav.calculator')}</button>
-          <button onClick={() => scrollToSection('checklist')} className="hover:text-accent text-left">{t('nav.checklist')}</button>
-          <button onClick={() => scrollToSection('trust')} className="hover:text-accent text-left">{t('nav.about')}</button>
-          <button onClick={() => scrollToSection('testimonials')} className="hover:text-accent text-left">{t('nav.testimonials')}</button>
-          <button onClick={() => scrollToSection('faq')} className="hover:text-accent text-left">{t('nav.faq')}</button>
-        </nav>
-
-        <div className="flex flex-col gap-4">
-          <div className="flex justify-center gap-6 text-sm font-bold border-t border-white/10 pt-6">
-            <button onClick={() => { setLocale('no'); setIsMobileMenuOpen(false); }} className={locale === 'no' ? 'text-accent' : 'opacity-60'}>Norsk (NO)</button>
-            <span className="opacity-20">|</span>
-            <button onClick={() => { setLocale('en'); setIsMobileMenuOpen(false); }} className={locale === 'en' ? 'text-accent' : 'opacity-60'}>English (EN)</button>
-          </div>
-          <button 
-            onClick={() => scrollToSection('contact')}
-            className="w-full py-4 rounded-xl bg-accent text-white font-bold text-center tracking-wide uppercase text-sm"
-          >
-            {t('nav.contact')}
+            <div className="w-6 h-5 flex flex-col justify-between">
+              <span className={`h-0.5 bg-current transition-transform ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`h-0.5 bg-current transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`} />
+              <span className={`h-0.5 bg-current transition-transform ${mobileMenuOpen ? "-rotate-45 -translate-y-2.5" : ""}`} />
+            </div>
           </button>
         </div>
       </div>
+
+      {/* Fullscreen Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 top-[60px] bg-bg-dark/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between overflow-y-auto border-t border-white/10">
+          <div className="flex flex-col gap-6 pt-4 text-center">
+            <a
+              href="#tjenester"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+            >
+              {String(t("nav.services"))}
+            </a>
+            <a
+              href="#kalkulator"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+            >
+              {String(t("nav.calculator"))}
+            </a>
+            <a
+              href="#garanti"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+            >
+              {String(t("nav.guarantee"))}
+            </a>
+            <a
+              href="#hvorfor-oss"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+            >
+              {String(t("nav.whyUs"))}
+            </a>
+            <a
+              href="#dekning"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+            >
+              {String(t("nav.coverage"))}
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+            >
+              {String(t("nav.faq"))}
+            </a>
+            <a
+              href="#kontakt"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+            >
+              {String(t("nav.contact"))}
+            </a>
+          </div>
+
+          <div className="flex flex-col gap-3 pt-6 border-t border-white/10">
+            <a
+              href={`tel:${companyPhone.replace(/\s+/g, "")}`}
+              className="w-full text-center py-3.5 bg-white/10 text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl"
+            >
+              Ring direkte: {companyPhone}
+            </a>
+            <a
+              href="#kalkulator"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center py-4 bg-accent text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl shadow-lg"
+            >
+              {String(t("hero.ctaPrimary"))}
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

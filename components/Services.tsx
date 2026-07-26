@@ -1,144 +1,206 @@
 "use client";
-import { useLocale } from '@/lib/i18n';
 
-interface ServiceItem {
-  id: string;
-  title: string;
-  description: string;
-  price: string;
-  tag?: string;
-}
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
 
 export default function Services() {
   const { t } = useLocale();
-  const servicesList = t('services.items') as ServiceItem[];
+  const [activeCategory, setActiveCategory] = useState("Alle tjenester");
+
+  const categories = t("services.categories") as string[];
+  const items = t("services.items") as Array<{
+    id: string;
+    category: string;
+    tag: string;
+    title: string;
+    description: string;
+    details: string[];
+    price: string;
+    priceUnit: string;
+    isSignature: boolean;
+  }>;
+
+  const filteredItems = items ? items.filter(item => 
+    activeCategory === "Alle tjenester" ? true : item.category === activeCategory
+  ) : [];
+
+  const signatureItem = filteredItems.find(i => i.isSignature) || filteredItems[0];
+  const standardItems = filteredItems.filter(i => i.id !== signatureItem?.id);
 
   return (
-    <section id="services" className="py-12 lg:py-24 bg-bg-light relative overflow-hidden">
-      {/* Decorative off-center abstract frame */}
-      <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full border border-primary/5 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section Heading & Lede */}
-        <div className="max-w-3xl mb-16">
-          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
-            {t('services.kicker')}
-          </span>
-          <h2 className="text-3xl sm:text-5xl font-display font-black tracking-tight text-text-main mb-6 uppercase">
-            {t('services.title')}
-          </h2>
-          <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
-            {t('services.subtitle')}
-          </p>
-        </div>
-
-        {/* Editorial Split: Left List with dotted leaders | Right Premium Featured Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left Column: Price/Offer Rows (8 items standard equivalent list) */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="border-b border-text-muted/10 pb-4 mb-6">
-              <span className="text-[10px] tracking-widest uppercase font-bold text-text-muted block">
-                Standard tjenestespekter & timesatser
-              </span>
-            </div>
-
-            <div className="space-y-6">
-              {servicesList.map((service) => {
-                const isSignature = service.id === 'flyttevask-medium';
-                return (
-                  <div key={service.id} className="group block">
-                    <div className="flex items-baseline justify-between gap-4">
-                      {/* Name and Tag */}
-                      <div className="flex items-baseline gap-3 min-w-0">
-                        <h3 className={`text-base sm:text-lg font-display font-bold text-text-main group-hover:text-accent transition-colors ${
-                          isSignature ? 'text-primary' : ''
-                        }`}>
-                          {service.title}
-                        </h3>
-                        {service.tag && (
-                          <span className="text-[8px] sm:text-[9px] tracking-wider uppercase px-2 py-0.5 rounded bg-primary-light text-primary font-bold whitespace-nowrap">
-                            {service.tag}
-                          </span>
-                        )}
-                      </div>
-                      {/* Dotted Leader Line */}
-                      <div className="flex-1 dotted-leader h-4 min-w-[20px]"></div>
-                      {/* Price */}
-                      <span className="font-display font-extrabold text-sm sm:text-base text-primary tabular-nums whitespace-nowrap">
-                        {service.price}
-                      </span>
-                    </div>
-                    {/* Description */}
-                    <p className="text-text-muted text-xs sm:text-sm font-light mt-1.5 max-w-2xl leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Footnote */}
-            <p className="text-[10px] text-text-muted/80 font-light italic mt-8 border-t border-text-muted/10 pt-4">
-              * Satser oppgitt i norske kroner (NOK) inkludert 25% merverdiavgift. Ingen administrative gebyrer eller uventede kjøretillegg påløper.
-            </p>
-          </div>
-
-          {/* Right Column: Signature Highlight Box (L-Shape Aspect) */}
-          <div className="lg:col-span-5 bg-white rounded-3xl p-8 border border-primary-light/60 shadow-sm relative overflow-hidden group">
-            {/* Visual Header */}
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6">
-              <img 
-                src={t('services.image')} 
-                alt="Makarenko Reinhold arbeid" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/60 via-bg-dark/10 to-transparent"></div>
-              <span className="absolute bottom-4 left-4 text-[9px] tracking-widest font-extrabold uppercase font-display bg-accent text-white px-3 py-1.5 rounded-md">
-                GULLPAKKE FLYTTEVASK
-              </span>
-            </div>
-
-            {/* Highlight specifications */}
-            <span className="text-[9px] tracking-widest font-bold uppercase text-accent font-display block mb-2">
-              SIGNATURTJENESTE
+    <section id="tjenester" className="py-24 bg-bg-light relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Asymmetrical Editorial Header + Category Nav */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 pb-8 border-b border-border-light">
+          <div className="lg:col-span-7">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent">
+              {String(t("services.kicker"))}
             </span>
-            <h4 className="font-display font-bold text-lg text-text-main mb-3">
-              Standardisert Full Nedvask
-            </h4>
-            <p className="text-text-muted text-xs font-light leading-relaxed mb-6">
-              Utarbeidet i tråd med strenge krav fra profesjonelle utleiemeglere i Telemark. Inkluderer grundig rens av hvitevarer, ventiler og sluk.
+            <h2 className="text-3xl sm:text-5xl font-display font-bold text-text-main mt-2 leading-tight">
+              {String(t("services.heading"))}
+            </h2>
+            <p className="text-base sm:text-lg text-text-muted mt-3 leading-relaxed">
+              {String(t("services.subheading"))}
             </p>
+          </div>
 
-            {/* List of high-end details */}
-            <div className="space-y-2 mb-8 text-xs font-medium text-text-main/80">
-              <div className="flex items-center gap-2">
-                <span className="text-accent">—</span>
-                <span>Ubegrenset antall vinduer (standard ruter)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-accent">—</span>
-                <span>Komplett avfetting av stekeovn og rister</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-accent">—</span>
-                <span>Desinfisering av baderomsflater</span>
+          {/* Category Filter Tabs */}
+          <div className="lg:col-span-5 flex flex-wrap gap-2 lg:justify-end">
+            {categories && categories.map((cat, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                  activeCategory === cat
+                    ? "bg-primary text-white shadow-md"
+                    : "bg-surface text-text-muted border border-border-light hover:bg-bg-light"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Asymmetrical Editorial Composition: Signature Offer Hero + Dynamic Grid */}
+        {signatureItem && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 rounded-3xl bg-surface border-2 border-accent shadow-xl overflow-hidden relative grid grid-cols-1 lg:grid-cols-12"
+          >
+            {/* Signature Left Column */}
+            <div className="lg:col-span-8 p-8 sm:p-12 flex flex-col justify-between">
+              <div>
+                <div className="flex flex-wrap items-center gap-3 mb-4">
+                  <span className="px-3 py-1 rounded bg-accent text-white font-mono text-xs font-bold uppercase tracking-wider">
+                    {signatureItem.tag}
+                  </span>
+                  <span className="text-xs font-mono font-bold text-primary uppercase">
+                    ANBEFALT HOVEDTJENESTE
+                  </span>
+                </div>
+
+                <h3 className="text-2xl sm:text-4xl font-display font-bold text-text-main leading-tight mb-4">
+                  {signatureItem.title}
+                </h3>
+
+                <p className="text-sm sm:text-base text-text-muted leading-relaxed max-w-2xl mb-8">
+                  {signatureItem.description}
+                </p>
+
+                {/* Details list */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-border-light">
+                  {signatureItem.details.map((detail, dIdx) => (
+                    <div key={dIdx} className="text-xs text-text-main font-semibold flex items-center gap-2.5">
+                      <span className="w-2 h-2 rounded-full bg-accent shrink-0" />
+                      <span>{detail}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <button 
-              onClick={() => {
-                const el = document.getElementById('contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="w-full py-4 rounded-xl bg-primary hover:bg-accent text-white font-bold tracking-wider uppercase text-xs transition-colors block text-center"
-            >
-              Bestill eller be om befaring
-            </button>
-          </div>
+            {/* Signature Right Column - Accent Side Callout */}
+            <div className="lg:col-span-4 bg-primary text-white p-8 sm:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-primary-light">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-bold block mb-1">
+                  Fast timepris eller fastpris
+                </span>
+                <div className="text-4xl font-display font-extrabold text-white mb-1">
+                  {signatureItem.price}
+                </div>
+                <div className="text-xs font-mono text-white/70 mb-8">
+                  {signatureItem.priceUnit}
+                </div>
 
+                <p className="text-xs text-white/80 leading-relaxed mb-6">
+                  Inkluderer faste sertifiserte renholdere, Svanemerkede kjemikalier og reisevei i Notodden.
+                </p>
+              </div>
+
+              <a
+                href="#kalkulator"
+                className="w-full py-4 bg-accent hover:bg-accent-hover text-white font-display font-bold text-center text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all"
+              >
+                Beregn din pris →
+              </a>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Secondary Services: Asymmetrical 2-Column Editorial Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          {standardItems && standardItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="p-8 rounded-2xl bg-surface border border-border-light hover:border-accent/60 shadow-sm transition-all duration-300 flex flex-col justify-between group"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <span className="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-accent-soft text-accent">
+                    {item.tag}
+                  </span>
+                  <span className="text-xs font-mono text-text-muted">
+                    {item.category}
+                  </span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-display font-bold text-text-main group-hover:text-accent transition-colors mb-3">
+                  {item.title}
+                </h3>
+
+                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-6">
+                  {item.description}
+                </p>
+
+                <div className="space-y-2 mb-6 pt-4 border-t border-border-light/60">
+                  {item.details.map((detail, dIdx) => (
+                    <div key={dIdx} className="text-xs text-text-main font-medium flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span>{detail}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-border-light flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-xl font-display font-extrabold text-primary">{item.price}</div>
+                  <div className="text-[10px] font-mono text-text-muted">{item.priceUnit}</div>
+                </div>
+
+                <a
+                  href="#kalkulator"
+                  className="px-4 py-2 rounded-xl bg-primary hover:bg-accent text-white font-display font-bold text-xs uppercase tracking-wider transition-colors"
+                >
+                  Bestill →
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Footnote & Secondary Link */}
+        <div className="p-6 rounded-2xl bg-surface border border-border-light flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs font-mono text-text-muted leading-relaxed">
+            {String(t("services.footnote"))}
+          </p>
+          <a
+            href="#kontakt"
+            className="text-xs font-display font-bold text-accent hover:underline uppercase tracking-wider whitespace-nowrap"
+          >
+            Trenger du bedriftsavtale? Kontakt oss →
+          </a>
+        </div>
+
       </div>
     </section>
   );

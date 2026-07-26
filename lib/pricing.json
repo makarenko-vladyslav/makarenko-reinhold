@@ -1,15 +1,36 @@
-
 {
-  "basePrices": {
-    "apartment": 85,
-    "house": 95,
-    "office": 75
-  },
-  "extras": {
-    "windows": 600,
-    "oven": 450,
-    "balcony": 500
-  },
   "currency": "NOK",
-  "estimationLogic": "slider"
+  "vatRate": 0.25,
+  "hourlyRate": 420,
+  "services": {
+    "fast_renhold": {
+      "basePricePerSqM": 18,
+      "minPrice": 1260,
+      "recommendedHoursFactor": 0.035
+    },
+    "flyttevask": {
+      "basePricePerSqM": 45,
+      "minPrice": 3500,
+      "guaranteeIncluded": true
+    },
+    "hyttevask": {
+      "basePricePerSqM": 24,
+      "minPrice": 1680,
+      "travelFee": 300
+    },
+    "storvask": {
+      "basePricePerSqM": 32,
+      "minPrice": 2500
+    },
+    "kontorrenhold": {
+      "basePricePerSqM": 16,
+      "minPrice": 1500
+    }
+  },
+  "frequencies": {
+    "weekly": { "discount": 0.15, "label": "Ukentlig (-15%)" },
+    "biweekly": { "discount": 0.10, "label": "Hver 2. uke (-10%)" },
+    "monthly": { "discount": 0.05, "label": "Månedlig (-5%)" },
+    "once": { "discount": 0.00, "label": "Enkeltgang" }
+  }
 }

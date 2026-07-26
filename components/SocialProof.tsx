@@ -1,55 +1,35 @@
 "use client";
 
+import { useLocale } from "@/lib/i18n";
+
 export default function SocialProof() {
+  const { t } = useLocale();
+
+  const items = t("socialProof.items") as Array<{ title: string; subtitle: string }>;
+
   return (
-    <section className="bg-white border-y border-bg-light/80 py-8 overflow-hidden relative z-20">
-      {/* Infinite scrolling ticker */}
-      <div className="relative w-full flex overflow-x-hidden">
-        <div className="animate-marquee whitespace-nowrap flex items-center gap-16 py-1">
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            ARBEIDSTILSYNET GODKJENT BEDRIFT
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            1 000 000 NOK ANSVARSFORSIKRING HOS GJENSIDIGE
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            48-TIMERS UTBEDRINGSGARANTI
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            SVANEMERKET PRODUKTSORTIMENT
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            LOVPÅLAGT HMS-KORT PÅ ALLE ANSATTE
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
+    <section className="bg-primary py-10 border-y border-white/10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-6">
+          <p className="text-xs font-bold uppercase tracking-widest text-accent">
+            {String(t("socialProof.badgeTitle"))}
+          </p>
         </div>
 
-        {/* Duplicate for seamless loop */}
-        <div className="animate-marquee whitespace-nowrap flex items-center gap-16 py-1" aria-hidden="true">
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            ARBEIDSTILSYNET GODKJENT BEDRIFT
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            1 000 000 NOK ANSVARSFORSIKRING HOS GJENSIDIGE
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            48-TIMERS UTBEDRINGSGARANTI
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            SVANEMERKET PRODUKTSORTIMENT
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
-          <span className="text-primary font-display font-bold text-sm tracking-[0.2em] uppercase">
-            LOVPÅLAGT HMS-KORT PÅ ALLE ANSATTE
-          </span>
-          <span className="text-text-muted/20 text-lg select-none">•</span>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {items && items.map((item, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm transition-transform hover:-translate-y-1"
+            >
+              <div className="text-accent font-display font-extrabold text-lg sm:text-xl mb-1">
+                {item.title}
+              </div>
+              <div className="text-xs text-white/75 font-medium">
+                {item.subtitle}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

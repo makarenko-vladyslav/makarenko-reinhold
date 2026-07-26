@@ -1,206 +1,218 @@
 "use client";
-import { useState } from 'react';
-import { useLocale } from '@/lib/i18n';
-import pricingData from '@/lib/pricing.json';
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useLocale } from "@/lib/i18n";
+import pricingData from "@/lib/pricing.json";
 
 export default function Calculator() {
   const { t } = useLocale();
-  const [propertyType, setPropertyType] = useState<'apartment' | 'house' | 'office'>('apartment');
-  const [size, setSize] = useState<number>(60);
-  const [extras, setExtras] = useState({
-    windows: false,
-    oven: false,
-    balcony: false
-  });
 
-  const basePricePerSqm = pricingData.basePrices[propertyType];
-  let extraCost = 0;
-  if (extras.windows) extraCost += pricingData.extras.windows;
-  if (extras.oven) extraCost += pricingData.extras.oven;
-  if (extras.balcony) extraCost += pricingData.extras.balcony;
+  const [serviceType, setServiceType] = useState<keyof typeof pricingData.services>("fast_renhold");
+  const [area, setArea] = useState<number>(75);
+  const [frequency, setFrequency] = useState<keyof typeof pricingData.frequencies>("biweekly");
 
-  const totalEstimate = (size * basePricePerSqm) + extraCost;
+  const serviceConfig = pricingData.services[serviceType];
+  const freqConfig = pricingData.frequencies[frequency];
 
-  const handleScrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-      const sizeInput = document.getElementById('contact-size') as HTMLInputElement;
-      if (sizeInput) {
-        sizeInput.value = size.toString();
-      }
-    }
-  };
+  const rawPrice = Math.max(serviceConfig.minPrice, area * serviceConfig.basePricePerSqM);
+  const discountedPrice = Math.round(rawPrice * (1 - freqConfig.discount));
+  const estimatedHours = Math.max(2, Math.round((area * 0.035) * 10) / 10);
+
+  const includedItems = t("calculator.includedItems") as string[];
 
   return (
-    <section id="calculator" className="py-12 lg:py-24 bg-white relative z-20">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section Heading */}
+    <section id="kalkulator" className="py-24 bg-surface text-text-main relative overflow-hidden border-t border-border-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
-            {t('calculator.kicker')}
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent">
+            {String(t("calculator.kicker"))}
           </span>
-          <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
-            {t('calculator.title')}
+          <h2 className="text-3xl sm:text-5xl font-display font-bold text-primary mt-2 leading-tight">
+            {String(t("calculator.heading"))}
           </h2>
-          <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed">
-            {t('calculator.subtitle')}
+          <p className="text-base sm:text-lg text-text-muted mt-3">
+            {String(t("calculator.subheading"))}
           </p>
         </div>
 
-        {/* Real Interactive Calculator Container */}
-        <div className="max-w-4xl mx-auto bg-bg-light rounded-3xl p-6 sm:p-10 border border-primary-light shadow-sm">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
-            {/* Controls */}
-            <div className="space-y-8 flex flex-col justify-between">
-              {/* Type Switcher */}
-              <div>
-                <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-3">
-                  {t('calculator.labelType')}
-                </label>
-                <div className="grid grid-cols-3 gap-2 bg-white p-1 rounded-xl border border-primary-light">
-                  <button 
-                    onClick={() => setPropertyType('apartment')}
-                    className={`cursor-pointer py-2 px-3 rounded-lg text-xs font-bold font-display transition-all ${
-                      propertyType === 'apartment' ? 'bg-primary text-white shadow-sm' : 'text-text-main hover:bg-primary-light/50'
-                    }`}
-                  >
-                    {t('calculator.optionApartment')}
-                  </button>
-                  <button 
-                    onClick={() => setPropertyType('house')}
-                    className={`cursor-pointer py-2 px-3 rounded-lg text-xs font-bold font-display transition-all ${
-                      propertyType === 'house' ? 'bg-primary text-white shadow-sm' : 'text-text-main hover:bg-primary-light/50'
-                    }`}
-                  >
-                    {t('calculator.optionHouse')}
-                  </button>
-                  <button 
-                    onClick={() => setPropertyType('office')}
-                    className={`cursor-pointer py-2 px-3 rounded-lg text-xs font-bold font-display transition-all ${
-                      propertyType === 'office' ? 'bg-primary text-white shadow-sm' : 'text-text-main hover:bg-primary-light/50'
-                    }`}
-                  >
-                    {t('calculator.optionOffice')}
-                  </button>
-                </div>
-              </div>
-
-              {/* Slider for size */}
-              <div>
-                <div className="flex justify-between items-center mb-3">
-                  <label className="text-[10px] font-bold tracking-widest uppercase text-text-muted font-display">
-                    {t('calculator.labelSize')}
-                  </label>
-                  <span className="text-xl font-display font-black text-primary">
-                    {size} m²
-                  </span>
-                </div>
-                <input 
-                  type="range" 
-                  min="20" 
-                  max="250" 
-                  value={size}
-                  onChange={(e) => setSize(parseInt(e.target.value))}
-                  className="w-full h-1.5 bg-primary-light rounded-lg appearance-none cursor-pointer accent-accent"
-                />
-                <div className="flex justify-between text-[9px] text-text-muted font-bold font-display mt-2">
-                  <span>20 m²</span>
-                  <span>250 m²</span>
-                </div>
-              </div>
-
-              {/* Extras checklist */}
-              <div>
-                <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-3">
-                  {t('calculator.labelExtra')}
-                </label>
-                <div className="space-y-2">
-                  <button 
-                    type="button"
-                    onClick={() => setExtras({...extras, windows: !extras.windows})}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl border text-left transition-colors cursor-pointer ${
-                      extras.windows ? 'bg-primary-light/40 border-primary text-text-main' : 'bg-white border-primary-light/40 text-text-muted'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-bold ${extras.windows ? 'text-accent' : 'text-text-muted/30'}`}>
-                        {extras.windows ? '—' : '+'}
-                      </span>
-                      <span className="text-xs font-semibold text-text-main">{t('calculator.extraWindows')}</span>
-                    </div>
-                    <span className="text-xs font-display font-extrabold text-primary">+{pricingData.extras.windows} kr</span>
-                  </button>
-
-                  <button 
-                    type="button"
-                    onClick={() => setExtras({...extras, oven: !extras.oven})}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl border text-left transition-colors cursor-pointer ${
-                      extras.oven ? 'bg-primary-light/40 border-primary text-text-main' : 'bg-white border-primary-light/40 text-text-muted'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-bold ${extras.oven ? 'text-accent' : 'text-text-muted/30'}`}>
-                        {extras.oven ? '—' : '+'}
-                      </span>
-                      <span className="text-xs font-semibold text-text-main">{t('calculator.extraOven')}</span>
-                    </div>
-                    <span className="text-xs font-display font-extrabold text-primary">+{pricingData.extras.oven} kr</span>
-                  </button>
-
-                  <button 
-                    type="button"
-                    onClick={() => setExtras({...extras, balcony: !extras.balcony})}
-                    className={`w-full flex items-center justify-between p-4 rounded-xl border text-left transition-colors cursor-pointer ${
-                      extras.balcony ? 'bg-primary-light/40 border-primary text-text-main' : 'bg-white border-primary-light/40 text-text-muted'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs font-bold ${extras.balcony ? 'text-accent' : 'text-text-muted/30'}`}>
-                        {extras.balcony ? '—' : '+'}
-                      </span>
-                      <span className="text-xs font-semibold text-text-main">{t('calculator.extraBalcony')}</span>
-                    </div>
-                    <span className="text-xs font-display font-extrabold text-primary">+{pricingData.extras.balcony} kr</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Price Output Display Area */}
-            <div className="bg-primary text-white p-8 rounded-2xl flex flex-col justify-between shadow-inner relative overflow-hidden">
-              <div className="absolute -bottom-10 -right-10 w-44 h-44 rounded-full bg-accent/15 pointer-events-none"></div>
-
-              <div>
-                <span className="text-[10px] tracking-widest font-extrabold uppercase font-display text-accent block mb-2">
-                  {t('calculator.noTravelFee')}
-                </span>
-                <span className="text-white/60 text-xs font-semibold block mb-8 uppercase tracking-wider">
-                  {t('calculator.priceEstimate')}
-                </span>
-
-                <div className="mb-2">
-                  <span className="text-5xl sm:text-6xl font-display font-black tracking-tight tabular-nums">
-                    {totalEstimate}
-                  </span>
-                  <span className="text-xl font-bold ml-1">kr</span>
-                </div>
-                <span className="text-white/70 text-[9px] uppercase tracking-widest font-semibold block">
-                  {t('calculator.taxIncluded')}
-                </span>
-              </div>
-
-              <div className="mt-12 relative z-10">
-                <button 
-                  onClick={handleScrollToContact}
-                  className="cursor-pointer w-full py-4.5 rounded-xl bg-accent hover:bg-accent-dark text-white font-bold tracking-wider uppercase text-xs transition-colors glow-glow"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Controls Column (Light Surface Card Container) */}
+          <div className="lg:col-span-7 bg-bg-light p-6 sm:p-10 rounded-3xl border border-border-light shadow-sm">
+            
+            {/* 1. Service Selection */}
+            <div className="mb-8">
+              <label className="block text-xs uppercase font-mono font-bold text-accent tracking-wider mb-3">
+                1. {String(t("calculator.serviceTypeLabel"))}
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => setServiceType("fast_renhold")}
+                  className={`py-3 px-3 rounded-xl text-xs font-bold border transition-all text-left uppercase tracking-wider ${
+                    serviceType === "fast_renhold"
+                      ? "bg-primary border-primary text-white shadow-md"
+                      : "bg-surface border-border-light text-text-main hover:border-accent/60"
+                  }`}
                 >
-                  {t('calculator.cta')}
+                  Fast renhold
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setServiceType("flyttevask")}
+                  className={`py-3 px-3 rounded-xl text-xs font-bold border transition-all text-left uppercase tracking-wider ${
+                    serviceType === "flyttevask"
+                      ? "bg-primary border-primary text-white shadow-md"
+                      : "bg-surface border-border-light text-text-main hover:border-accent/60"
+                  }`}
+                >
+                  Flyttevask (Garanti)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setServiceType("hyttevask")}
+                  className={`py-3 px-3 rounded-xl text-xs font-bold border transition-all text-left uppercase tracking-wider ${
+                    serviceType === "hyttevask"
+                      ? "bg-primary border-primary text-white shadow-md"
+                      : "bg-surface border-border-light text-text-main hover:border-accent/60"
+                  }`}
+                >
+                  Hyttevask Telemark
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setServiceType("storvask")}
+                  className={`py-3 px-3 rounded-xl text-xs font-bold border transition-all text-left uppercase tracking-wider ${
+                    serviceType === "storvask"
+                      ? "bg-primary border-primary text-white shadow-md"
+                      : "bg-surface border-border-light text-text-main hover:border-accent/60"
+                  }`}
+                >
+                  Hovedrengjøring
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setServiceType("kontorrenhold")}
+                  className={`py-3 px-3 rounded-xl text-xs font-bold border transition-all text-left uppercase tracking-wider ${
+                    serviceType === "kontorrenhold"
+                      ? "bg-primary border-primary text-white shadow-md"
+                      : "bg-surface border-border-light text-text-main hover:border-accent/60"
+                  }`}
+                >
+                  Kontor & Næring
                 </button>
               </div>
             </div>
+
+            {/* 2. Interactive Range Slider */}
+            <div className="mb-8">
+              <div className="flex justify-between items-center mb-3">
+                <label className="text-xs uppercase font-mono font-bold text-accent tracking-wider">
+                  2. {String(t("calculator.areaLabel"))}
+                </label>
+                <span className="text-2xl font-display font-extrabold text-primary bg-accent-soft px-4 py-1 rounded-xl border border-accent/20">
+                  {area} m²
+                </span>
+              </div>
+              <input
+                type="range"
+                min="20"
+                max="300"
+                step="5"
+                value={area}
+                onChange={(e) => setArea(Number(e.target.value))}
+                className="w-full h-3 bg-border-light rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+              <div className="flex justify-between text-[11px] text-text-muted font-mono mt-2">
+                <span>20 m² (Leilighet)</span>
+                <span>150 m² (Enebolig)</span>
+                <span>300 m² (Stor eiendom)</span>
+              </div>
+            </div>
+
+            {/* 3. Frequency Discount */}
+            {serviceType === "fast_renhold" && (
+              <div className="mb-6">
+                <label className="block text-xs uppercase font-mono font-bold text-accent tracking-wider mb-3">
+                  3. {String(t("calculator.frequencyLabel"))}
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {(Object.keys(pricingData.frequencies) as Array<keyof typeof pricingData.frequencies>).map((freqKey) => (
+                    <button
+                      key={freqKey}
+                      type="button"
+                      onClick={() => setFrequency(freqKey)}
+                      className={`py-2.5 px-2 rounded-xl text-xs font-bold border transition-all text-center ${
+                        frequency === freqKey
+                          ? "bg-primary border-primary text-white shadow-sm"
+                          : "bg-surface border-border-light text-text-main hover:bg-bg-light"
+                      }`}
+                    >
+                      {pricingData.frequencies[freqKey].label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
           </div>
+
+          {/* High-Contrast Results Summary Box */}
+          <div className="lg:col-span-5">
+            <motion.div
+              key={`${serviceType}-${area}-${frequency}`}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-primary text-white p-8 rounded-3xl shadow-2xl border border-primary-light relative"
+            >
+              <div className="text-xs uppercase tracking-widest font-mono font-bold text-accent mb-2">
+                Beregnet Fastpris inkl. MVA
+              </div>
+              
+              <div className="flex items-baseline gap-2 mb-4">
+                <span className="text-4xl sm:text-5xl font-display font-extrabold text-white">
+                  {discountedPrice.toLocaleString()} kr
+                </span>
+                <span className="text-xs font-bold text-white/70">NOK</span>
+              </div>
+
+              <div className="py-3 px-4 rounded-xl bg-bg-card-dark border border-white/10 flex justify-between items-center mb-6">
+                <span className="text-xs text-white/70 font-medium">Estimert arbeidstid:</span>
+                <span className="text-sm font-display font-bold text-white">ca. {estimatedHours} timer</span>
+              </div>
+
+              <div className="border-t border-white/10 pt-6 mb-8">
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">
+                  {String(t("calculator.includedTitle"))}
+                </h4>
+                <ul className="space-y-2.5">
+                  {includedItems && includedItems.map((inc, i) => (
+                    <li key={i} className="text-xs font-medium text-white/85 flex items-center gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      {inc}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <a
+                href="#kontakt"
+                className="w-full py-4 bg-accent hover:bg-accent-hover text-white font-display font-bold text-center text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all block"
+              >
+                {String(t("calculator.ctaBook"))} →
+              </a>
+
+              <p className="text-[11px] text-center text-white/60 mt-3">
+                Endelig fastpris bekreftes skriftlig før oppstart. Ingen skjulte avgifter.
+              </p>
+            </motion.div>
+          </div>
+
         </div>
+
       </div>
     </section>
   );

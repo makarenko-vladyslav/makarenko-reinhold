@@ -1,197 +1,186 @@
 "use client";
-import { useState } from 'react';
-import { useLocale } from '@/lib/i18n';
+
+import { useState, type FormEvent } from "react";
+import { useLocale } from "@/lib/i18n";
 
 export default function Contact() {
   const { t } = useLocale();
-  const [isSending, setIsSending] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSending(true);
-    setTimeout(() => {
-      setIsSending(false);
-      setIsSuccess(true);
-    }, 1500);
+    setSubmitted(true);
   };
 
+  const companyPhone = String(t("company.phone"));
+
   return (
-    <section id="contact" className="py-12 lg:py-24 bg-primary-light/60 relative z-20">
-      {/* Decorative absolute background grid */}
-      <div className="absolute top-0 right-10 w-48 h-48 rounded-full border border-primary/5 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+    <section id="kontakt" className="py-24 bg-bg-light text-text-main relative overflow-hidden border-t border-border-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Info Side (Structured as requested) */}
+          {/* Left Column: Invitation & Direct Contacts */}
           <div className="lg:col-span-5">
-            <span className="text-xs font-bold tracking-[0.2em] text-accent uppercase font-display block mb-3">
-              {t('contact.kicker')}
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent">
+              {String(t("contact.kicker"))}
             </span>
-            <h2 className="text-3xl sm:text-5xl font-display font-black leading-tight text-text-main mb-6 uppercase">
-              La oss ta vaskeansvaret
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-primary mt-2 leading-tight">
+              {String(t("contact.invitationHeading"))}
             </h2>
-            <p className="text-text-muted text-base sm:text-lg font-light leading-relaxed mb-10">
-              {t('contact.subtitle')}
+            <p className="text-base text-text-muted mt-3 mb-8 leading-relaxed">
+              {String(t("contact.subheading"))}
             </p>
 
-            {/* Structured Hours Mini-Table */}
-            <div className="border-t border-b border-primary/15 py-6 mb-8">
-              <span className="text-[10px] tracking-widest font-extrabold uppercase font-display text-text-muted block mb-4">
-                ÅPNINGSTIDER & TELEFONTID
-              </span>
-              <div className="space-y-3 font-display font-semibold text-xs text-text-main">
-                <div className="flex justify-between">
-                  <span>MANDAG – FREDAG</span>
-                  <span>08:00 – 17:00</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>LØRDAG</span>
-                  <span>09:00 – 15:00</span>
-                </div>
-                <div className="flex justify-between text-text-muted/60">
-                  <span>SØNDAG</span>
-                  <span>STENGT (AKUTTE HENV. RING)</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Address & Direct Connection links */}
-            <div className="space-y-4 text-xs font-display font-bold">
+            {/* Direct Contact Card (Light Surface Container) */}
+            <div className="bg-surface p-6 sm:p-8 rounded-2xl border border-border-light shadow-sm space-y-6 mb-6">
+              <h4 className="font-display font-bold text-text-main text-lg">
+                {String(t("contact.contactDirect"))}
+              </h4>
+              
               <div>
-                <span className="text-[9px] tracking-widest uppercase text-text-muted block mb-1">E-post</span>
-                <a href="mailto:annadizhenko@gmail.com" className="text-accent hover:underline text-sm font-semibold">
-                  annadizhenko@gmail.com
-                </a>
-              </div>
-              <div>
-                <span className="text-[9px] tracking-widest uppercase text-text-muted block mb-1">Telefon</span>
-                <a href="tel:+4796684397" className="text-accent hover:underline text-sm font-semibold">
-                  +47 966 84 397
-                </a>
-              </div>
-              <div>
-                <span className="text-[9px] tracking-widest uppercase text-text-muted block mb-1">Adresse</span>
-                <a 
-                  href="https://www.google.com/maps?q=Notodden,Telemark,Norway&output=embed" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="text-text-main hover:text-accent transition-colors block text-sm"
+                <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-bold block mb-1">
+                  {String(t("contact.phoneLabel"))}
+                </span>
+                <a
+                  href={`tel:${companyPhone.replace(/\s+/g, "")}`}
+                  className="font-display font-extrabold text-2xl text-primary hover:text-accent transition-colors"
                 >
-                  Notodden, Telemark — Vis i Google Maps
+                  {companyPhone}
                 </a>
               </div>
-            </div>
 
-            {/* Trust Micro-Line */}
-            <p className="text-[10px] text-text-muted/80 font-light italic mt-10">
-              * Skulle uhellet være ute, er arbeidet fullt ut dekket av ansvarsforsikring hos Gjensidige opptil 1M NOK.
-            </p>
-          </div>
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-bold block mb-1">
+                  {String(t("contact.emailLabel"))}
+                </span>
+                <a
+                  href={`mailto:${String(t("company.email"))}`}
+                  className="font-medium text-text-main hover:underline text-sm"
+                >
+                  {String(t("company.email"))}
+                </a>
+              </div>
 
-          {/* Form Side with Solid Opaque Background */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-primary-light shadow-md">
-            {isSuccess ? (
-              <div className="text-center py-12">
-                <div className="w-16 h-16 bg-accent/20 text-accent rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-6">
-                  ✓
-                </div>
-                <h3 className="font-display font-bold text-2xl text-text-main mb-3">
-                  Innsending vellykket
-                </h3>
-                <p className="text-text-muted font-light">
-                  {t('contact.success')}
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-bold block mb-1">
+                  {String(t("contact.addressLabel"))}
+                </span>
+                <p className="font-medium text-text-main text-sm">
+                  {String(t("company.address"))}
                 </p>
               </div>
+
+              {/* Structured Hours Mini-Table */}
+              <div className="pt-4 border-t border-border-light">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-accent font-bold block mb-2">
+                  {String(t("contact.hoursLabel"))}
+                </span>
+                <div className="space-y-1 text-xs font-mono text-text-muted">
+                  <div className="flex justify-between">
+                    <span>Mandag - Fredag:</span>
+                    <span>07:00 - 19:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Lørdag:</span>
+                    <span>08:00 - 16:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Søndag:</span>
+                    <span className="text-accent font-bold">Etter avtale</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trust Micro-line */}
+            <div className="p-4 rounded-xl bg-accent-soft border border-accent/20 text-xs font-mono text-text-main">
+              {String(t("contact.trustLine"))}
+            </div>
+          </div>
+
+          {/* Right Column: Light Surface Form Container */}
+          <div className="lg:col-span-7 bg-surface p-8 sm:p-10 rounded-3xl border border-border-light shadow-xl">
+            {submitted ? (
+              <div className="p-10 text-center bg-accent-soft rounded-2xl border border-accent/40">
+                <h3 className="text-2xl font-display font-bold text-primary mb-2">Takk for din bestilling!</h3>
+                <p className="text-sm text-text-muted">{String(t("contact.successMsg"))}</p>
+              </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
-                      {t('contact.name')}
+                    <label className="block text-xs font-mono uppercase font-bold text-primary mb-1">
+                      {String(t("contact.formName"))} *
                     </label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       required
+                      className="w-full px-4 py-3 rounded-xl border border-border-light bg-bg-light text-sm text-text-main focus:bg-surface focus:border-accent focus:ring-1 focus:ring-accent"
                       placeholder="Ola Nordmann"
-                      className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main placeholder-text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
-                      {t('contact.phone')}
+                    <label className="block text-xs font-mono uppercase font-bold text-primary mb-1">
+                      {String(t("contact.formPhone"))} *
                     </label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       required
-                      placeholder="+47 000 00 000"
-                      className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main placeholder-text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                      className="w-full px-4 py-3 rounded-xl border border-border-light bg-bg-light text-sm text-text-main focus:bg-surface focus:border-accent focus:ring-1 focus:ring-accent"
+                      placeholder="+47 900 00 000"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
-                      {t('contact.email')}
+                    <label className="block text-xs font-mono uppercase font-bold text-primary mb-1">
+                      {String(t("contact.formEmail"))}
                     </label>
-                    <input 
-                      type="email" 
-                      required
-                      placeholder="ola@example.no"
-                      className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main placeholder-text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 rounded-xl border border-border-light bg-bg-light text-sm text-text-main focus:bg-surface focus:border-accent focus:ring-1 focus:ring-accent"
+                      placeholder="ola@eksempel.no"
                     />
                   </div>
-
                   <div>
-                    <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
-                      {t('contact.size')}
+                    <label className="block text-xs font-mono uppercase font-bold text-primary mb-1">
+                      {String(t("contact.formService"))}
                     </label>
-                    <input 
-                      id="contact-size"
-                      type="number" 
-                      required
-                      placeholder="f.eks. 80"
-                      className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main placeholder-text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none"
-                    />
+                    <select className="w-full px-4 py-3 rounded-xl border border-border-light bg-bg-light text-sm text-text-main focus:bg-surface focus:border-accent">
+                      <option>Fast renhold i hjemmet</option>
+                      <option>Flyttevask med garanti</option>
+                      <option>Hyttevask Telemark</option>
+                      <option>Hovedrengjøring / Storvask</option>
+                      <option>Kontor- & Næringsrenhold</option>
+                    </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
-                    {t('contact.date')}
+                  <label className="block text-xs font-mono uppercase font-bold text-primary mb-1">
+                    {String(t("contact.formMessage"))}
                   </label>
-                  <input 
-                    type="date" 
-                    required
-                    className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                  <textarea
+                    rows={4}
+                    className="w-full px-4 py-3 rounded-xl border border-border-light bg-bg-light text-sm text-text-main focus:bg-surface focus:border-accent focus:ring-1 focus:ring-accent"
+                    placeholder="Fortell oss litt om boligen, kvadratmeter eller spesielle ønsker..."
                   />
                 </div>
 
-                <div>
-                  <label className="block text-[10px] font-bold tracking-widest uppercase text-text-muted font-display mb-2">
-                    {t('contact.message')}
-                  </label>
-                  <textarea 
-                    rows={4}
-                    placeholder="Fortell oss litt om boligen..."
-                    className="w-full p-4 rounded-xl border border-primary-light/80 bg-white text-sm text-text-main placeholder-text-muted/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none resize-none"
-                  ></textarea>
-                </div>
-
-                <button 
+                <button
                   type="submit"
-                  disabled={isSending}
-                  className="w-full py-4 rounded-xl bg-primary hover:bg-accent text-white font-bold tracking-wider uppercase text-xs transition-colors glow-glow cursor-pointer"
+                  className="w-full py-4 bg-accent hover:bg-accent-hover text-white font-display font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all"
                 >
-                  {isSending ? t('contact.sending') : t('contact.submit')}
+                  {String(t("contact.submitBtn"))} →
                 </button>
               </form>
             )}
           </div>
+
         </div>
+
       </div>
     </section>
   );
