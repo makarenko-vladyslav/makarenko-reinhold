@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
 
 export default function Testimonials() {
   const { t } = useLocale();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const reviews = t("testimonials.reviews") as Array<{
     author: string;
@@ -13,12 +16,24 @@ export default function Testimonials() {
     service: string;
   }>;
 
+  if (!reviews || reviews.length === 0) return null;
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  const currentReview = reviews[currentIndex];
+
   return (
-    <section className="py-24 bg-bg-light relative">
+    <section className="py-24 bg-bg-light relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Heading + Rating Badge */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent">
               {String(t("testimonials.kicker"))}
@@ -41,40 +56,39 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Quote Grid with Oversized Quotation Marks */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {reviews && reviews.map((r, i) => (
-            <div key={i} className="bg-surface p-8 rounded-2xl border border-border-light shadow-sm flex flex-col justify-between relative overflow-hidden">
-              <span className="text-7xl font-serif text-accent/15 absolute -top-2 left-4 pointer-events-none select-none">
+        {/* Interactive Swipeable Testimonial Slider */}
+        <div className="relative max-w-4xl mx-auto flex flex-col justify-between">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(_, info) => {
+                if (info.offset.x < -40) {
+                  handleNext();
+                } else if (info.offset.x > 40) {
+                  handlePrev();
+                }
+              }}
+              className="bg-surface p-8 sm:p-12 rounded-3xl border border-border-light shadow-lg relative overflow-hidden cursor-grab active:cursor-grabbing select-none"
+            >
+              <span className="text-8xl font-serif text-accent/15 absolute -top-4 left-6 pointer-events-none select-none">
                 «
               </span>
 
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono font-bold text-accent bg-accent-soft px-2.5 py-1 rounded">
-                    {r.service}
+                  <span className="text-xs font-mono font-bold text-accent bg-accent-soft px-3 py-1 rounded-lg">
+                    {currentReview.service}
                   </span>
-                  <span className="text-xs font-mono font-bold text-text-main">{r.rating}</span>
+                  <span className="text-xs font-mono font-bold text-text-main bg-bg-light px-3 py-1 rounded-lg border border-border-light">
+                    {currentReview.rating}
+                  </span>
                 </div>
-                <p className="text-sm text-text-main leading-relaxed italic mb-8">
-                  "{r.text}"
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-border-light relative z-10">
-                <h4 className="font-display font-bold text-text-main text-base">{r.author}</h4>
-                <span className="text-xs text-text-muted block mt-0.5">{r.descriptor}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Counter affordance */}
-        <div className="text-center text-xs font-mono text-text-muted">
-          Kundeomtale 01 - 03 av verifiserte huseiere i Telemark
-        </div>
-
-      </div>
-    </section>
-  );
-}
+                
+                <p className=
