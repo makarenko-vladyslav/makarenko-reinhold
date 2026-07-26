@@ -37,7 +37,7 @@ export default function WhyUs() {
               </blockquote>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-primary text-white font-display font-bold text-base flex items-center justify-center shrink-0">
-                  AM
+                  AD
                 </div>
                 <div>
                   <div className="font-display font-bold text-text-main text-sm">
