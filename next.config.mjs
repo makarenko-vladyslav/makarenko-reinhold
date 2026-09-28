@@ -18,6 +18,13 @@ const nextConfig = {
   // Next.js 16 uses Turbopack by default — empty config silences warnings
   // when a webpack config sneaks in.
   turbopack: {},
+  // Source maps ship the readable original of every component to anyone who
+  // opens devtools. Nothing on a marketing site needs them in production, and
+  // they turn "copy this site" from a rewrite into a download.
+  productionBrowserSourceMaps: false,
+  // The framework header advertises what to look up exploits for, and gives a
+  // copier one more hint about how the page was made.
+  poweredByHeader: false,
   allowedDevOrigins,
   ...(isStaticExport
     ? {

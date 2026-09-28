@@ -1,79 +1,119 @@
 "use client";
-
+import { useState } from "react";
 import { useLocale } from "@/lib/i18n";
+
+interface Testimonial {
+  name: string;
+  location: string;
+  service: string;
+  date: string;
+  rating: string;
+  text: string;
+}
 
 export default function Testimonials() {
   const { t } = useLocale();
+  const [activeSlide, setActiveSlide] = useState(0);
 
-  const reviews = t("testimonials.reviews") as Array<{
-    author: string;
-    descriptor: string;
-    text: string;
-    rating: string;
-    service: string;
-  }>;
+  const items = (t("testimonials.items") as Testimonial[]) || [];
 
   return (
-    <section className="py-24 bg-bg-light relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Heading + Rating Badge */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent">
-              {String(t("testimonials.kicker"))}
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-display font-bold text-text-main mt-2">
-              {String(t("testimonials.heading"))}
-            </h2>
-            <p className="text-base text-text-muted mt-3">
-              {String(t("testimonials.subheading"))}
-            </p>
+    <section id="reviews" className="scroll-mt-20 py-20 bg-[hsl(195_25%_98%)] border-t border-[hsl(204_20%_88%)] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] mb-2">
+            {t("testimonials.kicker") as string}
           </div>
-
-          <div className="p-4 rounded-2xl bg-surface border border-border-light shadow-sm shrink-0">
-            <div className="text-sm font-mono font-bold text-primary">
-              {String(t("testimonials.aggregateRating"))}
-            </div>
-            <div className="text-[11px] font-mono text-text-muted mt-1">
-              Verifiserte kundeanmeldelser
-            </div>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(204_35%_15%)] tracking-tight mb-4">
+            {t("testimonials.title") as string}
+          </h2>
+          <p className="text-base text-[hsl(204_15%_42%)] leading-relaxed font-light mb-4">
+            {t("testimonials.subtitle") as string}
+          </p>
+          <div className="inline-block px-4 py-1.5 rounded-full bg-[hsl(0_0%_100%)] border border-[hsl(204_20%_88%)] text-xs text-[hsl(158_64%_35%)] font-sans font-semibold">
+            {t("testimonials.scoreText") as string}
           </div>
         </div>
 
-        {/* Quote Grid with Oversized Quotation Marks */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {reviews && reviews.map((r, i) => (
-            <div key={i} className="bg-surface p-8 rounded-2xl border border-border-light shadow-sm flex flex-col justify-between relative overflow-hidden">
-              <span className="text-7xl font-serif text-accent/15 absolute -top-2 left-4 pointer-events-none select-none">
-                «
-              </span>
+        {/* Featured Pull-Quote Card */}
+        {items.length > 0 && (
+          <div className="mb-12 max-w-4xl mx-auto p-8 sm:p-12 rounded-2xl bg-[hsl(0_0%_100%)] border border-[hsl(204_20%_88%)] shadow-md relative">
+            <div className="font-display font-black text-6xl text-[hsl(158_64%_38%/0.2)] absolute top-4 left-6 select-none pointer-events-none">
+              «
+            </div>
+            <p className="font-display font-medium text-xl sm:text-2xl text-[hsl(204_35%_15%)] leading-relaxed mb-6 italic relative z-10">
+              «{items[activeSlide].text}»
+            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-[hsl(204_20%_90%)] text-xs">
+              <div>
+                <span className="font-display font-bold text-base text-[hsl(204_35%_15%)] block">
+                  {items[activeSlide].name}
+                </span>
+                <span className="text-[hsl(204_15%_45%)] font-sans">
+                  {items[activeSlide].location} · {items[activeSlide].service}
+                </span>
+              </div>
+              <div className="font-display font-bold text-sm text-[hsl(158_64%_38%)]">
+                {items[activeSlide].rating} / 5,0 ({items[activeSlide].date})
+              </div>
+            </div>
+          </div>
+        )}
 
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-xs font-mono font-bold text-accent bg-accent-soft px-2.5 py-1 rounded">
-                    {r.service}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-text-main">{r.rating}</span>
+        {/* Dot Indicators */}
+        <div className="flex justify-center items-center gap-2 mb-12">
+          {items.map((_, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => setActiveSlide(idx)}
+              aria-label={`Відгук ${idx + 1}`}
+              className={`h-2 rounded-full transition-all ${
+                activeSlide === idx
+                  ? "w-8 bg-[hsl(158_64%_38%)]"
+                  : "w-2 bg-[hsl(204_20%_80%)] hover:bg-[hsl(204_20%_65%)]"
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* All Reviews Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {items.map((rev, idx) => (
+            <div
+              key={idx}
+              className={`p-6 sm:p-8 rounded-2xl bg-[hsl(0_0%_100%)] border transition-all flex flex-col justify-between ${
+                activeSlide === idx
+                  ? "border-[hsl(158_64%_38%)] shadow-md"
+                  : "border-[hsl(204_20%_88%)] shadow-xs"
+              }`}
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <div className="font-display font-bold text-lg text-[hsl(204_35%_15%)]">
+                      {rev.name}
+                    </div>
+                    <div className="text-xs font-sans text-[hsl(204_15%_42%)]">
+                      {rev.location} · {rev.service}
+                    </div>
+                  </div>
+                  <div className="font-display font-bold text-sm text-[hsl(158_64%_38%)]">
+                    {rev.rating} / 5,0
+                  </div>
                 </div>
-                <p className="text-sm text-text-main leading-relaxed italic mb-8">
-                  "{r.text}"
+
+                <p className="text-sm text-[hsl(204_35%_20%)] leading-relaxed font-light italic mb-6">
+                  «{rev.text}»
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-border-light relative z-10">
-                <h4 className="font-display font-bold text-text-main text-base">{r.author}</h4>
-                <span className="text-xs text-text-muted block mt-0.5">{r.descriptor}</span>
+              <div className="pt-4 border-t border-[hsl(204_20%_90%)] text-[11px] font-sans text-[hsl(204_15%_50%)]">
+                Дата обслуговування: {rev.date}
               </div>
             </div>
           ))}
         </div>
-
-        {/* Counter affordance */}
-        <div className="text-center text-xs font-mono text-text-muted">
-          Kundeomtale 01 - 03 av verifiserte huseiere i Telemark
-        </div>
-
       </div>
     </section>
   );

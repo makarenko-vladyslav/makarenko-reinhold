@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useLocale } from "@/lib/i18n";
 
@@ -10,166 +9,160 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const companyName = String(t("company.name"));
-  const companyPhone = String(t("company.phone"));
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  const brandName = t("brand.name") as string;
+  const brandCity = t("brand.city") as string;
+  const phone = t("brand.phone") as string;
+
+  const navLinks = [
+    { href: "#services", label: t("nav.services") as string },
+    { href: "#calculator", label: t("nav.calculator") as string },
+    { href: "#packages", label: t("nav.packages") as string },
+    { href: "#guarantee", label: t("nav.guarantee") as string },
+    { href: "#hytta", label: t("nav.hytta") as string },
+    { href: "#reviews", label: t("nav.reviews") as string },
+    { href: "#faq", label: t("nav.faq") as string },
+    { href: "#contact", label: t("nav.contact") as string },
+  ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-primary/95 backdrop-blur-md py-3 shadow-xl border-b border-white/10"
-          : "bg-gradient-to-b from-bg-dark/95 via-bg-dark/60 to-transparent py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          
-          {/* Typographic Wordmark + Monogram Badge */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white font-display font-bold text-lg shadow-md transition-transform group-hover:scale-105">
-              MR
-            </div>
-            <div className="flex flex-col">
-              <span className="font-display font-bold text-lg sm:text-xl tracking-tight text-white leading-none">
-                {companyName}
-              </span>
-              <span className="text-[10px] uppercase tracking-widest text-accent font-bold mt-1">
-                Godkjent Renhold • Notodden
-              </span>
-            </div>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          scrolled
+            ? "bg-[hsl(0_0%_100%/0.95)] backdrop-blur-md shadow-sm border-b border-[hsl(204_20%_88%)] py-3 text-[hsl(204_35%_15%)]"
+            : "bg-[hsl(204_40%_16%/0.85)] backdrop-blur-sm py-4 text-[hsl(0_0%_100%)] border-b border-[hsl(0_0%_100%/0.1)]"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+          <a href="#" className="flex flex-col group shrink-0">
+            <span className="font-display font-extrabold text-2xl tracking-tight leading-none group-hover:text-[hsl(158_64%_38%)] transition-colors whitespace-nowrap">
+              {brandName}
+            </span>
+            <span
+              className={`text-xs uppercase tracking-widest font-sans mt-0.5 whitespace-nowrap ${
+                scrolled ? "text-[hsl(204_15%_42%)]" : "text-[hsl(0_0%_100%/0.7)]"
+              }`}
+            >
+              {brandCity} · Telemark
+            </span>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-7 text-xs uppercase tracking-wider font-bold text-white/90">
-            <a href="#tjenester" className="hover:text-accent transition-colors">
-              {String(t("nav.services"))}
-            </a>
-            <a href="#kalkulator" className="hover:text-accent transition-colors">
-              {String(t("nav.calculator"))}
-            </a>
-            <a href="#garanti" className="hover:text-accent transition-colors">
-              {String(t("nav.guarantee"))}
-            </a>
-            <a href="#hvorfor-oss" className="hover:text-accent transition-colors">
-              {String(t("nav.whyUs"))}
-            </a>
-            <a href="#dekning" className="hover:text-accent transition-colors">
-              {String(t("nav.coverage"))}
-            </a>
-            <a href="#faq" className="hover:text-accent transition-colors">
-              {String(t("nav.faq"))}
-            </a>
+          <nav className="hidden xl:flex items-center gap-5 text-sm font-medium font-sans shrink-0">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`transition-colors hover:text-[hsl(158_64%_38%)] whitespace-nowrap ${
+                  scrolled ? "text-[hsl(204_35%_15%)]" : "text-[hsl(0_0%_100%/0.9)]"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
-          {/* Header Action Pair */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="flex items-center gap-3 shrink-0">
             <a
-              href={`tel:${companyPhone.replace(/\s+/g, "")}`}
-              className="text-white font-display font-bold text-xs tracking-wider uppercase hover:text-accent transition-colors px-3 py-2 border border-white/20 rounded-lg"
+              href={`tel:${phone}`}
+              className="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide border border-[hsl(158_64%_38%)] text-[hsl(158_64%_38%)] bg-[hsl(158_50%_94%)] hover:bg-[hsl(158_64%_38%)] hover:text-[hsl(0_0%_100%)] transition-colors whitespace-nowrap shrink-0"
             >
-              Tlf: {companyPhone}
+              {phone}
             </a>
-            <a
-              href="#kalkulator"
-              className="bg-accent hover:bg-accent-hover text-white font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5"
-            >
-              {String(t("nav.cta"))}
-            </a>
-          </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:text-accent focus:outline-none"
-            aria-label="Meny"
-          >
-            <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`h-0.5 bg-current transition-transform ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`h-0.5 bg-current transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`} />
-              <span className={`h-0.5 bg-current transition-transform ${mobileMenuOpen ? "-rotate-45 -translate-y-2.5" : ""}`} />
-            </div>
-          </button>
+            <a
+              href="#calculator"
+              className="inline-flex items-center px-4 py-2 rounded-lg bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] font-display font-bold text-sm tracking-wide hover:bg-[hsl(158_70%_32%)] transition-colors shadow-sm whitespace-nowrap shrink-0"
+            >
+              {t("nav.cta") as string}
+            </a>
+
+            {/* Mobile menu trigger */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Відкрити меню"
+              className={`xl:hidden p-2 rounded-md shrink-0 ${
+                scrolled
+                  ? "text-[hsl(204_35%_15%)] hover:bg-[hsl(204_20%_92%)]"
+                  : "text-[hsl(0_0%_100%)] hover:bg-[hsl(0_0%_100%/0.15)]"
+              }`}
+            >
+              <div className="w-5 h-4 flex flex-col justify-between">
+                <span className="w-full h-0.5 bg-currentColor rounded" />
+                <span className="w-full h-0.5 bg-currentColor rounded" />
+                <span className="w-full h-0.5 bg-currentColor rounded" />
+              </div>
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Fullscreen Mobile Menu Overlay */}
+      {/* Full-screen Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[60px] bg-bg-dark/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between overflow-y-auto border-t border-white/10">
-          <div className="flex flex-col gap-6 pt-4 text-center">
-            <a
-              href="#tjenester"
+        <div className="fixed inset-0 z-50 bg-[hsl(204_40%_16%)] text-[hsl(0_0%_100%)] flex flex-col p-6 overflow-y-auto">
+          <div className="flex items-center justify-between pb-6 border-b border-[hsl(0_0%_100%/0.15)]">
+            <div>
+              <div className="font-display font-bold text-2xl tracking-tight text-[hsl(0_0%_100%)]">
+                {brandName}
+              </div>
+              <div className="text-xs text-[hsl(158_64%_45%)] uppercase tracking-wider font-sans">
+                {t("brand.orgStatus") as string}
+              </div>
+            </div>
+            <button
+              type="button"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
+              aria-label="Закрити меню"
+              className="p-3 text-[hsl(0_0%_100%)] hover:text-[hsl(158_64%_45%)] text-2xl font-bold"
             >
-              {String(t("nav.services"))}
-            </a>
-            <a
-              href="#kalkulator"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
-            >
-              {String(t("nav.calculator"))}
-            </a>
-            <a
-              href="#garanti"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
-            >
-              {String(t("nav.guarantee"))}
-            </a>
-            <a
-              href="#hvorfor-oss"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
-            >
-              {String(t("nav.whyUs"))}
-            </a>
-            <a
-              href="#dekning"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
-            >
-              {String(t("nav.coverage"))}
-            </a>
-            <a
-              href="#faq"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
-            >
-              {String(t("nav.faq"))}
-            </a>
-            <a
-              href="#kontakt"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-xl font-display font-bold text-white hover:text-accent uppercase tracking-wider"
-            >
-              {String(t("nav.contact"))}
-            </a>
+              ✕
+            </button>
           </div>
 
-          <div className="flex flex-col gap-3 pt-6 border-t border-white/10">
+          <nav className="flex flex-col gap-4 py-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-display text-2xl font-bold text-[hsl(0_0%_100%/0.9)] hover:text-[hsl(158_64%_45%)] transition-colors py-1"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="mt-auto pt-6 border-t border-[hsl(0_0%_100%/0.15)] space-y-4">
             <a
-              href={`tel:${companyPhone.replace(/\s+/g, "")}`}
-              className="w-full text-center py-3.5 bg-white/10 text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl"
+              href={`tel:${phone}`}
+              className="block w-full py-3 text-center rounded-lg bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] font-display font-bold text-lg"
             >
-              Ring direkte: {companyPhone}
+              {phone}
             </a>
-            <a
-              href="#kalkulator"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-center py-4 bg-accent text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl shadow-lg"
-            >
-              {String(t("hero.ctaPrimary"))}
-            </a>
+            <div className="text-center text-xs text-[hsl(0_0%_100%/0.6)]">
+              {brandCity}, {t("brand.region") as string} · {t("brand.vatNote") as string}
+            </div>
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }

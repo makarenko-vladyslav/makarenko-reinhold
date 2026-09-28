@@ -1,173 +1,170 @@
 "use client";
-
-import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
 
 export default function Hero() {
   const { t } = useLocale();
 
-  const metaStrip = t("hero.metaStrip") as string[];
+  const videoSrc = t("hero.videoSrc") as string;
+  const videoPoster = t("hero.videoPoster") as string;
+  const tickerItems = (t("hero.tickerItems") as string[]) || [];
+
+  const metaHours = t("hero.metaHours") as string;
+  const metaAddress = t("hero.metaAddress") as string;
+  const metaRating = t("hero.metaRating") as string;
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-bg-dark text-white">
-      
-      {/* 1. Background Media Stack with Dark Scrim */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+    <section className="relative min-h-[100svh] flex flex-col justify-between pt-24 pb-0 overflow-hidden bg-[hsl(204_40%_16%)] text-[hsl(0_0%_100%)]">
+      {/* Layer 1: Background Video with Dark Tinted Scrim */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
         <video
           autoPlay
           muted
           loop
           playsInline
-          poster="https://images.pexels.com/videos/4238760/pexels-photo-4238760.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
-          className="w-full h-full object-cover scale-105 filter brightness-75"
+          poster={videoPoster}
+          className="w-full h-full object-cover opacity-65"
         >
-          <source
-            src="https://videos.pexels.com/video-files/4238760/4238760-hd_1920_1080_30fps.mp4"
-            type="video/mp4"
-          />
+          <source src={videoSrc} type="video/mp4" />
         </video>
-        {/* Layer 2: Deep HSL Tinted Scrim Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark via-bg-dark/85 to-bg-dark/65" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(204_45%_12%/0.95)] via-[hsl(204_40%_16%/0.85)] to-[hsl(204_45%_12%/0.8)]" />
       </div>
 
-      {/* 2. Giant Watermark Word Layer */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none text-center w-full overflow-hidden">
-        <span className="text-[14vw] font-display font-extrabold uppercase tracking-widest text-white/5 whitespace-nowrap leading-none block">
-          NOTODDEN
-        </span>
-      </div>
+      {/* Main Content Area */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 pb-10 my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-8">
+            {/* Layer 3: Kicker with REAL Meta */}
+            <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[hsl(158_64%_38%/0.25)] border border-[hsl(158_64%_45%/0.4)] text-[hsl(158_60%_80%)] text-xs font-sans font-semibold tracking-wider uppercase mb-5 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
+              <span>{t("hero.kickerMeta") as string}</span>
+            </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        
-        {/* Crisp Editorial Kicker Line (No badge-pill slop) */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-wrap items-center gap-2 mb-6 font-mono text-xs font-semibold tracking-wider text-accent uppercase"
-        >
-          <span>{String(t("hero.kickerMeta"))}</span>
-          <span className="text-white/30 hidden sm:inline">•</span>
-          <span className="text-white/80 font-normal hidden sm:inline">{String(t("hero.badge"))}</span>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Main Content Column */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="lg:col-span-8 flex flex-col items-start"
-          >
-            {/* Multi-line Poster H1 with Serif Italic Accent Word */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold tracking-tight text-white leading-[1.08] mb-6">
-              {String(t("hero.titleLine1"))}{" "}
-              <span className="font-serif italic font-normal text-accent underline decoration-accent/40 underline-offset-8">
-                {String(t("hero.titleAccent"))}
+            {/* Layer 4: Multi-line Poster H1 with Italic Accent */}
+            <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[hsl(0_0%_100%)] leading-[1.08] tracking-tight mb-5 text-balance">
+              <span>{t("hero.titleLead") as string} </span>{" "}
+              <span className="text-[hsl(158_64%_48%)] italic font-medium">
+                {t("hero.titleAccent") as string}
               </span>{" "}
-              {String(t("hero.titleLine2"))}
+              <span>{t("hero.titleTail") as string}</span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-base sm:text-xl text-white/85 max-w-2xl leading-relaxed mb-8">
-              {String(t("hero.subtitle"))}
+            {/* Layer 5: Subtitle / Lede */}
+            <p className="text-base sm:text-lg text-[hsl(0_0%_100%/0.88)] leading-relaxed mb-8 max-w-2xl font-light">
+              {t("hero.subtitle") as string}
             </p>
 
-            {/* CTA Button Pair */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
+            {/* Layer 6: CTA Pair */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
               <a
-                href="#kalkulator"
-                className="inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-accent-hover text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl shadow-2xl transition-all transform hover:-translate-y-0.5 whitespace-nowrap"
+                href="#calculator"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] font-display font-bold text-lg tracking-wide hover:bg-[hsl(158_70%_32%)] transition-colors shadow-lg shadow-[hsl(158_64%_38%/0.25)] text-center"
               >
-                {String(t("hero.ctaPrimary"))} →
+                {t("hero.primaryCta") as string}
               </a>
               <a
-                href={`tel:${String(t("company.phone")).replace(/\s+/g, "")}`}
-                className="inline-flex items-center justify-center px-6 py-4 bg-white/10 hover:bg-white/20 text-white font-display font-bold text-sm uppercase tracking-wider rounded-xl border border-white/20 backdrop-blur-md transition-all whitespace-nowrap"
+                href={`tel:${t("brand.phone") as string}`}
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-[hsl(0_0%_100%/0.3)] bg-[hsl(0_0%_100%/0.08)] backdrop-blur-sm text-[hsl(0_0%_100%)] font-display font-semibold text-base hover:bg-[hsl(0_0%_100%/0.18)] transition-colors text-center"
               >
-                {String(t("hero.ctaSecondary"))}
+                {t("hero.secondaryCta") as string}
               </a>
             </div>
 
-            {/* 3-Item Meta Strip with Hairline Separators */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-white/15 w-full max-w-3xl">
-              {metaStrip && metaStrip.map((meta, i) => (
-                <div key={i} className="flex items-center gap-2 text-xs font-mono text-white/80">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                  <span>{meta}</span>
+            {/* Layer 7: 3-Item Meta Strip (with conditional rendering) */}
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-3 px-4 rounded-xl bg-[hsl(0_0%_100%/0.06)] border border-[hsl(0_0%_100%/0.12)] max-w-2xl text-xs text-[hsl(0_0%_100%/0.85)] font-sans">
+              {Boolean(metaHours) && (
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
+                  <span>{metaHours}</span>
                 </div>
-              ))}
+              )}
+              {Boolean(metaAddress) && (
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
+                  <span>{metaAddress}</span>
+                </div>
+              )}
+              {Boolean(metaRating) && (
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
+                  <span className="font-semibold text-[hsl(158_60%_80%)]">{metaRating}</span>
+                </div>
+              )}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Floating Text Badge & Crisp Solid Dark Card Column */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-4 relative"
-          >
-            {/* Rotating Circular Text Seal */}
-            <div className="absolute -top-6 -right-4 z-20 w-24 h-24 rounded-full border border-accent/40 bg-bg-dark flex items-center justify-center p-2 text-center shadow-xl">
-              <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-accent leading-tight">
-                GODKJENT • RENHOLD • NOTODDEN
-              </span>
-            </div>
-
-            {/* Solid Dark Surface Card (Replacing glassmorphism slop) */}
-            <div className="bg-bg-card-dark rounded-2xl p-6 shadow-2xl relative overflow-hidden border border-white/10">
-              <div className="text-xs uppercase tracking-widest text-accent font-bold mb-1">
-                Garantert Fastpris
-              </div>
-              <h3 className="text-xl font-display font-bold text-white mb-4">
-                Sertifisert Kvalitet Notodden
-              </h3>
-
-              <div className="space-y-3 mb-6 pt-3 border-t border-white/10">
-                <div className="flex justify-between text-xs py-1 border-b border-white/5">
-                  <span className="text-white/70">Arbeidstilsynet:</span>
-                  <span className="font-mono font-bold text-accent">GODKJENT</span>
-                </div>
-                <div className="flex justify-between text-xs py-1 border-b border-white/5">
-                  <span className="text-white/70">Flyttevask garanti:</span>
-                  <span className="font-mono font-bold text-white">100% GARANTI</span>
-                </div>
-                <div className="flex justify-between text-xs py-1 border-b border-white/5">
-                  <span className="text-white/70">Kjemikalier:</span>
-                  <span className="font-mono font-bold text-white">SVANEMERKET</span>
-                </div>
-                <div className="flex justify-between text-xs py-1">
-                  <span className="text-white/70">Ansvarsforsikring:</span>
-                  <span className="font-mono font-bold text-white">10.000.000 KR</span>
-                </div>
-              </div>
-
-              {/* Two Flanking Mini-Copy Columns */}
-              <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/10 text-[11px] text-white/70 leading-snug">
-                <div>{String(t("hero.flankingLeft"))}</div>
-                <div>{String(t("hero.flankingRight"))}</div>
+          {/* Right Column: Flanking Micro-Copy & Rotating Text Seal */}
+          <div className="lg:col-span-4 flex flex-col gap-6 items-start lg:items-end">
+            {/* Layer 8: Rotating Circular Text Seal */}
+            <div className="relative w-36 h-36 flex items-center justify-center">
+              <svg
+                viewBox="0 0 160 160"
+                className="w-full h-full animate-[spin_25s_linear_infinite]"
+                aria-hidden="true"
+              >
+                <path
+                  id="sealCircle"
+                  d="M 80, 80 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
+                  fill="none"
+                />
+                <text className="text-[10.5px] font-sans font-bold uppercase tracking-[0.22em] fill-[hsl(158_64%_55%)]">
+                  <textPath href="#sealCircle" startOffset="0%">
+                    {t("hero.sealText") as string}
+                  </textPath>
+                </text>
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2 rounded-full border border-[hsl(158_64%_48%/0.3)] bg-[hsl(204_45%_12%/0.75)] backdrop-blur-sm pointer-events-none">
+                <span className="font-display font-black text-xl text-[hsl(0_0%_100%)] leading-none">
+                  2021
+                </span>
+                <span className="text-[9px] uppercase tracking-widest text-[hsl(158_64%_60%)] font-sans mt-0.5">
+                  Telemark
+                </span>
               </div>
             </div>
-          </motion.div>
 
+            {/* Layer 9: Two Flanking Mini-Copy Blocks */}
+            <div className="w-full max-w-sm space-y-3">
+              <div className="p-3.5 rounded-xl bg-[hsl(0_0%_100%/0.06)] border border-[hsl(0_0%_100%/0.12)] text-left backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(158_64%_50%)] mb-1">
+                  {t("hero.flankLeftTitle") as string}
+                </div>
+                <div className="text-xs text-[hsl(0_0%_100%/0.75)] leading-relaxed font-light">
+                  {t("hero.flankLeftText") as string}
+                </div>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-[hsl(0_0%_100%/0.06)] border border-[hsl(0_0%_100%/0.12)] text-left backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(158_64%_50%)] mb-1">
+                  {t("hero.flankRightTitle") as string}
+                </div>
+                <div className="text-xs text-[hsl(0_0%_100%/0.75)] leading-relaxed font-light">
+                  {t("hero.flankRightText") as string}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Classic Scroll Cue */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-1.5 opacity-80 pt-6 pb-2">
-        <span className="text-[9px] tracking-widest text-white/70 uppercase font-mono">SCROLL</span>
-        <div className="w-0.5 h-6 bg-gradient-to-b from-accent to-transparent rounded-full animate-pulse" />
+      {/* Layer 10: Scroll Cue */}
+      <div className="relative z-10 flex flex-col items-center justify-center pb-2 select-none pointer-events-none">
+        <span className="text-[9px] font-sans font-semibold uppercase tracking-[0.25em] text-[hsl(0_0%_100%/0.45)] mb-1">
+          {t("hero.scrollWord") as string}
+        </span>
+        <div className="w-px h-6 bg-gradient-to-b from-[hsl(158_64%_48%)] to-transparent" />
       </div>
 
-      {/* Hero Base Ticker Strip */}
-      <div className="relative z-10 w-full bg-primary/90 py-2.5 border-t border-white/10 overflow-hidden">
-        <div className="animate-marquee whitespace-nowrap text-xs font-mono tracking-wider text-white/90">
-          <span className="mx-4">{String(t("hero.tickerText"))}</span>
-          <span className="mx-4">{String(t("hero.tickerText"))}</span>
+      {/* Thin Marquee Ticker at Hero Base */}
+      <div className="relative z-20 w-full overflow-hidden bg-[hsl(204_45%_12%/0.95)] border-t border-[hsl(0_0%_100%/0.12)] py-2.5">
+        <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite]">
+          {[...tickerItems, ...tickerItems].map((item, idx) => (
+            <div key={idx} className="flex items-center gap-4 mx-6 text-xs text-[hsl(0_0%_100%/0.8)] font-sans">
+              <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
       </div>
-
     </section>
   );
 }

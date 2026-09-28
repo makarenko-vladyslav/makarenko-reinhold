@@ -1,36 +1,59 @@
 {
   "currency": "NOK",
   "vatRate": 0.25,
-  "hourlyRate": 420,
-  "services": {
-    "fast_renhold": {
-      "basePricePerSqM": 18,
-      "minPrice": 1260,
-      "recommendedHoursFactor": 0.035
+  "baseHourlyRate": 420,
+  "serviceRates": {
+    "regular": {
+      "name": "Регулярне прибирання (Fast renhold)",
+      "ratePerM2": 24,
+      "baseHours": 2.5,
+      "minPrice": 1260
     },
-    "flyttevask": {
-      "basePricePerSqM": 45,
-      "minPrice": 3500,
-      "guaranteeIncluded": true
+    "deep": {
+      "name": "Генеральне прибирання (Storvask)",
+      "ratePerM2": 38,
+      "baseHours": 4.5,
+      "minPrice": 3200
     },
-    "hyttevask": {
-      "basePricePerSqM": 24,
-      "minPrice": 1680,
-      "travelFee": 300
+    "moveout": {
+      "name": "Прибирання при переїзді (Flyttevask з гарантією)",
+      "ratePerM2": 46,
+      "baseHours": 6.0,
+      "minPrice": 3900
     },
-    "storvask": {
-      "basePricePerSqM": 32,
+    "cabin": {
+      "name": "Обслуговування дач (Hyttevask Telemark)",
+      "ratePerM2": 32,
+      "baseHours": 3.5,
       "minPrice": 2500
     },
-    "kontorrenhold": {
-      "basePricePerSqM": 16,
-      "minPrice": 1500
+    "office": {
+      "name": "Офісні приміщення B2B (Kontorrenhold)",
+      "ratePerM2": 26,
+      "baseHours": 3.0,
+      "minPrice": 1680
     }
   },
-  "frequencies": {
-    "weekly": { "discount": 0.15, "label": "Ukentlig (-15%)" },
-    "biweekly": { "discount": 0.10, "label": "Hver 2. uke (-10%)" },
-    "monthly": { "discount": 0.05, "label": "Månedlig (-5%)" },
-    "once": { "discount": 0.00, "label": "Enkeltgang" }
-  }
+  "addons": [
+    {
+      "id": "windows",
+      "name": "Миття вікон з рамами (двостороннє)",
+      "price": 650
+    },
+    {
+      "id": "oven",
+      "name": "Глибоке чищення духової шафи та витяжки",
+      "price": 450
+    },
+    {
+      "id": "fridge",
+      "name": "Дезінфекція та миття холодильника",
+      "price": 380
+    },
+    {
+      "id": "balcony",
+      "name": "Очищення тераси або балкона",
+      "price": 520
+    }
+  ]
 }

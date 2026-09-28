@@ -1,206 +1,127 @@
 "use client";
-
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { useLocale } from "@/lib/i18n";
+
+interface ServiceItem {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  price: string;
+  details: string;
+  tag: string;
+  image: string;
+}
 
 export default function Services() {
   const { t } = useLocale();
-  const [activeCategory, setActiveCategory] = useState("Alle tjenester");
+  const [activeTab, setActiveTab] = useState("all");
 
-  const categories = t("services.categories") as string[];
-  const items = t("services.items") as Array<{
-    id: string;
-    category: string;
-    tag: string;
-    title: string;
-    description: string;
-    details: string[];
-    price: string;
-    priceUnit: string;
-    isSignature: boolean;
-  }>;
+  const items = (t("servicesSection.items") as ServiceItem[]) || [];
 
-  const filteredItems = items ? items.filter(item => 
-    activeCategory === "Alle tjenester" ? true : item.category === activeCategory
-  ) : [];
-
-  const signatureItem = filteredItems.find(i => i.isSignature) || filteredItems[0];
-  const standardItems = filteredItems.filter(i => i.id !== signatureItem?.id);
+  const filteredItems =
+    activeTab === "all"
+      ? items
+      : items.filter((item) => item.category === activeTab);
 
   return (
-    <section id="tjenester" className="py-24 bg-bg-light relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Asymmetrical Editorial Header + Category Nav */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 pb-8 border-b border-border-light">
-          <div className="lg:col-span-7">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent">
-              {String(t("services.kicker"))}
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-display font-bold text-text-main mt-2 leading-tight">
-              {String(t("services.heading"))}
-            </h2>
-            <p className="text-base sm:text-lg text-text-muted mt-3 leading-relaxed">
-              {String(t("services.subheading"))}
-            </p>
+    <section id="services" className="scroll-mt-20 py-20 bg-[hsl(0_0%_100%)] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="max-w-3xl mb-12">
+          <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] mb-2">
+            {t("servicesSection.kicker") as string}
           </div>
-
-          {/* Category Filter Tabs */}
-          <div className="lg:col-span-5 flex flex-wrap gap-2 lg:justify-end">
-            {categories && categories.map((cat, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
-                  activeCategory === cat
-                    ? "bg-primary text-white shadow-md"
-                    : "bg-surface text-text-muted border border-border-light hover:bg-bg-light"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(204_35%_15%)] tracking-tight mb-4">
+            {t("servicesSection.title") as string}
+          </h2>
+          <p className="text-base text-[hsl(204_15%_42%)] leading-relaxed font-light">
+            {t("servicesSection.subtitle") as string}
+          </p>
         </div>
 
-        {/* Asymmetrical Editorial Composition: Signature Offer Hero + Dynamic Grid */}
-        {signatureItem && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12 rounded-3xl bg-surface border-2 border-accent shadow-xl overflow-hidden relative grid grid-cols-1 lg:grid-cols-12"
-          >
-            {/* Signature Left Column */}
-            <div className="lg:col-span-8 p-8 sm:p-12 flex flex-col justify-between">
-              <div>
-                <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span className="px-3 py-1 rounded bg-accent text-white font-mono text-xs font-bold uppercase tracking-wider">
-                    {signatureItem.tag}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-primary uppercase">
-                    ANBEFALT HOVEDTJENESTE
-                  </span>
-                </div>
-
-                <h3 className="text-2xl sm:text-4xl font-display font-bold text-text-main leading-tight mb-4">
-                  {signatureItem.title}
-                </h3>
-
-                <p className="text-sm sm:text-base text-text-muted leading-relaxed max-w-2xl mb-8">
-                  {signatureItem.description}
-                </p>
-
-                {/* Details list */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6 border-t border-border-light">
-                  {signatureItem.details.map((detail, dIdx) => (
-                    <div key={dIdx} className="text-xs text-text-main font-semibold flex items-center gap-2.5">
-                      <span className="w-2 h-2 rounded-full bg-accent shrink-0" />
-                      <span>{detail}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Signature Right Column - Accent Side Callout */}
-            <div className="lg:col-span-4 bg-primary text-white p-8 sm:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-primary-light">
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-accent font-bold block mb-1">
-                  Fast timepris eller fastpris
-                </span>
-                <div className="text-4xl font-display font-extrabold text-white mb-1">
-                  {signatureItem.price}
-                </div>
-                <div className="text-xs font-mono text-white/70 mb-8">
-                  {signatureItem.priceUnit}
-                </div>
-
-                <p className="text-xs text-white/80 leading-relaxed mb-6">
-                  Inkluderer faste sertifiserte renholdere, Svanemerkede kjemikalier og reisevei i Notodden.
-                </p>
-              </div>
-
-              <a
-                href="#kalkulator"
-                className="w-full py-4 bg-accent hover:bg-accent-hover text-white font-display font-bold text-center text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all"
-              >
-                Beregn din pris →
-              </a>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Secondary Services: Asymmetrical 2-Column Editorial Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {standardItems && standardItems.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="p-8 rounded-2xl bg-surface border border-border-light hover:border-accent/60 shadow-sm transition-all duration-300 flex flex-col justify-between group"
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-2 mb-10 pb-2 border-b border-[hsl(204_20%_90%)]">
+          {[
+            { id: "all", label: t("servicesSection.tabAll") as string },
+            { id: "home", label: t("servicesSection.tabHome") as string },
+            { id: "moving", label: t("servicesSection.tabMoving") as string },
+            { id: "cabin", label: t("servicesSection.tabCabin") as string },
+            { id: "b2b", label: t("servicesSection.tabB2B") as string },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setActiveTab(tab.id)}
+              className={`px-4 py-2 rounded-md font-sans text-xs font-semibold tracking-wider transition-all uppercase ${
+                activeTab === tab.id
+                  ? "bg-[hsl(204_40%_16%)] text-[hsl(0_0%_100%)] shadow-sm"
+                  : "bg-[hsl(195_25%_98%)] text-[hsl(204_35%_25%)] hover:bg-[hsl(196_45%_92%)]"
+              }`}
             >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-3">
-                  <span className="px-2.5 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-accent-soft text-accent">
-                    {item.tag}
-                  </span>
-                  <span className="text-xs font-mono text-text-muted">
-                    {item.category}
-                  </span>
-                </div>
-
-                <h3 className="text-xl sm:text-2xl font-display font-bold text-text-main group-hover:text-accent transition-colors mb-3">
-                  {item.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-text-muted leading-relaxed mb-6">
-                  {item.description}
-                </p>
-
-                <div className="space-y-2 mb-6 pt-4 border-t border-border-light/60">
-                  {item.details.map((detail, dIdx) => (
-                    <div key={dIdx} className="text-xs text-text-main font-medium flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                      <span>{detail}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-border-light flex items-center justify-between gap-4">
-                <div>
-                  <div className="text-xl font-display font-extrabold text-primary">{item.price}</div>
-                  <div className="text-[10px] font-mono text-text-muted">{item.priceUnit}</div>
-                </div>
-
-                <a
-                  href="#kalkulator"
-                  className="px-4 py-2 rounded-xl bg-primary hover:bg-accent text-white font-display font-bold text-xs uppercase tracking-wider transition-colors"
-                >
-                  Bestill →
-                </a>
-              </div>
-            </motion.div>
+              {tab.label}
+            </button>
           ))}
         </div>
 
-        {/* Footnote & Secondary Link */}
-        <div className="p-6 rounded-2xl bg-surface border border-border-light flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-mono text-text-muted leading-relaxed">
-            {String(t("services.footnote"))}
-          </p>
-          <a
-            href="#kontakt"
-            className="text-xs font-display font-bold text-accent hover:underline uppercase tracking-wider whitespace-nowrap"
-          >
-            Trenger du bedriftsavtale? Kontakt oss →
-          </a>
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {filteredItems.map((service) => (
+            <article
+              key={service.id}
+              className="flex flex-col bg-[hsl(195_25%_98%)] border border-[hsl(204_20%_88%)] rounded-xl overflow-hidden hover:border-[hsl(158_64%_38%/0.5)] transition-all group"
+            >
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[hsl(204_20%_90%)]">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-3 left-3 bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] px-2.5 py-0.5 rounded text-[11px] font-sans font-semibold">
+                  {service.tag}
+                </div>
+                <div className="absolute bottom-3 right-3 bg-[hsl(204_40%_16%/0.88)] backdrop-blur-sm text-[hsl(0_0%_100%)] px-3 py-1 rounded text-xs font-display font-bold">
+                  {service.price}
+                </div>
+              </div>
+
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-display font-bold text-xl text-[hsl(204_35%_15%)] leading-snug mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-[hsl(204_15%_42%)] leading-relaxed mb-6 font-light flex-1">
+                  {service.description}
+                </p>
+
+                <div className="pt-4 border-t border-[hsl(204_20%_88%)] flex items-center justify-between">
+                  <span className="text-xs text-[hsl(158_64%_35%)] font-sans font-medium">
+                    {service.details}
+                  </span>
+                  <a
+                    href="#calculator"
+                    className="text-xs font-display font-bold uppercase tracking-wider text-[hsl(204_40%_16%)] hover:text-[hsl(158_64%_38%)]"
+                  >
+                    Замовити →
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
 
+        {/* Marginalia & Footnote */}
+        <div className="pt-6 border-t border-[hsl(204_20%_90%)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <span className="text-[hsl(204_15%_45%)] font-light">
+            {t("servicesSection.footnote") as string}
+          </span>
+          <a
+            href="#contact"
+            className="font-display font-bold text-sm text-[hsl(158_64%_38%)] hover:underline"
+          >
+            {t("servicesSection.secondaryLink") as string} →
+          </a>
+        </div>
       </div>
     </section>
   );

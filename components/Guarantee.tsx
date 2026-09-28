@@ -1,60 +1,83 @@
 "use client";
-
 import { useLocale } from "@/lib/i18n";
 
 export default function Guarantee() {
   const { t } = useLocale();
 
-  const points = t("guarantee.points") as Array<{ number: string; title: string; desc: string }>;
-
   return (
-    <section id="garanti" className="py-24 bg-bg-light border-b border-border-light">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="bg-surface rounded-3xl p-8 sm:p-14 border border-border-light shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          <div className="lg:col-span-5">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent">
-              {String(t("guarantee.kicker"))}
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-text-main mt-2 leading-tight">
-              {String(t("guarantee.heading"))}
+    <section id="guarantee" className="scroll-mt-20 py-20 bg-[hsl(204_40%_16%)] text-[hsl(0_0%_100%)] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Text block */}
+          <div className="lg:col-span-7">
+            <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_48%)] mb-2">
+              {t("guaranteeSection.kicker") as string}
+            </div>
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(0_0%_100%)] tracking-tight mb-6">
+              {t("guaranteeSection.title") as string}
             </h2>
-            <p className="text-base text-text-muted mt-4 leading-relaxed">
-              {String(t("guarantee.subheading"))}
+            <p className="text-base text-[hsl(0_0%_100%/0.85)] leading-relaxed mb-4 font-light">
+              {t("guaranteeSection.p1") as string}
             </p>
-            
-            <div className="mt-8 p-5 rounded-2xl bg-accent-soft border border-accent/20 flex items-center gap-4">
-              <div className="w-14 h-14 rounded-xl bg-accent text-white font-display font-extrabold text-2xl flex items-center justify-center shrink-0 shadow-md">
-                100%
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-primary">Ingen økonomisk risiko</h4>
-                <p className="text-xs text-text-muted">Vi garanterer godkjent overtakelse eller utbedrer gratis.</p>
-              </div>
+            <p className="text-base text-[hsl(0_0%_100%/0.85)] leading-relaxed mb-8 font-light">
+              {t("guaranteeSection.p2") as string}
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-[hsl(0_0%_100%/0.15)]">
+              {[
+                t("guaranteeSection.badge1") as string,
+                t("guaranteeSection.badge2") as string,
+                t("guaranteeSection.badge3") as string,
+                t("guaranteeSection.badge4") as string,
+              ].map((badge, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[hsl(0_0%_100%/0.06)] border border-[hsl(0_0%_100%/0.15)] rounded-lg p-3 text-center"
+                >
+                  <div className="text-xs font-sans font-semibold text-[hsl(158_64%_48%)]">
+                    {badge}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="lg:col-span-7 space-y-6">
-            {points && points.map((p, idx) => (
-              <div key={idx} className="p-6 rounded-2xl bg-bg-light border border-border-light flex items-start gap-5">
-                <span className="text-xs font-mono font-bold text-accent bg-surface px-3 py-1 rounded border border-border-light shrink-0">
-                  {p.number}
-                </span>
-                <div>
-                  <h3 className="text-lg font-display font-bold text-text-main mb-1">
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-text-muted leading-relaxed">
-                    {p.desc}
-                  </p>
-                </div>
+          {/* Decorative Card */}
+          <div className="lg:col-span-5 bg-[hsl(0_0%_100%)] text-[hsl(204_35%_15%)] p-8 rounded-2xl shadow-2xl border-4 border-[hsl(158_64%_38%)]">
+            <div className="text-center pb-6 border-b border-[hsl(204_20%_90%)]">
+              <span className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] block mb-1">
+                Офіційний сертифікат
+              </span>
+              <h3 className="font-display font-extrabold text-2xl text-[hsl(204_35%_15%)]">
+                100% Flyttegaranti
+              </h3>
+            </div>
+
+            <div className="py-6 space-y-4 text-xs text-[hsl(204_15%_42%)] font-light leading-relaxed">
+              <div className="flex items-start gap-2">
+                <span className="text-[hsl(158_64%_38%)] font-bold">●</span>
+                <span>Беззастережне право клієнта на безкоштовний повторний виїзд бригади протягом 48 годин у разі виявлення зауважень орендодавцем.</span>
               </div>
-            ))}
+              <div className="flex items-start gap-2">
+                <span className="text-[hsl(158_64%_38%)] font-bold">●</span>
+                <span>Відповідність регламенту передачі житла Husleieloven та стандартам Arbeidstilsynet.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-[hsl(158_64%_38%)] font-bold">●</span>
+                <span>Повне страхування відповідальності виконавця через поліс Tryg Forsikring.</span>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[hsl(204_20%_90%)] text-center">
+              <div className="font-display font-bold text-sm text-[hsl(204_35%_15%)]">
+                {t("brand.contactPerson") as string}
+              </div>
+              <div className="text-xs text-[hsl(204_15%_42%)]">
+                Керівник клінінгової служби Makarenko Reinhold
+              </div>
+            </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
