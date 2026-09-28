@@ -1,83 +1,99 @@
 "use client";
+import { useState } from "react";
 import { useLocale } from "@/lib/i18n";
 
 export default function BeforeAfter() {
   const { t } = useLocale();
+  const [sliderPos, setSliderPos] = useState(50);
 
-  const cases = [
-    {
-      title: t("beforeAfter.case1Title") as string,
-      before: t("beforeAfter.case1Before") as string,
-      after: t("beforeAfter.case1After") as string,
-      image: "https://images.pexels.com/photos/5591854/pexels-photo-5591854.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-    },
-    {
-      title: t("beforeAfter.case2Title") as string,
-      before: t("beforeAfter.case2Before") as string,
-      after: t("beforeAfter.case2After") as string,
-      image: "https://images.pexels.com/photos/3177257/pexels-photo-3177257.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-    },
-    {
-      title: t("beforeAfter.case3Title") as string,
-      before: t("beforeAfter.case3Before") as string,
-      after: t("beforeAfter.case3After") as string,
-      image: "https://images.pexels.com/photos/48889/cleaning-washing-cleanup-the-ilo-48889.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-    },
-  ];
+  const kicker = String(t("beforeAfter.kicker"));
+  const title = String(t("beforeAfter.title"));
+  const lede = String(t("beforeAfter.lede"));
+  const labelBefore = String(t("beforeAfter.labelBefore"));
+  const labelAfter = String(t("beforeAfter.labelAfter"));
+  const caseOneTitle = String(t("beforeAfter.caseOneTitle"));
+  const caseOneDesc = String(t("beforeAfter.caseOneDesc"));
 
   return (
-    <section className="py-20 bg-[hsl(0_0%_100%)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] mb-2">
-            {t("beforeAfter.kicker") as string}
-          </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(204_35%_15%)] tracking-tight mb-4">
-            {t("beforeAfter.title") as string}
+    <section id="resultater" className="py-20 bg-white border-b border-gray-200 scroll-mt-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <p className="text-xs font-bold tracking-widest uppercase text-accent mb-2">
+            {kicker}
+          </p>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-primary tracking-tight mb-3">
+            {title}
           </h2>
-          <p className="text-base text-[hsl(204_15%_42%)] leading-relaxed font-light">
-            {t("beforeAfter.subtitle") as string}
+          <p className="text-base text-text-muted leading-relaxed">
+            {lede}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {cases.map((c, idx) => (
+        {/* Large Interactive Comparison Card */}
+        <div className="bg-bg-light rounded-md border border-gray-200 overflow-hidden shadow-sm p-4 sm:p-6">
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded overflow-hidden select-none">
+            {/* "After" Image (Clean) */}
+            <img
+              src="https://images.pexels.com/photos/10567236/pexels-photo-10567236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+              alt="Etter grundig renhold"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute top-4 right-4 z-10 bg-primary/90 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded">
+              {labelAfter}
+            </div>
+
+            {/* "Before" Image (Filtered/Grayscale to illustrate soiled state cleanly) */}
             <div
-              key={idx}
-              className="bg-[hsl(195_25%_98%)] rounded-2xl border border-[hsl(204_20%_88%)] overflow-hidden flex flex-col"
+              className="absolute inset-0 overflow-hidden"
+              style={{ width: `${sliderPos}%` }}
             >
-              <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <img
-                  src={c.image}
-                  alt={c.title}
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <h3 className="font-display font-bold text-xl text-[hsl(204_35%_15%)] mb-4">
-                  {c.title}
-                </h3>
-
-                <div className="space-y-3 text-xs">
-                  <div className="p-3 rounded-lg bg-[hsl(0_0%_100%)] border border-[hsl(204_20%_88%)]">
-                    <span className="font-bold text-[hsl(204_15%_42%)] block mb-1 uppercase font-sans tracking-wider">
-                      До прибуття:
-                    </span>
-                    <span className="text-[hsl(204_35%_25%)]">{c.before}</span>
-                  </div>
-
-                  <div className="p-3 rounded-lg bg-[hsl(158_50%_96%)] border border-[hsl(158_64%_38%/0.3)]">
-                    <span className="font-bold text-[hsl(158_64%_38%)] block mb-1 uppercase font-sans tracking-wider">
-                      Після обробки:
-                    </span>
-                    <span className="text-[hsl(204_35%_15%)] font-medium">{c.after}</span>
-                  </div>
-                </div>
+              <img
+                src="https://images.pexels.com/photos/10567236/pexels-photo-10567236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+                alt="Før renhold"
+                className="absolute inset-0 w-full h-full object-cover filter brightness-75 contrast-125 sepia"
+                style={{ width: "100%", maxWidth: "none" }}
+              />
+              <div className="absolute top-4 left-4 z-10 bg-black/80 text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded">
+                {labelBefore}
               </div>
             </div>
-          ))}
+
+            {/* Divider Line */}
+            <div
+              className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] z-20 pointer-events-none"
+              style={{ left: `${sliderPos}%` }}
+            >
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-accent border-2 border-white flex items-center justify-center text-white text-xs font-bold shadow-md">
+                ↔
+              </div>
+            </div>
+
+            {/* Invisible Range Slider over the visual */}
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={sliderPos}
+              onChange={(e) => setSliderPos(Number(e.target.value))}
+              aria-label="Før og etter sammenligning"
+              className="absolute inset-0 opacity-0 cursor-ew-resize z-30 w-full h-full"
+            />
+          </div>
+
+          {/* Description Row below slider */}
+          <div className="mt-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-gray-200/80 pt-4">
+            <div>
+              <h3 className="font-display font-bold text-base text-primary">
+                {caseOneTitle}
+              </h3>
+              <p className="text-xs sm:text-sm text-text-muted mt-0.5">
+                {caseOneDesc}
+              </p>
+            </div>
+            <span className="text-xs font-semibold text-accent uppercase tracking-wider whitespace-nowrap">
+              Dra for å sammenligne
+            </span>
+          </div>
         </div>
       </div>
     </section>

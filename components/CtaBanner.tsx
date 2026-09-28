@@ -1,68 +1,86 @@
 "use client";
 import { useLocale } from "@/lib/i18n";
 
-interface HoursRow {
-  days: string;
-  time: string;
-}
-
 export default function CtaBanner() {
   const { t } = useLocale();
 
-  const hours = (t("ctaBanner.hoursTable") as HoursRow[]) || [];
+  const kicker = String(t("ctaBanner.kicker"));
+  const title = String(t("ctaBanner.title"));
+  const lede = String(t("ctaBanner.lede"));
+  const phoneBtn = String(t("ctaBanner.phoneBtn"));
+  const formBtn = String(t("ctaBanner.formBtn"));
+  const trustLine = String(t("ctaBanner.trustLine"));
+  const hours = (t("ctaBanner.hours") as Array<{ days: string; time: string }>) || [];
 
   return (
-    <section className="py-16 bg-[hsl(0_0%_100%)]">
+    <section className="py-16 bg-bg-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[hsl(204_40%_16%)] text-[hsl(0_0%_100%)] rounded-3xl p-8 sm:p-12 lg:p-14 relative overflow-hidden shadow-2xl border-2 border-[hsl(158_64%_45%/0.4)]">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+        <div className="bg-primary rounded p-8 sm:p-14 text-white shadow-xl relative overflow-hidden">
+          {/* Top accent hairline */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-accent" />
+
+          {/* Decorative giant watermark layer */}
+          <div
+            aria-hidden="true"
+            className="absolute right-0 bottom-0 select-none pointer-events-none translate-x-12 translate-y-12"
+          >
+            <span className="font-display font-extrabold text-[12vw] text-white/[0.03] uppercase whitespace-nowrap">
+              NOTODDEN
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            {/* Left Column: Heading and CTAs */}
             <div className="lg:col-span-7">
-              <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_48%)] mb-3">
-                {t("ctaBanner.kicker") as string}
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="h-px w-5 bg-accent" />
+                <p className="text-xs font-bold tracking-widest uppercase text-accent font-display">
+                  {kicker}
+                </p>
               </div>
-              <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[hsl(0_0%_100%)] tracking-tight mb-5 leading-tight">
-                {t("ctaBanner.title") as string}
+
+              <h2 className="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight mb-4">
+                {title}
               </h2>
-              <p className="text-base text-[hsl(0_0%_100%/0.85)] leading-relaxed mb-6 font-light">
-                {t("ctaBanner.subtitle") as string}
+              <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-8 max-w-xl">
+                {lede}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6">
                 <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] font-display font-bold text-lg hover:bg-[hsl(158_70%_32%)] transition-colors shadow-lg shadow-[hsl(158_64%_38%/0.3)] text-center"
+                  href="tel:+4796684397"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded font-display font-bold text-xs uppercase tracking-wider bg-accent hover:bg-accent-dark text-white shadow-sm transition-colors text-center"
                 >
-                  {t("ctaBanner.primaryBtn") as string}
+                  {phoneBtn}
                 </a>
                 <a
-                  href={`tel:${t("brand.phone") as string}`}
-                  className="inline-flex items-center justify-center px-6 py-4 rounded-xl border border-[hsl(0_0%_100%/0.25)] text-[hsl(0_0%_100%)] font-display font-semibold text-lg hover:bg-[hsl(0_0%_100%/0.1)] transition-colors text-center"
+                  href="#bestill"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded font-display font-semibold text-xs uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/25 transition-colors text-center"
                 >
-                  {t("brand.phone") as string}
+                  {formBtn}
                 </a>
               </div>
 
-              <div className="text-xs text-[hsl(158_64%_55%)] font-sans">
-                {t("ctaBanner.trustMicro") as string}
-              </div>
+              <p className="text-xs text-white/60 border-l border-accent/80 pl-3">
+                {trustLine}
+              </p>
             </div>
 
-            {/* Structured Hours & Location Mini-Card */}
-            <div className="lg:col-span-5 bg-[hsl(204_45%_12%)] p-6 rounded-2xl border border-[hsl(0_0%_100%/0.15)] space-y-4">
-              <div className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(158_64%_48%)]">
-                Графік координації замовлень
-              </div>
-              <div className="space-y-2 text-xs">
-                {hours.map((row, idx) => (
-                  <div key={idx} className="flex justify-between py-1.5 border-b border-[hsl(0_0%_100%/0.08)]">
-                    <span className="text-[hsl(0_0%_100%/0.7)]">{row.days}</span>
-                    <span className="font-mono text-[hsl(0_0%_100%)]">{row.time}</span>
+            {/* Right Column: Structured Opening Hours Mini-Table */}
+            <div className="lg:col-span-5 bg-white/5 border border-white/10 p-6 rounded backdrop-blur-sm">
+              <h3 className="font-display font-bold text-sm text-accent uppercase tracking-wider mb-4">
+                Telefontider & Vakt
+              </h3>
+              <div className="space-y-2 text-xs text-white/85">
+                {hours.map((h, i) => (
+                  <div key={i} className="flex justify-between border-b border-white/10 pb-2">
+                    <span className="text-white/70">{h.days}:</span>
+                    <span className="font-mono font-bold text-white">{h.time}</span>
                   </div>
                 ))}
               </div>
-              <div className="pt-2 text-xs text-[hsl(0_0%_100%/0.7)]">
-                <span className="block font-bold text-[hsl(0_0%_100%)] mb-1">Зона обслуговування:</span>
-                {t("ctaBanner.addressLine") as string}
+              <div className="mt-4 text-[11px] text-white/60 leading-normal">
+                Utenfor åpningstid besvares akutte oppdrag via SMS innen 30 minutter.
               </div>
             </div>
           </div>

@@ -7,233 +7,228 @@ export default function Contact() {
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [service, setService] = useState("");
+  const [email, setEmail] = useState("");
+  const [service, setService] = useState("Fast renhold ukentlig / annenhver uke");
   const [area, setArea] = useState("");
+  const [address, setAddress] = useState("");
   const [date, setDate] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const kicker = String(t("contact.kicker"));
+  const title = String(t("contact.title"));
+  const lede = String(t("contact.lede"));
+
+  const fName = String(t("contact.fields.name"));
+  const fPhone = String(t("contact.fields.phone"));
+  const fEmail = String(t("contact.fields.email"));
+  const fService = String(t("contact.fields.service"));
+  const fArea = String(t("contact.fields.area"));
+  const fAddress = String(t("contact.fields.address"));
+  const fDate = String(t("contact.fields.date"));
+  const fMessage = String(t("contact.fields.message"));
+  const fSubmit = String(t("contact.fields.submit"));
+  const fSubmitting = String(t("contact.fields.submitting"));
+  const fSuccess = String(t("contact.fields.success"));
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const form = e.currentTarget;
+
     if (!name.trim() || !phone.trim()) {
-      setStatus("error");
+      form.dataset.invalid = "true";
       return;
     }
 
-    setStatus("sending");
+    delete form.dataset.invalid;
+    setStatus("submitting");
+
     setTimeout(() => {
       setStatus("success");
-    }, 1000);
+    }, 800);
   };
 
-  const hoursTitle = t("contactSection.info.hoursTitle") as string;
-  const hours = t("contactSection.info.hours") as string;
-  const notice = t("contactSection.info.notice") as string;
-
   return (
-    <section id="contact" className="scroll-mt-20 py-20 bg-[hsl(195_25%_98%)] border-t border-[hsl(204_20%_88%)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Info Side */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] mb-2">
-                {t("contactSection.kicker") as string}
-              </div>
-              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(204_35%_15%)] tracking-tight mb-4">
-                {t("contactSection.title") as string}
-              </h2>
-              <p className="text-base text-[hsl(204_15%_42%)] leading-relaxed mb-8 font-light">
-                {t("contactSection.subtitle") as string}
+    <section id="bestill" className="py-20 bg-white border-b border-gray-200 scroll-mt-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <p className="text-xs font-bold tracking-widest uppercase text-accent mb-2">
+            {kicker}
+          </p>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-primary tracking-tight mb-3">
+            {title}
+          </h2>
+          <p className="text-base text-text-muted leading-relaxed">
+            {lede}
+          </p>
+        </div>
+
+        {/* High-Contrast Solid Form Card */}
+        <div className="bg-bg-light rounded-md border border-gray-200 p-6 sm:p-10 shadow-sm">
+          {status === "success" ? (
+            <div className="p-8 text-center bg-white rounded border border-accent/40">
+              <span className="font-display font-extrabold text-2xl text-accent block mb-2">
+                Bestilling mottatt
+              </span>
+              <p className="text-sm text-text-main max-w-lg mx-auto leading-relaxed mb-6">
+                {fSuccess}
               </p>
-
-              <div className="space-y-6 text-sm">
-                <div>
-                  <span className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(204_15%_50%)] block mb-1">
-                    {t("contactSection.info.phoneTitle") as string}
-                  </span>
-                  <a
-                    href={`tel:${t("brand.phone") as string}`}
-                    className="font-display font-extrabold text-2xl text-[hsl(158_64%_38%)] hover:underline"
-                  >
-                    {t("brand.phone") as string}
-                  </a>
-                </div>
-
-                <div>
-                  <span className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(204_15%_50%)] block mb-1">
-                    {t("contactSection.info.emailTitle") as string}
-                  </span>
-                  <a
-                    href={`mailto:${t("brand.email") as string}`}
-                    className="font-sans font-medium text-base text-[hsl(204_35%_15%)] hover:underline"
-                  >
-                    {t("brand.email") as string}
-                  </a>
-                </div>
-
-                <div>
-                  <span className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(204_15%_50%)] block mb-1">
-                    {t("contactSection.info.addressTitle") as string}
-                  </span>
-                  <div className="font-sans text-base text-[hsl(204_35%_15%)]">
-                    {t("contactSection.info.address") as string}
-                  </div>
-                </div>
-
-                {Boolean(hoursTitle || hours) && (
-                  <div>
-                    {Boolean(hoursTitle) && (
-                      <span className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(204_15%_50%)] block mb-1">
-                        {hoursTitle}
-                      </span>
-                    )}
-                    {Boolean(hours) && (
-                      <div className="font-sans text-sm text-[hsl(204_15%_42%)]">
-                        {hours}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+              <button
+                type="button"
+                onClick={() => setStatus("idle")}
+                className="py-2 px-5 rounded bg-primary text-white text-xs font-bold uppercase tracking-wider transition-colors duration-150 ease-out hover:bg-primary/90"
+              >
+                Send ny melding
+              </button>
             </div>
-
-            {Boolean(notice) && (
-              <div className="mt-8 p-4 rounded-xl bg-[hsl(158_50%_94%)] border border-[hsl(158_64%_38%/0.3)] text-xs text-[hsl(204_35%_20%)] font-sans">
-                {notice}
-              </div>
-            )}
-          </div>
-
-          {/* Form Side */}
-          <div className="lg:col-span-7 bg-[hsl(0_0%_100%)] p-8 sm:p-10 rounded-2xl border border-[hsl(204_20%_88%)] shadow-sm">
-            {status === "success" ? (
-              <div className="py-12 text-center space-y-4">
-                <div className="w-12 h-12 rounded-full bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] flex items-center justify-center text-xl mx-auto font-bold">
-                  ✓
-                </div>
-                <h3 className="font-display font-bold text-2xl text-[hsl(204_35%_15%)]">
-                  Заявку прийнято!
-                </h3>
-                <p className="text-sm text-[hsl(204_15%_42%)] max-w-md mx-auto">
-                  {t("contactSection.form.success") as string}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setStatus("idle")}
-                  className="px-6 py-2.5 rounded-lg bg-[hsl(204_40%_16%)] text-[hsl(0_0%_100%)] text-sm font-display font-bold"
-                >
-                  Надіслати ще одну
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-sans font-bold text-[hsl(204_35%_15%)] mb-1">
-                      {t("contactSection.form.nameLabel") as string} *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder={t("contactSection.form.namePlaceholder") as string}
-                      className="w-full px-4 py-3 rounded-lg border border-[hsl(204_20%_88%)] text-sm focus:border-[hsl(158_64%_38%)] bg-[hsl(195_25%_98%)] text-[hsl(204_35%_15%)]"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-sans font-bold text-[hsl(204_35%_15%)] mb-1">
-                      {t("contactSection.form.phoneLabel") as string} *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder={t("contactSection.form.phonePlaceholder") as string}
-                      className="w-full px-4 py-3 rounded-lg border border-[hsl(204_20%_88%)] text-sm focus:border-[hsl(158_64%_38%)] bg-[hsl(195_25%_98%)] text-[hsl(204_35%_15%)]"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="sm:col-span-2">
-                    <label className="block text-xs font-sans font-bold text-[hsl(204_35%_15%)] mb-1">
-                      {t("contactSection.form.serviceLabel") as string}
-                    </label>
-                    <select
-                      value={service}
-                      onChange={(e) => setService(e.target.value)}
-                      className="w-full px-4 py-3 rounded-lg border border-[hsl(204_20%_88%)] text-sm focus:border-[hsl(158_64%_38%)] bg-[hsl(195_25%_98%)] text-[hsl(204_35%_15%)]"
-                    >
-                      <option value="">{t("contactSection.form.serviceDefault") as string}</option>
-                      <option value="Flyttevask">Flyttevask (виїзне з гарантією)</option>
-                      <option value="Ukentlig">Щотижневе підтримувальне</option>
-                      <option value="Storvask">Генеральне прибирання</option>
-                      <option value="Hyttevask">Дачі Telemark (Hyttevask)</option>
-                      <option value="Kontor">Офісні приміщення B2B</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-sans font-bold text-[hsl(204_35%_15%)] mb-1">
-                      {t("contactSection.form.areaLabel") as string}
-                    </label>
-                    <input
-                      type="number"
-                      value={area}
-                      onChange={(e) => setArea(e.target.value)}
-                      placeholder={t("contactSection.form.areaPlaceholder") as string}
-                      className="w-full px-4 py-3 rounded-lg border border-[hsl(204_20%_88%)] text-sm focus:border-[hsl(158_64%_38%)] bg-[hsl(195_25%_98%)] text-[hsl(204_35%_15%)]"
-                    />
-                  </div>
-                </div>
-
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-sans font-bold text-[hsl(204_35%_15%)] mb-1">
-                    {t("contactSection.form.dateLabel") as string}
+                  <label htmlFor="contact-name" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                    {fName} *
                   </label>
                   <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="w-full px-4 py-3 rounded-lg border border-[hsl(204_20%_88%)] text-sm focus:border-[hsl(158_64%_38%)] bg-[hsl(195_25%_98%)] text-[hsl(204_35%_15%)]"
+                    id="contact-name"
+                    type="text"
+                    required
+                    name="Kundenavn"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="f.eks. Ola Nordmann"
+                    className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-sans font-bold text-[hsl(204_35%_15%)] mb-1">
-                    {t("contactSection.form.messageLabel") as string}
+                  <label htmlFor="contact-phone" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                    {fPhone} *
                   </label>
-                  <textarea
-                    rows={3}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder={t("contactSection.form.messagePlaceholder") as string}
-                    className="w-full px-4 py-3 rounded-lg border border-[hsl(204_20%_88%)] text-sm focus:border-[hsl(158_64%_38%)] bg-[hsl(195_25%_98%)] text-[hsl(204_35%_15%)]"
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    required
+                    name="Telefonnummer"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+47 000 00 000"
+                    className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                    {fEmail}
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="E-post"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="din@epost.no"
+                    className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
                   />
                 </div>
 
-                {status === "error" && (
-                  <div className="text-xs text-[hsl(0_80%_45%)] font-sans font-semibold">
-                    {t("contactSection.form.error") as string}
-                  </div>
-                )}
+                <div>
+                  <label htmlFor="contact-service" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                    {fService}
+                  </label>
+                  <select
+                    id="contact-service"
+                    name="Tjeneste"
+                    value={service}
+                    onChange={(e) => setService(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                  >
+                    <option value="Fast regelmessig boligrenhold">Fast regelmessig boligrenhold</option>
+                    <option value="Flyttevask med overleveringsgaranti">Flyttevask med overleveringsgaranti</option>
+                    <option value="Hyttevask / Sesongklargjøring">Hyttevask / Sesongklargjøring Telemark</option>
+                    <option value="Hovedrengjøring / Byggvask">Hovedrengjøring / Byggvask</option>
+                    <option value="Vinduspuss inn- og utvendig">Vinduspuss inn- og utvendig</option>
+                    <option value="Kontor- eller klinikkrenhold">Kontor- eller klinikkrenhold</option>
+                  </select>
+                </div>
+              </div>
 
-                <button
-                  type="submit"
-                  disabled={status === "sending"}
-                  className="w-full py-4 rounded-xl bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] font-display font-bold text-lg hover:bg-[hsl(158_70%_32%)] transition-colors shadow-md disabled:opacity-50"
-                >
-                  {status === "sending"
-                    ? (t("contactSection.form.sending") as string)
-                    : (t("contactSection.form.submitBtn") as string)}
-                </button>
-              </form>
-            )}
-          </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                <div>
+                  <label htmlFor="contact-area" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                    {fArea}
+                  </label>
+                  <input
+                    id="contact-area"
+                    type="text"
+                    name="Boligareal"
+                    value={area}
+                    onChange={(e) => setArea(e.target.value)}
+                    placeholder="f.eks. 85 m²"
+                    className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="contact-address" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                    {fAddress}
+                  </label>
+                  <input
+                    id="contact-address"
+                    type="text"
+                    name="Adresse"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Gate og postnummer"
+                    className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="contact-date" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                    {fDate}
+                  </label>
+                  <input
+                    id="contact-date"
+                    type="date"
+                    name="Oppstartsdato"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
+                  {fMessage}
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="Beskjed"
+                  rows={3}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Fortell oss om boligen, spesielle hensyn til parkett, kjæledyr eller nøkkelhåndtering..."
+                  className="w-full px-3.5 py-2.5 rounded border border-gray-300 bg-white text-sm text-text-main focus:border-accent focus:ring-1 focus:ring-accent outline-none"
+                />
+              </div>
+
+              {/* Hidden fields preserving selections */}
+              <input type="hidden" name="Forespørselstype" value="Nettsidebestilling" />
+              <input type="hidden" name="Valgt-tjeneste" value={service} />
+
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="w-full py-4 px-6 rounded font-display font-bold text-xs uppercase tracking-wider bg-accent hover:bg-accent-dark text-white shadow-md transition-colors duration-150 ease-out"
+              >
+                {status === "submitting" ? fSubmitting : fSubmit}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>

@@ -4,166 +4,175 @@ import { useLocale } from "@/lib/i18n";
 export default function Hero() {
   const { t } = useLocale();
 
-  const videoSrc = t("hero.videoSrc") as string;
-  const videoPoster = t("hero.videoPoster") as string;
-  const tickerItems = (t("hero.tickerItems") as string[]) || [];
-
-  const metaHours = t("hero.metaHours") as string;
-  const metaAddress = t("hero.metaAddress") as string;
-  const metaRating = t("hero.metaRating") as string;
+  const metaKicker = String(t("hero.metaKicker"));
+  const titlePre = String(t("hero.titlePre"));
+  const titleAccent = String(t("hero.titleAccent"));
+  const titlePost = String(t("hero.titlePost"));
+  const lede = String(t("hero.lede"));
+  const ctaPrimary = String(t("hero.ctaPrimary"));
+  const ctaSecondary = String(t("hero.ctaSecondary"));
+  const sealText = String(t("hero.sealText"));
+  const flankLeft = String(t("hero.flankLeft"));
+  const flankRight = String(t("hero.flankRight"));
+  const scrollWord = String(t("hero.scrollWord"));
+  const videoSrc = String(t("hero.videoSrc"));
+  const videoPoster = String(t("hero.videoPoster"));
+  const metaHours = String(t("hero.metaStrip.hours"));
+  const metaCoverage = String(t("hero.metaStrip.coverage"));
+  const metaRating = String(t("hero.metaStrip.rating"));
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-between pt-24 pb-0 overflow-hidden bg-[hsl(204_40%_16%)] text-[hsl(0_0%_100%)]">
-      {/* Layer 1: Background Video with Dark Tinted Scrim */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={videoPoster}
-          className="w-full h-full object-cover opacity-65"
-        >
-          <source src={videoSrc} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(204_45%_12%/0.95)] via-[hsl(204_40%_16%/0.85)] to-[hsl(204_45%_12%/0.8)]" />
+    <section className="relative min-h-[100svh] flex flex-col justify-between overflow-hidden bg-primary text-white pt-24 pb-6 sm:pt-28 sm:pb-8">
+      {/* Layer 1: Ambient background grid and subtle noise scrim */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/95 via-primary to-bg-dark/95" />
+        <div className="max-w-7xl mx-auto h-full border-x border-white/[0.07]" />
       </div>
 
-      {/* Main Content Area */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8 pb-10 my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-8">
-            {/* Layer 3: Kicker with REAL Meta */}
-            <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[hsl(158_64%_38%/0.25)] border border-[hsl(158_64%_45%/0.4)] text-[hsl(158_60%_80%)] text-xs font-sans font-semibold tracking-wider uppercase mb-5 backdrop-blur-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
-              <span>{t("hero.kickerMeta") as string}</span>
+      {/* Layer 2: Giant decorative typography layer */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 z-0 flex items-center justify-start select-none pointer-events-none overflow-hidden"
+      >
+        <span className="font-display font-extrabold text-[22vw] tracking-tighter text-white/[0.025] uppercase whitespace-nowrap pl-4">
+          TELEMARK
+        </span>
+      </div>
+
+      {/* Layer 3: Asymmetrical Spatial Layout */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Main Left Block: Offset editorial poster typography */}
+          <div className="lg:col-span-7 xl:col-span-7">
+            {/* Real Metadata Kicker */}
+            <div className="inline-flex items-center gap-2.5 mb-5">
+              <span className="h-px w-8 bg-accent" />
+              <p className="text-xs font-semibold tracking-widest uppercase text-accent font-display">
+                {metaKicker}
+              </p>
             </div>
 
-            {/* Layer 4: Multi-line Poster H1 with Italic Accent */}
-            <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl text-[hsl(0_0%_100%)] leading-[1.08] tracking-tight mb-5 text-balance">
-              <span>{t("hero.titleLead") as string} </span>{" "}
-              <span className="text-[hsl(158_64%_48%)] italic font-medium">
-                {t("hero.titleAccent") as string}
+            {/* Poster H1 with deliberate negative tracking and italic serif accent */}
+            <h1 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-[3.75rem] text-white tracking-tight leading-[1.04] mb-6 text-balance">
+              {titlePre}{" "}
+              <span className="font-serif italic font-normal text-accent underline decoration-white/30 decoration-1 underline-offset-8">
+                {titleAccent}
               </span>{" "}
-              <span>{t("hero.titleTail") as string}</span>
+              {titlePost}
             </h1>
 
-            {/* Layer 5: Subtitle / Lede */}
-            <p className="text-base sm:text-lg text-[hsl(0_0%_100%/0.88)] leading-relaxed mb-8 max-w-2xl font-light">
-              {t("hero.subtitle") as string}
+            {/* Editorial Lede */}
+            <p className="text-base sm:text-lg text-white/85 leading-relaxed mb-8 max-w-xl font-normal">
+              {lede}
             </p>
 
-            {/* Layer 6: CTA Pair */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-8">
+            {/* CTA Group with concise action labels (<22 chars) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-10">
               <a
-                href="#calculator"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-[hsl(158_64%_38%)] text-[hsl(0_0%_100%)] font-display font-bold text-lg tracking-wide hover:bg-[hsl(158_70%_32%)] transition-colors shadow-lg shadow-[hsl(158_64%_38%/0.25)] text-center"
+                href="#kalkulator"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded font-display font-bold text-xs sm:text-sm uppercase tracking-wider bg-accent hover:bg-accent-dark text-white shadow-lg shadow-accent/20 transition-colors duration-150 ease-out text-center"
               >
-                {t("hero.primaryCta") as string}
+                {ctaPrimary}
               </a>
               <a
-                href={`tel:${t("brand.phone") as string}`}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-[hsl(0_0%_100%/0.3)] bg-[hsl(0_0%_100%/0.08)] backdrop-blur-sm text-[hsl(0_0%_100%)] font-display font-semibold text-base hover:bg-[hsl(0_0%_100%/0.18)] transition-colors text-center"
+                href="#pakker"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded font-display font-semibold text-xs sm:text-sm uppercase tracking-wider bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors duration-150 ease-out text-center"
               >
-                {t("hero.secondaryCta") as string}
+                {ctaSecondary}
               </a>
             </div>
 
-            {/* Layer 7: 3-Item Meta Strip (with conditional rendering) */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 py-3 px-4 rounded-xl bg-[hsl(0_0%_100%/0.06)] border border-[hsl(0_0%_100%/0.12)] max-w-2xl text-xs text-[hsl(0_0%_100%/0.85)] font-sans">
-              {Boolean(metaHours) && (
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
-                  <span>{metaHours}</span>
-                </div>
-              )}
-              {Boolean(metaAddress) && (
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
-                  <span>{metaAddress}</span>
-                </div>
-              )}
-              {Boolean(metaRating) && (
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
-                  <span className="font-semibold text-[hsl(158_60%_80%)]">{metaRating}</span>
-                </div>
-              )}
+            {/* Flanking Mini-Copy Columns */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-white/15 max-w-xl text-xs text-white/75 leading-relaxed">
+              <p className="border-l-2 border-accent/80 pl-3">{flankLeft}</p>
+              <p className="border-l-2 border-white/30 pl-3">{flankRight}</p>
             </div>
           </div>
 
-          {/* Right Column: Flanking Micro-Copy & Rotating Text Seal */}
-          <div className="lg:col-span-4 flex flex-col gap-6 items-start lg:items-end">
-            {/* Layer 8: Rotating Circular Text Seal */}
-            <div className="relative w-36 h-36 flex items-center justify-center">
-              <svg
-                viewBox="0 0 160 160"
-                className="w-full h-full animate-[spin_25s_linear_infinite]"
-                aria-hidden="true"
+          {/* Right Column: Bleeding Media Portal & Rotating Text Seal */}
+          <div className="lg:col-span-5 xl:col-span-5 relative mt-4 lg:mt-0">
+            {/* Overlapping Video Container with angled crop */}
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-lg overflow-hidden border border-white/20 shadow-2xl bg-bg-dark">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster={videoPoster}
+                className="w-full h-full object-cover opacity-80"
               >
-                <path
-                  id="sealCircle"
-                  d="M 80, 80 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
-                  fill="none"
-                />
-                <text className="text-[10.5px] font-sans font-bold uppercase tracking-[0.22em] fill-[hsl(158_64%_55%)]">
-                  <textPath href="#sealCircle" startOffset="0%">
-                    {t("hero.sealText") as string}
-                  </textPath>
-                </text>
-              </svg>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2 rounded-full border border-[hsl(158_64%_48%/0.3)] bg-[hsl(204_45%_12%/0.75)] backdrop-blur-sm pointer-events-none">
-                <span className="font-display font-black text-xl text-[hsl(0_0%_100%)] leading-none">
-                  2021
-                </span>
-                <span className="text-[9px] uppercase tracking-widest text-[hsl(158_64%_60%)] font-sans mt-0.5">
-                  Telemark
+                <source src={videoSrc} type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-primary/30 pointer-events-none" />
+
+              {/* In-video badge */}
+              <div className="absolute bottom-4 left-4 z-10 bg-primary/90 backdrop-blur-md px-3.5 py-1.5 rounded border border-white/15">
+                <span className="text-[11px] font-display font-bold uppercase tracking-wider text-white">
+                  Notodden & Telemark
                 </span>
               </div>
             </div>
 
-            {/* Layer 9: Two Flanking Mini-Copy Blocks */}
-            <div className="w-full max-w-sm space-y-3">
-              <div className="p-3.5 rounded-xl bg-[hsl(0_0%_100%/0.06)] border border-[hsl(0_0%_100%/0.12)] text-left backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(158_64%_50%)] mb-1">
-                  {t("hero.flankLeftTitle") as string}
-                </div>
-                <div className="text-xs text-[hsl(0_0%_100%/0.75)] leading-relaxed font-light">
-                  {t("hero.flankLeftText") as string}
-                </div>
+            {/* Rotating Circular Text Seal overlapping video edge */}
+            <div className="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-4 w-36 h-36 sm:w-44 sm:h-44 rounded-full border border-white/25 flex items-center justify-center p-2.5 bg-primary/95 backdrop-blur-md shadow-2xl z-20">
+              <div className="absolute inset-0 animate-spin-slow flex items-center justify-center pointer-events-none">
+                <svg className="w-full h-full" viewBox="0 0 200 200">
+                  <path
+                    id="sealCurve"
+                    d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
+                    fill="none"
+                  />
+                  <text className="text-[10px] font-display font-bold uppercase tracking-[0.24em] fill-white/80">
+                    <textPath href="#sealCurve" startOffset="0%">
+                      {sealText}
+                    </textPath>
+                  </text>
+                </svg>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-[hsl(0_0%_100%/0.06)] border border-[hsl(0_0%_100%/0.12)] text-left backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-wider font-sans font-bold text-[hsl(158_64%_50%)] mb-1">
-                  {t("hero.flankRightTitle") as string}
-                </div>
-                <div className="text-xs text-[hsl(0_0%_100%/0.75)] leading-relaxed font-light">
-                  {t("hero.flankRightText") as string}
-                </div>
+              {/* Center Seal Core */}
+              <div className="text-center p-2 rounded-full bg-white/5 border border-white/15 w-24 h-24 sm:w-28 sm:h-28 flex flex-col items-center justify-center">
+                <span className="font-display font-extrabold text-xs sm:text-sm text-accent tracking-tight leading-none block">
+                  100 %
+                </span>
+                <span className="text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase text-white/95 mt-1 block">
+                  GARANTI
+                </span>
+                <span className="text-[8px] text-white/60 tracking-tight block">
+                  Notodden
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Layer 10: Scroll Cue */}
-      <div className="relative z-10 flex flex-col items-center justify-center pb-2 select-none pointer-events-none">
-        <span className="text-[9px] font-sans font-semibold uppercase tracking-[0.25em] text-[hsl(0_0%_100%/0.45)] mb-1">
-          {t("hero.scrollWord") as string}
+      {/* Layer 4: Bottom 3-Item Meta Strip */}
+      <div className="relative z-10 w-full border-t border-white/15 bg-primary/90 backdrop-blur-md py-3.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs text-white/85">
+          <div className="flex items-center gap-2">
+            <span className="text-accent font-bold">Åpningstid:</span>
+            <span>{metaHours}</span>
+          </div>
+          <div className="hidden md:block text-white/30">―</div>
+          <div className="flex items-center gap-2">
+            <span className="text-accent font-bold">Dekning:</span>
+            <span>{metaCoverage}</span>
+          </div>
+          <div className="hidden md:block text-white/30">―</div>
+          <div className="flex items-center gap-2 font-mono">
+            <span className="text-white/60">Vurdering:</span>
+            <span className="text-white font-bold">{metaRating}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Layer 5: Scroll Cue */}
+      <div className="relative z-10 flex flex-col items-center justify-center pt-2">
+        <span className="text-[9px] font-display font-semibold tracking-[0.28em] uppercase text-white/50 mb-1">
+          {scrollWord}
         </span>
-        <div className="w-px h-6 bg-gradient-to-b from-[hsl(158_64%_48%)] to-transparent" />
-      </div>
-
-      {/* Thin Marquee Ticker at Hero Base */}
-      <div className="relative z-20 w-full overflow-hidden bg-[hsl(204_45%_12%/0.95)] border-t border-[hsl(0_0%_100%/0.12)] py-2.5">
-        <div className="flex whitespace-nowrap animate-[marquee_30s_linear_infinite]">
-          {[...tickerItems, ...tickerItems].map((item, idx) => (
-            <div key={idx} className="flex items-center gap-4 mx-6 text-xs text-[hsl(0_0%_100%/0.8)] font-sans">
-              <span className="w-1.5 h-1.5 rounded-full bg-[hsl(158_64%_48%)] shrink-0" />
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
+        <div className="w-px h-5 bg-gradient-to-b from-accent to-transparent animate-pulse" />
       </div>
     </section>
   );

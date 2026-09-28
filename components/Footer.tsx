@@ -4,152 +4,159 @@ import { useLocale } from "@/lib/i18n";
 export default function Footer() {
   const { t } = useLocale();
 
-  const brandName = t("brand.name") as string;
-  const phone = t("brand.phone") as string;
-  const email = t("brand.email") as string;
+  const wordmark = String(t("footer.wordmark"));
+  const tagline = String(t("footer.tagline"));
+  const regNumber = String(t("footer.regNumber"));
+  const navTitle = String(t("footer.navTitle"));
+  const contactTitle = String(t("footer.contactTitle"));
+  const hoursTitle = String(t("footer.hoursTitle"));
+  const businessTitle = String(t("footer.businessTitle"));
+  const businessInsurance = String(t("footer.businessInsurance"));
+  const weekdays = String(t("footer.hours.weekdays"));
+  const saturday = String(t("footer.hours.saturday"));
+  const sunday = String(t("footer.hours.sunday"));
+  const location = String(t("footer.location"));
+  const phone = String(t("footer.phone"));
+  const email = String(t("footer.email"));
+  const copyright = String(t("footer.copyright"));
+  const creditPre = String(t("footer.creditPre"));
+  const creditLink = String(t("footer.creditLink"));
+
+  const linkServices = String(t("footer.links.services"));
+  const linkPackages = String(t("footer.links.packages"));
+  const linkCalculator = String(t("footer.links.calculator"));
+  const linkResults = String(t("footer.links.results"));
+  const linkAbout = String(t("footer.links.about"));
+  const linkFaq = String(t("footer.links.faq"));
+  const phoneLabel = String(t("footer.phoneLabel"));
+  const emailLabel = String(t("footer.emailLabel"));
+  const smsBadge = String(t("footer.smsBadge"));
+  const emailInquiry = String(t("footer.emailInquiry"));
+  const commercialNotice = String(t("footer.commercialNotice"));
+  const subRegion = "Notodden & Telemark";
 
   return (
-    <footer className="bg-[hsl(204_45%_12%)] text-[hsl(0_0%_100%)] pt-16 pb-24 lg:pb-12 border-t border-[hsl(0_0%_100%/0.1)] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-[hsl(0_0%_100%/0.12)]">
-          {/* Col 1: About */}
-          <div>
-            <div className="font-display font-extrabold text-2xl tracking-tight mb-3">
-              {brandName}
-            </div>
-            <p className="text-xs text-[hsl(0_0%_100%/0.7)] leading-relaxed font-light mb-4">
-              {t("footer.about") as string}
+    <footer className="bg-bg-dark text-white pt-16 pb-12 border-t border-white/10 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Giant full-width brand wordmark bleeding off */}
+        <div className="border-b border-white/10 pb-10 mb-12">
+          <p className="font-display font-extrabold text-3xl sm:text-5xl lg:text-7xl tracking-tighter text-white/95">
+            {wordmark}
+          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-3">
+            <p className="text-xs sm:text-sm text-accent font-semibold tracking-wider uppercase">
+              {tagline}
             </p>
-            <div className="text-xs text-[hsl(158_64%_48%)] font-sans font-semibold mb-1">
-              {t("brand.orgStatus") as string}
-            </div>
-            <div className="text-xs text-[hsl(0_0%_100%/0.5)] font-mono">
-              {t("brand.orgNumber") as string}
-            </div>
+            <span className="text-xs text-white/50">
+              {subRegion}
+            </span>
+          </div>
+        </div>
+
+        {/* 4 Footer Dense Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 text-xs sm:text-sm">
+          {/* Col 1: About & Approvals */}
+          <div>
+            <h3 className="font-display font-bold text-xs text-accent mb-3 uppercase tracking-wider">
+              {businessTitle}
+            </h3>
+            <p className="text-white/70 leading-relaxed mb-3">
+              {regNumber}
+            </p>
+            <p className="text-white/60 leading-relaxed">
+              {businessInsurance}
+            </p>
           </div>
 
           {/* Col 2: Navigation */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_48%)] mb-4">
-              {t("footer.navTitle") as string}
-            </h4>
-            <ul className="space-y-2 text-xs text-[hsl(0_0%_100%/0.75)]">
+            <h3 className="font-display font-bold text-xs text-accent mb-3 uppercase tracking-wider">
+              {navTitle}
+            </h3>
+            <ul className="space-y-2 text-white/75">
               <li>
-                <a href="#services" className="hover:text-[hsl(0_0%_100%)]">
-                  {t("nav.services") as string}
-                </a>
+                <a href="#tjenester" className="hover:text-accent transition-colors duration-150 ease-out">{linkServices}</a>
               </li>
               <li>
-                <a href="#calculator" className="hover:text-[hsl(0_0%_100%)]">
-                  {t("nav.calculator") as string}
-                </a>
+                <a href="#pakker" className="hover:text-accent transition-colors duration-150 ease-out">{linkPackages}</a>
               </li>
               <li>
-                <a href="#packages" className="hover:text-[hsl(0_0%_100%)]">
-                  {t("nav.packages") as string}
-                </a>
+                <a href="#kalkulator" className="hover:text-accent transition-colors duration-150 ease-out">{linkCalculator}</a>
               </li>
               <li>
-                <a href="#guarantee" className="hover:text-[hsl(0_0%_100%)]">
-                  {t("nav.guarantee") as string}
-                </a>
+                <a href="#resultater" className="hover:text-accent transition-colors duration-150 ease-out">{linkResults}</a>
               </li>
               <li>
-                <a href="#hytta" className="hover:text-[hsl(0_0%_100%)]">
-                  {t("nav.hytta") as string}
-                </a>
+                <a href="#om-oss" className="hover:text-accent transition-colors duration-150 ease-out">{linkAbout}</a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-[hsl(0_0%_100%)]">
-                  {t("nav.faq") as string}
-                </a>
+                <a href="#faq" className="hover:text-accent transition-colors duration-150 ease-out">{linkFaq}</a>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Contacts */}
+          {/* Col 3: Contact & Direct response */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_48%)] mb-4">
-              {t("footer.contactTitle") as string}
-            </h4>
-            <div className="space-y-3 text-xs text-[hsl(0_0%_100%/0.75)]">
-              <div>
-                <span className="block text-[hsl(0_0%_100%/0.5)]">Телефон:</span>
-                <a href={`tel:${phone}`} className="hover:text-[hsl(158_64%_48%)] font-bold text-sm">
-                  {phone}
-                </a>
-              </div>
-              <div>
-                <span className="block text-[hsl(0_0%_100%/0.5)]">Електронна пошта:</span>
-                <a href={`mailto:${email}`} className="hover:text-[hsl(158_64%_48%)]">
-                  {email}
-                </a>
-              </div>
-              <div>
-                <span className="block text-[hsl(0_0%_100%/0.5)]">Локація:</span>
-                <span>Notodden, Telemark, Norge</span>
-              </div>
+            <h3 className="font-display font-bold text-xs text-accent mb-3 uppercase tracking-wider">
+              {contactTitle}
+            </h3>
+            <p className="text-white/70 mb-2">{location}</p>
+            <p className="mb-2">
+              <span className="text-white/50 block text-[11px]">{phoneLabel}</span>
+              <a href="tel:+4796684397" className="text-white font-bold hover:text-accent transition-colors duration-150 ease-out">
+                {phone}
+              </a>
+            </p>
+            <p className="mb-2">
+              <span className="text-white/50 block text-[11px]">{emailLabel}</span>
+              <a href={`mailto:${email}`} className="text-white/80 hover:text-accent transition-colors duration-150 ease-out">
+                {email}
+              </a>
+            </p>
+            <div className="pt-2 flex flex-wrap gap-2 text-[10px] text-white/60">
+              <a href="tel:+4796684397" className="hover:underline text-accent font-semibold">
+                {smsBadge}
+              </a>
+              <span>·</span>
+              <a href={`mailto:${email}`} className="hover:underline">
+                {emailInquiry}
+              </a>
             </div>
           </div>
 
-          {/* Col 4: Standards & Social Text Links */}
+          {/* Col 4: Opening Hours */}
           <div>
-            <h4 className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_48%)] mb-4">
-              {t("footer.legalTitle") as string}
-            </h4>
-            <ul className="space-y-2 text-xs text-[hsl(0_0%_100%/0.75)] mb-6">
-              <li>• {t("footer.legal1") as string}</li>
-              <li>• {t("footer.legal2") as string}</li>
-              <li>• {t("footer.legal3") as string}</li>
-              <li>• {t("footer.legal4") as string}</li>
+            <h3 className="font-display font-bold text-xs text-accent mb-3 uppercase tracking-wider">
+              {hoursTitle}
+            </h3>
+            <ul className="space-y-1.5 text-white/70">
+              <li>{weekdays}</li>
+              <li>{saturday}</li>
+              <li>{sunday}</li>
             </ul>
-
-            <div className="flex flex-wrap gap-3 text-xs font-sans font-semibold text-[hsl(158_64%_48%)]">
-              <a href="#" className="hover:underline">Facebook</a>
-              <span>·</span>
-              <a href="#" className="hover:underline">Vipps Bedrift</a>
-              <span>·</span>
-              <a href="#" className="hover:underline">Gule Sider</a>
-              <span>·</span>
-              <a href="#" className="hover:underline">Mittanbud</a>
+            <div className="mt-4 p-3 bg-white/5 rounded border border-white/10 text-[11px] text-white/70">
+              {commercialNotice}
             </div>
           </div>
         </div>
 
-        {/* Brand Voice Credit Meta-Line */}
-        <div className="py-6 text-xs text-[hsl(0_0%_100%/0.65)] font-light border-b border-[hsl(0_0%_100%/0.08)]">
-          {t("footer.brandVoiceCredit") as string}
-        </div>
-
-        {/* Legal Row & Studio Credit */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[hsl(0_0%_100%/0.5)] gap-4">
-          <div>
-            © 2026 {brandName}. {t("footer.rights") as string}
-          </div>
-          <div>
-            {t("footer.devCredit") as string}{" "}
+        {/* Legal Row with Studio Credit */}
+        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 gap-4">
+          <p>{copyright}</p>
+          <p>
+            {creditPre}
             <a
               href="https://makarich.framer.website"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[hsl(158_64%_48%)] hover:underline font-semibold"
+              className="text-white font-medium hover:text-accent underline transition-colors duration-150 ease-out"
             >
-              McRich.dev
+              {creditLink}
             </a>
-          </div>
+          </p>
         </div>
       </div>
-
-      {/* Giant Full-Width Brand Wordmark Bleeding off Bottom */}
-      <div
-        aria-hidden="true"
-        className="w-full overflow-hidden select-none pointer-events-none text-center pt-8 -mb-4 opacity-10"
-      >
-        <span className="font-display font-black text-[13vw] leading-none text-[hsl(0_0%_100%)] tracking-tighter whitespace-nowrap block">
-          {t("footer.wordmark") as string}
-        </span>
-      </div>
-      <div className="mt-4 text-center text-xs opacity-70"><a href="/privacy" className="underline hover:no-underline">Політика конфіденційності</a></div>
+      <div className="mt-4 text-center text-xs opacity-70"><a href="/privacy" className="underline hover:no-underline">Personvernerklæring</a></div>
     </footer>
   );
 }

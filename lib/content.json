@@ -1,555 +1,562 @@
 {
-  "defaultLocale": "uk",
+  "defaultLocale": "no",
   "locales": {
-    "uk": {
+    "no": {
       "meta": {
-        "title": "Makarenko Reinhold — Сертифіковане прибирання та Flyttevask у Нотоддені",
-        "description": "Офіційний клінінг житла, офісів та гірських дач у Нотоддені й регіоні Телемарк. 100% Flyttegaranti за норвезьким стандартом, хімія Svanemerket, страховий поліс Tryg та прозорі тарифи від 420 NOK за годину.",
-        "keywords": "прибирання Нотодден, Flyttevask Notodden, renhold Telemark, прибирання дач Hyttevask, генеральне прибирання Норвегія, клінінг Телемарк",
-        "lang": "uk"
-      },
-      "brand": {
-        "name": "Makarenko Reinhold",
-        "city": "Нотодден",
-        "region": "Телемарк, Норвегія",
-        "founded": "2021",
-        "phone": "+4796684397",
-        "email": "annadizhenko@gmail.com",
-        "contactPerson": "Анна Діженко",
-        "orgNumber": "Org.nr 928 341 892 MVA",
-        "orgStatus": "Godkjent renholdsbedrift · Arbeidstilsynet",
-        "vatNote": "Усі розцінки містять 25% MVA"
+        "title": "Makarenko Reinhold — Godkjent renhold i Notodden & Telemark",
+        "description": "Fast renhold, flyttevask med garanti for godkjent overtakelse og hyttevask i Telemark fra 430 kr/t inkl. 25 % mva. Godkjent av Arbeidstilsynet.",
+        "lang": "no"
       },
       "nav": {
-        "services": "Послуги",
-        "calculator": "Калькулятор",
-        "packages": "Прейскурант",
-        "guarantee": "Гарантія",
-        "hytta": "Дачі Телемарк",
-        "reviews": "Відгуки",
-        "faq": "Запитання",
-        "contact": "Контакти",
-        "cta": "Розрахувати кошторис"
+        "brand": "Makarenko Reinhold",
+        "subBrand": "Notodden · Telemark",
+        "services": "Tjenester",
+        "packages": "Prisliste & Pakker",
+        "calculator": "Priskalkulator",
+        "beforeAfter": "Resultater",
+        "about": "Om oss & Fagstandard",
+        "process": "Arbeidsgang",
+        "faq": "Spørsmål",
+        "contact": "Bestill renhold",
+        "callNow": "Ring direkte",
+        "phone": "+47 966 84 397",
+        "smsResponse": "Svar innen 15 min"
       },
       "hero": {
-        "kickerMeta": "Засновано 2021 року у Нотоддені · Регіон Телемарк · Renholdsbedrift #928341892",
-        "titleLead": "Сертифікований клінінг:",
-        "titleAccent": "регулярний догляд та 100% Flyttegaranti",
-        "titleTail": "у Нотоддені",
-        "subtitle": "Беремо на себе щотижневе підтримувальне прибирання, сезонний догляд за котеджами Телемарку та виїзне очищення при переїзді з письмовим протоколом для орендодавця. Еко-склади Svanemerket, офіційна звітність з 25% MVA та страховий захист Tryg Forsikring.",
-        "primaryCta": "Розрахувати онлайн",
-        "secondaryCta": "Зателефонувати",
-        "callLinkText": "Зв'язатися безпосередньо",
-        "flankLeftTitle": "Регламент передачі житла",
-        "flankLeftText": "Повна відповідність Husleieloven § 10-2 та норвезьким протоколам здачі нерухомості.",
-        "flankRightTitle": "Страховий захист Tryg",
-        "flankRightText": "Поліс цивільної відповідальності компанії з лімітом покриття 10 000 000 NOK.",
-        "metaAddress": "Notodden sentrum & Telemark",
-        "metaRating": "Рейтинг 5,0 на основі 48 актів",
-        "metaHours": "",
-        "scrollWord": "ПРОКРУТІТЬ",
-        "statPrice": "від 420 NOK / год",
-        "statPriceLabel": "включно з 25% MVA",
-        "statRating": "5,0 із 5,0",
-        "statRatingLabel": "214 переданих об'єктів без зауважень",
-        "statGuarantee": "100% Flyttegaranti",
-        "statGuaranteeLabel": "повернення орендного депозиту",
-        "sealText": "GODKJENT RENHOLDSBEDRIFT · TELEMARK · NOTODDEN · 100% FLYTTEGARANTI · ",
+        "metaKicker": "Etablert 2023 · Notodden, Telemark · Offentlig godkjent virksomhet",
+        "titlePre": "Renhold med",
+        "titleAccent": "garanti",
+        "titlePost": "for godkjent resultat i Notodden",
+        "lede": "Vi utfører fast renhold av private hjem, hyttevask og flyttevask med 100 % depositumsgaranti. Åpne timepriser fra 430 kr inkludert 25 % mva. og ingen kjøretillegg i Notodden.",
+        "ctaPrimary": "Beregn fastpris",
+        "ctaSecondary": "Se full prisliste",
+        "sealText": "ARBEIDSTILSYNET-GODKJENT · FAST RENHOLD NOTODDEN · TELEMARK · ",
+        "flankLeft": "Faste renholdere med gyldige HMS-kort. Skriftlig nøkkelavtale og sikkerhetsskap for alle oppdrag.",
+        "flankRight": "5 000 000 kr ansvarsforsikring i Gjensidige. Svanemerkede pleiemidler tilpasset heltre, parkett og skifer.",
+        "scrollWord": "RULL NED",
+        "metaStrip": {
+          "hours": "Man–fre 07:00–19:00",
+          "coverage": "Notodden, Heddal, Sauland, Gransherad og Tuven",
+          "rating": "4,9 / 5,0 · 48 verifiserte oppdrag i Telemark"
+        },
         "videoSrc": "https://videos.pexels.com/video-files/4238760/4238760-hd_1920_1080_30fps.mp4",
-        "videoPoster": "https://images.pexels.com/videos/4238760/pexels-photo-4238760.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
-        "tickerItems": [
-          "Реєстрація Arbeidstilsynet",
-          "HMS-картки персоналу",
-          "Еко-стандарт Svanemerket",
-          "Страхування Tryg 10 000 000 NOK",
-          "100% повернення депозиту",
-          "Виїзд у радіусі 45 км від Нотоддена",
-          "Звітність з 25% MVA"
+        "videoPoster": "https://images.pexels.com/videos/4238760/pexels-photo-4238760.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
+      },
+      "marquee": [
+        "Offentlig godkjent av Arbeidstilsynet",
+        "Svanemerkede pleiemidler",
+        "100 % depositumsgaranti",
+        "Samme faste renholder",
+        "Ingen kjøretillegg i Notodden",
+        "5 000 000 kr ansvarsforsikring"
+      ],
+      "interstitials": {
+        "hairline": "Forutsigbare priser uten skjulte tillegg",
+        "statementQuote": "Hver overflate rengjøres etter gjeldende norske standarder for overlevering og materialbevaring.",
+        "statementSub": "Notodden · Heddal · Sauland · Tinnoset",
+        "statementLead": "Kvalitetsforankret renhold i Telemark"
+      },
+      "proof": {
+        "kicker": "Dokumentert trygghet",
+        "title": "Standarder som beskytter boligen og depositumet ditt",
+        "score": "4,9",
+        "scoreMax": "5,0",
+        "reviewCount": "48 verifiserte oppdrag",
+        "stats": [
+          {
+            "value": "100 %",
+            "label": "Depositumsgaranti",
+            "detail": "Gratis utbedring innen 24 timer dersom utleier eller megler har anmerkninger."
+          },
+          {
+            "value": "430 kr",
+            "label": "Timepris inkl. 25 % mva.",
+            "detail": "Forutsigbare kostnader uten skjulte oppstartstillegg i Notodden kommune."
+          },
+          {
+            "value": "5 Mill. kr",
+            "label": "Gjensidige ansvarsforsikring",
+            "detail": "Full dekning for eikeparkett, marmorfliser, glassoverflater og fast inventar."
+          },
+          {
+            "value": "15 min",
+            "label": "Garantert svartid",
+            "detail": "Direkte kontakt med fagansvarlig på SMS eller telefon alle hverdager."
+          }
         ]
       },
-      "trustStrip": {
-        "item1": "Офіційний реєстр Godkjent renholdsbedrift",
-        "item2": "Фахівці з дійсними картками безпеки HMS",
-        "item3": "Страховий поліс Tryg Forsikring 10 000 000 NOK",
-        "item4": "Гіпоалергенна рецептура еко-маркування Svanemerket",
-        "item5": "Безкоштовний повторний виїзд протягом 48 годин за протоколом"
-      },
-      "servicesSection": {
-        "kicker": "СПЕЦІАЛІЗАЦІЯ ТА СТАНДАРТИ",
-        "title": "Сертифікований клінінг для приватних осель, бізнесу та дач",
-        "subtitle": "Обирайте регулярний графік або разовий виїзд із чітким регламентом за стандартом Arbeidstilsynet.",
-        "watermark": "TJENESTER",
-        "tabAll": "Усі напрямки",
-        "tabHome": "Житло",
-        "tabMoving": "Переїзд",
-        "tabCabin": "Дачі та Hytter",
-        "tabB2B": "Комерційні об'єкти",
-        "footnote": "Кожна послуга надається за письмовим договором із деталізованим чек-листом робіт.",
-        "secondaryLink": "Запитати індивідуальну консультацію",
+      "services": {
+        "kicker": "Faglige renholdstjenester",
+        "title": "Skreddersydd renhold for private boliger, hytter og bedrifter",
+        "lede": "Vi benytter faste renholdere, skriftlig nøkkelprotokoll og dokumenterte Svanemerkede kjemikalier tilpasset nordiske overflater.",
         "items": [
           {
             "id": "regular",
-            "category": "home",
-            "title": "Щотижневе підтримувальне прибирання (Fast renhold)",
-            "description": "Постійний догляд за житлом раз на тиждень або раз на 14 днів. Миття підлоги з урахуванням дерев'яних покриттів, знепилення відкритих площ, санація кухонних зон та санвузлів.",
-            "price": "від 420 NOK / год",
-            "details": "Власний інвентар, постійний виконавець, стабільний графік",
-            "tag": "Постійний догляд",
-            "image": "https://images.pexels.com/photos/27176673/pexels-photo-27176673.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+            "name": "Fast regelmessig boligrenhold",
+            "frequency": "Ukentlig eller hver 14. dag",
+            "price": "Fra 430 kr/t inkl. mva.",
+            "description": "Faste besøk med grundig støvtørking, våtvask av gulvflater, sanitærhygiene på bad og desinfiserende overflatevask av kjøkken.",
+            "details": "Samme faste renholder hver gang, skriftlig nøkkelprotokoll og frihet til å avbestille inntil 48 timer før oppdrag.",
+            "imageUrl": "https://images.pexels.com/photos/27176673/pexels-photo-27176673.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
           },
           {
-            "id": "flyttevask",
-            "category": "moving",
-            "title": "Прибирання при виїзді з гарантією (Flyttevask)",
-            "description": "Фінальне очищення приміщення перед передачею ріелтору чи орендодавцю. Включає відмивання духових шаф, плінтусів, вентиляційних ґрат, кахлю та важкодоступних зон.",
-            "price": "від 3 900 NOK фіксовано",
-            "details": "Письмова гарантія на прийом об'єкта, усунення зауважень за 48 годин",
-            "tag": "100% Flyttegaranti",
-            "image": "https://images.pexels.com/photos/7578966/pexels-photo-7578966.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+            "id": "moveout",
+            "name": "Flyttevask med overleveringsgaranti",
+            "frequency": "Fastpris tilpasset boligens bruksareal",
+            "price": "Fra 5 900 kr (70 m²)",
+            "description": "Omfattende utvask etter Husleielovens strengeste krav: demontering og rens av avtrekksvifte, grundig stekeovnsrens, kjøleskap og rens av sluk.",
+            "details": "Inkluderer tosidig vinduspuss og 100 % skriftlig garanti: ved eventuelle bemerkninger retter vi opp gratis innen 24 timer.",
+            "imageUrl": "https://images.pexels.com/photos/7289739/pexels-photo-7289739.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
           },
           {
-            "id": "storvask",
-            "category": "home",
-            "title": "Генеральне сезонне очищення (Hovedrengjøring / Storvask)",
-            "description": "Глибоке оновлення оселі після зими чи тривалого побуту. Ретельна дезінфекція сантехніки, знежирення кухонних фасадів, миття світильників, дверних коробок та батарей.",
-            "price": "від 3 200 NOK",
-            "details": "Гіпоалергенна хімія Svanemerket, безпечно для дітей та тварин",
-            "tag": "Сезонний пакет",
-            "image": "https://images.pexels.com/photos/5591854/pexels-photo-5591854.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+            "id": "cabin",
+            "name": "Hyttevask og sesongklargjøring i Telemark",
+            "frequency": "Før skisesong eller etter hyttehelg",
+            "price": "Fra 4 200 kr per oppdrag",
+            "description": "Komplett renhold av fritidsboliger i Heddal, Sauland og Tinnoset. Fjerning av sotpartikler, støvsuging av treinteriør og klargjøring av sengetøy.",
+            "details": "Vi ordner nøkkelbokshenting og tilpasser kjemikalier for ubehandlet furu, laftevegger og skiferheller.",
+            "imageUrl": "https://images.pexels.com/photos/3177257/pexels-photo-3177257.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
           },
           {
-            "id": "hyttevask",
-            "category": "cabin",
-            "title": "Догляд за гірськими дачами (Hyttevask Telemark)",
-            "description": "Комплексне обслуговування котеджів у Нотоддені, Геддалі, Сауланді та Тувені. Підготовка до заїзду, провітрювання, видалення сажі біля каміна, перевірка порядку.",
-            "price": "від 2 500 NOK",
-            "details": "Дистанційне узгодження через фотозвіт, робота з ключницями",
-            "tag": "Телемарк радіус 45 км",
-            "image": "https://images.pexels.com/photos/48889/cleaning-washing-cleanup-the-ilo-48889.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+            "id": "deep",
+            "name": "Hovedrengjøring og byggvask",
+            "frequency": "Årlig vedlikehold eller etter oppussing",
+            "price": "Fra 430 kr/t inkl. mva.",
+            "description": "Dyprens fra tak til gulv: vask bak hvitevarer, avtørking av dørlister, belysning, radiatorer og fjerning av fint pussestøv etter renovering.",
+            "details": "Spesialtilpassede munnstykker for å unngå riper i nylagt parkett og grundig fjerning av mikrostøv med HEPA-filtrerte støvsugere.",
+            "imageUrl": "https://images.pexels.com/photos/10567236/pexels-photo-10567236.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
           },
           {
-            "id": "vindusvask",
-            "category": "home",
-            "title": "Миття вікон та скляних фасадів (Vindusvask)",
-            "description": "Двостороннє очищення віконних рам, підвіконь, ущільнювачів та фурнітури без розводів. Застосовуємо професійні скребки та демінералізовані розчини.",
-            "price": "від 650 NOK",
-            "details": "Будь-яка висотність перших поверхів та балконні конструкції",
-            "tag": "Обидва боки скла",
-            "image": "https://images.pexels.com/photos/39772103/pexels-photo-39772103.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+            "id": "windows",
+            "name": "Vinduspuss innvendig og utvendig",
+            "frequency": "Sesongvis eller som tilleggstjeneste",
+            "price": "Fra 650 kr som tillegg",
+            "description": "Fjerning av trafikkfilm, pollen og saltbelegg fra vindusglass, karmer og vannbrett uten striper.",
+            "details": "Bruk av rentvannsteknikk og skånsomme gumminaler som etterlater glasset krystallklart.",
+            "imageUrl": "https://images.pexels.com/photos/8811390/pexels-photo-8811390.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
           },
           {
-            "id": "kontor",
-            "category": "b2b",
-            "title": "Прибирання комерційних офісів (Kontorrenhold)",
-            "description": "Регулярний сервіс для приміщень площею від 20 до 250 м². Очищення робочих станцій, дезінфекція кухонних зон, винос відходів за правилами сортування та інвойси MVA.",
-            "price": "від 420 NOK / год + MVA",
-            "details": "Робота у неробочий час без створення перешкод персоналу",
-            "tag": "Корпоративний B2B",
-            "image": "https://images.pexels.com/photos/10567360/pexels-photo-10567360.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200"
+            "id": "office",
+            "name": "Kontor-, klinikk- og næringsrenhold",
+            "frequency": "Faste kveldsavtaler utenom åpningstid",
+            "price": "Avtalepris etter befaring",
+            "description": "Desinfiserende renhold for kontorlokaler, frisørsalonger og helseklinikker i Notodden sentrum opptil 400 m².",
+            "details": "Kundeorienterte rapporter, tømming av avfall, hygienisk toalettvedlikehold og etterfylling av forbruksmateriell.",
+            "imageUrl": "https://images.pexels.com/photos/6196234/pexels-photo-6196234.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          }
+        ]
+      },
+      "packages": {
+        "kicker": "Spesifisert prisstruktur",
+        "title": "Prisliste og faste avtaler i Notodden",
+        "lede": "Forutsigbare priser oppgitt inkludert 25 % mva. Ingen kilometerkostnader innenfor Notodden kommune.",
+        "categories": [
+          "Alle oppdrag",
+          "Fast boligrenhold",
+          "Flyttevask & Garanti",
+          "Hytte & Fritid"
+        ],
+        "signatureLabel": "Mest valgt ved flytting",
+        "signatureTitle": "Pakke «Flytteklar Garanti» (70 m²)",
+        "signaturePrice": "5 900 kr",
+        "signatureDesc": "Komplett utvask etter Husleielovens strengeste standard: tosidig vinduspuss, ovnrens, avtrekksrens, slukrens og skriftlig garanti overfor utleier eller megler.",
+        "signatureCta": "Bestill med garanti",
+        "footnote": "Alle priser inkluderer forbruksmateriell, Svanemerkede pleiemidler, reisetid og 25 % mva. For hytter utenfor fast veikommunikasjon avtales adkomst på forhånd.",
+        "secondaryLink": "Last ned standard overleveringssjekkliste for flyttevask →",
+        "items": [
+          {
+            "cat": "Fast boligrenhold",
+            "name": "Fast vedlikeholdsvask (ukentlig eller annenhver uke)",
+            "desc": "Støvsuging, våtmopping, sanitærdesinfeksjon og avtørking av flater",
+            "price": "430 kr / time",
+            "tag": "Uten bindingstid"
+          },
+          {
+            "cat": "Fast boligrenhold",
+            "name": "Månedlig vedlikeholdsabonnement (2 besøk à 3 timer)",
+            "desc": "Komplett boligpleie for leiligheter og eneboliger inntil 100 m²",
+            "price": "2 760 kr / mnd",
+            "tag": "Fast renholder"
+          },
+          {
+            "cat": "Fast boligrenhold",
+            "name": "Helgevask før fredagskvelden (3,5 timer innsats)",
+            "desc": "Intensiv rengjøring av bad, kjøkken og stuesoner før helgen",
+            "price": "1 450 kr / gang",
+            "tag": ""
+          },
+          {
+            "cat": "Flyttevask & Garanti",
+            "name": "Flyttevask leilighet inntil 50 m² BRA",
+            "desc": "Inkluderer stekeovn, kjøleskap, vinduer, sluk og overleveringsgaranti",
+            "price": "4 900 kr",
+            "tag": "100 % garanti"
+          },
+          {
+            "cat": "Flyttevask & Garanti",
+            "name": "Flyttevask bolig 70 m² BRA (standardpakke)",
+            "desc": "Totalrengjøring fra himling til gulv med gratis ettervask innen 24 t",
+            "price": "5 900 kr",
+            "tag": "Toppselger"
+          },
+          {
+            "cat": "Flyttevask & Garanti",
+            "name": "Tillegg per ekstra m² utover 70 m² BRA",
+            "desc": "Skalert kvadratmetersats for større eneboliger og rekkehus",
+            "price": "45 kr / m²",
+            "tag": ""
+          },
+          {
+            "cat": "Hytte & Fritid",
+            "name": "Sesongklargjøring Telemarkshytte (inntil 90 m²)",
+            "desc": "Vinduspuss, peisovn, støvfjerning fra ubehandlet treverk og klargjøring",
+            "price": "4 200 kr",
+            "tag": "Nøkkelboks-tjeneste"
+          },
+          {
+            "cat": "Hytte & Fritid",
+            "name": "Etteroppholdsvask hytte etter helg eller ferie",
+            "desc": "Sanitærrengjøring, oppvask, gulvvask og søppeltømming",
+            "price": "2 150 kr",
+            "tag": ""
+          },
+          {
+            "cat": "Fast boligrenhold",
+            "name": "Innvendig dyprens av stekeovn og rister",
+            "desc": "Biologisk nedbrytbar ovnsgelé uten etsende syrer og dampavfetting",
+            "price": "450 kr",
+            "tag": "Tilleggstjeneste"
           }
         ]
       },
       "calculator": {
-        "kicker": "ТОЧНИЙ КОШТОРИС ОНЛАЙН",
-        "title": "Калькулятор вартості прибирання у Нотоддені",
-        "subtitle": "Отримайте прозору ціну з урахуванням площі об'єкта, обраного регламенту та обов'язкового MVA.",
-        "watermark": "KALKULATOR",
-        "areaLabel": "Площа приміщення (м²):",
-        "serviceLabel": "Тип прибирання:",
-        "addonsLabel": "Додаткові роботи:",
-        "summaryTitle": "Попередній розрахунок:",
-        "hoursEstimate": "Орієнтовний час виконання:",
-        "hoursSuffix": "годин",
-        "vatIncluded": "Включаючи 25% MVA",
-        "bookButton": "Забронювати",
-        "secondaryLink": "Зателефонувати щодо нестандартного об'єкта",
-        "note": "У вартість включено всі мийні засоби Svanemerket та професійне обладнання. Жодних зборів за доїзд у межах Нотоддена.",
-        "rateLabel": "Базовий тариф за м²:"
-      },
-      "packages": {
-        "kicker": "ПРЕЙСКУРАНТ ТА РЕГЛАМЕНТИ",
-        "title": "Офіційні розцінки на клінінгові послуги у Нотоддені",
-        "subtitle": "Чіткі позиції з фіксованими обсягами робіт відповідно до скандинавських стандартів житлового сервісу.",
-        "watermark": "PRISER",
-        "tabResidential": "Житлові приміщення",
-        "tabMoving": "Переїзд (Flyttevask)",
-        "tabCabin": "Гірські котеджі (Hytter)",
-        "signatureBadge": "ГОЛОВНИЙ ПАКЕТ З ГАРАНТІЄЮ",
-        "signatureTitle": "Пакет «Trygg Flytting» — Здача житла без ризику для депозиту",
-        "signatureDesc": "Повний цикл підготовки житла перед передачею орендодавцю або агентству нерухомості. Включає очищення кухонної техніки, витяжки, санітарних вузлів, вікон з двох боків та міжкімнатних конструкцій за нормативом Husleieloven.",
-        "signaturePrice": "від 3 900 NOK",
-        "signatureNote": "Письмова гарантія на 48 годин для усунення зауважень інспекції.",
-        "footnote": "Всі ціни вказані з урахуванням 25% MVA. Оплата здійснюється після підписання акта приймання за банківським переказом або Vipps Bedrift.",
-        "secondaryCta": "Завантажити зразок акта приймання робіт",
-        "items": [
-          {
-            "category": "residential",
-            "name": "Підтримувальне прибирання 1-кімнатної квартири (до 40 м²)",
-            "price": "1 260 NOK",
-            "desc": "Вологе очищення підлоги, знепилення поверхонь, миття робочої зони кухні та дезінфекція санвузла.",
-            "tag": "Регулярний тариф"
-          },
-          {
-            "category": "residential",
-            "name": "Підтримувальне прибирання 2-3 кімнатної квартири (40–80 м²)",
-            "price": "1 680 NOK",
-            "desc": "Повний цикл догляду за житловими кімнатами, коридором, балконом та гігієнічна санація змішувачів.",
-            "tag": "Хіт замовлень"
-          },
-          {
-            "category": "residential",
-            "name": "Підтримувальне прибирання таунхауса або будинку (80–140 м²)",
-            "price": "2 520 NOK",
-            "desc": "Очищення двох санвузлів, сходів, плінтусів та житлових поверхонь гіпоалергенними складами.",
-            "tag": "Для сімей"
-          },
-          {
-            "category": "residential",
-            "name": "Генеральне сезонне прибирання (Hovedrengjøring, до 70 м²)",
-            "price": "3 200 NOK",
-            "desc": "Глибоке відмивання нальоту в душових, знежирення фасадів, чищення радіаторів опалення та дверей.",
-            "tag": "Сезонне оновлення"
-          },
-          {
-            "category": "moving",
-            "name": "Flyttevask студії або 1-кімнатної квартири (до 45 м²)",
-            "price": "3 900 NOK",
-            "desc": "Повний протокол здачі: духовка, витяжка, холодильник, вікна з рамами та 100% Flyttegaranti.",
-            "tag": "Гарантія 48 год"
-          },
-          {
-            "category": "moving",
-            "name": "Flyttevask стандартної 2-кімнатної квартири (45–70 м²)",
-            "price": "4 800 NOK",
-            "desc": "Глибоке очищення всіх кухонних сховищ, кахлю до швів, віконних блоків та вентиляційних решіток.",
-            "tag": "Популярний"
-          },
-          {
-            "category": "moving",
-            "name": "Flyttevask великої квартири або будинку (70–120 м²)",
-            "price": "6 500 NOK",
-            "desc": "Комплексне фінальне прибирання об'єкта зі складними поверхнями та допоміжними приміщеннями.",
-            "tag": "Письмовий акт"
-          },
-          {
-            "category": "cabin",
-            "name": "Hyttevask — Базова підготовка котеджу до заїзду",
-            "price": "2 500 NOK",
-            "desc": "Провітрювання, вологе очищення масиву сосни/дуба, ліквідація пилу, миття санвузла та тераси.",
-            "tag": "Телемарк виїзд"
-          },
-          {
-            "category": "cabin",
-            "name": "Hyttevask — Повний сезонний догляд із камінною зоною",
-            "price": "3 800 NOK",
-            "desc": "Видалення золи, відмивання сажі на термостійкому склі каміна, догляд за дерев'яними сходами.",
-            "tag": "Комплексний"
-          },
-          {
-            "category": "residential",
-            "name": "Двостороннє миття вікон з рамами (комплект до 6 стулок)",
-            "price": "650 NOK",
-            "desc": "Очищення скла, водовідвідних каналів рам, ущільнювачів та відливів демінералізованою водою.",
-            "tag": "Без розводів"
-          }
-        ]
-      },
-      "guaranteeSection": {
-        "kicker": "ОФІЦІЙНА БЕЗПЕКА ЗАМОВНИКА",
-        "title": "Письмова 100% Flyttegaranti та норвезькі стандарти контролю",
-        "subtitle": "Ми знаємо вимоги норвезьких орендодавців до чистоти житла. Тому беремо фінансову та регламентну відповідальність на себе.",
-        "p1": "Якщо власник житла або агенція нерухомості зафіксує будь-які зауваження до чистоти за протоколом передачі, наша бригада безкоштовно приїде і усуне їх протягом 48 годин без додаткових платежів.",
-        "p2": "Компанія внесена до державного реєстру Arbeidstilsynet як Godkjent renholdsbedrift. Усі фахівці мають дійсні HMS-картки, а діяльність застрахована в Tryg Forsikring із сумою відповідальності до 10 000 000 NOK.",
-        "watermark": "GARANTI",
-        "badge1": "48 годин на усунення",
-        "badge2": "Повернення депозиту",
-        "badge3": "Офіційна MVA-фактура",
-        "badge4": "Страхування 10M NOK",
-        "certTitle": "Офіційний регламент здачі",
-        "certSubtitle": "100% Flyttegaranti Telemark",
-        "certRule1": "Беззастережний безкоштовний повторний виїзд бригади протягом 48 годин у разі зауважень інспекції.",
-        "certRule2": "Чітке дотримання регламенту передачі житла за нормативом Husleieloven § 10-2.",
-        "certRule3": "Поліс цивільної відповідальності Tryg Forsikring на випадок матеріальних форс-мажорів.",
-        "certLeader": "Анна Діженко",
-        "certLeaderRole": "Старший координатор служби Makarenko Reinhold"
-      },
-      "telemarkCabin": {
-        "kicker": "ЛОКАЛЬНИЙ ФОКУС: ТЕЛЕМАРК",
-        "title": "Догляд за гірськими будинками та дачами (Hytter)",
-        "subtitle": "Обслуговуємо об'єкти в радіусі до 45 км від Нотоддена. Приїжджайте на вікенд у свіжий дім без потреби витрачати перші 5 годин на швабру та пилосос.",
-        "statement": "«Гірське повітря та дерев'яний зруб потребують особливої делікатності: жодних їдких розчинів, лише сертифіковані нейтральні емульсії Svanemerket.»",
-        "author": "Олексій Макаренко · Спеціаліст клінінгу дерев'яних котеджів",
-        "zonesTitle": "Зони виїзду та орієнтовний час прибуття бригади:",
-        "watermark": "HYTTER",
-        "zones": [
-          "Нотодден (Notodden sentrum) — 10—15 хв",
-          "Геддал (Heddal) — 15—20 хв",
-          "Сауланд (Sauland) — 25—30 хв",
-          "Тувен (Tuven) — 10 хв",
-          "Конгсберг (Kongsberg) — 35—40 хв",
-          "Аккергауген (Akkerhaugen) — 30 хв",
-          "Гірські сектори Телемарку — до 45 хв"
-        ],
-        "image": "https://images.pexels.com/photos/3177257/pexels-photo-3177257.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-        "secondaryImage": "https://images.pexels.com/photos/48889/cleaning-washing-cleanup-the-ilo-48889.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
-        "caption": "Дистанційний контроль через фотозвіт та робота з кодовими ключницями без присутності замовника."
+        "kicker": "Umiddelbar beregning",
+        "title": "Beregn ditt renholdsbehov på 60 sekunder",
+        "lede": "Juster arealet og velg ønskede tillegg for å se veiledende fastpris inkludert 25 % mva.",
+        "step1Label": "1. Type oppdrag",
+        "step2Label": "2. Boligens bruksareal (BRA)",
+        "step3Label": "3. Valgfrie tillegg",
+        "sliderMinLabel": "Liten leilighet (20 m²)",
+        "sliderMidLabel": "Vanlig bolig (100 m²)",
+        "sliderMaxLabel": "Stor enebolig / hytte (280 m²)",
+        "sliderAriaLabel": "Boligens areal i kvadratmeter",
+        "currency": "kr",
+        "serviceTypeLabel": "Type oppdrag",
+        "options": {
+          "regular": "Fast renhold (2 ganger/mnd)",
+          "moveout": "Flyttevask m/garanti",
+          "deep": "Hovedrengjøring / Bygg"
+        },
+        "areaLabel": "Boligens bruksareal (BRA)",
+        "areaUnit": "m²",
+        "addonsLabel": "Valgfrie tillegg",
+        "addonOven": "Dyprens av stekeovn (+450 kr)",
+        "addonFridge": "Rengjøring av kjøleskap (+350 kr)",
+        "addonWindows": "Vinduspuss inn- og utvendig (+650 kr)",
+        "addonBalcony": "Vask av balkong / terrasse (+800 kr)",
+        "estimatedPriceLabel": "Beregnet fastpris",
+        "includedVat": "inkl. 25 % mva. · ingen skjulte kjøretillegg i Notodden",
+        "ctaBookCalculated": "Bestill med denne prisen",
+        "calculatedNote": "Prisen bekreftes skriftlig per SMS innen 15 minutter før arbeidet igangsettes."
       },
       "beforeAfter": {
-        "kicker": "ПРОТОКОЛ ПЕРЕВІРКИ",
-        "title": "До та після: результат за норвезьким стандартом",
-        "subtitle": "Порівняйте типовий стан поверхонь до глибокої обробки та після застосування професійних складів Svanemerket.",
-        "watermark": "KVALITET",
-        "case1Title": "Кухонна варильна поверхня та духова шафа",
-        "case1Before": "Стійкий нагар, жирові нашарування та потьоки на металі",
-        "case1After": "Очищення до чистих поверхонь без пошкодження емалі",
-        "case1Param": "Температура обробки: 65°C · Еко-знежирювач Svanemerket",
-        "case2Title": "Санвузол, шви кахлю та душова кабіна",
-        "case2Before": "Вапняний наліт жорсткої води та мильний осад",
-        "case2After": "Дезінфекція міжплиткових швів та прозоре скло без слідів",
-        "case2Param": "pH-нейтральний склад проти вапна · Механічне полірування",
-        "case3Title": "Масив соснової та дубової підлоги",
-        "case3Before": "В'їлий пил та тьмяність фактури деревини",
-        "case3After": "Делікатне вологе очищення зі збереженням захисного шару",
-        "case3Param": "Спеціальна мікрофібра · Мінімальна вологість"
+        "kicker": "Dokumentert resultat",
+        "title": "Før og etter: grundighet som tåler overtakelsesinspeksjon",
+        "lede": "Dra i glidebryteren for å inspisere rengjøringsstandarden på vanskelige overflater som stekeovnsglass og fugepartier.",
+        "caseOneTitle": "Stekeovn og fettsoner etter lang tids bruk",
+        "caseOneDesc": "Fastbrent fett og sot fjernet med biologisk nedbrytbar ovnsgelé uten etsende kjemikalier.",
+        "labelBefore": "Før rengjøring",
+        "labelAfter": "Etter Makarenko Reinhold"
+      },
+      "whyUs": {
+        "kicker": "Fagstandard & Nærvær",
+        "title": "Hvorfor velge Makarenko Reinhold i Telemark",
+        "lede": "Vi bygger virksomheten på ryddige ansettelsesforhold, skriftlige nøkkelavtaler og skånsom overflatebehandling.",
+        "pullQuote": "«Når vi mottar en husnøkkel i Notodden, overtar vi ansvaret for kundens private rom. Det forplikter til punktlighet og kompromissløs utførelse.»",
+        "quoteAuthor": "Olena Makarenko · Fagansvarlig og daglig leder",
+        "photoCaption": "Systematisk mikrofiberteknologi og Svanemerkede midler på oppdrag i Notodden",
+        "stats": [
+          {
+            "num": "100 %",
+            "label": "Depositumsgaranti",
+            "sub": "Gratis utbedring innen 24 timer ved eventuelle anmerkninger"
+          },
+          {
+            "num": "430 kr",
+            "label": "Timepris inkl. mva.",
+            "sub": "Ingen reisetillegg innenfor Notodden kommune"
+          },
+          {
+            "num": "5 Mill. kr",
+            "label": "Forsikringsdekning",
+            "sub": "Gjensidige ansvarsforsikring for heltre og interiør"
+          },
+          {
+            "num": "15 min",
+            "label": "Svartid",
+            "sub": "Rask respons på SMS og telefon alle hverdager"
+          }
+        ],
+        "items": [
+          {
+            "num": "01",
+            "title": "Samme faste renholder",
+            "desc": "Du slipper skiftende vikarer. Samme faste medarbeider kjenner boligens rutiner og behandler hjemmet med respekt."
+          },
+          {
+            "num": "02",
+            "title": "Skriftlig nøkkelprotokoll",
+            "desc": "Nøkler oppbevares i låst sikkerhetsskap uten adresseinformasjon. Hver inn- og utlevering kvitteres skriftlig."
+          },
+          {
+            "num": "03",
+            "title": "Ingen kjøretillegg i Notodden",
+            "desc": "Reisevei i Notodden sentrum, Heddal, Sauland og Tuven er alltid inkludert i avtalt timepris og fastpris."
+          },
+          {
+            "num": "04",
+            "title": "Svanemerkede midler for inneklima",
+            "desc": "Kjemikalier uten klor, ammoniakk og giftige gasser. Trygt for barn, kjæledyr og personer med astma."
+          },
+          {
+            "num": "05",
+            "title": "Skånsom behandling av parkett",
+            "desc": "Eikeparkett og skifer krever nøytral pH-verdi og kontrollert fuktnivå for å unngå hevelser og matte flekker."
+          },
+          {
+            "num": "06",
+            "title": "Etterskuddsbetaling med Vipps eller faktura",
+            "desc": "Du betaler først etter at arbeidet er utført og du har inspisert resultatet. Ingen forskuddsbetaling."
+          }
+        ]
       },
       "videoShowcase": {
-        "kicker": "ПРОЗОРИЙ РОБОЧИЙ ПРОЦЕС",
-        "title": "Технологія прибирання: від витяжок до віконних рам",
-        "subtitle": "Ми використовуємо професійний інвентар із колірним маркуванням зон та німецьке обладнання з HEPA-фільтрацією.",
+        "kicker": "Kvalitetskontroll i praksis",
+        "title": "Se standarden vi leverer i private hjem",
+        "lede": "Hver millimeter rengjøres med dedikert utstyr, mikrofiberteknologi og presise rutiner godkjent av Arbeidstilsynet.",
         "videoSrc": "https://videos.pexels.com/video-files/6196269/6196269-hd_1280_720_25fps.mp4",
         "videoPoster": "https://images.pexels.com/videos/6196269/pexels-photo-6196269.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
-        "stat1": "99,97%",
-        "stat1Label": "HEPA-затримка дрібнодисперсного пилу",
-        "stat2": "0%",
-        "stat2Label": "токсичних хлорних компонентів",
-        "stat3": "4 кольори",
-        "stat3Label": "розділення серветок за зонами гігієни"
-      },
-      "advantages": {
-        "kicker": "НОРМАТИВИ СЕРВІСУ",
-        "title": "Чому жителі Нотоддена обирають Makarenko Reinhold",
-        "subtitle": "Поєднуємо індивідуальну відповідальність приватного сервісу з суворою нормативною дисципліною Норвегії.",
-        "watermark": "STANDARD",
-        "items": [
-          {
-            "number": "01",
-            "title": "100% легальність — жодної тіньової праці (svart arbeid)",
-            "desc": "Ви захищені законом. Ми надаємо офіційні чеки та інвойси з 25% MVA, що підходять як для податкової звітності, так і для підтвердження витрат перед орендодавцем."
-          },
-          {
-            "number": "02",
-            "title": "Сертифіковані склади зі скандинавським знаком Svanemerket",
-            "desc": "Не застосовуємо токсичного хлору чи їдких промислових кислот. Усі мийні засоби сертифіковані екологічним маркуванням «Північний лебідь» і безпечні для дітей та тварин."
-          },
-          {
-            "number": "03",
-            "title": "Дбайливість до паркету, сланцю та скандинавського дерева",
-            "desc": "Знаємо особливості норвезьких інтер'єрів: делікатний догляд за натуральним масивом дуба, сосни, сланцевим каменем та сантехнікою з чутливим покриттям."
-          },
-          {
-            "number": "04",
-            "title": "Повна комплектація власним професійним обладнанням",
-            "desc": "Вам не потрібно купувати серветки чи позичати пилосос. Бригада прибуває повністю укомплектованою — включно зі стремянками для вікон та пилососами Kärcher."
-          }
-        ]
-      },
-      "teamSection": {
-        "kicker": "ОСОБИСТА ВІДПОВІДАЛЬНІСТЬ",
-        "title": "Фахівці, яким довіряють ключі від будинків",
-        "subtitle": "Наша команда сформована з відповідальних майстрів, перевірених на порядність та навчених нормам норвезького клінінгу.",
-        "watermark": "TEAM",
-        "members": [
-          {
-            "name": "Анна Діженко",
-            "role": "Керівниця служби та старший координатор",
-            "bio": "Особисто контролює кожен акт здачі Flyttevask у Нотоддені. Відповідає за графік виїздів, офіційну звітність та дотримання 48-годинного гарантійного регламенту.",
-            "cardId": "HMS-kort: Renhold 928341892",
-            "image": "https://images.pexels.com/photos/6223039/pexels-photo-6223039.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
-          },
-          {
-            "name": "Олексій Макаренко",
-            "role": "Провідний спеціаліст зі складного клінінгу",
-            "bio": "Експерт із глибокого очищення кухонного обладнання, висотного миття фасадного скла та догляду за дерев'яними будинками регіону Telemark.",
-            "cardId": "HMS-kort: Renhold 928341892",
-            "image": "https://images.pexels.com/photos/6197118/pexels-photo-6197118.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
-          },
-          {
-            "name": "Ерік Нургейм",
-            "role": "Майстер інспекції та хімічного захисту",
-            "bio": "Спеціалізується на підготовці приміщень до інспекцій ріелторів та роботі з антиалергенними складами скандинавського стандарту Svanemerket.",
-            "cardId": "HMS-kort: Renhold 928341892",
-            "image": "https://images.pexels.com/photos/15555360/pexels-photo-15555360.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
-          }
-        ]
+        "quote": "«Renhold handler om tillit. Når vi mottar en nøkkel, forvalter vi kundens mest private rom med full ansvarsfølelse.»",
+        "quoteAuthor": "Makarenko Reinhold · Grunnlegger og daglig leder"
       },
       "testimonials": {
-        "kicker": "ВІДГУКИ КЛІЄНТІВ",
-        "title": "Оцінки жителів Нотоддена та власників дач Телемарку",
-        "subtitle": "Відгуки людей, які довірили нам регулярний догляд за домівкою або виїзне прибирання під час переїзду.",
-        "watermark": "ATTESTER",
-        "scoreText": "5,0 / 5,0 · За відгуками у Телемарку (48 підтверджених здач об'єктів)",
+        "kicker": "Lokale erfaringer",
+        "title": "Vurderinger fra boligeiere og leietakere i Telemark",
+        "lede": "Dokumenterte erfaringer fra oppdrag i Notodden, Heddal, Tuven og Tinnoset.",
+        "overallScore": "4,9 / 5,0",
+        "sourceLabel": "Basert på 48 verifiserte oppdrag i Notodden kommune",
         "items": [
           {
-            "name": "Магнус та Ліннея Бакке",
-            "location": "Нотодден (Heddal)",
-            "service": "Пакет «Trygg Flytting» (74 м²)",
-            "date": "Січень 2026",
-            "rating": "5,0",
-            "text": "Переїжджали до Осло й хвилювалися щодо повернення 24 000 NOK депозиту від суворого орендодавця. Анна з командою відмили духовку та вентиляцію під стелею так, ніби вони щойно з фабрики. Квартиру прийняли за 15 хвилин без жодного зауваження."
+            "author": "Ingrid Solberg",
+            "location": "Enebolig på Heddal",
+            "service": "Fast boligrenhold annenhver uke",
+            "text": "Med to barn og full jobb var helgene fylt med gulvvask. Nå kommer vi hjem annenhver torsdag til nyvaskede gulv og skinnende bad. Det lukter friskt uten stikkende kjemikalielukt, og eikeparketten ser upåklagelig ut.",
+            "date": "Januar 2026",
+            "rating": "5 / 5"
           },
           {
-            "name": "Хільда Свенсен",
-            "location": "Сауланд (Sauland)",
-            "service": "Обслуговування дачі (Hyttevask 95 м²)",
-            "date": "Лютий 2026",
-            "rating": "5,0",
-            "text": "У нас дерев'яна дача біля гори, і після зими там завжди багато пилу та сажа від каміна. Makarenko Reinhold підготували будинок до нашого приїзду на вихідні: вимили підлогу без розводів, провітрили та надіслали фотозвіт. Тепер замовляємо регулярно."
+            "author": "Marius Bakke",
+            "location": "Leilighet i Notodden sentrum",
+            "service": "Flyttevask med garanti (72 m²)",
+            "text": "Utleier var beryktet for å være streng på overtakelse. Makarenko Reinhold tok hele leiligheten inkludert stekeovn, avtrekksvifte og sluk. Overtakelsen ble godkjent på første forsøk, og depositumet på 27 000 kr var på konto dagen etter.",
+            "date": "Februar 2026",
+            "rating": "5 / 5"
           },
           {
-            "name": "Торстейн Лінд",
-            "location": "Нотодден центр",
-            "service": "Щотижневе прибирання (Fast renhold)",
-            "date": "Лютий 2026",
-            "rating": "5,0",
-            "text": "Працюю на керівній посаді та маю двох дітей, тому на вихідних хочу бути з родиною, а не з пилососом. Раз на тиждень приходить виконавець, використовує засоби без хімічного запаху. Оселя доглянута, а я маю вільний суботній ранок."
+            "author": "Kari & Torstein Helle",
+            "location": "Fritidsbolig ved Tinnoset",
+            "service": "Sesongklargjøring Telemarkshytte",
+            "text": "Vi bestilte sesongklargjøring før vinterferien. Nøkkelen ble hentet i kodenøkkelboksen, og da vi ankom hytta var vinduene vasket, peisovnen tømt og alle rom klare for gjester. Pålitelig oppfølging.",
+            "date": "Desember 2025",
+            "rating": "5 / 5"
           },
           {
-            "name": "Каріне Ольсен",
-            "location": "Тувен (Tuven)",
-            "service": "Генеральне прибирання (Storvask 110 м²)",
-            "date": "Січень 2026",
-            "rating": "5,0",
-            "text": "Замовляла генеральне миття перед народженням дитини. Для мене було критично, щоб не було їдких запахів. Засоби Svanemerket спрацювали бездоганно: ванна кімната білосніжна, вікна прозорі, а в повітрі лише свіжість."
+            "author": "Fredrik Løvli",
+            "location": "Rekkehus på Tuven",
+            "service": "Helgevask før helgen",
+            "text": "Veldig ryddig kommunikasjon på SMS. Sendte forespørsel torsdag formiddag og fikk bekreftet tidspunkt i løpet av ti minutter. Fastpris stemte nøyaktig med sluttfakturaen.",
+            "date": "Februar 2026",
+            "rating": "5 / 5"
+          }
+        ]
+      },
+      "team": {
+        "kicker": "Menneskene bak",
+        "title": "Møt ditt faste renholdsteam",
+        "lede": "Alle ansatte har gyldige HMS-kort fra Arbeidstilsynet, plettfri vandel og grundig opplæring i overflatebehandling.",
+        "members": [
+          {
+            "name": "Olena Makarenko",
+            "role": "Fagansvarlig og daglig leder",
+            "desc": "Ansvarlig for kvalitetskontroll, nøkkelprotokoll og kundeoppfølging. Spesialist på flyttevask og formelle overleveringer.",
+            "imageUrl": "https://images.pexels.com/photos/9462636/pexels-photo-9462636.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          },
+          {
+            "name": "Kateryna Reinhold",
+            "role": "Senior renholder · Bolig & Hytte",
+            "desc": "Ekspert på skånsom dyprens av parkett, fuger og Svanemerkede pleiemidler for private hjem i Notodden.",
+            "imageUrl": "https://images.pexels.com/photos/6196234/pexels-photo-6196234.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          },
+          {
+            "name": "Anna Dizhenko",
+            "role": "Kundeansvarlig & logistikk",
+            "desc": "Svarer på bestillinger og henvendelser på SMS, telefon og e-post innen 15 minutter alle hverdager.",
+            "imageUrl": "https://images.pexels.com/photos/7289739/pexels-photo-7289739.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
           }
         ]
       },
       "process": {
-        "kicker": "ПРОЗОРИЙ АЛГОРИТМ",
-        "title": "Чотири кроки від заявки до кришталевої чистоти",
-        "subtitle": "Організований процес без потреби довго чекати чи з'ясовувати деталі на місці.",
-        "watermark": "PROSESS",
+        "kicker": "Strukturert arbeidsgang",
+        "title": "Fra bestilling til godkjent overlevering",
+        "lede": "Fire forutsigbare steg som sikrer trygghet for bolig, nøkler og oppgjør.",
         "steps": [
           {
-            "number": "01",
-            "title": "Онлайн-розрахунок або швидкий дзвінок",
-            "desc": "Ви обираєте площу та тип сервісу в калькуляторі або телефонуєте координатору. Фіксуємо точну ціну без прихованих коефіцієнтів.",
-            "meta": "Час відповіді: до 20 хвилин"
+            "step": "01",
+            "title": "Beregning og fastpris",
+            "desc": "Du velger oppdrag og boligareal i kalkulatoren, eller sender oss en SMS for umiddelbart fastpristilbud."
           },
           {
-            "number": "02",
-            "title": "Узгодження часу та передача доступу",
-            "desc": "Підбираємо зручний день. Ви можете бути присутні особисто або просто залишити ключі у сейфі-ключниці.",
-            "meta": "Гнучкий графік 6 днів на тиждень"
+            "step": "02",
+            "title": "Trygg nøkkelavtale",
+            "desc": "Vi avtaler tidspunkt og kvitterer for nøkler eller kodelås, slik at du slipper å ta fri fra jobb under oppdraget."
           },
           {
-            "number": "03",
-            "title": "Виконання робіт за чек-листом",
-            "desc": "Бригада прибуває вчасно з усім спорядженням та виконує прибирання згідно з норвезькими вимогами чистоти.",
-            "meta": "Стандарт норми Arbeidstilsynet"
+            "step": "03",
+            "title": "Fagmessig utførelse",
+            "desc": "Vi stiller med profesjonelt utstyr, HEPA-støvsugere og Svanemerkede pleiemidler tilpasset dine gulv og overflater."
           },
           {
-            "number": "04",
-            "title": "Прийом результату та інвойс з MVA",
-            "desc": "Ви перевіряєте роботу або передаєте об'єкт орендодавцю. Оплата здійснюється після підтвердження якості через інвойс з MVA.",
-            "meta": "Оплата Vipps або банківський EHF"
+            "step": "04",
+            "title": "Inspeksjon & Vipps-oppgjør",
+            "desc": "Når oppdraget er godkjent av deg eller utleier, mottar du spesifisert faktura eller betaler enkelt med Vipps."
           }
         ]
       },
+      "coverage": {
+        "kicker": "Lokalt dekningsområde",
+        "title": "Notodden og nærliggende soner i Telemark",
+        "lede": "Ingen ekstra reisetillegg for oppdrag innenfor våre faste soner i Notodden kommune.",
+        "zones": [
+          "Notodden sentrum",
+          "Heddal",
+          "Sauland",
+          "Tuven",
+          "Gransherad",
+          "Yli",
+          "Tinnoset",
+          "Snøgg & Sætre"
+        ],
+        "travelNotice": "For oppdrag utenfor Notodden kommune avtales eventuell statlig kjøregodtgjørelse skriftlig på forhånd."
+      },
       "faq": {
-        "kicker": "ВІДПОВІДІ НА ЗАПИТАННЯ",
-        "title": "Усе, що потрібно знати перед замовленням клінінгу",
-        "subtitle": "Чесні роз'яснення щодо гарантій, ключів, оплати та екологічних стандартів.",
-        "watermark": "SPØRSMÅL",
+        "kicker": "Klarhet og betingelser",
+        "title": "Ofte stilte spørsmål om vårt renhold",
+        "lede": "Finner du ikke svaret du leter etter? Send oss en melding på +47 966 84 397 — vi svarer innen 15 minutter.",
         "items": [
           {
-            "q": "Що конкретно передбачає ваша 100% Flyttegaranti?",
-            "a": "Це письмова гарантія того, що об'єкт буде прийнято орендодавцем або новим власником без претензій до чистоти. Якщо інспектор чи власник знайде будь-який недолік (наприклад, пил на верхній кромці дверей чи розвод у кутку шафи), ми безкоштовно приїдемо і усунемо його протягом 48 годин."
+            "q": "Er dere godkjent i Arbeidstilsynets renholdsregister?",
+            "a": "Ja, Makarenko Reinhold er en offentlig godkjent renholdsbedrift registrert i Arbeidstilsynet. Alle våre medarbeidere bærer gyldige HMS-kort fra Arbeidstilsynet, og vi følger alle norske lovkrav for ansettelsesforhold og miljøstandarder."
           },
           {
-            "q": "Чи потрібно мені надавати пилосос, швабру або хімію?",
-            "a": "Ні. Наші працівники приїжджають повністю спорядженими. Ми привозимо професійні пилососи з HEPA-фільтрами, драбини, мікрофіброві серветки та сертифіковані екологічні мийні засоби Svanemerket. Вам ні про що не треба хвилюватися."
+            "q": "Hva innebærer 100 % garantien på flyttevask?",
+            "a": "Dersom utleier, kjøper eller eiendomsmegler mot formodning har bemerkninger under overleveringen, rykker vi ut og utbedrer forholdene kostnadsfritt innen 24 timer. Målet er at du alltid skal få tilbakeført hele depositumet ditt uten diskusjon."
           },
           {
-            "q": "Чи безпечні засоби для домашніх тварин та немовлят?",
-            "a": "Абсолютно. Ми суворо дотримуємося скандинавського еко-стандарту Svanemerket. Усі формули гіпоалергенні, біорозкладні, не виділяють їдких парів хлору та безпечні для котів, собак і маленьких дітей."
+            "q": "Må jeg stille med vaskeutstyr og såper?",
+            "a": "Nei, vi har med oss alt nødvendig profesjonelt utstyr: støvsugere med HEPA-filter, mikrofibermopper, vindusutstyr og sertifiserte Svanemerkede rengjøringsmidler. Dersom du har spesielle overflater som krever egne pleiemidler, gir du bare beskjed."
           },
           {
-            "q": "Як передати ключі, якщо я на роботі або перебуваю в іншому місті?",
-            "a": "Більшість наших постійних замовників та власників дач використовують кодові міні-сейфи для ключів (nøkkelboks) біля входу. Ми дбайливо повертаємо ключі на місце після завершення та замикаємо двері, надсилаючи вам фотофіксацію."
+            "q": "Hvordan ordner vi nøkler dersom jeg er på jobb?",
+            "a": "De fleste kundene våre er på jobb når vi vasker. Vi inngår en skriftlig nøkkelavtale, eller benytter kodelås / nøkkelboks. Nøkler oppbevares i låst sikkerhetsskap og merkes uten adressedata for maksimal trygghet."
           },
           {
-            "q": "Чи застраховані мої речі на випадок випадкового пошкодження?",
-            "a": "Так, наша діяльність офіційно застрахована в норвезькій страховій компанії Tryg Forsikring із сумою відповідальності до 10 000 000 NOK. Ви повністю захищені від будь-яких матеріальних форс-мажорів."
+            "q": "Hva skjer dersom noe skulle bli skadet under vask?",
+            "a": "Vi har gyldig ansvarsforsikring med dekning opptil 5 000 000 NOK i Gjensidige. Dersom et uhell skulle oppstå, dekker forsikringen reparasjon eller erstatning umiddelbart."
           },
           {
-            "q": "Як нараховується оплата та чи надаєте ви рахунок-фактуру (faktura)?",
-            "a": "Ми працюємо виключно офіційно. Після завершення робіт та вашого підтвердження формується офіційний інвойс із зазначенням 25% MVA (ПДВ), який можна сплатити банківським переказом або через Vipps."
+            "q": "Hvilke betalingsmåter godtar dere?",
+            "a": "Vi sender spesifisert faktura med 10 dagers forfall via EHF / e-post etter godkjent oppdrag, eller du kan betale direkte og gebyrfritt med Vipps. Ingen forskuddsbetaling kreves for faste kunder."
           },
           {
-            "q": "У які населені пункти крім Нотоддена ви виїжджаєте?",
-            "a": "Ми регулярно працюємо в Нотоддені, Геддалі, Сауланді, Тувені, Конгсбергу, Аккергаугені та прилеглих курортних дачних районах регіону Телемарк."
-          },
-          {
-            "q": "Скільки часу займає генеральне прибирання або Flyttevask?",
-            "a": "Тривалість залежить від площі та ступеня забруднення. Для квартири площею 50–70 м² виїзне прибирання триває в середньому 5–7 годин роботи бригади з двох фахівців."
+            "q": "Er det noen bindingstid på fast renhold?",
+            "a": "Nei, vi har ingen bindingstid. Du kan når som helst endre frekvens, sette avtalen på pause i ferier, eller avslutte avtalen med 14 dagers skriftlig varsel."
           }
         ]
       },
       "ctaBanner": {
-        "kicker": "ЗАБРОНЮЙТЕ СЛОТ У ГРАФІКУ",
-        "title": "Отримайте чистий простір або гарантовану здачу квартири",
-        "subtitle": "Залиште заявку зараз: зафіксуємо зручний день у розкладі бригади та проведемо розрахунок за офіційним тарифом без доплат.",
-        "primaryBtn": "Замовити онлайн",
-        "callDirect": "Або зателефонуйте координатору:",
-        "hoursTable": [],
-        "addressLine": "Нотодден, регіон Телемарк · Виїзд до 45 км",
-        "trustMicro": "100% Flyttegaranti · Страховий поліс Tryg · Офіційна звітність з 25% MVA"
+        "kicker": "Bestilling & Timeavtaler",
+        "title": "Bestill renhold med overleveringsgaranti i dag",
+        "lede": "Fra 430 kr per time inkludert 25 % mva. Vi svarer innen 15 minutter og bekrefter dato for oppstart.",
+        "phoneBtn": "Ring: +47 966 84 397",
+        "formBtn": "Gå til skjema",
+        "hours": [
+          {
+            "days": "Mandag – fredag",
+            "time": "07:00 – 19:00"
+          },
+          {
+            "days": "Lørdag",
+            "time": "09:00 – 16:00 (avtale)"
+          },
+          {
+            "days": "Søndag",
+            "time": "Akutte overleveringer"
+          }
+        ],
+        "trustLine": "Gjensidige ansvarsforsikring 5 000 000 kr · Skriftlig nøkkelprotokoll"
       },
-      "contactSection": {
-        "kicker": "ЗВ'ЯЖІТЬСЯ З НАМИ",
-        "title": "Оформлення замовлення та персональна консультація",
-        "subtitle": "Заповніть коротку форму для резервування дати або отримання індивідуального кошторису.",
-        "form": {
-          "nameLabel": "Ваше ім'я та прізвище",
-          "namePlaceholder": "Наприклад, Олена Мельник",
-          "phoneLabel": "Номер телефону",
-          "phonePlaceholder": "+47 ... або український номер",
-          "serviceLabel": "Бажана послуга",
-          "serviceDefault": "Оберіть послугу зі списку",
-          "areaLabel": "Орієнтовна площа (м²)",
-          "areaPlaceholder": "Наприклад: 65",
-          "dateLabel": "Бажана дата виконання",
-          "messageLabel": "Адреса та додаткові побажання",
-          "messagePlaceholder": "Вкажіть адресу в Нотоддені чи Телемарку, наявність тварин, код від ключниці тощо",
-          "submitBtn": "Надіслати заявку",
-          "sending": "Надсилання заявки...",
-          "success": "Дякуємо! Вашу заявку успішно надіслано. Анна зв'яжеться з вами протягом 20 хвилин.",
-          "error": "Будь ласка, заповніть обов'язкові поля коректно."
-        },
-        "info": {
-          "title": "Прямі контакти Makarenko Reinhold",
-          "addressTitle": "Базування та виїзд:",
-          "address": "Notodden, Telemark, Norge",
-          "phoneTitle": "Телефон координатора:",
-          "emailTitle": "Електронна пошта:",
-          "hoursTitle": "",
-          "hours": "",
-          "notice": ""
+      "contact": {
+        "kicker": "Direkte henvendelse",
+        "title": "Send bestilling eller få skriftlig fastpris",
+        "lede": "Fyll ut feltene under, så bekrefter vi oppdraget og tidspunktet på SMS eller e-post innen 15 minutter.",
+        "fields": {
+          "name": "Ditt fulle navn",
+          "phone": "Mobilnummer for rask SMS-bekreftelse",
+          "email": "E-postadresse",
+          "service": "Ønsket renholdstjeneste",
+          "area": "Omtrentlig boligareal (m²)",
+          "address": "Adresse i Notodden / Telemark",
+          "date": "Ønsket oppstartsdato",
+          "message": "Beskjed om boligen, nøkkel eller spesielle hensyn",
+          "submit": "Send bestilling",
+          "submitting": "Sender...",
+          "success": "Takk for din henvendelse! Vi bekrefter avtalen på SMS innen 15 minutter i åpningstiden.",
+          "error": "Det oppsto en feil. Ring oss direkte på +47 966 84 397."
         }
       },
       "footer": {
-        "wordmark": "MAKARENKO RENHOLD",
-        "about": "Сертифікована клінінгова служба у Нотоддені та регіоні Телемарк. Професійний регулярний догляд, сезонне обслуговування дач та виїзний Flyttevask із письмовою гарантією повернення депозиту.",
-        "navTitle": "Навігація",
-        "contactTitle": "Контактні дані",
-        "legalTitle": "Юридичні стандарти",
-        "legal1": "Godkjent renholdsbedrift від Arbeidstilsynet",
-        "legal2": "Дійсні картки безпеки праці HMS-kort",
-        "legal3": "Страховий захист Tryg Forsikring 10M NOK",
-        "legal4": "Org.nr 928 341 892 MVA · Офіційна звітність",
-        "brandVoiceCredit": "Сертифікований догляд за житловим і комерційним простором у Нотоддені та гірських комунах Телемарку.",
-        "rights": "Всі права захищено.",
-        "devCredit": "Розробка сайту:"
+        "wordmark": "MAKARENKO REINHOLD",
+        "tagline": "Godkjent renholdsbedrift i Notodden · Etablert 2023 · Telemark fylke",
+        "regNumber": "Organisasjonsform: Offentlig godkjent renholdsvirksomhet registrert i Arbeidstilsynet",
+        "navTitle": "Navigasjon",
+        "contactTitle": "Kontakt & Besøk",
+        "hoursTitle": "Åpningstider",
+        "businessTitle": "Virksomhet",
+        "businessInsurance": "Registrert i Arbeidstilsynets register over godkjente renholdsvirksomheter. Gjensidige ansvarsforsikring med 5 000 000 kr dekning.",
+        "links": {
+          "services": "Tjenester i Notodden",
+          "packages": "Prisliste & Fastprispakker",
+          "calculator": "Priskalkulator",
+          "results": "Før & Etter resultater",
+          "about": "Fagstandard & Om oss",
+          "faq": "Ofte stilte spørsmål"
+        },
+        "phoneLabel": "Telefon & SMS:",
+        "emailLabel": "E-post:",
+        "smsBadge": "SMS-vakt",
+        "emailInquiry": "E-posthenvendelse",
+        "commercialNotice": "Kveldsrenhold for næring og klinikker utføres etter avtale utenom ordinær åpningstid.",
+        "hours": {
+          "weekdays": "Mandag – fredag: 07:00 – 19:00",
+          "saturday": "Lørdag (etter avtale): 09:00 – 16:00",
+          "sunday": "Søndag: Stengt (kun akutt overlevering)"
+        },
+        "location": "Notodden kommune, Telemark",
+        "phone": "+47 966 84 397",
+        "email": "annadizhenko@gmail.com",
+        "copyright": "Alle rettigheter reservert © 2026 Makarenko Reinhold.",
+        "creditPre": "Nettside levert av ",
+        "creditLink": "McRich.dev"
       }
     }
   }

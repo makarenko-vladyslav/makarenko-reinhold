@@ -1,56 +1,123 @@
+"use client";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import TrustStrip from "@/components/TrustStrip";
+import SocialProof from "@/components/SocialProof";
 import Services from "@/components/Services";
-import Calculator from "@/components/Calculator";
 import Packages from "@/components/Packages";
-import Guarantee from "@/components/Guarantee";
-import TelemarkCabin from "@/components/TelemarkCabin";
+import Calculator from "@/components/Calculator";
 import BeforeAfter from "@/components/BeforeAfter";
+import WhyUs from "@/components/WhyUs";
 import VideoShowcase from "@/components/VideoShowcase";
-import Advantages from "@/components/Advantages";
-import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
+import Team from "@/components/Team";
 import Process from "@/components/Process";
+import Coverage from "@/components/Coverage";
 import FAQ from "@/components/FAQ";
 import CtaBanner from "@/components/CtaBanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import BottomNav from "@/components/BottomNav";
-import { Reveal } from "@/components/motion";
+import { useLocale } from "@/lib/i18n";
+import { Marquee } from "@/components/mechanics";
 
 export default function Home() {
+  const { t } = useLocale();
+
+  const marqueeItems = (t("marquee") as string[]) || [];
+  const hairlineText = String(t("interstitials.hairline"));
+  const statementQuote = String(t("interstitials.statementQuote"));
+  const statementSub = String(t("interstitials.statementSub"));
+  const statementLead = String(t("interstitials.statementLead"));
+
   return (
     <>
       <Header />
       <main>
+        {/* Section 1: Hero */}
         <Hero />
-        <TrustStrip />
+
+        {/* Section 2: Social Proof */}
+        <SocialProof />
+
+        {/* Interstitial 1: Text Marquee Ticker via platform mechanic */}
+        <div className="py-4 bg-primary text-white border-y border-white/10 overflow-hidden select-none">
+          <Marquee speed={28} pauseOnHover={true} className="flex items-center">
+            <div className="flex items-center gap-8 font-display text-xs font-bold uppercase tracking-[0.22em] text-white/85 pr-8">
+              {marqueeItems.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-8 whitespace-nowrap">
+                  <span>{item}</span>
+                  <span className="text-accent select-none" aria-hidden="true">―</span>
+                </div>
+              ))}
+            </div>
+          </Marquee>
+        </div>
+
+        {/* Section 3: Services */}
         <Services />
+
+        {/* Interstitial 2: Labeled Hairline Separator */}
+        <div className="bg-bg-light py-5 border-t border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-xs text-text-muted">
+            <span className="h-px flex-grow bg-gray-200 mr-4" />
+            <span className="font-display font-bold uppercase tracking-widest text-[11px] text-accent text-center">
+              {hairlineText}
+            </span>
+            <span className="h-px flex-grow bg-gray-200 ml-4" />
+          </div>
+        </div>
+
+        {/* Section 4: Packages & Master Price List */}
+        <Packages />
+
+        {/* Section 5: Calculator */}
         <Calculator />
-        <Reveal>
-          <Packages />
-        </Reveal>
-        <Guarantee />
-        <TelemarkCabin />
-        <Reveal>
-          <BeforeAfter />
-        </Reveal>
+
+        {/* Section 6: Before & After */}
+        <BeforeAfter />
+
+        {/* Section 7: Why Us & Craft Standards */}
+        <WhyUs />
+
+        {/* Section 8: Video Showcase */}
         <VideoShowcase />
-        <Advantages />
+
+        {/* Interstitial 3: Expansive Typographic Statement Band */}
+        <div className="py-16 sm:py-20 bg-bg-surface border-b border-gray-200 relative overflow-hidden">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <p className="text-[11px] font-display font-bold uppercase tracking-[0.25em] text-accent mb-4">
+              {statementLead}
+            </p>
+            <blockquote className="font-display font-extrabold text-xl sm:text-3xl lg:text-4xl text-primary tracking-tight leading-tight max-w-4xl mx-auto mb-5 text-balance">
+              «{statementQuote}»
+            </blockquote>
+            <p className="text-xs font-semibold text-text-muted uppercase tracking-widest">
+              {statementSub}
+            </p>
+          </div>
+        </div>
+
+        {/* Section 9: Testimonials */}
+        <Testimonials />
+
+        {/* Section 10: Team */}
         <Team />
-        <Reveal>
-          <Testimonials />
-        </Reveal>
+
+        {/* Section 11: Process */}
         <Process />
+
+        {/* Section 12: Coverage */}
+        <Coverage />
+
+        {/* Section 13: FAQ */}
         <FAQ />
+
+        {/* Section 14: CTA Banner */}
         <CtaBanner />
-        <Reveal>
-          <Contact />
-        </Reveal>
+
+        {/* Section 15: Contact Form */}
+        <Contact />
       </main>
       <Footer />
-      <BottomNav />
     </>
   );
 }

@@ -2,56 +2,56 @@
 import { useState } from "react";
 import { useLocale } from "@/lib/i18n";
 
-interface FAQItem {
-  q: string;
-  a: string;
-}
-
 export default function FAQ() {
   const { t } = useLocale();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const items = (t("faq.items") as FAQItem[]) || [];
+  const kicker = String(t("faq.kicker"));
+  const title = String(t("faq.title"));
+  const lede = String(t("faq.lede"));
+  const items = (t("faq.items") as Array<{ q: string; a: string }>) || [];
 
-  const toggle = (idx: number) => {
-    setOpenIndex((prev) => (prev === idx ? null : idx));
+  const toggleAccordion = (idx: number) => {
+    setOpenIndex(openIndex === idx ? null : idx);
   };
 
   return (
-    <section id="faq" className="scroll-mt-20 py-20 bg-[hsl(195_25%_98%)] border-t border-[hsl(204_20%_88%)]">
+    <section id="faq" className="py-20 bg-white border-b border-gray-200 scroll-mt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] mb-2">
-            {t("faq.kicker") as string}
-          </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(204_35%_15%)] tracking-tight mb-4">
-            {t("faq.title") as string}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-xs font-bold tracking-widest uppercase text-accent mb-2">
+            {kicker}
+          </p>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-primary tracking-tight mb-3">
+            {title}
           </h2>
-          <p className="text-base text-[hsl(204_15%_42%)] leading-relaxed font-light">
-            {t("faq.subtitle") as string}
+          <p className="text-base text-text-muted leading-relaxed">
+            {lede}
           </p>
         </div>
 
+        {/* Full container width accordion */}
         <div className="space-y-3">
           {items.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="bg-[hsl(0_0%_100%)] border border-[hsl(204_20%_88%)] rounded-xl overflow-hidden shadow-xs"
+                className="border border-gray-200 rounded-md overflow-hidden bg-bg-light"
               >
                 <button
                   type="button"
-                  onClick={() => toggle(idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-lg text-[hsl(204_35%_15%)] hover:text-[hsl(158_64%_38%)] transition-colors"
+                  onClick={() => toggleAccordion(idx)}
+                  className="w-full text-left p-5 flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-primary hover:text-accent transition-colors"
+                  aria-expanded={isOpen}
                 >
                   <span>{item.q}</span>
-                  <span className="text-xl font-mono text-[hsl(158_64%_38%)] shrink-0">
+                  <span className="text-lg font-bold text-accent select-none">
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-sm text-[hsl(204_15%_42%)] leading-relaxed font-light border-t border-[hsl(204_20%_92%)]">
+                  <div className="p-5 pt-0 text-xs sm:text-sm text-text-muted leading-relaxed border-t border-gray-100 bg-white">
                     {item.a}
                   </div>
                 )}

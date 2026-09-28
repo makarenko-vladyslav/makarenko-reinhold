@@ -1,59 +1,17 @@
 {
-  "currency": "NOK",
-  "vatRate": 0.25,
-  "baseHourlyRate": 420,
-  "serviceRates": {
-    "regular": {
-      "name": "Регулярне прибирання (Fast renhold)",
-      "ratePerM2": 24,
-      "baseHours": 2.5,
-      "minPrice": 1260
-    },
-    "deep": {
-      "name": "Генеральне прибирання (Storvask)",
-      "ratePerM2": 38,
-      "baseHours": 4.5,
-      "minPrice": 3200
-    },
-    "moveout": {
-      "name": "Прибирання при переїзді (Flyttevask з гарантією)",
-      "ratePerM2": 46,
-      "baseHours": 6.0,
-      "minPrice": 3900
-    },
-    "cabin": {
-      "name": "Обслуговування дач (Hyttevask Telemark)",
-      "ratePerM2": 32,
-      "baseHours": 3.5,
-      "minPrice": 2500
-    },
-    "office": {
-      "name": "Офісні приміщення B2B (Kontorrenhold)",
-      "ratePerM2": 26,
-      "baseHours": 3.0,
-      "minPrice": 1680
-    }
-  },
-  "addons": [
-    {
-      "id": "windows",
-      "name": "Миття вікон з рамами (двостороннє)",
-      "price": 650
-    },
-    {
-      "id": "oven",
-      "name": "Глибоке чищення духової шафи та витяжки",
-      "price": 450
-    },
-    {
-      "id": "fridge",
-      "name": "Дезінфекція та миття холодильника",
-      "price": 380
-    },
-    {
-      "id": "balcony",
-      "name": "Очищення тераси або балкона",
-      "price": 520
-    }
-  ]
+  "currency": "kr",
+  "vatNotice": "inkl. 25 % mva.",
+  "hourlyRate": 430,
+  "moveOutBaseSqm": 70,
+  "moveOutBasePrice": 5900,
+  "moveOutSqmRate": 45,
+  "seasonPackagePrice": 4200,
+  "weekendCleanPrice": 1450,
+  "monthlyMaintenancePrice": 2760,
+  "additions": {
+    "oven": 450,
+    "fridge": 350,
+    "windows": 650,
+    "balcony": 800
+  }
 }

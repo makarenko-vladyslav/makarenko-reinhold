@@ -1,58 +1,67 @@
 "use client";
 import { useLocale } from "@/lib/i18n";
 
-interface Member {
-  name: string;
-  role: string;
-  bio: string;
-  image: string;
-}
-
 export default function Team() {
   const { t } = useLocale();
 
-  const members = (t("teamSection.members") as Member[]) || [];
+  const kicker = String(t("team.kicker"));
+  const title = String(t("team.title"));
+  const lede = String(t("team.lede"));
+  const members = (t("team.members") as Array<{
+    name: string;
+    role: string;
+    desc: string;
+    imageUrl: string;
+  }>) || [];
 
   return (
-    <section className="py-20 bg-[hsl(0_0%_100%)]">
+    <section className="py-20 bg-bg-light border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] mb-2">
-            {t("teamSection.kicker") as string}
-          </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(204_35%_15%)] tracking-tight mb-4">
-            {t("teamSection.title") as string}
+        <div className="max-w-3xl mb-14">
+          <p className="text-xs font-bold tracking-widest uppercase text-accent mb-2">
+            {kicker}
+          </p>
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-primary tracking-tight mb-4">
+            {title}
           </h2>
-          <p className="text-base text-[hsl(204_15%_42%)] leading-relaxed font-light">
-            {t("teamSection.subtitle") as string}
+          <p className="text-base text-text-muted leading-relaxed">
+            {lede}
           </p>
         </div>
 
+        {/* Team Grid — Photo filling card, clean Norwegian credentials */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {members.map((m, idx) => (
+          {members.map((member, idx) => (
             <div
               key={idx}
-              className="bg-[hsl(195_25%_98%)] rounded-2xl border border-[hsl(204_20%_88%)] overflow-hidden flex flex-col"
+              className="bg-white rounded-md border border-gray-200 overflow-hidden flex flex-col justify-between shadow-sm"
             >
-              <div className="aspect-[3/4] w-full overflow-hidden bg-[hsl(204_20%_90%)]">
-                <img
-                  src={m.image}
-                  alt={m.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-top"
-                />
+              <div>
+                <div className="w-full aspect-[4/3] bg-gray-100 overflow-hidden">
+                  <img
+                    src={member.imageUrl}
+                    alt={member.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display font-bold text-lg text-primary tracking-tight">
+                    {member.name}
+                  </h3>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-accent block mb-3">
+                    {member.role}
+                  </span>
+                  <p className="text-xs sm:text-sm text-text-muted leading-relaxed">
+                    {member.desc}
+                  </p>
+                </div>
               </div>
 
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="font-display font-bold text-2xl text-[hsl(204_35%_15%)] mb-1">
-                  {m.name}
-                </h3>
-                <div className="text-xs font-sans font-semibold text-[hsl(158_64%_38%)] uppercase tracking-wider mb-4">
-                  {m.role}
-                </div>
-                <p className="text-xs text-[hsl(204_15%_42%)] leading-relaxed font-light flex-1">
-                  {m.bio}
-                </p>
+              <div className="p-6 pt-0">
+                <span className="inline-block text-[11px] text-text-muted border-t border-gray-100 pt-3 w-full">
+                  Gyldig renholds-ID fra Arbeidstilsynet
+                </span>
               </div>
             </div>
           ))}

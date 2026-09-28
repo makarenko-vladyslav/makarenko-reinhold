@@ -2,13 +2,11 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import content from '@/lib/content.json';
 
-interface LocaleContextType {
+const LocaleContext = createContext<{
   locale: string;
   setLocale: (l: string) => void;
   t: (path: string) => unknown;
-}
-
-const LocaleContext = createContext<LocaleContextType>({
+}>({
   locale: content.defaultLocale,
   setLocale: () => {},
   t: () => '',
@@ -44,7 +42,6 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
       }
     }
     if (val !== undefined) return val;
-
     val = locales[content.defaultLocale];
     for (const k of keys) {
       if (val && typeof val === 'object' && k in (val as Record<string, unknown>)) {
@@ -58,9 +55,9 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   }, [locale]);
 
   return (
-    <LocaleContext value={{ locale, setLocale, t }}>
+    <LocaleContext.Provider value={{ locale, setLocale, t }}>
       {children}
-    </LocaleContext>
+    </LocaleContext.Provider>
   );
 }
 

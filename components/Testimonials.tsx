@@ -2,115 +2,125 @@
 import { useState } from "react";
 import { useLocale } from "@/lib/i18n";
 
-interface Testimonial {
-  name: string;
-  location: string;
-  service: string;
-  date: string;
-  rating: string;
-  text: string;
-}
-
 export default function Testimonials() {
   const { t } = useLocale();
-  const [activeSlide, setActiveSlide] = useState(0);
 
-  const items = (t("testimonials.items") as Testimonial[]) || [];
+  const kicker = String(t("testimonials.kicker"));
+  const title = String(t("testimonials.title"));
+  const lede = String(t("testimonials.lede"));
+  const overallScore = String(t("testimonials.overallScore"));
+  const sourceLabel = String(t("testimonials.sourceLabel"));
+  const reviews = (t("testimonials.items") as Array<{
+    author: string;
+    location: string;
+    service: string;
+    text: string;
+    date: string;
+    rating: string;
+  }>) || [];
+
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeReview = reviews[activeIdx] || reviews[0];
 
   return (
-    <section id="reviews" className="scroll-mt-20 py-20 bg-[hsl(195_25%_98%)] border-t border-[hsl(204_20%_88%)] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="text-xs uppercase tracking-widest font-sans font-bold text-[hsl(158_64%_38%)] mb-2">
-            {t("testimonials.kicker") as string}
+    <section className="py-20 bg-white border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header with score pill */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="h-px w-5 bg-accent" />
+              <p className="text-xs font-bold tracking-widest uppercase text-accent font-display">
+                {kicker}
+              </p>
+            </div>
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-primary tracking-tight mb-2">
+              {title}
+            </h2>
+            <p className="text-base text-text-muted leading-relaxed">
+              {lede}
+            </p>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[hsl(204_35%_15%)] tracking-tight mb-4">
-            {t("testimonials.title") as string}
-          </h2>
-          <p className="text-base text-[hsl(204_15%_42%)] leading-relaxed font-light mb-4">
-            {t("testimonials.subtitle") as string}
-          </p>
-          <div className="inline-block px-4 py-1.5 rounded-full bg-[hsl(0_0%_100%)] border border-[hsl(204_20%_88%)] text-xs text-[hsl(158_64%_35%)] font-sans font-semibold">
-            {t("testimonials.scoreText") as string}
+
+          <div className="bg-bg-light px-5 py-3 rounded border border-gray-200">
+            <span className="font-display font-extrabold text-xl text-primary block tabular-nums">
+              {overallScore}
+            </span>
+            <span className="text-[11px] text-text-muted block">
+              {sourceLabel}
+            </span>
           </div>
         </div>
 
-        {/* Featured Pull-Quote Card */}
-        {items.length > 0 && (
-          <div className="mb-12 max-w-4xl mx-auto p-8 sm:p-12 rounded-2xl bg-[hsl(0_0%_100%)] border border-[hsl(204_20%_88%)] shadow-md relative">
-            <div className="font-display font-black text-6xl text-[hsl(158_64%_38%/0.2)] absolute top-4 left-6 select-none pointer-events-none">
+        {/* Featured Big Pull-Quote Review Card */}
+        {activeReview && (
+          <div className="bg-bg-light rounded p-8 sm:p-12 border border-gray-200 mb-8 relative">
+            <span className="font-display font-extrabold text-5xl sm:text-6xl text-accent/30 select-none block leading-none mb-4">
               «
-            </div>
-            <p className="font-display font-medium text-xl sm:text-2xl text-[hsl(204_35%_15%)] leading-relaxed mb-6 italic relative z-10">
-              «{items[activeSlide].text}»
+            </span>
+            <p className="font-display font-medium text-lg sm:text-2xl text-primary leading-relaxed mb-6">
+              «{activeReview.text}»
             </p>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-4 border-t border-[hsl(204_20%_90%)] text-xs">
+
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-gray-200 pt-6">
               <div>
-                <span className="font-display font-bold text-base text-[hsl(204_35%_15%)] block">
-                  {items[activeSlide].name}
-                </span>
-                <span className="text-[hsl(204_15%_45%)] font-sans">
-                  {items[activeSlide].location} · {items[activeSlide].service}
+                <h3 className="font-display font-bold text-base text-primary">
+                  {activeReview.author}
+                </h3>
+                <span className="text-xs text-text-muted block">
+                  {activeReview.location} · {activeReview.service}
                 </span>
               </div>
-              <div className="font-display font-bold text-sm text-[hsl(158_64%_38%)]">
-                {items[activeSlide].rating} / 5,0 ({items[activeSlide].date})
+
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-mono font-bold text-accent px-2.5 py-1 rounded bg-white border border-gray-200">
+                  {activeReview.rating}
+                </span>
+                <span className="text-xs text-text-muted">{activeReview.date}</span>
               </div>
             </div>
           </div>
         )}
 
-        {/* Dot Indicators */}
-        <div className="flex justify-center items-center gap-2 mb-12">
-          {items.map((_, idx) => (
+        {/* Dot Indicators / Review Switcher */}
+        <div className="flex items-center justify-center gap-2 mb-10">
+          {reviews.map((_, i) => (
             <button
-              key={idx}
+              key={i}
               type="button"
-              onClick={() => setActiveSlide(idx)}
-              aria-label={`Відгук ${idx + 1}`}
-              className={`h-2 rounded-full transition-all ${
-                activeSlide === idx
-                  ? "w-8 bg-[hsl(158_64%_38%)]"
-                  : "w-2 bg-[hsl(204_20%_80%)] hover:bg-[hsl(204_20%_65%)]"
+              onClick={() => setActiveIdx(i)}
+              aria-label={`Vis vurdering ${i + 1}`}
+              className={`h-2.5 rounded-full transition-[width,background-color] duration-200 ease-out ${
+                activeIdx === i ? "w-8 bg-accent" : "w-2.5 bg-gray-300 hover:bg-gray-400"
               }`}
             />
           ))}
         </div>
 
-        {/* All Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {items.map((rev, idx) => (
+        {/* Compact Grid of other reviews */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {reviews.map((rev, idx) => (
             <div
               key={idx}
-              className={`p-6 sm:p-8 rounded-2xl bg-[hsl(0_0%_100%)] border transition-all flex flex-col justify-between ${
-                activeSlide === idx
-                  ? "border-[hsl(158_64%_38%)] shadow-md"
-                  : "border-[hsl(204_20%_88%)] shadow-xs"
+              onClick={() => setActiveIdx(idx)}
+              className={`p-5 rounded border cursor-pointer transition-colors duration-150 ease-out ${
+                activeIdx === idx
+                  ? "bg-white border-accent ring-1 ring-accent/20"
+                  : "bg-bg-light border-gray-200 hover:border-gray-300"
               }`}
             >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <div className="font-display font-bold text-lg text-[hsl(204_35%_15%)]">
-                      {rev.name}
-                    </div>
-                    <div className="text-xs font-sans text-[hsl(204_15%_42%)]">
-                      {rev.location} · {rev.service}
-                    </div>
-                  </div>
-                  <div className="font-display font-bold text-sm text-[hsl(158_64%_38%)]">
-                    {rev.rating} / 5,0
-                  </div>
-                </div>
-
-                <p className="text-sm text-[hsl(204_35%_20%)] leading-relaxed font-light italic mb-6">
-                  «{rev.text}»
-                </p>
+              <div className="flex items-center justify-between text-xs text-text-muted mb-2">
+                <span className="font-semibold text-accent uppercase tracking-wider text-[10px]">
+                  {rev.service}
+                </span>
+                <span className="text-[10px]">{rev.date}</span>
               </div>
-
-              <div className="pt-4 border-t border-[hsl(204_20%_90%)] text-[11px] font-sans text-[hsl(204_15%_50%)]">
-                Дата обслуговування: {rev.date}
-              </div>
+              <p className="text-xs text-text-main leading-relaxed line-clamp-3 mb-3">
+                «{rev.text}»
+              </p>
+              <span className="font-display font-bold text-xs text-primary block">
+                {rev.author}
+              </span>
             </div>
           ))}
         </div>
